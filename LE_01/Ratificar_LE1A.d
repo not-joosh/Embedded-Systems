@@ -1,0 +1,1 @@
+ Ratificar_LE1A.d  Ratificar_LE1A.p1:  C:/Users/notjo/OneDrive/Desktop/USC/USC-Year3-Sem2/3201-EmbeddedSystems/Labs/LE_01/Ratificar_LE1A.c
