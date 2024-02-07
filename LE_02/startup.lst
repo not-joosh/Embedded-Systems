@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC Macro Assembler V1.33 build 59893 
-                                                                                                           Wed Feb 07 21:07:48 2024
+                                                                                                           Wed Feb 07 22:01:01 2024
 
 
      1                           
@@ -77,12 +77,36 @@ Microchip Technology PIC Macro Assembler V1.33 build 59893
     71                           	global start_initialization
     72                           	ljmp start_initialization	;jump to C runtime clear & initialization
     73  0000  120A  118A  2FFC   
+    74                           ; Config register CONFIG @ 0x2007
+    75                           ;	Watchdog Timer Enable bit
+    76                           ;	WDTE = OFF, WDT disabled
+    77                           ;	Power-up Timer Enable bit
+    78                           ;	PWRTE = ON, PWRT enabled
+    79                           ;	Flash Program Memory Code Protection bit
+    80                           ;	CP = OFF, Code protection off
+    81                           ;	Brown-out Reset Enable bit
+    82                           ;	BOREN = ON, BOR enabled
+    83                           ;	In-Circuit Debugger Mode bit
+    84                           ;	DEBUG = 0x1, unprogrammed default
+    85                           ;	Low-Voltage (Single-Supply) In-Circuit Serial Programming Enable bit
+    86                           ;	LVP = OFF, RB3 is digital I/O, HV on MCLR must be used for programming
+    87                           ;	Data EEPROM Memory Code Protection bit
+    88                           ;	CPD = OFF, Data EEPROM code protection off
+    89                           ;	Flash Program Memory Write Enable bits
+    90                           ;	WRT = OFF, Write protection off; all program memory may be written to by EECON control
+    91                           ;	Oscillator Selection bits
+    92                           ;	FOSC = XT, XT oscillator
+    93                           
+    94                           	psect	config
+    95                           		org 0x0
+    96  2007                     		dw 0xFF71
+    97  2007  FF71               
 
 
 Microchip Technology PIC Macro Assembler V1.33 build 59893 
-Symbol Table                                                                                               Wed Feb 07 21:07:48 2024
+Symbol Table                                                                                               Wed Feb 07 22:01:01 2024
 
-               ___sp 0000                 _main 05AD                 start 0000               stackhi 0000  
+               ___sp 0000                 _main 069B                 start 0000               stackhi 0000  
              stacklo 0000  start_initialization 07FC             ___int_sp 0000             intlevel0 0000  
            intlevel1 0000             intlevel2 0000             intlevel3 0000             intlevel4 0000  
            intlevel5 0000             reset_vec 0000  

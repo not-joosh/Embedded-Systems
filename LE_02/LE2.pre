@@ -1425,47 +1425,82 @@ extern void memcpyee(__eeprom unsigned char *to, const unsigned char *from, unsi
 #pragma intrinsic(_delay)
 extern __nonreentrant void _delay(unsigned long);
 
-# 5 "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2.c"
-const char keyMap[] = {
-'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-'+', '-', '*', '/', '='
+
+# 4 "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2.c"
+#pragma config FOSC = XT
+#pragma config WDTE = OFF
+#pragma config PWRTE = ON
+#pragma config BOREN = ON
+#pragma config LVP = OFF
+#pragma config CPD = OFF
+#pragma config WRT = OFF
+#pragma config CP = OFF
+
+
+enum Keys
+{
+KEY_0 = 0x1D,
+KEY_1 = 0x18,
+KEY_2 = 0x19,
+KEY_3 = 0x1A,
+KEY_4 = 0x14,
+KEY_5 = 0x15,
+KEY_6 = 0x16,
+KEY_7 = 0x10,
+KEY_8 = 0x11,
+KEY_9 = 0x12,
+KEY_PLUS = 0x1F,
+KEY_MINUS = 0x1B,
+KEY_MULTIPLY = 0x17,
+KEY_DIVIDE = 0x13,
+KEY_EQUALS = 0x1E
 };
 
-const int keyCodes[] = {
-0x1D, 0x18, 0x19, 0x1A, 0x14, 0x15, 0x16, 0x10, 0x11, 0x12,
-0x1F, 0x1B, 0x17, 0x13, 0x1E
-};
+
+void delay(int timeIn);
+void instCtrl(int dataIn);
+void dataCtrl(int dataIn);
+void initLCD();
+int readKey(int *rowCount);
 
 void delay(int timeIn)
 {
-for(int j = 0; j < timeIn; j++);
+for (int j = 0; j < timeIn; j++);
 }
 
-void instCtrl(int instruction_in)
+void instCtrl(int dataIn)
 {
-PORTB = instruction_in;
-delay(0x2000);
+
+PORTB = dataIn;
+delay(1000);
+
 PORTC = 0x04;
-delay(0x2000);
+delay(1000);
+
 PORTC = 0x00;
-delay(0x2000);
+delay(1000);
+
 PORTC = 0x00;
 }
 
-void dataCtrl(char data_inst_in)
+void dataCtrl(int dataIn)
 {
-PORTB = data_inst_in;
-delay(0x2000);
+
+PORTB = dataIn;
+delay(1000);
+
 PORTC = 0x06;
-delay(0x2000);
+delay(1000);
+
 PORTC = 0x02;
-delay(0x2000);
+delay(1000);
+
 PORTC = 0x00;
 }
 
 void initLCD()
 {
-delay(0x2000);
+delay(1000);
 instCtrl(0x38);
 instCtrl(0x08);
 instCtrl(0x01);
@@ -1473,37 +1508,95 @@ instCtrl(0x06);
 instCtrl(0x0C);
 }
 
-void readKey(int *rowCount)
+int readKey(int *rowCount)
 {
+int isValidKey = 1;
 int bits = PORTD;
-for (int i = 0; i < sizeof(keyCodes) / sizeof(keyCodes[0]); i++)
+switch (bits)
 {
-if (bits == keyCodes[i])
-{
-dataCtrl(keyMap[i]);
+case KEY_0:
+dataCtrl('0');
+break;
+case KEY_1:
+dataCtrl('1');
+break;
+case KEY_2:
+dataCtrl('2');
+break;
+case KEY_3:
+dataCtrl('3');
+break;
+case KEY_4:
+dataCtrl('4');
+break;
+case KEY_5:
+dataCtrl('5');
+break;
+case KEY_6:
+dataCtrl('6');
+break;
+case KEY_7:
+dataCtrl('7');
+break;
+case KEY_8:
+dataCtrl('8');
+break;
+case KEY_9:
+dataCtrl('9');
+break;
+case KEY_PLUS:
+dataCtrl('+');
+break;
+case KEY_MINUS:
+dataCtrl('-');
+break;
+case KEY_MULTIPLY:
+dataCtrl('*');
+break;
+case KEY_DIVIDE:
+dataCtrl('/');
+break;
+case KEY_EQUALS:
+dataCtrl('=');
+break;
+default:
+isValidKey = 0;
 break;
 }
-}
-*rowCount = (*rowCount + 1) % 80;
-if (*rowCount % 20 == 0) instCtrl((0xC0 + (*rowCount / 20 - 1) * 0x34));
-
-if (*rowCount == 0) instCtrl(0x01);
+return isValidKey;
 }
 
 void main()
 {
 int rowCount = 0;
-OPTION_REG = 0xC0;
 TRISB = 0x00;
 TRISC = 0x00;
-PORTB = 0x00;
-PORTC = 0x00;
-
 TRISD = 0xFF;
-PORTD = 0xFF;
+
 initLCD();
 while (1)
 {
-if (RD4 == 1) readKey(&rowCount);
+if (RD4 == 1)
+{
+int isValidKey = readKey(&rowCount);
+if (isValidKey)
+{
+rowCount += 1;
+if (rowCount % 20 == 0)
+{
+if (rowCount == 20)
+instCtrl(0xC0);
+else if (rowCount == 40)
+instCtrl(0x94);
+else if (rowCount == 60)
+instCtrl(0xD4);
+}
+if (rowCount > 80)
+{
+instCtrl(0x01);
+rowCount = 0;
+}
+}
+}
 }
 }

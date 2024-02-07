@@ -1,4 +1,6 @@
 #include <xc.h> 
+
+// Configuration settings
 #pragma config FOSC = XT 
 #pragma config WDTE = OFF 
 #pragma config PWRTE = ON 
@@ -8,58 +10,71 @@
 #pragma config WRT = OFF 
 #pragma config CP = OFF 
 
-
-#define KEY0 0x1D
-#define KEY1 0x18
-#define KEY2 0x19
-#define KEY3 0x1A
-#define KEY4 0x14
-#define KEY5 0x15
-#define KEY6 0x16
-#define KEY7 0x10
-#define KEY8 0x11
-#define KEY9 0x12
-#define KEYPLUS 0x1F
-#define KEYMINUS 0x1B
-#define KEYMULTIPLY 0x17
-#define KEYDIVIDE 0x13
-#define KEYEQUALS 0x1E
-
-void delay(int timeIn) {
-    for(int j = 0; j < timeIn; j++);
-}
-
-void instCtrl(int instruction_in) {
-    // Load Data Pins at PORTB    
-    PORTB = instruction_in;
-    delay(2000);
-    // SELECT instructino register
-    PORTC = 0b00000100;
-    delay(2000);
-    // Enable High
-    PORTC = 0x00;
-    delay(2000);
-    // Set enable back to low, but keep the selected register
-    PORTC = 0x00;
-}
-
-void dataCtrl(int data_inst_in) {
-    // Load Data Pins at PORTB
-    PORTB = data_inst_in;
-    delay(2000);
-    // SELECT instruction register
-    PORTC = 0b00000110;
-    delay(2000);
-    // Enable High
-    PORTC = 0b00000010;
-    delay(2000);
-    // Set enable back to low, but keep the selected register
-    PORTC = 0x00;
-}
-
-void initLCD()
+// Key constants
+enum Keys 
 {
-    delay(2000); // LCD startup about 15ms
+    KEY_0 = 0x1D,
+    KEY_1 = 0x18,
+    KEY_2 = 0x19,
+    KEY_3 = 0x1A,
+    KEY_4 = 0x14,
+    KEY_5 = 0x15,
+    KEY_6 = 0x16,
+    KEY_7 = 0x10,
+    KEY_8 = 0x11,
+    KEY_9 = 0x12,
+    KEY_PLUS = 0x1F,
+    KEY_MINUS = 0x1B,
+    KEY_MULTIPLY = 0x17,
+    KEY_DIVIDE = 0x13,
+    KEY_EQUALS = 0x1E
+};
+
+// Function prototypes
+void delay(int timeIn);
+void instCtrl(int dataIn);
+void dataCtrl(int dataIn);
+void initLCD();
+int readKey(int *rowCount);
+
+void delay(int timeIn) 
+{
+    for (int j = 0; j < timeIn; j++);
+}
+
+void instCtrl(int dataIn) 
+{
+    // Load Data Pins at PORTB    
+    PORTB = dataIn;
+    delay(1000);
+    // SELECT instruction register
+    PORTC = 0x04;
+    delay(1000);
+    // Enable High
+    PORTC = 0x00;
+    delay(1000);
+    // Set enable back to low, but keep the selected register
+    PORTC = 0x00;
+}
+
+void dataCtrl(int dataIn) 
+{
+    // Load Data Pins at PORTB
+    PORTB = dataIn;
+    delay(1000);
+    // SELECT instruction register
+    PORTC = 0x06;
+    delay(1000);
+    // Enable High
+    PORTC = 0x02;
+    delay(1000);
+    // Set enable back to low, but keep the selected register
+    PORTC = 0x00;
+}
+
+void initLCD() 
+{
+    delay(1000);    // LCD startup about 15ms
     instCtrl(0x38); // function set: 8-bit; dual-line
     instCtrl(0x08); // display off
     instCtrl(0x01); // display clear
@@ -67,93 +82,95 @@ void initLCD()
     instCtrl(0x0C); // display on; cursor on; blink off
 }
 
-void readKey(int *rowCountIN) 
+int readKey(int *rowCount) 
 {
-    // int key = PORTD;
-    // set key to the value of PORTD
+    int isValidKey = 1;
     int bits = PORTD;
-    switch(bits) {
-        case KEY0:
+    switch (bits) 
+    {
+        case KEY_0:
             dataCtrl('0');
             break;
-        case KEY1:
+        case KEY_1:
             dataCtrl('1');
             break;
-        case KEY2:
+        case KEY_2:
             dataCtrl('2');
             break;
-        case KEY3:
+        case KEY_3:
             dataCtrl('3');
             break;
-        case KEY4:
+        case KEY_4:
             dataCtrl('4');
             break;
-        case KEY5:
+        case KEY_5:
             dataCtrl('5');
             break;
-        case KEY6:
+        case KEY_6:
             dataCtrl('6');
             break;
-        case KEY7:
+        case KEY_7:
             dataCtrl('7');
             break;
-        case KEY8:
+        case KEY_8:
             dataCtrl('8');
             break;
-        case KEY9:
+        case KEY_9:
             dataCtrl('9');
             break;
-        case KEYPLUS:
+        case KEY_PLUS:
             dataCtrl('+');
             break;
-        case KEYMINUS:
+        case KEY_MINUS:
             dataCtrl('-');
             break;
-        case KEYMULTIPLY:
+        case KEY_MULTIPLY:
             dataCtrl('*');
             break;
-        case KEYDIVIDE:
+        case KEY_DIVIDE:
             dataCtrl('/');
             break;
-        case KEYEQUALS:
+        case KEY_EQUALS:
             dataCtrl('=');
             break;
         default:
+            isValidKey = 0; // Not a valid Letter
             break;
     }
-    *rowCountIN += 1; // Increments the amount of characters on the row. if it is 20, then we will move to the next line
-    if(*rowCountIN == 20) {
-        instCtrl(0xC0); // Move to the next line
-    } else if(*rowCountIN == 40) {
-        instCtrl(0x94); // Move to the next line
-    } else if(*rowCountIN == 60) {
-        instCtrl(0xD4); // Move to the next line
-    }
-    if (*rowCountIN > 80) {
-        instCtrl(0x01); // Clear LCD screen
-        *rowCountIN = 0; // Reset row count to 0
-    }
+    return isValidKey;
 }
 
-void main()
-{ 
-    int rowCountIN = 0;
-    
-    OPTION_REG = 0xC0;
+void main() 
+{  
+    int rowCount = 0;
     TRISB = 0x00;
     TRISC = 0x00;
-    PORTB = 0x00;
-    PORTC = 0x00;
-
-    // Keypad
     TRISD = 0xFF;
-    PORTD = 0xFF;
-    initLCD(); // initialize LCD
-    while (1) // endless loop
+
+    initLCD(); 
+    while (1) 
     {    
-        if(RD4 == 1) // then a key has been pressed, so lets read a key
+        if (RD4 == 1) // Data is Available to Read
         {
-            readKey(&rowCountIN);
+            int isValidKey = readKey(&rowCount);
+            if (isValidKey) 
+            {
+                rowCount += 1; // Increment the amount of characters on the row. If it is 20, move to the next line
+                if (rowCount % 20 == 0) 
+                {
+                    if (rowCount == 20)
+                        instCtrl(0xC0); // Move to the next line
+                    else if (rowCount == 40)
+                        instCtrl(0x94); // Move to the next line
+                    else if (rowCount == 60)
+                        instCtrl(0xD4); // Move to the next line
+                }
+                if (rowCount > 80) 
+                {
+                    instCtrl(0x01); // Clear LCD screen
+                    rowCount = 0; // Reset row count to 0
+                }
+            }
         }
     }
 }
