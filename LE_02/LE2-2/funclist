@@ -1,0 +1,5 @@
+_delay: CODE, 1939 0 21
+_readKey: CODE, 1960 0 84
+_main: CODE, 1920 0 19
+__initialization: CODE, 2044 0 0
+Total: 124
