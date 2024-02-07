@@ -1,8 +1,14 @@
-_delay: CODE, 1597 0 21
-_readKey: CODE, 1789 0 255
-_main: CODE, 1618 0 36
-_instCtrl: CODE, 1654 0 40
-_dataCtrl: CODE, 1694 0 42
+___awdiv: CODE, 1754 0 91
+_delay: CODE, 1432 0 21
+_readKey: CODE, 1845 0 199
+__stringtab: STRING, 3 0 6
+___awmod: CODE, 1677 0 77
+_main: CODE, 1453 0 38
+_keyCodes: STRING, 9 0 30
+_instCtrl: CODE, 1491 0 40
+_dataCtrl: CODE, 1572 0 42
+_keyMap: STRING, 39 0 15
 __initialization: CODE, 2044 0 0
-_initLCD: CODE, 1736 0 53
-Total: 447
+___wmul: CODE, 1531 0 41
+_initLCD: CODE, 1614 0 63
+Total: 663

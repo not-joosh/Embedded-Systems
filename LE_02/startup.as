@@ -72,30 +72,6 @@ start
 	global start_initialization
 	ljmp start_initialization	;jump to C runtime clear & initialization
 
-; Config register CONFIG @ 0x2007
-;	Watchdog Timer Enable bit
-;	WDTE = OFF, WDT disabled
-;	Power-up Timer Enable bit
-;	PWRTE = ON, PWRT enabled
-;	Flash Program Memory Code Protection bit
-;	CP = OFF, Code protection off
-;	Brown-out Reset Enable bit
-;	BOREN = ON, BOR enabled
-;	In-Circuit Debugger Mode bit
-;	DEBUG = 0x1, unprogrammed default
-;	Low-Voltage (Single-Supply) In-Circuit Serial Programming Enable bit
-;	LVP = OFF, RB3 is digital I/O, HV on MCLR must be used for programming
-;	Data EEPROM Memory Code Protection bit
-;	CPD = OFF, Data EEPROM code protection off
-;	Flash Program Memory Write Enable bits
-;	WRT = OFF, Write protection off; all program memory may be written to by EECON control
-;	Oscillator Selection bits
-;	FOSC = XT, XT oscillator
-
-	psect	config
-		org 0x0
-		dw 0xFF71
-
 
 psect common,class=COMMON,space=1
 psect bank0,class=BANK0,space=1

@@ -1425,53 +1425,47 @@ extern void memcpyee(__eeprom unsigned char *to, const unsigned char *from, unsi
 #pragma intrinsic(_delay)
 extern __nonreentrant void _delay(unsigned long);
 
+# 5 "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2.c"
+const char keyMap[] = {
+'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+'+', '-', '*', '/', '='
+};
 
-# 2 "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2.c"
-#pragma config FOSC = XT
-#pragma config WDTE = OFF
-#pragma config PWRTE = ON
-#pragma config BOREN = ON
-#pragma config LVP = OFF
-#pragma config CPD = OFF
-#pragma config WRT = OFF
-#pragma config CP = OFF
+const int keyCodes[] = {
+0x1D, 0x18, 0x19, 0x1A, 0x14, 0x15, 0x16, 0x10, 0x11, 0x12,
+0x1F, 0x1B, 0x17, 0x13, 0x1E
+};
 
-# 28
-void delay(int timeIn) {
+void delay(int timeIn)
+{
 for(int j = 0; j < timeIn; j++);
 }
 
-void instCtrl(int instruction_in) {
-
+void instCtrl(int instruction_in)
+{
 PORTB = instruction_in;
-delay(2000);
-
-PORTC = 0b00000100;
-delay(2000);
-
+delay(0x2000);
+PORTC = 0x04;
+delay(0x2000);
 PORTC = 0x00;
-delay(2000);
-
+delay(0x2000);
 PORTC = 0x00;
 }
 
-void dataCtrl(char data_inst_in) {
-
+void dataCtrl(char data_inst_in)
+{
 PORTB = data_inst_in;
-delay(2000);
-
-PORTC = 0b00000110;
-delay(2000);
-
-PORTC = 0b00000010;
-delay(2000);
-
+delay(0x2000);
+PORTC = 0x06;
+delay(0x2000);
+PORTC = 0x02;
+delay(0x2000);
 PORTC = 0x00;
 }
 
 void initLCD()
 {
-delay(2000);
+delay(0x2000);
 instCtrl(0x38);
 instCtrl(0x08);
 instCtrl(0x01);
@@ -1479,97 +1473,37 @@ instCtrl(0x06);
 instCtrl(0x0C);
 }
 
-void readKey(int *rowCountIN)
+void readKey(int *rowCount)
 {
-
-
 int bits = PORTD;
-switch(bits) {
-case 0x1D:
-dataCtrl('0');
-break;
-case 0x18:
-dataCtrl('1');
-break;
-case 0x19:
-dataCtrl('2');
-break;
-case 0x1A:
-dataCtrl('3');
-break;
-case 0x14:
-dataCtrl('4');
-break;
-case 0x15:
-dataCtrl('5');
-break;
-case 0x16:
-dataCtrl('6');
-break;
-case 0x10:
-dataCtrl('7');
-break;
-case 0x11:
-dataCtrl('8');
-break;
-case 0x12:
-dataCtrl('9');
-break;
-case 0x1F:
-dataCtrl('+');
-break;
-case 0x1B:
-dataCtrl('-');
-break;
-case 0x17:
-dataCtrl('*');
-break;
-case 0x13:
-dataCtrl('/');
-break;
-case 0x1E:
-dataCtrl('=');
-break;
-default:
+for (int i = 0; i < sizeof(keyCodes) / sizeof(keyCodes[0]); i++)
+{
+if (bits == keyCodes[i])
+{
+dataCtrl(keyMap[i]);
 break;
 }
-*rowCountIN += 1;
-if(*rowCountIN == 20) {
-instCtrl(0xC0);
-} else if(*rowCountIN == 40) {
-instCtrl(0x94);
-} else if(*rowCountIN == 60) {
-instCtrl(0xD4);
 }
-if ( *rowCountIN > 80) {
-instCtrl(0x01);
-*rowCountIN = 0;
-}
+*rowCount = (*rowCount + 1) % 80;
+if (*rowCount % 20 == 0) instCtrl((0xC0 + (*rowCount / 20 - 1) * 0x34));
+
+if (*rowCount == 0) instCtrl(0x01);
 }
 
 void main()
 {
-
-
-
-
-int rowCountIN = 0;
-
+int rowCount = 0;
 OPTION_REG = 0xC0;
 TRISB = 0x00;
 TRISC = 0x00;
 PORTB = 0x00;
 PORTC = 0x00;
 
-
 TRISD = 0xFF;
 PORTD = 0xFF;
 initLCD();
 while (1)
 {
-if(RD4 == 1)
-{
-readKey(&rowCountIN);
-}
+if (RD4 == 1) readKey(&rowCount);
 }
 }
