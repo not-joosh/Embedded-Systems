@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC Macro Assembler V1.33 build 59893 
-                                                                                                           Wed Feb 07 22:01:01 2024
+                                                                                                           Wed Feb 21 07:48:36 2024
 
 
      1                           
@@ -14,7 +14,7 @@ Microchip Technology PIC Macro Assembler V1.33 build 59893
      8                           	; Compiler options:
      9                           	;
     10                           	; -oGereRatificar_CPE3201.cof -mGereRatificar_CPE3201.map \
-    11                           	; --summary=default --output=default LE2.p1 --chip=16F877A -P \
+    11                           	; --summary=default --output=default LE2-3.p1 --chip=16F877A -P \
     12                           	; --runtime=default --opt=default -N-1 -D__DEBUG=1 -g --asmlist \
     13                           	; --errformat=Error   [%n] %f; %l.%c %s --msgformat=Advisory[%n] %s \
     14                           	; --warnformat=Warning [%n] %f; %l.%c %s
@@ -104,9 +104,9 @@ Microchip Technology PIC Macro Assembler V1.33 build 59893
 
 
 Microchip Technology PIC Macro Assembler V1.33 build 59893 
-Symbol Table                                                                                               Wed Feb 07 22:01:01 2024
+Symbol Table                                                                                               Wed Feb 21 07:48:36 2024
 
-               ___sp 0000                 _main 069B                 start 0000               stackhi 0000  
+               ___sp 0000                 _main 06F0                 start 0000               stackhi 0000  
              stacklo 0000  start_initialization 07FC             ___int_sp 0000             intlevel0 0000  
            intlevel1 0000             intlevel2 0000             intlevel3 0000             intlevel4 0000  
            intlevel5 0000             reset_vec 0000  

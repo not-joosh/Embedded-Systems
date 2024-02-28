@@ -217,27 +217,26 @@ psect	cstackCOMMON,class=COMMON,space=1,noexec
 global __pcstackCOMMON
 __pcstackCOMMON:
 ?_delay:	; 0 bytes @ 0x0
+?_instCtrl:	; 0 bytes @ 0x0
+?_dataCtrl:	; 0 bytes @ 0x0
 ?_initLCD:	; 0 bytes @ 0x0
 ?_main:	; 0 bytes @ 0x0
 	global	delay@timeIn
 delay@timeIn:	; 2 bytes @ 0x0
 	ds	2
 ??_delay:	; 0 bytes @ 0x2
-	ds	1
 	global	delay@j
-delay@j:	; 2 bytes @ 0x3
+delay@j:	; 2 bytes @ 0x2
 	ds	2
-?_instCtrl:	; 0 bytes @ 0x5
-?_dataCtrl:	; 0 bytes @ 0x5
+??_instCtrl:	; 0 bytes @ 0x4
+??_dataCtrl:	; 0 bytes @ 0x4
 	global	instCtrl@dataIn
-instCtrl@dataIn:	; 2 bytes @ 0x5
+instCtrl@dataIn:	; 1 bytes @ 0x4
 	global	dataCtrl@dataIn
-dataCtrl@dataIn:	; 2 bytes @ 0x5
-	ds	2
-??_instCtrl:	; 0 bytes @ 0x7
-??_dataCtrl:	; 0 bytes @ 0x7
-??_initLCD:	; 0 bytes @ 0x7
-??_main:	; 0 bytes @ 0x7
+dataCtrl@dataIn:	; 1 bytes @ 0x4
+	ds	1
+??_initLCD:	; 0 bytes @ 0x5
+??_main:	; 0 bytes @ 0x5
 ;!
 ;!Data Sizes:
 ;!    Strings     0
@@ -249,7 +248,7 @@ dataCtrl@dataIn:	; 2 bytes @ 0x5
 ;!
 ;!Auto Spaces:
 ;!    Space          Size  Autos    Used
-;!    COMMON           14      7       7
+;!    COMMON           14      5       5
 ;!    BANK0            80      0       0
 ;!    BANK1            80      0       0
 ;!    BANK3            96      0       0
@@ -296,25 +295,25 @@ dataCtrl@dataIn:	; 2 bytes @ 0x5
 ;! ---------------------------------------------------------------------------------
 ;! (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
 ;! ---------------------------------------------------------------------------------
-;! (0) _main                                                 0     0      0    2143
+;! (0) _main                                                 0     0      0    1369
 ;!                           _dataCtrl
 ;!                            _initLCD
 ;!                           _instCtrl
 ;! ---------------------------------------------------------------------------------
-;! (1) _initLCD                                              0     0      0     935
+;! (1) _initLCD                                              0     0      0     677
 ;!                              _delay
 ;!                           _instCtrl
 ;! ---------------------------------------------------------------------------------
-;! (1) _instCtrl                                             2     0      2     604
-;!                                              5 COMMON     2     0      2
+;! (1) _instCtrl                                             1     1      0     346
+;!                                              4 COMMON     1     1      0
 ;!                              _delay
 ;! ---------------------------------------------------------------------------------
-;! (1) _dataCtrl                                             2     0      2     604
-;!                                              5 COMMON     2     0      2
+;! (1) _dataCtrl                                             1     1      0     346
+;!                                              4 COMMON     1     1      0
 ;!                              _delay
 ;! ---------------------------------------------------------------------------------
-;! (2) _delay                                                5     3      2     331
-;!                                              0 COMMON     5     3      2
+;! (2) _delay                                                4     2      2     331
+;!                                              0 COMMON     4     2      2
 ;! ---------------------------------------------------------------------------------
 ;! Estimated maximum stack depth 2
 ;! ---------------------------------------------------------------------------------
@@ -339,7 +338,7 @@ dataCtrl@dataIn:	; 2 bytes @ 0x5
 ;!EEDATA             100      0       0       0        0.0%
 ;!NULL                 0      0       0       0        0.0%
 ;!CODE                 0      0       0       0        0.0%
-;!COMMON               E      7       7       1       50.0%
+;!COMMON               E      5       5       1       35.7%
 ;!BITSFR0              0      0       0       1        0.0%
 ;!SFR0                 0      0       0       1        0.0%
 ;!BITSFR1              0      0       0       2        0.0%
@@ -364,7 +363,7 @@ dataCtrl@dataIn:	; 2 bytes @ 0x5
 
 ;; *************** function _main *****************
 ;; Defined at:
-;;		line 64 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-1\LE2-1.c"
+;;		line 66 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-1\LE2-1.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -394,12 +393,12 @@ dataCtrl@dataIn:	; 2 bytes @ 0x5
 ;;
 psect	maintext,global,class=CODE,delta=2,split=1
 	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-1\LE2-1.c"
-	line	64
+	line	66
 global __pmaintext
 __pmaintext:	;psect for function _main
 psect	maintext
 	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-1\LE2-1.c"
-	line	64
+	line	66
 	global	__size_of_main
 	__size_of_main	equ	__end_of_main-_main
 	
@@ -407,99 +406,78 @@ _main:
 ;incstack = 0
 	opt	stack 5
 ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
-	line	66
+	line	68
 	
 l514:	
-;LE2-1.c: 66: TRISB = 0x00;
+;LE2-1.c: 68: TRISB = 0x00;
 	bsf	status, 5	;RP0=1, select bank1
 	bcf	status, 6	;RP1=0, select bank1
 	clrf	(134)^080h	;volatile
-	line	67
-;LE2-1.c: 67: TRISC = 0x00;
-	clrf	(135)^080h	;volatile
 	line	69
+;LE2-1.c: 69: TRISC = 0x00;
+	clrf	(135)^080h	;volatile
+	line	70
 	
 l516:	
-;LE2-1.c: 69: initLCD();
+;LE2-1.c: 70: initLCD();
 	fcall	_initLCD
 	goto	l518
-	line	70
-;LE2-1.c: 70: while (1)
+	line	71
+;LE2-1.c: 71: while (1)
 	
 l26:	
-	line	72
-	
-l518:	
-;LE2-1.c: 71: {
-;LE2-1.c: 72: instCtrl(0xC6);
-	movlw	low(0C6h)
-	movwf	(instCtrl@dataIn)
-	movlw	high(0C6h)
-	movwf	((instCtrl@dataIn))+1
-	fcall	_instCtrl
 	line	73
 	
-l520:	
-;LE2-1.c: 73: dataCtrl('H');
-	movlw	low(048h)
-	movwf	(dataCtrl@dataIn)
-	movlw	high(048h)
-	movwf	((dataCtrl@dataIn))+1
-	fcall	_dataCtrl
-	line	75
+l518:	
+;LE2-1.c: 72: {
+;LE2-1.c: 73: instCtrl(0x81);
+	movlw	(081h)
+	fcall	_instCtrl
+	line	74
 	
-l522:	
-;LE2-1.c: 75: dataCtrl('E');
-	movlw	low(045h)
-	movwf	(dataCtrl@dataIn)
-	movlw	high(045h)
-	movwf	((dataCtrl@dataIn))+1
+l520:	
+;LE2-1.c: 74: dataCtrl('H');
+	movlw	(048h)
 	fcall	_dataCtrl
 	line	76
 	
-l524:	
-;LE2-1.c: 76: dataCtrl('L');
-	movlw	low(04Ch)
-	movwf	(dataCtrl@dataIn)
-	movlw	high(04Ch)
-	movwf	((dataCtrl@dataIn))+1
+l522:	
+;LE2-1.c: 76: dataCtrl('E');
+	movlw	(045h)
 	fcall	_dataCtrl
 	line	77
 	
-l526:	
+l524:	
 ;LE2-1.c: 77: dataCtrl('L');
-	movlw	low(04Ch)
-	movwf	(dataCtrl@dataIn)
-	movlw	high(04Ch)
-	movwf	((dataCtrl@dataIn))+1
+	movlw	(04Ch)
 	fcall	_dataCtrl
 	line	78
 	
-l528:	
-;LE2-1.c: 78: dataCtrl('O');
-	movlw	low(04Fh)
-	movwf	(dataCtrl@dataIn)
-	movlw	high(04Fh)
-	movwf	((dataCtrl@dataIn))+1
+l526:	
+;LE2-1.c: 78: dataCtrl('L');
+	movlw	(04Ch)
 	fcall	_dataCtrl
 	line	79
 	
-l530:	
-;LE2-1.c: 79: dataCtrl('!');
-	movlw	low(021h)
-	movwf	(dataCtrl@dataIn)
-	movlw	high(021h)
-	movwf	((dataCtrl@dataIn))+1
+l528:	
+;LE2-1.c: 79: dataCtrl('O');
+	movlw	(04Fh)
 	fcall	_dataCtrl
-	goto	l518
 	line	80
 	
+l530:	
+;LE2-1.c: 80: dataCtrl('!');
+	movlw	(021h)
+	fcall	_dataCtrl
+	goto	l518
+	line	81
+	
 l27:	
-	line	70
+	line	71
 	goto	l518
 	
 l28:	
-	line	81
+	line	82
 	
 l29:	
 	global	start
@@ -512,7 +490,7 @@ GLOBAL	__end_of_main
 
 ;; *************** function _initLCD *****************
 ;; Defined at:
-;;		line 54 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-1\LE2-1.c"
+;;		line 56 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-1\LE2-1.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -541,12 +519,12 @@ GLOBAL	__end_of_main
 ;; This function uses a non-reentrant model
 ;;
 psect	text1,local,class=CODE,delta=2,merge=1
-	line	54
+	line	56
 global __ptext1
 __ptext1:	;psect for function _initLCD
 psect	text1
 	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-1\LE2-1.c"
-	line	54
+	line	56
 	global	__size_of_initLCD
 	__size_of_initLCD	equ	__end_of_initLCD-_initLCD
 	
@@ -554,51 +532,36 @@ _initLCD:
 ;incstack = 0
 	opt	stack 5
 ; Regs used in _initLCD: [wreg+status,2+status,0+pclath+cstack]
-	line	56
+	line	58
 	
 l512:	
-;LE2-1.c: 56: delay(1000);
-	movlw	low(03E8h)
+;LE2-1.c: 58: delay(100);
+	movlw	low(064h)
 	movwf	(delay@timeIn)
-	movlw	high(03E8h)
+	movlw	high(064h)
 	movwf	((delay@timeIn))+1
 	fcall	_delay
-	line	57
-;LE2-1.c: 57: instCtrl(0x38);
-	movlw	low(038h)
-	movwf	(instCtrl@dataIn)
-	movlw	high(038h)
-	movwf	((instCtrl@dataIn))+1
-	fcall	_instCtrl
-	line	58
-;LE2-1.c: 58: instCtrl(0x08);
-	movlw	low(08h)
-	movwf	(instCtrl@dataIn)
-	movlw	high(08h)
-	movwf	((instCtrl@dataIn))+1
-	fcall	_instCtrl
 	line	59
-;LE2-1.c: 59: instCtrl(0x01);
-	movlw	low(01h)
-	movwf	(instCtrl@dataIn)
-	movlw	high(01h)
-	movwf	((instCtrl@dataIn))+1
+;LE2-1.c: 59: instCtrl(0x38);
+	movlw	(038h)
 	fcall	_instCtrl
 	line	60
-;LE2-1.c: 60: instCtrl(0x06);
-	movlw	low(06h)
-	movwf	(instCtrl@dataIn)
-	movlw	high(06h)
-	movwf	((instCtrl@dataIn))+1
+;LE2-1.c: 60: instCtrl(0x08);
+	movlw	(08h)
 	fcall	_instCtrl
 	line	61
-;LE2-1.c: 61: instCtrl(0x0C);
-	movlw	low(0Ch)
-	movwf	(instCtrl@dataIn)
-	movlw	high(0Ch)
-	movwf	((instCtrl@dataIn))+1
+;LE2-1.c: 61: instCtrl(0x01);
+	movlw	(01h)
 	fcall	_instCtrl
 	line	62
+;LE2-1.c: 62: instCtrl(0x06);
+	movlw	(06h)
+	fcall	_instCtrl
+	line	63
+;LE2-1.c: 63: instCtrl(0x0C);
+	movlw	(0Ch)
+	fcall	_instCtrl
+	line	64
 	
 l23:	
 	return
@@ -610,11 +573,11 @@ GLOBAL	__end_of_initLCD
 
 ;; *************** function _instCtrl *****************
 ;; Defined at:
-;;		line 24 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-1\LE2-1.c"
+;;		line 26 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-1\LE2-1.c"
 ;; Parameters:    Size  Location     Type
-;;  dataIn          2    5[COMMON] int 
+;;  dataIn          1    wreg     unsigned char 
 ;; Auto vars:     Size  Location     Type
-;;		None
+;;  dataIn          1    4[COMMON] unsigned char 
 ;; Return value:  Size  Location     Type
 ;;		None               void
 ;; Registers used:
@@ -624,11 +587,11 @@ GLOBAL	__end_of_initLCD
 ;;		On exit  : 0/0
 ;;		Unchanged: 0/0
 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-;;      Params:         2       0       0       0       0
-;;      Locals:         0       0       0       0       0
+;;      Params:         0       0       0       0       0
+;;      Locals:         1       0       0       0       0
 ;;      Temps:          0       0       0       0       0
-;;      Totals:         2       0       0       0       0
-;;Total ram usage:        2 bytes
+;;      Totals:         1       0       0       0       0
+;;Total ram usage:        1 bytes
 ;; Hardware stack levels used:    1
 ;; Hardware stack levels required when called:    1
 ;; This function calls:
@@ -639,12 +602,12 @@ GLOBAL	__end_of_initLCD
 ;; This function uses a non-reentrant model
 ;;
 psect	text2,local,class=CODE,delta=2,merge=1
-	line	24
+	line	26
 global __ptext2
 __ptext2:	;psect for function _instCtrl
 psect	text2
 	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-1\LE2-1.c"
-	line	24
+	line	26
 	global	__size_of_instCtrl
 	__size_of_instCtrl	equ	__end_of_instCtrl-_instCtrl
 	
@@ -652,60 +615,62 @@ _instCtrl:
 ;incstack = 0
 	opt	stack 6
 ; Regs used in _instCtrl: [wreg+status,2+status,0+pclath+cstack]
-	line	27
+;instCtrl@dataIn stored from wreg
+	movwf	(instCtrl@dataIn)
+	line	29
 	
 l490:	
-;LE2-1.c: 27: PORTB = dataIn;
+;LE2-1.c: 29: PORTB = dataIn;
 	movf	(instCtrl@dataIn),w
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
 	movwf	(6)	;volatile
-	line	28
-	
-l492:	
-;LE2-1.c: 28: delay(1000);
-	movlw	low(03E8h)
-	movwf	(delay@timeIn)
-	movlw	high(03E8h)
-	movwf	((delay@timeIn))+1
-	fcall	_delay
 	line	30
 	
+l492:	
+;LE2-1.c: 30: delay(100);
+	movlw	low(064h)
+	movwf	(delay@timeIn)
+	movlw	high(064h)
+	movwf	((delay@timeIn))+1
+	fcall	_delay
+	line	32
+	
 l494:	
-;LE2-1.c: 30: PORTC = 0x04;
+;LE2-1.c: 32: PORTC = 0x04;
 	movlw	(04h)
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
 	movwf	(7)	;volatile
-	line	31
-;LE2-1.c: 31: delay(1000);
-	movlw	low(03E8h)
+	line	33
+;LE2-1.c: 33: delay(100);
+	movlw	low(064h)
 	movwf	(delay@timeIn)
-	movlw	high(03E8h)
+	movlw	high(064h)
 	movwf	((delay@timeIn))+1
 	fcall	_delay
-	line	33
+	line	35
 	
 l496:	
-;LE2-1.c: 33: PORTC = 0x00;
+;LE2-1.c: 35: PORTC = 0x00;
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
 	clrf	(7)	;volatile
-	line	34
+	line	36
 	
 l498:	
-;LE2-1.c: 34: delay(1000);
-	movlw	low(03E8h)
+;LE2-1.c: 36: delay(100);
+	movlw	low(064h)
 	movwf	(delay@timeIn)
-	movlw	high(03E8h)
+	movlw	high(064h)
 	movwf	((delay@timeIn))+1
 	fcall	_delay
-	line	36
-;LE2-1.c: 36: PORTC = 0x00;
+	line	38
+;LE2-1.c: 38: PORTC = 0x00;
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
 	clrf	(7)	;volatile
-	line	37
+	line	39
 	
 l17:	
 	return
@@ -717,11 +682,11 @@ GLOBAL	__end_of_instCtrl
 
 ;; *************** function _dataCtrl *****************
 ;; Defined at:
-;;		line 39 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-1\LE2-1.c"
+;;		line 41 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-1\LE2-1.c"
 ;; Parameters:    Size  Location     Type
-;;  dataIn          2    5[COMMON] int 
+;;  dataIn          1    wreg     unsigned char 
 ;; Auto vars:     Size  Location     Type
-;;		None
+;;  dataIn          1    4[COMMON] unsigned char 
 ;; Return value:  Size  Location     Type
 ;;		None               void
 ;; Registers used:
@@ -731,11 +696,11 @@ GLOBAL	__end_of_instCtrl
 ;;		On exit  : 0/0
 ;;		Unchanged: 0/0
 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-;;      Params:         2       0       0       0       0
-;;      Locals:         0       0       0       0       0
+;;      Params:         0       0       0       0       0
+;;      Locals:         1       0       0       0       0
 ;;      Temps:          0       0       0       0       0
-;;      Totals:         2       0       0       0       0
-;;Total ram usage:        2 bytes
+;;      Totals:         1       0       0       0       0
+;;Total ram usage:        1 bytes
 ;; Hardware stack levels used:    1
 ;; Hardware stack levels required when called:    1
 ;; This function calls:
@@ -745,12 +710,12 @@ GLOBAL	__end_of_instCtrl
 ;; This function uses a non-reentrant model
 ;;
 psect	text3,local,class=CODE,delta=2,merge=1
-	line	39
+	line	41
 global __ptext3
 __ptext3:	;psect for function _dataCtrl
 psect	text3
 	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-1\LE2-1.c"
-	line	39
+	line	41
 	global	__size_of_dataCtrl
 	__size_of_dataCtrl	equ	__end_of_dataCtrl-_dataCtrl
 	
@@ -758,63 +723,65 @@ _dataCtrl:
 ;incstack = 0
 	opt	stack 6
 ; Regs used in _dataCtrl: [wreg+status,2+status,0+pclath+cstack]
-	line	42
+;dataCtrl@dataIn stored from wreg
+	movwf	(dataCtrl@dataIn)
+	line	44
 	
 l500:	
-;LE2-1.c: 42: PORTB = dataIn;
+;LE2-1.c: 44: PORTB = dataIn;
 	movf	(dataCtrl@dataIn),w
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
 	movwf	(6)	;volatile
-	line	43
-	
-l502:	
-;LE2-1.c: 43: delay(1000);
-	movlw	low(03E8h)
-	movwf	(delay@timeIn)
-	movlw	high(03E8h)
-	movwf	((delay@timeIn))+1
-	fcall	_delay
 	line	45
 	
+l502:	
+;LE2-1.c: 45: delay(100);
+	movlw	low(064h)
+	movwf	(delay@timeIn)
+	movlw	high(064h)
+	movwf	((delay@timeIn))+1
+	fcall	_delay
+	line	47
+	
 l504:	
-;LE2-1.c: 45: PORTC = 0x06;
+;LE2-1.c: 47: PORTC = 0x06;
 	movlw	(06h)
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
 	movwf	(7)	;volatile
-	line	46
-;LE2-1.c: 46: delay(1000);
-	movlw	low(03E8h)
+	line	48
+;LE2-1.c: 48: delay(100);
+	movlw	low(064h)
 	movwf	(delay@timeIn)
-	movlw	high(03E8h)
+	movlw	high(064h)
 	movwf	((delay@timeIn))+1
 	fcall	_delay
-	line	48
+	line	50
 	
 l506:	
-;LE2-1.c: 48: PORTC = 0x02;
+;LE2-1.c: 50: PORTC = 0x02;
 	movlw	(02h)
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
 	movwf	(7)	;volatile
-	line	49
-	
-l508:	
-;LE2-1.c: 49: delay(1000);
-	movlw	low(03E8h)
-	movwf	(delay@timeIn)
-	movlw	high(03E8h)
-	movwf	((delay@timeIn))+1
-	fcall	_delay
 	line	51
 	
+l508:	
+;LE2-1.c: 51: delay(100);
+	movlw	low(064h)
+	movwf	(delay@timeIn)
+	movlw	high(064h)
+	movwf	((delay@timeIn))+1
+	fcall	_delay
+	line	53
+	
 l510:	
-;LE2-1.c: 51: PORTC = 0x00;
+;LE2-1.c: 53: PORTC = 0x00;
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
 	clrf	(7)	;volatile
-	line	52
+	line	54
 	
 l20:	
 	return
@@ -826,11 +793,11 @@ GLOBAL	__end_of_dataCtrl
 
 ;; *************** function _delay *****************
 ;; Defined at:
-;;		line 19 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-1\LE2-1.c"
+;;		line 21 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-1\LE2-1.c"
 ;; Parameters:    Size  Location     Type
-;;  timeIn          2    0[COMMON] int 
+;;  timeIn          2    0[COMMON] unsigned int 
 ;; Auto vars:     Size  Location     Type
-;;  j               2    3[COMMON] int 
+;;  j               2    2[COMMON] unsigned int 
 ;; Return value:  Size  Location     Type
 ;;		None               void
 ;; Registers used:
@@ -842,9 +809,9 @@ GLOBAL	__end_of_dataCtrl
 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
 ;;      Params:         2       0       0       0       0
 ;;      Locals:         2       0       0       0       0
-;;      Temps:          1       0       0       0       0
-;;      Totals:         5       0       0       0       0
-;;Total ram usage:        5 bytes
+;;      Temps:          0       0       0       0       0
+;;      Totals:         4       0       0       0       0
+;;Total ram usage:        4 bytes
 ;; Hardware stack levels used:    1
 ;; This function calls:
 ;;		Nothing
@@ -855,12 +822,12 @@ GLOBAL	__end_of_dataCtrl
 ;; This function uses a non-reentrant model
 ;;
 psect	text4,local,class=CODE,delta=2,merge=1
-	line	19
+	line	21
 global __ptext4
 __ptext4:	;psect for function _delay
 psect	text4
 	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-1\LE2-1.c"
-	line	19
+	line	21
 	global	__size_of_delay
 	__size_of_delay	equ	__end_of_delay-_delay
 	
@@ -868,10 +835,10 @@ _delay:
 ;incstack = 0
 	opt	stack 6
 ; Regs used in _delay: [wreg+status,2]
-	line	21
+	line	23
 	
 l486:	
-;LE2-1.c: 21: for (int j = 0; j < timeIn; j++);
+;LE2-1.c: 23: for (unsigned int j = 0; j < timeIn; j++);
 	clrf	(delay@j)
 	clrf	(delay@j+1)
 	goto	l11
@@ -887,18 +854,13 @@ l488:
 	addwf	(delay@j+1),f
 	
 l11:	
-	movf	(delay@j+1),w
-	xorlw	80h
-	movwf	(??_delay+0)+0
 	movf	(delay@timeIn+1),w
-	xorlw	80h
-	subwf	(??_delay+0)+0,w
+	subwf	(delay@j+1),w
 	skipz
 	goto	u15
 	movf	(delay@timeIn),w
 	subwf	(delay@j),w
 u15:
-
 	skipc
 	goto	u11
 	goto	u10
@@ -908,7 +870,7 @@ u10:
 	goto	l14
 	
 l13:	
-	line	22
+	line	24
 	
 l14:	
 	return

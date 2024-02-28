@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC LITE Macro Assembler V1.33 build 59893 
-                                                                                               Wed Feb 07 23:06:42 2024
+                                                                                               Wed Feb 21 16:14:29 2024
 
 Microchip Technology Omniscient Code Generator (Lite mode) build 59893
      1                           	processor	16F877A
@@ -139,7 +139,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    133 ;;
    134 ;; *************** function _main *****************
    135 ;; Defined at:
-   136 ;;		line 86 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-2\LE2-2.c"
+   136 ;;		line 87 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-2\LE2-2.c"
    137 ;; Parameters:    Size  Location     Type
    138 ;;		None
    139 ;; Auto vars:     Size  Location     Type
@@ -170,7 +170,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    164                           ;psect for function _main
    165  0780                     _main:	
    166                           
-   167                           ;LE2-2.c: 88: TRISB = 0x00;
+   167                           ;LE2-2.c: 89: TRISB = 0x00;
    168                           
    169                           ;incstack = 0
    170                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
@@ -178,30 +178,30 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    172  0781  1303               	bcf	3,6	;RP1=0, select bank1
    173  0782  0186               	clrf	6	;volatile
    174                           
-   175                           ;LE2-2.c: 89: TRISC = 0x00;
+   175                           ;LE2-2.c: 90: TRISC = 0x00;
    176  0783  0187               	clrf	7	;volatile
    177                           
-   178                           ;LE2-2.c: 90: TRISD = 0xFF;
+   178                           ;LE2-2.c: 91: TRISD = 0xFF;
    179  0784  30FF               	movlw	255
    180  0785  0088               	movwf	8	;volatile
    181                           
-   182                           ;LE2-2.c: 91: PORTB = 0x00;
+   182                           ;LE2-2.c: 92: PORTB = 0x00;
    183  0786  1283               	bcf	3,5	;RP0=0, select bank0
    184  0787  1303               	bcf	3,6	;RP1=0, select bank0
    185  0788  0186               	clrf	6	;volatile
    186  0789                     l546:	
-   187                           ;LE2-2.c: 92: while (1)
+   187                           ;LE2-2.c: 93: while (1)
    188                           
    189                           
-   190                           ;LE2-2.c: 93: {
-   191                           ;LE2-2.c: 94: if (RD4 == 1)
+   190                           ;LE2-2.c: 94: {
+   191                           ;LE2-2.c: 95: if (RD4 == 1)
    192  0789  1283               	bcf	3,5	;RP0=0, select bank0
    193  078A  1303               	bcf	3,6	;RP1=0, select bank0
    194  078B  1E08               	btfss	8,4	;volatile
    195  078C  2F89               	goto	l546
    196                           
-   197                           ;LE2-2.c: 95: {
-   198                           ;LE2-2.c: 96: readKey();
+   197                           ;LE2-2.c: 96: {
+   198                           ;LE2-2.c: 97: readKey();
    199  078D  120A  118A  27A8  120A  118A  	fcall	_readKey
    200  0792  2F89               	goto	l546
    201  0793                     __end_of_main:	
@@ -210,7 +210,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    204  07A8                     __ptext1:	
    205 ;; *************** function _readKey *****************
    206 ;; Defined at:
-   207 ;;		line 39 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-2\LE2-2.c"
+   207 ;;		line 40 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-2\LE2-2.c"
    208 ;; Parameters:    Size  Location     Type
    209 ;;		None
    210 ;; Auto vars:     Size  Location     Type
@@ -242,7 +242,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    236                           ;psect for function _readKey
    237  07A8                     _readKey:	
    238                           
-   239                           ;LE2-2.c: 41: int bits = PORTD;
+   239                           ;LE2-2.c: 42: int bits = PORTD;
    240                           
    241                           ;incstack = 0
    242                           ; Regs used in _readKey: [wreg-fsr0h+status,2+status,0+pclath+cstack]
@@ -256,122 +256,122 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    250  07AF  0876               	movf	??_readKey+1,w
    251  07B0  00F8               	movwf	readKey@bits+1
    252                           
-   253                           ;LE2-2.c: 42: switch (bits)
+   253                           ;LE2-2.c: 43: switch (bits)
    254  07B1  2FC9               	goto	l532
    255  07B2                     l506:	
-   256                           ;LE2-2.c: 43: {
-   257                           ;LE2-2.c: 44: case KEY_0:
+   256                           ;LE2-2.c: 44: {
+   257                           ;LE2-2.c: 45: case KEY_0:
    258                           
    259                           
-   260                           ;LE2-2.c: 45: PORTB = 0x00;
+   260                           ;LE2-2.c: 46: PORTB = 0x00;
    261  07B2  0186               	clrf	6	;volatile
    262                           
-   263                           ;LE2-2.c: 46: break;
+   263                           ;LE2-2.c: 47: break;
    264  07B3  2FF4               	goto	l534
    265  07B4                     l508:	
-   266                           ;LE2-2.c: 47: case KEY_1:
+   266                           ;LE2-2.c: 48: case KEY_1:
    267                           
    268                           
-   269                           ;LE2-2.c: 48: PORTB = 0x01;
+   269                           ;LE2-2.c: 49: PORTB = 0x01;
    270  07B4  3001               	movlw	1
    271  07B5  2FC7               	goto	L10
    272  07B6                     l510:	
-   273                           ;LE2-2.c: 50: case KEY_2:
+   273                           ;LE2-2.c: 51: case KEY_2:
    274                           
-   275                           ;LE2-2.c: 49: break;
+   275                           ;LE2-2.c: 50: break;
    276                           
    277                           
-   278                           ;LE2-2.c: 51: PORTB = 0x02;
+   278                           ;LE2-2.c: 52: PORTB = 0x02;
    279  07B6  3002               	movlw	2
    280  07B7  2FC7               	goto	L10
    281  07B8                     l512:	
-   282                           ;LE2-2.c: 53: case KEY_3:
+   282                           ;LE2-2.c: 54: case KEY_3:
    283                           
-   284                           ;LE2-2.c: 52: break;
+   284                           ;LE2-2.c: 53: break;
    285                           
    286                           
-   287                           ;LE2-2.c: 54: PORTB = 0x03;
+   287                           ;LE2-2.c: 55: PORTB = 0x03;
    288  07B8  3003               	movlw	3
    289  07B9  2FC7               	goto	L10
    290  07BA                     l514:	
-   291                           ;LE2-2.c: 56: case KEY_4:
+   291                           ;LE2-2.c: 57: case KEY_4:
    292                           
-   293                           ;LE2-2.c: 55: break;
+   293                           ;LE2-2.c: 56: break;
    294                           
    295                           
-   296                           ;LE2-2.c: 57: PORTB = 0x04;
+   296                           ;LE2-2.c: 58: PORTB = 0x04;
    297  07BA  3004               	movlw	4
    298  07BB  2FC7               	goto	L10
    299  07BC                     l516:	
-   300                           ;LE2-2.c: 59: case KEY_5:
+   300                           ;LE2-2.c: 60: case KEY_5:
    301                           
-   302                           ;LE2-2.c: 58: break;
+   302                           ;LE2-2.c: 59: break;
    303                           
    304                           
-   305                           ;LE2-2.c: 60: PORTB = 0x05;
+   305                           ;LE2-2.c: 61: PORTB = 0x05;
    306  07BC  3005               	movlw	5
    307  07BD  2FC7               	goto	L10
    308  07BE                     l518:	
-   309                           ;LE2-2.c: 62: case KEY_6:
+   309                           ;LE2-2.c: 63: case KEY_6:
    310                           
-   311                           ;LE2-2.c: 61: break;
+   311                           ;LE2-2.c: 62: break;
    312                           
    313                           
-   314                           ;LE2-2.c: 63: PORTB = 0x06;
+   314                           ;LE2-2.c: 64: PORTB = 0x06;
    315  07BE  3006               	movlw	6
    316  07BF  2FC7               	goto	L10
    317  07C0                     l520:	
-   318                           ;LE2-2.c: 65: case KEY_7:
+   318                           ;LE2-2.c: 66: case KEY_7:
    319                           
-   320                           ;LE2-2.c: 64: break;
+   320                           ;LE2-2.c: 65: break;
    321                           
    322                           
-   323                           ;LE2-2.c: 66: PORTB = 0x07;
+   323                           ;LE2-2.c: 67: PORTB = 0x07;
    324  07C0  3007               	movlw	7
    325  07C1  2FC7               	goto	L10
    326  07C2                     l522:	
-   327                           ;LE2-2.c: 68: case KEY_8:
+   327                           ;LE2-2.c: 69: case KEY_8:
    328                           
-   329                           ;LE2-2.c: 67: break;
+   329                           ;LE2-2.c: 68: break;
    330                           
    331                           
-   332                           ;LE2-2.c: 69: PORTB = 0x08;
+   332                           ;LE2-2.c: 70: PORTB = 0x08;
    333  07C2  3008               	movlw	8
    334  07C3  2FC7               	goto	L10
    335  07C4                     l524:	
-   336                           ;LE2-2.c: 71: case KEY_9:
+   336                           ;LE2-2.c: 72: case KEY_9:
    337                           
-   338                           ;LE2-2.c: 70: break;
+   338                           ;LE2-2.c: 71: break;
    339                           
    340                           
-   341                           ;LE2-2.c: 72: PORTB = 0x09;
+   341                           ;LE2-2.c: 73: PORTB = 0x09;
    342  07C4  3009               	movlw	9
    343  07C5  2FC7               	goto	L10
    344  07C6                     l526:	
-   345                           ;LE2-2.c: 74: case KEY_MULTIPLY:
+   345                           ;LE2-2.c: 75: case KEY_MULTIPLY:
    346                           
-   347                           ;LE2-2.c: 73: break;
+   347                           ;LE2-2.c: 74: break;
    348                           
    349  07C6                     l528:	
-   350                           ;LE2-2.c: 77: case KEY_HASH:
+   350                           ;LE2-2.c: 78: case KEY_HASH:
    351                           
-   352                           ;LE2-2.c: 76: break;
+   352                           ;LE2-2.c: 77: break;
    353                           
-   354                           ;LE2-2.c: 75: PORTB = 0x0F;
+   354                           ;LE2-2.c: 76: PORTB = 0x0F;
    355                           
    356                           
-   357                           ;LE2-2.c: 78: PORTB = 0x0F;
+   357                           ;LE2-2.c: 79: PORTB = 0x0F;
    358  07C6  300F               	movlw	15
    359  07C7                     L10:	
    360  07C7  0086               	movwf	6	;volatile
    361                           
-   362                           ;LE2-2.c: 82: }
+   362                           ;LE2-2.c: 83: }
    363                           
-   364                           ;LE2-2.c: 81: break;
+   364                           ;LE2-2.c: 82: break;
    365                           
-   366                           ;LE2-2.c: 80: default:
+   366                           ;LE2-2.c: 81: default:
    367                           
-   368                           ;LE2-2.c: 79: break;
+   368                           ;LE2-2.c: 80: break;
    369  07C8  2FF4               	goto	l534
    370  07C9                     l532:	
    371                           
@@ -440,10 +440,10 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    433  07F3  2FF4               	goto	l534
    434  07F4                     l534:	
    435                           
-   436                           ;LE2-2.c: 83: delay(1000);
-   437  07F4  30E8               	movlw	232
+   436                           ;LE2-2.c: 84: delay(100);
+   437  07F4  3064               	movlw	100
    438  07F5  00F0               	movwf	delay@timeIn
-   439  07F6  3003               	movlw	3
+   439  07F6  3000               	movlw	0
    440  07F7  00F1               	movwf	delay@timeIn+1
    441  07F8  120A  118A  2793   	fcall	_delay
    442  07FB  0008               	return
@@ -453,7 +453,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    446  0793                     __ptext2:	
    447 ;; *************** function _delay *****************
    448 ;; Defined at:
-   449 ;;		line 34 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-2\LE2-2.c"
+   449 ;;		line 35 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-2\LE2-2.c"
    450 ;; Parameters:    Size  Location     Type
    451 ;;  timeIn          2    0[COMMON] int 
    452 ;; Auto vars:     Size  Location     Type
@@ -484,7 +484,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    477                           ;psect for function _delay
    478  0793                     _delay:	
    479                           
-   480                           ;LE2-2.c: 36: for (int j = 0; j < timeIn; j++);
+   480                           ;LE2-2.c: 37: for (int j = 0; j < timeIn; j++);
    481                           
    482                           ;incstack = 0
    483                           ; Regs used in _delay: [wreg+status,2]
@@ -628,7 +628,7 @@ DATA                 0      0       0      12        0.0%
 
 
 Microchip Technology PIC Macro Assembler V1.33 build 59893 
-Symbol Table                                                                                   Wed Feb 07 23:06:42 2024
+Symbol Table                                                                                   Wed Feb 21 16:14:29 2024
 
             __CFG_CP$OFF 0000                       l15 0795                       u15 079F  
                     l510 07B6                      l520 07C0                      l512 07B8  

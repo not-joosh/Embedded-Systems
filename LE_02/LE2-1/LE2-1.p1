@@ -1021,207 +1021,207 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;eeprom_routines.h: 43: extern void eecpymem(volatile unsigned char *to, __eeprom unsigned char *from, unsigned char size);
 [; ;eeprom_routines.h: 44: extern void memcpyee(__eeprom unsigned char *to, const unsigned char *from, unsigned char size);
 [; ;pic.h: 154: extern __nonreentrant void _delay(unsigned long);
-"4 C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-1\LE2-1.c
+"6 C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-1\LE2-1.c
 [p x FOSC=XT ]
-"5
-[p x WDTE=OFF ]
-"6
-[p x PWRTE=ON ]
 "7
-[p x BOREN=ON ]
+[p x WDTE=OFF ]
 "8
-[p x LVP=OFF ]
+[p x PWRTE=ON ]
 "9
-[p x CPD=OFF ]
+[p x BOREN=ON ]
 "10
-[p x WRT=OFF ]
+[p x LVP=OFF ]
 "11
+[p x CPD=OFF ]
+"12
+[p x WRT=OFF ]
+"13
 [p x CP=OFF ]
-[; ;LE2-1.c: 14: void delay(int timeIn);
-[; ;LE2-1.c: 15: void instCtrl(int dataIn);
-[; ;LE2-1.c: 16: void dataCtrl(int dataIn);
-[; ;LE2-1.c: 17: void initLCD();
-"19
-[v _delay `(v ~T0 @X0 1 ef1`i ]
-"20
-{
-[; ;LE2-1.c: 19: void delay(int timeIn)
-[; ;LE2-1.c: 20: {
-[e :U _delay ]
-"19
-[v _timeIn `i ~T0 @X0 1 r1 ]
-"20
-[f ]
-[; ;LE2-1.c: 21: for (int j = 0; j < timeIn; j++);
+[; ;LE2-1.c: 16: void delay(unsigned int timeIn);
+[; ;LE2-1.c: 17: void instCtrl(unsigned char dataIn);
+[; ;LE2-1.c: 18: void dataCtrl(unsigned char dataIn);
+[; ;LE2-1.c: 19: void initLCD();
 "21
+[v _delay `(v ~T0 @X0 1 ef1`ui ]
+"22
 {
-[v _j `i ~T0 @X0 1 a ]
-[e = _j -> 0 `i ]
+[; ;LE2-1.c: 21: void delay(unsigned int timeIn)
+[; ;LE2-1.c: 22: {
+[e :U _delay ]
+"21
+[v _timeIn `ui ~T0 @X0 1 r1 ]
+"22
+[f ]
+[; ;LE2-1.c: 23: for (unsigned int j = 0; j < timeIn; j++);
+"23
+{
+[v _j `ui ~T0 @X0 1 a ]
+[e = _j -> -> 0 `i `ui ]
 [e $U 100  ]
 [e :U 97 ]
-[e ++ _j -> 1 `i ]
+[e ++ _j -> -> 1 `i `ui ]
 [e :U 100 ]
 [e $ < _j _timeIn 97  ]
 [e :U 98 ]
 }
-[; ;LE2-1.c: 22: }
-"22
+[; ;LE2-1.c: 24: }
+"24
 [e :UE 96 ]
 }
-"24
-[v _instCtrl `(v ~T0 @X0 1 ef1`i ]
-"25
-{
-[; ;LE2-1.c: 24: void instCtrl(int dataIn)
-[; ;LE2-1.c: 25: {
-[e :U _instCtrl ]
-"24
-[v _dataIn `i ~T0 @X0 1 r1 ]
-"25
-[f ]
-[; ;LE2-1.c: 27: PORTB = dataIn;
+"26
+[v _instCtrl `(v ~T0 @X0 1 ef1`uc ]
 "27
-[e = _PORTB -> _dataIn `uc ]
-[; ;LE2-1.c: 28: delay(1000);
-"28
-[e ( _delay (1 -> 1000 `i ]
-[; ;LE2-1.c: 30: PORTC = 0x04;
+{
+[; ;LE2-1.c: 26: void instCtrl(unsigned char dataIn)
+[; ;LE2-1.c: 27: {
+[e :U _instCtrl ]
+"26
+[v _dataIn `uc ~T0 @X0 1 r1 ]
+"27
+[f ]
+[; ;LE2-1.c: 29: PORTB = dataIn;
+"29
+[e = _PORTB _dataIn ]
+[; ;LE2-1.c: 30: delay(100);
 "30
+[e ( _delay (1 -> -> 100 `i `ui ]
+[; ;LE2-1.c: 32: PORTC = 0x04;
+"32
 [e = _PORTC -> -> 4 `i `uc ]
-[; ;LE2-1.c: 31: delay(1000);
-"31
-[e ( _delay (1 -> 1000 `i ]
-[; ;LE2-1.c: 33: PORTC = 0x00;
+[; ;LE2-1.c: 33: delay(100);
 "33
+[e ( _delay (1 -> -> 100 `i `ui ]
+[; ;LE2-1.c: 35: PORTC = 0x00;
+"35
 [e = _PORTC -> -> 0 `i `uc ]
-[; ;LE2-1.c: 34: delay(1000);
-"34
-[e ( _delay (1 -> 1000 `i ]
-[; ;LE2-1.c: 36: PORTC = 0x00;
+[; ;LE2-1.c: 36: delay(100);
 "36
+[e ( _delay (1 -> -> 100 `i `ui ]
+[; ;LE2-1.c: 38: PORTC = 0x00;
+"38
 [e = _PORTC -> -> 0 `i `uc ]
-[; ;LE2-1.c: 37: }
-"37
+[; ;LE2-1.c: 39: }
+"39
 [e :UE 101 ]
 }
-"39
-[v _dataCtrl `(v ~T0 @X0 1 ef1`i ]
-"40
-{
-[; ;LE2-1.c: 39: void dataCtrl(int dataIn)
-[; ;LE2-1.c: 40: {
-[e :U _dataCtrl ]
-"39
-[v _dataIn `i ~T0 @X0 1 r1 ]
-"40
-[f ]
-[; ;LE2-1.c: 42: PORTB = dataIn;
+"41
+[v _dataCtrl `(v ~T0 @X0 1 ef1`uc ]
 "42
-[e = _PORTB -> _dataIn `uc ]
-[; ;LE2-1.c: 43: delay(1000);
-"43
-[e ( _delay (1 -> 1000 `i ]
-[; ;LE2-1.c: 45: PORTC = 0x06;
+{
+[; ;LE2-1.c: 41: void dataCtrl(unsigned char dataIn)
+[; ;LE2-1.c: 42: {
+[e :U _dataCtrl ]
+"41
+[v _dataIn `uc ~T0 @X0 1 r1 ]
+"42
+[f ]
+[; ;LE2-1.c: 44: PORTB = dataIn;
+"44
+[e = _PORTB _dataIn ]
+[; ;LE2-1.c: 45: delay(100);
 "45
+[e ( _delay (1 -> -> 100 `i `ui ]
+[; ;LE2-1.c: 47: PORTC = 0x06;
+"47
 [e = _PORTC -> -> 6 `i `uc ]
-[; ;LE2-1.c: 46: delay(1000);
-"46
-[e ( _delay (1 -> 1000 `i ]
-[; ;LE2-1.c: 48: PORTC = 0x02;
+[; ;LE2-1.c: 48: delay(100);
 "48
+[e ( _delay (1 -> -> 100 `i `ui ]
+[; ;LE2-1.c: 50: PORTC = 0x02;
+"50
 [e = _PORTC -> -> 2 `i `uc ]
-[; ;LE2-1.c: 49: delay(1000);
-"49
-[e ( _delay (1 -> 1000 `i ]
-[; ;LE2-1.c: 51: PORTC = 0x00;
+[; ;LE2-1.c: 51: delay(100);
 "51
+[e ( _delay (1 -> -> 100 `i `ui ]
+[; ;LE2-1.c: 53: PORTC = 0x00;
+"53
 [e = _PORTC -> -> 0 `i `uc ]
-[; ;LE2-1.c: 52: }
-"52
+[; ;LE2-1.c: 54: }
+"54
 [e :UE 102 ]
 }
-"54
+"56
 [v _initLCD `(v ~T0 @X0 1 ef ]
-"55
+"57
 {
-[; ;LE2-1.c: 54: void initLCD()
-[; ;LE2-1.c: 55: {
+[; ;LE2-1.c: 56: void initLCD()
+[; ;LE2-1.c: 57: {
 [e :U _initLCD ]
 [f ]
-[; ;LE2-1.c: 56: delay(1000);
-"56
-[e ( _delay (1 -> 1000 `i ]
-[; ;LE2-1.c: 57: instCtrl(0x38);
-"57
-[e ( _instCtrl (1 -> 56 `i ]
-[; ;LE2-1.c: 58: instCtrl(0x08);
+[; ;LE2-1.c: 58: delay(100);
 "58
-[e ( _instCtrl (1 -> 8 `i ]
-[; ;LE2-1.c: 59: instCtrl(0x01);
+[e ( _delay (1 -> -> 100 `i `ui ]
+[; ;LE2-1.c: 59: instCtrl(0x38);
 "59
-[e ( _instCtrl (1 -> 1 `i ]
-[; ;LE2-1.c: 60: instCtrl(0x06);
+[e ( _instCtrl (1 -> -> 56 `i `uc ]
+[; ;LE2-1.c: 60: instCtrl(0x08);
 "60
-[e ( _instCtrl (1 -> 6 `i ]
-[; ;LE2-1.c: 61: instCtrl(0x0C);
+[e ( _instCtrl (1 -> -> 8 `i `uc ]
+[; ;LE2-1.c: 61: instCtrl(0x01);
 "61
-[e ( _instCtrl (1 -> 12 `i ]
-[; ;LE2-1.c: 62: }
+[e ( _instCtrl (1 -> -> 1 `i `uc ]
+[; ;LE2-1.c: 62: instCtrl(0x06);
 "62
+[e ( _instCtrl (1 -> -> 6 `i `uc ]
+[; ;LE2-1.c: 63: instCtrl(0x0C);
+"63
+[e ( _instCtrl (1 -> -> 12 `i `uc ]
+[; ;LE2-1.c: 64: }
+"64
 [e :UE 103 ]
 }
-"64
+"66
 [v _main `(v ~T0 @X0 1 ef ]
-"65
+"67
 {
-[; ;LE2-1.c: 64: void main()
-[; ;LE2-1.c: 65: {
+[; ;LE2-1.c: 66: void main()
+[; ;LE2-1.c: 67: {
 [e :U _main ]
 [f ]
-[; ;LE2-1.c: 66: TRISB = 0x00;
-"66
+[; ;LE2-1.c: 68: TRISB = 0x00;
+"68
 [e = _TRISB -> -> 0 `i `uc ]
-[; ;LE2-1.c: 67: TRISC = 0x00;
-"67
-[e = _TRISC -> -> 0 `i `uc ]
-[; ;LE2-1.c: 69: initLCD();
+[; ;LE2-1.c: 69: TRISC = 0x00;
 "69
-[e ( _initLCD ..  ]
-[; ;LE2-1.c: 70: while (1)
+[e = _TRISC -> -> 0 `i `uc ]
+[; ;LE2-1.c: 70: initLCD();
 "70
-[e :U 106 ]
-[; ;LE2-1.c: 71: {
+[e ( _initLCD ..  ]
+[; ;LE2-1.c: 71: while (1)
 "71
-{
-[; ;LE2-1.c: 72: instCtrl(0xC6);
+[e :U 106 ]
+[; ;LE2-1.c: 72: {
 "72
-[e ( _instCtrl (1 -> 198 `i ]
-[; ;LE2-1.c: 73: dataCtrl('H');
+{
+[; ;LE2-1.c: 73: instCtrl(0x81);
 "73
-[e ( _dataCtrl (1 -> -> 72 `ui `i ]
-[; ;LE2-1.c: 75: dataCtrl('E');
-"75
-[e ( _dataCtrl (1 -> -> 69 `ui `i ]
-[; ;LE2-1.c: 76: dataCtrl('L');
+[e ( _instCtrl (1 -> -> 129 `i `uc ]
+[; ;LE2-1.c: 74: dataCtrl('H');
+"74
+[e ( _dataCtrl (1 -> -> 72 `ui `uc ]
+[; ;LE2-1.c: 76: dataCtrl('E');
 "76
-[e ( _dataCtrl (1 -> -> 76 `ui `i ]
+[e ( _dataCtrl (1 -> -> 69 `ui `uc ]
 [; ;LE2-1.c: 77: dataCtrl('L');
 "77
-[e ( _dataCtrl (1 -> -> 76 `ui `i ]
-[; ;LE2-1.c: 78: dataCtrl('O');
+[e ( _dataCtrl (1 -> -> 76 `ui `uc ]
+[; ;LE2-1.c: 78: dataCtrl('L');
 "78
-[e ( _dataCtrl (1 -> -> 79 `ui `i ]
-[; ;LE2-1.c: 79: dataCtrl('!');
+[e ( _dataCtrl (1 -> -> 76 `ui `uc ]
+[; ;LE2-1.c: 79: dataCtrl('O');
 "79
-[e ( _dataCtrl (1 -> -> 33 `ui `i ]
+[e ( _dataCtrl (1 -> -> 79 `ui `uc ]
+[; ;LE2-1.c: 80: dataCtrl('!');
 "80
+[e ( _dataCtrl (1 -> -> 33 `ui `uc ]
+"81
 }
 [e :U 105 ]
-"70
+"71
 [e $U 106  ]
 [e :U 107 ]
-[; ;LE2-1.c: 80: }
 [; ;LE2-1.c: 81: }
-"81
+[; ;LE2-1.c: 82: }
+"82
 [e :UE 104 ]
 }

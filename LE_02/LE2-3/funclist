@@ -1,9 +1,9 @@
-_delay: CODE, 1459 0 21
-_readKey: CODE, 1814 0 230
-___awmod: CODE, 1614 0 77
-_main: CODE, 1691 0 123
-_instCtrl: CODE, 1480 0 40
-_dataCtrl: CODE, 1520 0 41
+_delay: CODE, 1640 0 21
+_readKey: CODE, 1893 0 151
+___awmod: CODE, 1699 0 77
+_main: CODE, 1776 0 117
+_instCtrl: CODE, 1600 0 20
+_dataCtrl: CODE, 1620 0 20
 __initialization: CODE, 2044 0 0
-_initLCD: CODE, 1561 0 53
-Total: 585
+_initLCD: CODE, 1661 0 38
+Total: 444

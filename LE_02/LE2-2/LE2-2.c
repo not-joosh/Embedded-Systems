@@ -1,4 +1,5 @@
 #include <xc.h> 
+#define _XTAL_FREQ 4000000
 
 // Configuration settings
 #pragma config FOSC = XT 
@@ -21,7 +22,7 @@ enum Keys
     KEY_5 = 0x15,           // 0b0000 0101
     KEY_6 = 0x16,           // 0b0000 0110
     KEY_7 = 0x18,           // 0b0000 0111
-    KEY_8 = 0x19,           // 0b0000 1000
+    KEY_8 = 0x19,           // 0b0000 100
     KEY_9 = 0x1A,           // 0b0000 1001
     KEY_MULTIPLY = 0x1C,    // 0b0000 1100
     KEY_HASH = 0x1E,        // 0b0000 1110
@@ -30,8 +31,8 @@ enum Keys
 // Function prototypes
 void delay(int timeIn);
 void readKey();
-
-void delay(int timeIn) 
+// 
+void delay(int timeIn)
 {
     for (int j = 0; j < timeIn; j++);
 }
@@ -80,7 +81,7 @@ void readKey()
         default:
             break;
     }
-    delay(1000);
+    delay(100);
 }
 
 void main() 

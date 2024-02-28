@@ -339,7 +339,7 @@ readKey@bits:	; 2 bytes @ 0x7
 
 ;; *************** function _main *****************
 ;; Defined at:
-;;		line 86 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-2\LE2-2.c"
+;;		line 87 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-2\LE2-2.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -367,12 +367,12 @@ readKey@bits:	; 2 bytes @ 0x7
 ;;
 psect	maintext,global,class=CODE,delta=2,split=1
 	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-2\LE2-2.c"
-	line	86
+	line	87
 global __pmaintext
 __pmaintext:	;psect for function _main
 psect	maintext
 	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-2\LE2-2.c"
-	line	86
+	line	87
 	global	__size_of_main
 	__size_of_main	equ	__end_of_main-_main
 	
@@ -380,39 +380,39 @@ _main:
 ;incstack = 0
 	opt	stack 6
 ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
-	line	88
+	line	89
 	
 l540:	
-;LE2-2.c: 88: TRISB = 0x00;
+;LE2-2.c: 89: TRISB = 0x00;
 	bsf	status, 5	;RP0=1, select bank1
 	bcf	status, 6	;RP1=0, select bank1
 	clrf	(134)^080h	;volatile
-	line	89
-;LE2-2.c: 89: TRISC = 0x00;
-	clrf	(135)^080h	;volatile
 	line	90
-	
-l542:	
-;LE2-2.c: 90: TRISD = 0xFF;
-	movlw	(0FFh)
-	movwf	(136)^080h	;volatile
+;LE2-2.c: 90: TRISC = 0x00;
+	clrf	(135)^080h	;volatile
 	line	91
 	
+l542:	
+;LE2-2.c: 91: TRISD = 0xFF;
+	movlw	(0FFh)
+	movwf	(136)^080h	;volatile
+	line	92
+	
 l544:	
-;LE2-2.c: 91: PORTB = 0x00;
+;LE2-2.c: 92: PORTB = 0x00;
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
 	clrf	(6)	;volatile
 	goto	l546
-	line	92
-;LE2-2.c: 92: while (1)
+	line	93
+;LE2-2.c: 93: while (1)
 	
 l39:	
-	line	94
+	line	95
 	
 l546:	
-;LE2-2.c: 93: {
-;LE2-2.c: 94: if (RD4 == 1)
+;LE2-2.c: 94: {
+;LE2-2.c: 95: if (RD4 == 1)
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
 	btfss	(68/8),(68)&7	;volatile
@@ -421,25 +421,25 @@ l546:
 u21:
 	goto	l546
 u20:
-	line	96
-	
-l548:	
-;LE2-2.c: 95: {
-;LE2-2.c: 96: readKey();
-	fcall	_readKey
-	goto	l546
 	line	97
 	
-l40:	
+l548:	
+;LE2-2.c: 96: {
+;LE2-2.c: 97: readKey();
+	fcall	_readKey
 	goto	l546
 	line	98
 	
+l40:	
+	goto	l546
+	line	99
+	
 l41:	
-	line	92
+	line	93
 	goto	l546
 	
 l42:	
-	line	99
+	line	100
 	
 l43:	
 	global	start
@@ -452,7 +452,7 @@ GLOBAL	__end_of_main
 
 ;; *************** function _readKey *****************
 ;; Defined at:
-;;		line 39 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-2\LE2-2.c"
+;;		line 40 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-2\LE2-2.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -480,12 +480,12 @@ GLOBAL	__end_of_main
 ;; This function uses a non-reentrant model
 ;;
 psect	text1,local,class=CODE,delta=2,merge=1
-	line	39
+	line	40
 global __ptext1
 __ptext1:	;psect for function _readKey
 psect	text1
 	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-2\LE2-2.c"
-	line	39
+	line	40
 	global	__size_of_readKey
 	__size_of_readKey	equ	__end_of_readKey-_readKey
 	
@@ -493,10 +493,10 @@ _readKey:
 ;incstack = 0
 	opt	stack 6
 ; Regs used in _readKey: [wreg-fsr0h+status,2+status,0+pclath+cstack]
-	line	41
+	line	42
 	
 l504:	
-;LE2-2.c: 41: int bits = PORTD;
+;LE2-2.c: 42: int bits = PORTD;
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
 	movf	(8),w	;volatile
@@ -506,178 +506,178 @@ l504:
 	movwf	(readKey@bits)
 	movf	1+(??_readKey+0)+0,w
 	movwf	(readKey@bits+1)
-	line	42
-;LE2-2.c: 42: switch (bits)
+	line	43
+;LE2-2.c: 43: switch (bits)
 	goto	l532
-	line	44
-;LE2-2.c: 43: {
-;LE2-2.c: 44: case KEY_0:
+	line	45
+;LE2-2.c: 44: {
+;LE2-2.c: 45: case KEY_0:
 	
 l22:	
-	line	45
+	line	46
 	
 l506:	
-;LE2-2.c: 45: PORTB = 0x00;
+;LE2-2.c: 46: PORTB = 0x00;
 	clrf	(6)	;volatile
-	line	46
-;LE2-2.c: 46: break;
-	goto	l534
 	line	47
-;LE2-2.c: 47: case KEY_1:
+;LE2-2.c: 47: break;
+	goto	l534
+	line	48
+;LE2-2.c: 48: case KEY_1:
 	
 l24:	
-	line	48
+	line	49
 	
 l508:	
-;LE2-2.c: 48: PORTB = 0x01;
+;LE2-2.c: 49: PORTB = 0x01;
 	movlw	(01h)
 	movwf	(6)	;volatile
-	line	49
-;LE2-2.c: 49: break;
-	goto	l534
 	line	50
-;LE2-2.c: 50: case KEY_2:
+;LE2-2.c: 50: break;
+	goto	l534
+	line	51
+;LE2-2.c: 51: case KEY_2:
 	
 l25:	
-	line	51
+	line	52
 	
 l510:	
-;LE2-2.c: 51: PORTB = 0x02;
+;LE2-2.c: 52: PORTB = 0x02;
 	movlw	(02h)
 	movwf	(6)	;volatile
-	line	52
-;LE2-2.c: 52: break;
-	goto	l534
 	line	53
-;LE2-2.c: 53: case KEY_3:
+;LE2-2.c: 53: break;
+	goto	l534
+	line	54
+;LE2-2.c: 54: case KEY_3:
 	
 l26:	
-	line	54
+	line	55
 	
 l512:	
-;LE2-2.c: 54: PORTB = 0x03;
+;LE2-2.c: 55: PORTB = 0x03;
 	movlw	(03h)
 	movwf	(6)	;volatile
-	line	55
-;LE2-2.c: 55: break;
-	goto	l534
 	line	56
-;LE2-2.c: 56: case KEY_4:
+;LE2-2.c: 56: break;
+	goto	l534
+	line	57
+;LE2-2.c: 57: case KEY_4:
 	
 l27:	
-	line	57
+	line	58
 	
 l514:	
-;LE2-2.c: 57: PORTB = 0x04;
+;LE2-2.c: 58: PORTB = 0x04;
 	movlw	(04h)
 	movwf	(6)	;volatile
-	line	58
-;LE2-2.c: 58: break;
-	goto	l534
 	line	59
-;LE2-2.c: 59: case KEY_5:
+;LE2-2.c: 59: break;
+	goto	l534
+	line	60
+;LE2-2.c: 60: case KEY_5:
 	
 l28:	
-	line	60
+	line	61
 	
 l516:	
-;LE2-2.c: 60: PORTB = 0x05;
+;LE2-2.c: 61: PORTB = 0x05;
 	movlw	(05h)
 	movwf	(6)	;volatile
-	line	61
-;LE2-2.c: 61: break;
-	goto	l534
 	line	62
-;LE2-2.c: 62: case KEY_6:
+;LE2-2.c: 62: break;
+	goto	l534
+	line	63
+;LE2-2.c: 63: case KEY_6:
 	
 l29:	
-	line	63
+	line	64
 	
 l518:	
-;LE2-2.c: 63: PORTB = 0x06;
+;LE2-2.c: 64: PORTB = 0x06;
 	movlw	(06h)
 	movwf	(6)	;volatile
-	line	64
-;LE2-2.c: 64: break;
-	goto	l534
 	line	65
-;LE2-2.c: 65: case KEY_7:
+;LE2-2.c: 65: break;
+	goto	l534
+	line	66
+;LE2-2.c: 66: case KEY_7:
 	
 l30:	
-	line	66
+	line	67
 	
 l520:	
-;LE2-2.c: 66: PORTB = 0x07;
+;LE2-2.c: 67: PORTB = 0x07;
 	movlw	(07h)
 	movwf	(6)	;volatile
-	line	67
-;LE2-2.c: 67: break;
-	goto	l534
 	line	68
-;LE2-2.c: 68: case KEY_8:
+;LE2-2.c: 68: break;
+	goto	l534
+	line	69
+;LE2-2.c: 69: case KEY_8:
 	
 l31:	
-	line	69
+	line	70
 	
 l522:	
-;LE2-2.c: 69: PORTB = 0x08;
+;LE2-2.c: 70: PORTB = 0x08;
 	movlw	(08h)
 	movwf	(6)	;volatile
-	line	70
-;LE2-2.c: 70: break;
-	goto	l534
 	line	71
-;LE2-2.c: 71: case KEY_9:
+;LE2-2.c: 71: break;
+	goto	l534
+	line	72
+;LE2-2.c: 72: case KEY_9:
 	
 l32:	
-	line	72
+	line	73
 	
 l524:	
-;LE2-2.c: 72: PORTB = 0x09;
+;LE2-2.c: 73: PORTB = 0x09;
 	movlw	(09h)
 	movwf	(6)	;volatile
-	line	73
-;LE2-2.c: 73: break;
-	goto	l534
 	line	74
-;LE2-2.c: 74: case KEY_MULTIPLY:
+;LE2-2.c: 74: break;
+	goto	l534
+	line	75
+;LE2-2.c: 75: case KEY_MULTIPLY:
 	
 l33:	
-	line	75
+	line	76
 	
 l526:	
-;LE2-2.c: 75: PORTB = 0x0F;
+;LE2-2.c: 76: PORTB = 0x0F;
 	movlw	(0Fh)
 	movwf	(6)	;volatile
-	line	76
-;LE2-2.c: 76: break;
-	goto	l534
 	line	77
-;LE2-2.c: 77: case KEY_HASH:
+;LE2-2.c: 77: break;
+	goto	l534
+	line	78
+;LE2-2.c: 78: case KEY_HASH:
 	
 l34:	
-	line	78
+	line	79
 	
 l528:	
-;LE2-2.c: 78: PORTB = 0x0F;
+;LE2-2.c: 79: PORTB = 0x0F;
 	movlw	(0Fh)
 	movwf	(6)	;volatile
-	line	79
-;LE2-2.c: 79: break;
-	goto	l534
 	line	80
-;LE2-2.c: 80: default:
+;LE2-2.c: 80: break;
+	goto	l534
+	line	81
+;LE2-2.c: 81: default:
 	
 l35:	
-	line	81
-;LE2-2.c: 81: break;
-	goto	l534
 	line	82
+;LE2-2.c: 82: break;
+	goto	l534
+	line	83
 	
 l530:	
-;LE2-2.c: 82: }
+;LE2-2.c: 83: }
 	goto	l534
-	line	42
+	line	43
 	
 l21:	
 	
@@ -751,19 +751,19 @@ l570:
 	goto	l534
 	opt asmopt_on
 
-	line	82
-	
-l23:	
 	line	83
 	
+l23:	
+	line	84
+	
 l534:	
-;LE2-2.c: 83: delay(1000);
-	movlw	low(03E8h)
+;LE2-2.c: 84: delay(100);
+	movlw	low(064h)
 	movwf	(delay@timeIn)
-	movlw	high(03E8h)
+	movlw	high(064h)
 	movwf	((delay@timeIn))+1
 	fcall	_delay
-	line	84
+	line	85
 	
 l36:	
 	return
@@ -775,7 +775,7 @@ GLOBAL	__end_of_readKey
 
 ;; *************** function _delay *****************
 ;; Defined at:
-;;		line 34 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-2\LE2-2.c"
+;;		line 35 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-2\LE2-2.c"
 ;; Parameters:    Size  Location     Type
 ;;  timeIn          2    0[COMMON] int 
 ;; Auto vars:     Size  Location     Type
@@ -802,12 +802,12 @@ GLOBAL	__end_of_readKey
 ;; This function uses a non-reentrant model
 ;;
 psect	text2,local,class=CODE,delta=2,merge=1
-	line	34
+	line	35
 global __ptext2
 __ptext2:	;psect for function _delay
 psect	text2
 	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-2\LE2-2.c"
-	line	34
+	line	35
 	global	__size_of_delay
 	__size_of_delay	equ	__end_of_delay-_delay
 	
@@ -815,10 +815,10 @@ _delay:
 ;incstack = 0
 	opt	stack 6
 ; Regs used in _delay: [wreg+status,2]
-	line	36
+	line	37
 	
 l500:	
-;LE2-2.c: 36: for (int j = 0; j < timeIn; j++);
+;LE2-2.c: 37: for (int j = 0; j < timeIn; j++);
 	clrf	(delay@j)
 	clrf	(delay@j+1)
 	goto	l15
@@ -855,7 +855,7 @@ u10:
 	goto	l18
 	
 l17:	
-	line	37
+	line	38
 	
 l18:	
 	return

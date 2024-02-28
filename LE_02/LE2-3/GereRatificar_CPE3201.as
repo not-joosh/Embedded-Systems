@@ -164,15 +164,13 @@ EECON2 equ 018Dh ;#
 	FNCALL	_main,_instCtrl
 	FNCALL	_main,_readKey
 	FNCALL	_readKey,_dataCtrl
-	FNCALL	_dataCtrl,_delay
 	FNCALL	_initLCD,_delay
 	FNCALL	_initLCD,_instCtrl
-	FNCALL	_instCtrl,_delay
 	FNROOT	_main
 	global	_PORTB
 _PORTB	set	0x6
-	global	_PORTC
-_PORTC	set	0x7
+	global	_PORTCbits
+_PORTCbits	set	0x7
 	global	_PORTD
 _PORTD	set	0x8
 	global	_RD4
@@ -225,6 +223,10 @@ psect	cstackCOMMON,class=COMMON,space=1,noexec
 global __pcstackCOMMON
 __pcstackCOMMON:
 ?_delay:	; 0 bytes @ 0x0
+?_instCtrl:	; 0 bytes @ 0x0
+??_instCtrl:	; 0 bytes @ 0x0
+?_dataCtrl:	; 0 bytes @ 0x0
+??_dataCtrl:	; 0 bytes @ 0x0
 ?_initLCD:	; 0 bytes @ 0x0
 ?_main:	; 0 bytes @ 0x0
 	global	?___awmod
@@ -235,52 +237,46 @@ delay@timeIn:	; 2 bytes @ 0x0
 ___awmod@divisor:	; 2 bytes @ 0x0
 	ds	2
 ??_delay:	; 0 bytes @ 0x2
+	global	instCtrl@dataIn
+instCtrl@dataIn:	; 1 bytes @ 0x2
+	global	dataCtrl@dataIn
+dataCtrl@dataIn:	; 1 bytes @ 0x2
 	global	___awmod@dividend
 ___awmod@dividend:	; 2 bytes @ 0x2
 	ds	1
+	global	?_readKey
+?_readKey:	; 2 bytes @ 0x3
 	global	delay@j
 delay@j:	; 2 bytes @ 0x3
 	ds	1
 ??___awmod:	; 0 bytes @ 0x4
 	ds	1
-?_instCtrl:	; 0 bytes @ 0x5
-?_dataCtrl:	; 0 bytes @ 0x5
+??_initLCD:	; 0 bytes @ 0x5
+??_readKey:	; 0 bytes @ 0x5
 	global	___awmod@counter
 ___awmod@counter:	; 1 bytes @ 0x5
-	global	instCtrl@dataIn
-instCtrl@dataIn:	; 2 bytes @ 0x5
-	global	dataCtrl@dataIn
-dataCtrl@dataIn:	; 2 bytes @ 0x5
 	ds	1
 	global	___awmod@sign
 ___awmod@sign:	; 1 bytes @ 0x6
 	ds	1
-??_instCtrl:	; 0 bytes @ 0x7
-??_dataCtrl:	; 0 bytes @ 0x7
-??_initLCD:	; 0 bytes @ 0x7
-	global	?_readKey
-?_readKey:	; 2 bytes @ 0x7
+	global	readKey@charCount
+readKey@charCount:	; 1 bytes @ 0x7
+	ds	1
+	global	readKey@bits
+readKey@bits:	; 2 bytes @ 0x8
 	ds	2
-??_readKey:	; 0 bytes @ 0x9
+	global	readKey@isValidKey
+readKey@isValidKey:	; 2 bytes @ 0xA
 	ds	2
-??_main:	; 0 bytes @ 0xB
+??_main:	; 0 bytes @ 0xC
 psect	cstackBANK0,class=BANK0,space=1,noexec
 global __pcstackBANK0
 __pcstackBANK0:
-	global	readKey@rowCount
-readKey@rowCount:	; 1 bytes @ 0x0
-	ds	1
-	global	readKey@bits
-readKey@bits:	; 2 bytes @ 0x1
-	ds	2
-	global	readKey@isValidKey
-readKey@isValidKey:	; 2 bytes @ 0x3
-	ds	2
 	global	main@isValidKey
-main@isValidKey:	; 2 bytes @ 0x5
+main@isValidKey:	; 2 bytes @ 0x0
 	ds	2
-	global	main@rowCount
-main@rowCount:	; 2 bytes @ 0x7
+	global	main@charCount
+main@charCount:	; 2 bytes @ 0x2
 	ds	2
 ;!
 ;!Data Sizes:
@@ -293,8 +289,8 @@ main@rowCount:	; 2 bytes @ 0x7
 ;!
 ;!Auto Spaces:
 ;!    Space          Size  Autos    Used
-;!    COMMON           14     11      11
-;!    BANK0            80      9       9
+;!    COMMON           14     12      12
+;!    BANK0            80      4       4
 ;!    BANK1            80      0       0
 ;!    BANK3            96      0       0
 ;!    BANK2            96      0       0
@@ -302,8 +298,8 @@ main@rowCount:	; 2 bytes @ 0x7
 ;!
 ;!Pointer List with Targets:
 ;!
-;!    readKey@rowCount	PTR int  size(1) Largest target is 2
-;!		 -> main@rowCount(BANK0[2]), 
+;!    readKey@charCount	PTR int  size(1) Largest target is 2
+;!		 -> main@charCount(BANK0[2]), 
 ;!
 
 
@@ -312,13 +308,11 @@ main@rowCount:	; 2 bytes @ 0x7
 ;!
 ;!    _main->_readKey
 ;!    _readKey->_dataCtrl
-;!    _dataCtrl->_delay
-;!    _initLCD->_instCtrl
-;!    _instCtrl->_delay
+;!    _initLCD->_delay
 ;!
 ;!Critical Paths under _main in BANK0
 ;!
-;!    _main->_readKey
+;!    None.
 ;!
 ;!Critical Paths under _main in BANK1
 ;!
@@ -342,37 +336,34 @@ main@rowCount:	; 2 bytes @ 0x7
 ;! ---------------------------------------------------------------------------------
 ;! (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
 ;! ---------------------------------------------------------------------------------
-;! (0) _main                                                 4     4      0    4117
-;!                                              5 BANK0      4     4      0
+;! (0) _main                                                 4     4      0     799
+;!                                              0 BANK0      4     4      0
 ;!                            ___awmod
 ;!                            _initLCD
 ;!                           _instCtrl
 ;!                            _readKey
 ;! ---------------------------------------------------------------------------------
-;! (1) _readKey                                              9     7      2    1308
-;!                                              7 COMMON     4     2      2
-;!                                              0 BANK0      5     5      0
+;! (1) _readKey                                              9     7      2      96
+;!                                              3 COMMON     9     7      2
 ;!                           _dataCtrl
 ;! ---------------------------------------------------------------------------------
-;! (2) _dataCtrl                                             2     0      2    1234
-;!                                              5 COMMON     2     0      2
-;!                              _delay
+;! (2) _dataCtrl                                             3     3      0      22
+;!                                              0 COMMON     3     3      0
 ;! ---------------------------------------------------------------------------------
-;! (1) _initLCD                                              0     0      0    1333
+;! (1) _initLCD                                              0     0      0     121
 ;!                              _delay
 ;!                           _instCtrl
 ;! ---------------------------------------------------------------------------------
-;! (1) _instCtrl                                             2     0      2     916
-;!                                              5 COMMON     2     0      2
-;!                              _delay
+;! (1) _instCtrl                                             3     3      0      22
+;!                                              0 COMMON     3     3      0
 ;! ---------------------------------------------------------------------------------
-;! (3) _delay                                                5     3      2     417
+;! (2) _delay                                                5     3      2      99
 ;!                                              0 COMMON     5     3      2
 ;! ---------------------------------------------------------------------------------
 ;! (1) ___awmod                                              7     3      4     402
 ;!                                              0 COMMON     7     3      4
 ;! ---------------------------------------------------------------------------------
-;! Estimated maximum stack depth 3
+;! Estimated maximum stack depth 2
 ;! ---------------------------------------------------------------------------------
 ;!
 ;! Call Graph Graphs:
@@ -382,12 +373,9 @@ main@rowCount:	; 2 bytes @ 0x7
 ;!   _initLCD
 ;!     _delay
 ;!     _instCtrl
-;!       _delay
 ;!   _instCtrl
-;!     _delay
 ;!   _readKey
 ;!     _dataCtrl
-;!       _delay
 ;!
 
 ;! Address spaces:
@@ -397,7 +385,7 @@ main@rowCount:	; 2 bytes @ 0x7
 ;!EEDATA             100      0       0       0        0.0%
 ;!NULL                 0      0       0       0        0.0%
 ;!CODE                 0      0       0       0        0.0%
-;!COMMON               E      B       B       1       78.6%
+;!COMMON               E      C       C       1       85.7%
 ;!BITSFR0              0      0       0       1        0.0%
 ;!SFR0                 0      0       0       1        0.0%
 ;!BITSFR1              0      0       0       2        0.0%
@@ -407,7 +395,7 @@ main@rowCount:	; 2 bytes @ 0x7
 ;!BITBANK0            50      0       0       4        0.0%
 ;!BITSFR3              0      0       0       4        0.0%
 ;!SFR3                 0      0       0       4        0.0%
-;!BANK0               50      9       9       5       11.3%
+;!BANK0               50      4       4       5        5.0%
 ;!BITSFR2              0      0       0       5        0.0%
 ;!SFR2                 0      0       0       5        0.0%
 ;!BITBANK1            50      0       0       6        0.0%
@@ -422,12 +410,12 @@ main@rowCount:	; 2 bytes @ 0x7
 
 ;; *************** function _main *****************
 ;; Defined at:
-;;		line 143 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2.c"
+;;		line 130 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-3\LE2-3.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
-;;  isValidKey      2    5[BANK0 ] int 
-;;  rowCount        2    7[BANK0 ] int 
+;;  isValidKey      2    0[BANK0 ] int 
+;;  charCount       2    2[BANK0 ] int 
 ;; Return value:  Size  Location     Type
 ;;		None               void
 ;; Registers used:
@@ -442,7 +430,7 @@ main@rowCount:	; 2 bytes @ 0x7
 ;;      Temps:          0       0       0       0       0
 ;;      Totals:         0       4       0       0       0
 ;;Total ram usage:        4 bytes
-;; Hardware stack levels required when called:    3
+;; Hardware stack levels required when called:    2
 ;; This function calls:
 ;;		___awmod
 ;;		_initLCD
@@ -453,71 +441,71 @@ main@rowCount:	; 2 bytes @ 0x7
 ;; This function uses a non-reentrant model
 ;;
 psect	maintext,global,class=CODE,delta=2,split=1
-	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2.c"
-	line	143
+	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-3\LE2-3.c"
+	line	130
 global __pmaintext
 __pmaintext:	;psect for function _main
 psect	maintext
-	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2.c"
-	line	143
+	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-3\LE2-3.c"
+	line	130
 	global	__size_of_main
 	__size_of_main	equ	__end_of_main-_main
 	
 _main:	
 ;incstack = 0
-	opt	stack 5
+	opt	stack 6
 ; Regs used in _main: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
-	line	145
+	line	132
 	
-l800:	
-;LE2.c: 145: int rowCount = 0;
+l797:	
+;LE2-3.c: 132: int charCount = 0;
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
-	clrf	(main@rowCount)
-	clrf	(main@rowCount+1)
-	line	146
-;LE2.c: 146: TRISB = 0x00;
+	clrf	(main@charCount)
+	clrf	(main@charCount+1)
+	line	133
+;LE2-3.c: 133: TRISB = 0x00;
 	bsf	status, 5	;RP0=1, select bank1
 	bcf	status, 6	;RP1=0, select bank1
 	clrf	(134)^080h	;volatile
-	line	147
-;LE2.c: 147: TRISC = 0x00;
+	line	134
+;LE2-3.c: 134: TRISC = 0x00;
 	clrf	(135)^080h	;volatile
-	line	148
+	line	135
 	
-l802:	
-;LE2.c: 148: TRISD = 0xFF;
+l799:	
+;LE2-3.c: 135: TRISD = 0xFF;
 	movlw	(0FFh)
 	movwf	(136)^080h	;volatile
-	line	150
+	line	137
 	
-l804:	
-;LE2.c: 150: initLCD();
+l801:	
+;LE2-3.c: 137: initLCD();
 	fcall	_initLCD
-	goto	l806
-	line	151
-;LE2.c: 151: while (1)
+	goto	l803
+	line	138
+;LE2-3.c: 138: while (1)
 	
-l53:	
-	line	153
+l58:	
+	line	140
 	
-l806:	
-;LE2.c: 152: {
-;LE2.c: 153: if (RD4 == 1)
+l803:	
+;LE2-3.c: 139: {
+;LE2-3.c: 140: if (RD4 == 1)
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
 	btfss	(68/8),(68)&7	;volatile
-	goto	u281
-	goto	u280
-u281:
-	goto	l806
-u280:
-	line	155
+	goto	u301
+	goto	u300
+u301:
+	goto	l803
+u300:
+	line	142
 	
-l808:	
-;LE2.c: 154: {
-;LE2.c: 155: int isValidKey = readKey(&rowCount);
-	movlw	(main@rowCount)&0ffh
+l805:	
+;LE2-3.c: 141: {
+;LE2-3.c: 142: int isValidKey = readKey(&charCount);
+	movlw	(main@charCount)&0ffh
 	fcall	_readKey
 	movf	(1+(?_readKey)),w
 	bcf	status, 5	;RP0=0, select bank0
@@ -528,41 +516,41 @@ l808:
 	clrf	(main@isValidKey)
 	addwf	(main@isValidKey)
 
-	line	156
+	line	143
 	
-l810:	
-;LE2.c: 156: if (isValidKey)
+l807:	
+;LE2-3.c: 143: if (isValidKey)
 	movf	(main@isValidKey+1),w
 	iorwf	(main@isValidKey),w
 	skipnz
-	goto	u291
-	goto	u290
-u291:
-	goto	l806
-u290:
-	line	158
+	goto	u311
+	goto	u310
+u311:
+	goto	l803
+u310:
+	line	145
 	
-l812:	
-;LE2.c: 157: {
-;LE2.c: 158: rowCount += 1;
+l809:	
+;LE2-3.c: 144: {
+;LE2-3.c: 145: charCount += 1;
 	movlw	low(01h)
-	addwf	(main@rowCount),f
+	addwf	(main@charCount),f
 	skipnc
-	incf	(main@rowCount+1),f
+	incf	(main@charCount+1),f
 	movlw	high(01h)
-	addwf	(main@rowCount+1),f
-	line	159
+	addwf	(main@charCount+1),f
+	line	146
 	
-l814:	
-;LE2.c: 159: if (rowCount % 20 == 0)
+l811:	
+;LE2-3.c: 146: if (charCount % 20 == 0)
 	movlw	low(014h)
 	movwf	(___awmod@divisor)
 	movlw	high(014h)
 	movwf	((___awmod@divisor))+1
-	movf	(main@rowCount+1),w
+	movf	(main@charCount+1),w
 	clrf	(___awmod@dividend+1)
 	addwf	(___awmod@dividend+1)
-	movf	(main@rowCount),w
+	movf	(main@charCount),w
 	clrf	(___awmod@dividend)
 	addwf	(___awmod@dividend)
 
@@ -570,168 +558,156 @@ l814:
 	movf	((1+(?___awmod))),w
 	iorwf	((0+(?___awmod))),w
 	skipz
-	goto	u301
-	goto	u300
-u301:
-	goto	l828
-u300:
-	line	161
-	
-l816:	
-;LE2.c: 160: {
-;LE2.c: 161: if (rowCount == 20)
-	movlw	014h
-	bcf	status, 5	;RP0=0, select bank0
-	bcf	status, 6	;RP1=0, select bank0
-	xorwf	(main@rowCount),w
-	iorwf	(main@rowCount+1),w
-	skipz
-	goto	u311
-	goto	u310
-u311:
-	goto	l820
-u310:
-	line	162
-	
-l818:	
-;LE2.c: 162: instCtrl(0xC0);
-	movlw	low(0C0h)
-	movwf	(instCtrl@dataIn)
-	movlw	high(0C0h)
-	movwf	((instCtrl@dataIn))+1
-	fcall	_instCtrl
-	goto	l828
-	line	163
-	
-l57:	
-	
-l820:	
-;LE2.c: 163: else if (rowCount == 40)
-	movlw	028h
-	bcf	status, 5	;RP0=0, select bank0
-	bcf	status, 6	;RP1=0, select bank0
-	xorwf	(main@rowCount),w
-	iorwf	(main@rowCount+1),w
-	skipz
 	goto	u321
 	goto	u320
 u321:
-	goto	l824
+	goto	l825
 u320:
-	line	164
+	line	148
 	
-l822:	
-;LE2.c: 164: instCtrl(0x94);
-	movlw	low(094h)
-	movwf	(instCtrl@dataIn)
-	movlw	high(094h)
-	movwf	((instCtrl@dataIn))+1
-	fcall	_instCtrl
-	goto	l828
-	line	165
-	
-l59:	
-	
-l824:	
-;LE2.c: 165: else if (rowCount == 60)
-	movlw	03Ch
+l813:	
+;LE2-3.c: 147: {
+;LE2-3.c: 148: if (charCount == 20)
+	movlw	014h
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
-	xorwf	(main@rowCount),w
-	iorwf	(main@rowCount+1),w
+	xorwf	(main@charCount),w
+	iorwf	(main@charCount+1),w
 	skipz
 	goto	u331
 	goto	u330
 u331:
-	goto	l828
+	goto	l817
 u330:
-	line	166
+	line	149
 	
-l826:	
-;LE2.c: 166: instCtrl(0xD4);
-	movlw	low(0D4h)
-	movwf	(instCtrl@dataIn)
-	movlw	high(0D4h)
-	movwf	((instCtrl@dataIn))+1
+l815:	
+;LE2-3.c: 149: instCtrl(0xC0);
+	movlw	(0C0h)
 	fcall	_instCtrl
-	goto	l828
+	goto	l825
+	line	150
 	
-l61:	
-	goto	l828
-	line	167
+l62:	
 	
-l60:	
-	goto	l828
-	
-l58:	
-	goto	l828
-	
-l56:	
-	line	168
-	
-l828:	
-;LE2.c: 167: }
-;LE2.c: 168: if (rowCount > 80)
+l817:	
+;LE2-3.c: 150: else if (charCount == 40)
+	movlw	028h
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
-	movf	(main@rowCount+1),w
+	xorwf	(main@charCount),w
+	iorwf	(main@charCount+1),w
+	skipz
+	goto	u341
+	goto	u340
+u341:
+	goto	l821
+u340:
+	line	151
+	
+l819:	
+;LE2-3.c: 151: instCtrl(0x94);
+	movlw	(094h)
+	fcall	_instCtrl
+	goto	l825
+	line	152
+	
+l64:	
+	
+l821:	
+;LE2-3.c: 152: else if (charCount == 60)
+	movlw	03Ch
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	xorwf	(main@charCount),w
+	iorwf	(main@charCount+1),w
+	skipz
+	goto	u351
+	goto	u350
+u351:
+	goto	l825
+u350:
+	line	153
+	
+l823:	
+;LE2-3.c: 153: instCtrl(0xD4);
+	movlw	(0D4h)
+	fcall	_instCtrl
+	goto	l825
+	
+l66:	
+	goto	l825
+	line	154
+	
+l65:	
+	goto	l825
+	
+l63:	
+	goto	l825
+	
+l61:	
+	line	155
+	
+l825:	
+;LE2-3.c: 154: }
+;LE2-3.c: 155: if (charCount > 80)
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	movf	(main@charCount+1),w
 	xorlw	80h
 	movwf	btemp+1
 	movlw	(high(051h))^80h
 	subwf	btemp+1,w
 	skipz
-	goto	u345
+	goto	u365
 	movlw	low(051h)
-	subwf	(main@rowCount),w
-u345:
+	subwf	(main@charCount),w
+u365:
 
 	skipc
-	goto	u341
-	goto	u340
-u341:
-	goto	l806
-u340:
-	line	170
+	goto	u361
+	goto	u360
+u361:
+	goto	l803
+u360:
+	line	157
 	
-l830:	
-;LE2.c: 169: {
-;LE2.c: 170: instCtrl(0x01);
-	movlw	low(01h)
-	movwf	(instCtrl@dataIn)
-	movlw	high(01h)
-	movwf	((instCtrl@dataIn))+1
+l827:	
+;LE2-3.c: 156: {
+;LE2-3.c: 157: instCtrl(0x01);
+	movlw	(01h)
 	fcall	_instCtrl
-	line	171
+	line	158
 	
-l832:	
-;LE2.c: 171: rowCount = 0;
+l829:	
+;LE2-3.c: 158: charCount = 0;
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
-	clrf	(main@rowCount)
-	clrf	(main@rowCount+1)
-	goto	l806
-	line	172
+	clrf	(main@charCount)
+	clrf	(main@charCount+1)
+	goto	l803
+	line	159
 	
-l62:	
-	goto	l806
-	line	173
+l67:	
+	goto	l803
+	line	160
 	
-l55:	
-	goto	l806
-	line	174
+l60:	
+	goto	l803
+	line	161
 	
-l54:	
-	goto	l806
-	line	175
+l59:	
+	goto	l803
+	line	162
 	
-l63:	
-	line	151
-	goto	l806
+l68:	
+	line	138
+	goto	l803
 	
-l64:	
-	line	176
+l69:	
+	line	163
 	
-l65:	
+l70:	
 	global	start
 	ljmp	start
 	opt stack 0
@@ -742,17 +718,17 @@ GLOBAL	__end_of_main
 
 ;; *************** function _readKey *****************
 ;; Defined at:
-;;		line 85 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2.c"
+;;		line 81 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-3\LE2-3.c"
 ;; Parameters:    Size  Location     Type
-;;  rowCount        1    wreg     PTR int 
-;;		 -> main@rowCount(2), 
+;;  charCount       1    wreg     PTR int 
+;;		 -> main@charCount(2), 
 ;; Auto vars:     Size  Location     Type
-;;  rowCount        1    0[BANK0 ] PTR int 
-;;		 -> main@rowCount(2), 
-;;  isValidKey      2    3[BANK0 ] int 
-;;  bits            2    1[BANK0 ] int 
+;;  charCount       1    7[COMMON] PTR int 
+;;		 -> main@charCount(2), 
+;;  isValidKey      2   10[COMMON] int 
+;;  bits            2    8[COMMON] int 
 ;; Return value:  Size  Location     Type
-;;                  2    7[COMMON] int 
+;;                  2    3[COMMON] int 
 ;; Registers used:
 ;;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
 ;; Tracked objects:
@@ -761,12 +737,12 @@ GLOBAL	__end_of_main
 ;;		Unchanged: 0/0
 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
 ;;      Params:         2       0       0       0       0
-;;      Locals:         0       5       0       0       0
+;;      Locals:         5       0       0       0       0
 ;;      Temps:          2       0       0       0       0
-;;      Totals:         4       5       0       0       0
+;;      Totals:         9       0       0       0       0
 ;;Total ram usage:        9 bytes
 ;; Hardware stack levels used:    1
-;; Hardware stack levels required when called:    2
+;; Hardware stack levels required when called:    1
 ;; This function calls:
 ;;		_dataCtrl
 ;; This function is called by:
@@ -774,31 +750,31 @@ GLOBAL	__end_of_main
 ;; This function uses a non-reentrant model
 ;;
 psect	text1,local,class=CODE,delta=2,merge=1
-	line	85
+	line	81
 global __ptext1
 __ptext1:	;psect for function _readKey
 psect	text1
-	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2.c"
-	line	85
+	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-3\LE2-3.c"
+	line	81
 	global	__size_of_readKey
 	__size_of_readKey	equ	__end_of_readKey-_readKey
 	
 _readKey:	
 ;incstack = 0
-	opt	stack 5
+	opt	stack 6
 ; Regs used in _readKey: [wreg-fsr0h+status,2+status,0+pclath+cstack]
-	line	87
+	line	83
 	
-l716:	
-;LE2.c: 87: int isValidKey = 1;
+l711:	
+;LE2-3.c: 83: int isValidKey = 1;
 	movlw	low(01h)
-	bcf	status, 5	;RP0=0, select bank0
-	bcf	status, 6	;RP1=0, select bank0
 	movwf	(readKey@isValidKey)
 	movlw	high(01h)
 	movwf	((readKey@isValidKey))+1
-	line	88
-;LE2.c: 88: int bits = PORTD;
+	line	84
+;LE2-3.c: 84: int bits = PORTD;
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
 	movf	(8),w	;volatile
 	movwf	(??_readKey+0)+0
 	clrf	(??_readKey+0)+0+1
@@ -806,275 +782,189 @@ l716:
 	movwf	(readKey@bits)
 	movf	1+(??_readKey+0)+0,w
 	movwf	(readKey@bits+1)
-	line	89
-;LE2.c: 89: switch (bits)
-	goto	l752
-	line	91
-;LE2.c: 90: {
-;LE2.c: 91: case KEY_0:
-	
-l33:	
-	line	92
-	
-l718:	
-;LE2.c: 92: dataCtrl('0');
-	movlw	low(030h)
-	movwf	(dataCtrl@dataIn)
-	movlw	high(030h)
-	movwf	((dataCtrl@dataIn))+1
-	fcall	_dataCtrl
-	line	93
-;LE2.c: 93: break;
-	goto	l754
-	line	94
-;LE2.c: 94: case KEY_1:
-	
-l35:	
-	line	95
-	
-l720:	
-;LE2.c: 95: dataCtrl('1');
-	movlw	low(031h)
-	movwf	(dataCtrl@dataIn)
-	movlw	high(031h)
-	movwf	((dataCtrl@dataIn))+1
-	fcall	_dataCtrl
-	line	96
-;LE2.c: 96: break;
-	goto	l754
-	line	97
-;LE2.c: 97: case KEY_2:
-	
-l36:	
-	line	98
-	
-l722:	
-;LE2.c: 98: dataCtrl('2');
-	movlw	low(032h)
-	movwf	(dataCtrl@dataIn)
-	movlw	high(032h)
-	movwf	((dataCtrl@dataIn))+1
-	fcall	_dataCtrl
-	line	99
-;LE2.c: 99: break;
-	goto	l754
-	line	100
-;LE2.c: 100: case KEY_3:
-	
-l37:	
-	line	101
-	
-l724:	
-;LE2.c: 101: dataCtrl('3');
-	movlw	low(033h)
-	movwf	(dataCtrl@dataIn)
-	movlw	high(033h)
-	movwf	((dataCtrl@dataIn))+1
-	fcall	_dataCtrl
-	line	102
-;LE2.c: 102: break;
-	goto	l754
-	line	103
-;LE2.c: 103: case KEY_4:
-	
-l38:	
-	line	104
-	
-l726:	
-;LE2.c: 104: dataCtrl('4');
-	movlw	low(034h)
-	movwf	(dataCtrl@dataIn)
-	movlw	high(034h)
-	movwf	((dataCtrl@dataIn))+1
-	fcall	_dataCtrl
-	line	105
-;LE2.c: 105: break;
-	goto	l754
-	line	106
-;LE2.c: 106: case KEY_5:
-	
-l39:	
-	line	107
-	
-l728:	
-;LE2.c: 107: dataCtrl('5');
-	movlw	low(035h)
-	movwf	(dataCtrl@dataIn)
-	movlw	high(035h)
-	movwf	((dataCtrl@dataIn))+1
-	fcall	_dataCtrl
-	line	108
-;LE2.c: 108: break;
-	goto	l754
-	line	109
-;LE2.c: 109: case KEY_6:
-	
-l40:	
-	line	110
-	
-l730:	
-;LE2.c: 110: dataCtrl('6');
-	movlw	low(036h)
-	movwf	(dataCtrl@dataIn)
-	movlw	high(036h)
-	movwf	((dataCtrl@dataIn))+1
-	fcall	_dataCtrl
-	line	111
-;LE2.c: 111: break;
-	goto	l754
-	line	112
-;LE2.c: 112: case KEY_7:
+	line	85
+;LE2-3.c: 85: switch (bits)
+	goto	l741
+	line	87
+;LE2-3.c: 86: {
+;LE2-3.c: 87: case KEY_0:
 	
 l41:	
-	line	113
+	line	88
 	
-l732:	
-;LE2.c: 113: dataCtrl('7');
-	movlw	low(037h)
-	movwf	(dataCtrl@dataIn)
-	movlw	high(037h)
-	movwf	((dataCtrl@dataIn))+1
+l713:	
+;LE2-3.c: 88: dataCtrl('0');
+	movlw	(030h)
 	fcall	_dataCtrl
-	line	114
-;LE2.c: 114: break;
-	goto	l754
-	line	115
-;LE2.c: 115: case KEY_8:
-	
-l42:	
-	line	116
-	
-l734:	
-;LE2.c: 116: dataCtrl('8');
-	movlw	low(038h)
-	movwf	(dataCtrl@dataIn)
-	movlw	high(038h)
-	movwf	((dataCtrl@dataIn))+1
-	fcall	_dataCtrl
-	line	117
-;LE2.c: 117: break;
-	goto	l754
-	line	118
-;LE2.c: 118: case KEY_9:
+	line	89
+;LE2-3.c: 89: break;
+	goto	l743
+	line	90
+;LE2-3.c: 90: case KEY_1:
 	
 l43:	
-	line	119
+	line	91
 	
-l736:	
-;LE2.c: 119: dataCtrl('9');
-	movlw	low(039h)
-	movwf	(dataCtrl@dataIn)
-	movlw	high(039h)
-	movwf	((dataCtrl@dataIn))+1
+l715:	
+;LE2-3.c: 91: dataCtrl('1');
+	movlw	(031h)
 	fcall	_dataCtrl
-	line	120
-;LE2.c: 120: break;
-	goto	l754
-	line	121
-;LE2.c: 121: case KEY_PLUS:
+	line	92
+;LE2-3.c: 92: break;
+	goto	l743
+	line	93
+;LE2-3.c: 93: case KEY_2:
 	
 l44:	
-	line	122
+	line	94
 	
-l738:	
-;LE2.c: 122: dataCtrl('+');
-	movlw	low(02Bh)
-	movwf	(dataCtrl@dataIn)
-	movlw	high(02Bh)
-	movwf	((dataCtrl@dataIn))+1
+l717:	
+;LE2-3.c: 94: dataCtrl('2');
+	movlw	(032h)
 	fcall	_dataCtrl
-	line	123
-;LE2.c: 123: break;
-	goto	l754
-	line	124
-;LE2.c: 124: case KEY_MINUS:
+	line	95
+;LE2-3.c: 95: break;
+	goto	l743
+	line	96
+;LE2-3.c: 96: case KEY_3:
 	
 l45:	
-	line	125
+	line	97
 	
-l740:	
-;LE2.c: 125: dataCtrl('-');
-	movlw	low(02Dh)
-	movwf	(dataCtrl@dataIn)
-	movlw	high(02Dh)
-	movwf	((dataCtrl@dataIn))+1
+l719:	
+;LE2-3.c: 97: dataCtrl('3');
+	movlw	(033h)
 	fcall	_dataCtrl
-	line	126
-;LE2.c: 126: break;
-	goto	l754
-	line	127
-;LE2.c: 127: case KEY_MULTIPLY:
+	line	98
+;LE2-3.c: 98: break;
+	goto	l743
+	line	99
+;LE2-3.c: 99: case KEY_4:
 	
 l46:	
-	line	128
+	line	100
 	
-l742:	
-;LE2.c: 128: dataCtrl('*');
-	movlw	low(02Ah)
-	movwf	(dataCtrl@dataIn)
-	movlw	high(02Ah)
-	movwf	((dataCtrl@dataIn))+1
+l721:	
+;LE2-3.c: 100: dataCtrl('4');
+	movlw	(034h)
 	fcall	_dataCtrl
-	line	129
-;LE2.c: 129: break;
-	goto	l754
-	line	130
-;LE2.c: 130: case KEY_DIVIDE:
+	line	101
+;LE2-3.c: 101: break;
+	goto	l743
+	line	102
+;LE2-3.c: 102: case KEY_5:
 	
 l47:	
-	line	131
+	line	103
 	
-l744:	
-;LE2.c: 131: dataCtrl('/');
-	movlw	low(02Fh)
-	movwf	(dataCtrl@dataIn)
-	movlw	high(02Fh)
-	movwf	((dataCtrl@dataIn))+1
+l723:	
+;LE2-3.c: 103: dataCtrl('5');
+	movlw	(035h)
 	fcall	_dataCtrl
-	line	132
-;LE2.c: 132: break;
-	goto	l754
-	line	133
-;LE2.c: 133: case KEY_EQUALS:
+	line	104
+;LE2-3.c: 104: break;
+	goto	l743
+	line	105
+;LE2-3.c: 105: case KEY_6:
 	
 l48:	
-	line	134
+	line	106
 	
-l746:	
-;LE2.c: 134: dataCtrl('=');
-	movlw	low(03Dh)
-	movwf	(dataCtrl@dataIn)
-	movlw	high(03Dh)
-	movwf	((dataCtrl@dataIn))+1
+l725:	
+;LE2-3.c: 106: dataCtrl('6');
+	movlw	(036h)
 	fcall	_dataCtrl
-	line	135
-;LE2.c: 135: break;
-	goto	l754
-	line	136
-;LE2.c: 136: default:
+	line	107
+;LE2-3.c: 107: break;
+	goto	l743
+	line	108
+;LE2-3.c: 108: case KEY_7:
 	
 l49:	
-	line	137
+	line	109
 	
-l748:	
-;LE2.c: 137: isValidKey = 0;
-	bcf	status, 5	;RP0=0, select bank0
-	bcf	status, 6	;RP1=0, select bank0
+l727:	
+;LE2-3.c: 109: dataCtrl('7');
+	movlw	(037h)
+	fcall	_dataCtrl
+	line	110
+;LE2-3.c: 110: break;
+	goto	l743
+	line	111
+;LE2-3.c: 111: case KEY_8:
+	
+l50:	
+	line	112
+	
+l729:	
+;LE2-3.c: 112: dataCtrl('8');
+	movlw	(038h)
+	fcall	_dataCtrl
+	line	113
+;LE2-3.c: 113: break;
+	goto	l743
+	line	114
+;LE2-3.c: 114: case KEY_9:
+	
+l51:	
+	line	115
+	
+l731:	
+;LE2-3.c: 115: dataCtrl('9');
+	movlw	(039h)
+	fcall	_dataCtrl
+	line	116
+;LE2-3.c: 116: break;
+	goto	l743
+	line	117
+;LE2-3.c: 117: case KEY_HASH:
+	
+l52:	
+	line	118
+	
+l733:	
+;LE2-3.c: 118: dataCtrl('#');
+	movlw	(023h)
+	fcall	_dataCtrl
+	line	119
+;LE2-3.c: 119: break;
+	goto	l743
+	line	120
+;LE2-3.c: 120: case KEY_MULTIPLY:
+	
+l53:	
+	line	121
+	
+l735:	
+;LE2-3.c: 121: dataCtrl('*');
+	movlw	(02Ah)
+	fcall	_dataCtrl
+	line	122
+;LE2-3.c: 122: break;
+	goto	l743
+	line	123
+;LE2-3.c: 123: default:
+	
+l54:	
+	line	124
+	
+l737:	
+;LE2-3.c: 124: isValidKey = 0;
 	clrf	(readKey@isValidKey)
 	clrf	(readKey@isValidKey+1)
-	line	138
-;LE2.c: 138: break;
-	goto	l754
-	line	139
+	line	125
+;LE2-3.c: 125: break;
+	goto	l743
+	line	126
 	
-l750:	
-;LE2.c: 139: }
-	goto	l754
-	line	89
+l739:	
+;LE2-3.c: 126: }
+	goto	l743
+	line	85
 	
-l32:	
+l40:	
 	
-l752:	
+l741:	
 	; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-switches
 ; Switch size 1, requested type "space"
 ; Number of cases is 1, Range of values is 0 to 0
@@ -1089,17 +979,17 @@ l752:
 	opt asmopt_off
 	xorlw	0^0	; case 0
 	skipnz
-	goto	l854
-	goto	l748
+	goto	l851
+	goto	l737
 	opt asmopt_on
 	
-l854:	
+l851:	
 ; Switch size 1, requested type "space"
-; Number of cases is 15, Range of values is 16 to 31
+; Number of cases is 12, Range of values is 16 to 30
 ; switch strategies available:
 ; Name         Instructions Cycles
-; simple_byte           46    24 (average)
-; direct_byte           59    11 (fixed)
+; simple_byte           37    19 (average)
+; direct_byte           56    11 (fixed)
 ; jumptable            263     9 (fixed)
 ;	Chosen strategy is simple_byte
 
@@ -1107,61 +997,50 @@ l854:
 	opt asmopt_off
 	xorlw	16^0	; case 16
 	skipnz
-	goto	l732
+	goto	l715
 	xorlw	17^16	; case 17
 	skipnz
-	goto	l734
+	goto	l717
 	xorlw	18^17	; case 18
 	skipnz
-	goto	l736
-	xorlw	19^18	; case 19
+	goto	l719
+	xorlw	20^18	; case 20
 	skipnz
-	goto	l744
-	xorlw	20^19	; case 20
-	skipnz
-	goto	l726
+	goto	l721
 	xorlw	21^20	; case 21
 	skipnz
-	goto	l728
+	goto	l723
 	xorlw	22^21	; case 22
 	skipnz
-	goto	l730
-	xorlw	23^22	; case 23
+	goto	l725
+	xorlw	24^22	; case 24
 	skipnz
-	goto	l742
-	xorlw	24^23	; case 24
-	skipnz
-	goto	l720
+	goto	l727
 	xorlw	25^24	; case 25
 	skipnz
-	goto	l722
+	goto	l729
 	xorlw	26^25	; case 26
 	skipnz
-	goto	l724
-	xorlw	27^26	; case 27
+	goto	l731
+	xorlw	28^26	; case 28
 	skipnz
-	goto	l740
-	xorlw	29^27	; case 29
+	goto	l735
+	xorlw	29^28	; case 29
 	skipnz
-	goto	l718
+	goto	l713
 	xorlw	30^29	; case 30
 	skipnz
-	goto	l746
-	xorlw	31^30	; case 31
-	skipnz
-	goto	l738
-	goto	l748
+	goto	l733
+	goto	l737
 	opt asmopt_on
 
-	line	139
+	line	126
 	
-l34:	
-	line	140
+l42:	
+	line	127
 	
-l754:	
-;LE2.c: 140: return isValidKey;
-	bcf	status, 5	;RP0=0, select bank0
-	bcf	status, 6	;RP1=0, select bank0
+l743:	
+;LE2-3.c: 127: return isValidKey;
 	movf	(readKey@isValidKey+1),w
 	clrf	(?_readKey+1)
 	addwf	(?_readKey+1)
@@ -1169,12 +1048,12 @@ l754:
 	clrf	(?_readKey)
 	addwf	(?_readKey)
 
-	goto	l50
+	goto	l55
 	
-l756:	
-	line	141
+l745:	
+	line	128
 	
-l50:	
+l55:	
 	return
 	opt stack 0
 GLOBAL	__end_of_readKey
@@ -1184,106 +1063,92 @@ GLOBAL	__end_of_readKey
 
 ;; *************** function _dataCtrl *****************
 ;; Defined at:
-;;		line 60 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2.c"
+;;		line 53 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-3\LE2-3.c"
 ;; Parameters:    Size  Location     Type
-;;  dataIn          2    5[COMMON] int 
+;;  dataIn          1    wreg     unsigned char 
 ;; Auto vars:     Size  Location     Type
-;;		None
+;;  dataIn          1    2[COMMON] unsigned char 
 ;; Return value:  Size  Location     Type
 ;;		None               void
 ;; Registers used:
-;;		wreg, status,2, status,0, pclath, cstack
+;;		wreg
 ;; Tracked objects:
 ;;		On entry : 0/0
 ;;		On exit  : 0/0
 ;;		Unchanged: 0/0
 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-;;      Params:         2       0       0       0       0
-;;      Locals:         0       0       0       0       0
-;;      Temps:          0       0       0       0       0
-;;      Totals:         2       0       0       0       0
-;;Total ram usage:        2 bytes
+;;      Params:         0       0       0       0       0
+;;      Locals:         1       0       0       0       0
+;;      Temps:          2       0       0       0       0
+;;      Totals:         3       0       0       0       0
+;;Total ram usage:        3 bytes
 ;; Hardware stack levels used:    1
-;; Hardware stack levels required when called:    1
 ;; This function calls:
-;;		_delay
+;;		Nothing
 ;; This function is called by:
 ;;		_readKey
+;;		_printStr
 ;; This function uses a non-reentrant model
 ;;
 psect	text2,local,class=CODE,delta=2,merge=1
-	line	60
+	line	53
 global __ptext2
 __ptext2:	;psect for function _dataCtrl
 psect	text2
-	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2.c"
-	line	60
+	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-3\LE2-3.c"
+	line	53
 	global	__size_of_dataCtrl
 	__size_of_dataCtrl	equ	__end_of_dataCtrl-_dataCtrl
 	
 _dataCtrl:	
 ;incstack = 0
-	opt	stack 5
-; Regs used in _dataCtrl: [wreg+status,2+status,0+pclath+cstack]
-	line	63
+	opt	stack 6
+; Regs used in _dataCtrl: [wreg]
+;dataCtrl@dataIn stored from wreg
+	movwf	(dataCtrl@dataIn)
+	line	55
 	
-l702:	
-;LE2.c: 63: PORTB = dataIn;
+l701:	
+;LE2-3.c: 55: PORTB = dataIn;
 	movf	(dataCtrl@dataIn),w
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
 	movwf	(6)	;volatile
-	line	64
+	line	56
 	
-l704:	
-;LE2.c: 64: delay(1000);
-	movlw	low(03E8h)
-	movwf	(delay@timeIn)
-	movlw	high(03E8h)
-	movwf	((delay@timeIn))+1
-	fcall	_delay
-	line	66
+l703:	
+;LE2-3.c: 56: PORTCbits.RC1 = 1;
+	bsf	(7),1	;volatile
+	line	57
 	
-l706:	
-;LE2.c: 66: PORTC = 0x06;
-	movlw	(06h)
+l705:	
+;LE2-3.c: 57: PORTCbits.RC2 = 1;
+	bsf	(7),2	;volatile
+	line	58
+;LE2-3.c: 58: _delay((unsigned long)((100)*(4000000/4000.0)));
+	opt asmopt_off
+movlw	130
+movwf	((??_dataCtrl+0)+0+1),f
+	movlw	221
+movwf	((??_dataCtrl+0)+0),f
+u377:
+	decfsz	((??_dataCtrl+0)+0),f
+	goto	u377
+	decfsz	((??_dataCtrl+0)+0+1),f
+	goto	u377
+	nop2
+opt asmopt_on
+
+	line	59
+	
+l707:	
+;LE2-3.c: 59: PORTCbits.RC2 = 0;
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
-	movwf	(7)	;volatile
-	line	67
-;LE2.c: 67: delay(1000);
-	movlw	low(03E8h)
-	movwf	(delay@timeIn)
-	movlw	high(03E8h)
-	movwf	((delay@timeIn))+1
-	fcall	_delay
-	line	69
+	bcf	(7),2	;volatile
+	line	60
 	
-l708:	
-;LE2.c: 69: PORTC = 0x02;
-	movlw	(02h)
-	bcf	status, 5	;RP0=0, select bank0
-	bcf	status, 6	;RP1=0, select bank0
-	movwf	(7)	;volatile
-	line	70
-	
-l710:	
-;LE2.c: 70: delay(1000);
-	movlw	low(03E8h)
-	movwf	(delay@timeIn)
-	movlw	high(03E8h)
-	movwf	((delay@timeIn))+1
-	fcall	_delay
-	line	72
-	
-l712:	
-;LE2.c: 72: PORTC = 0x00;
-	bcf	status, 5	;RP0=0, select bank0
-	bcf	status, 6	;RP1=0, select bank0
-	clrf	(7)	;volatile
-	line	73
-	
-l26:	
+l28:	
 	return
 	opt stack 0
 GLOBAL	__end_of_dataCtrl
@@ -1293,7 +1158,7 @@ GLOBAL	__end_of_dataCtrl
 
 ;; *************** function _initLCD *****************
 ;; Defined at:
-;;		line 75 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2.c"
+;;		line 62 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-3\LE2-3.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -1313,7 +1178,7 @@ GLOBAL	__end_of_dataCtrl
 ;;      Totals:         0       0       0       0       0
 ;;Total ram usage:        0 bytes
 ;; Hardware stack levels used:    1
-;; Hardware stack levels required when called:    2
+;; Hardware stack levels required when called:    1
 ;; This function calls:
 ;;		_delay
 ;;		_instCtrl
@@ -1322,66 +1187,51 @@ GLOBAL	__end_of_dataCtrl
 ;; This function uses a non-reentrant model
 ;;
 psect	text3,local,class=CODE,delta=2,merge=1
-	line	75
+	line	62
 global __ptext3
 __ptext3:	;psect for function _initLCD
 psect	text3
-	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2.c"
-	line	75
+	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-3\LE2-3.c"
+	line	62
 	global	__size_of_initLCD
 	__size_of_initLCD	equ	__end_of_initLCD-_initLCD
 	
 _initLCD:	
 ;incstack = 0
-	opt	stack 5
+	opt	stack 6
 ; Regs used in _initLCD: [wreg+status,2+status,0+pclath+cstack]
-	line	77
+	line	64
 	
-l714:	
-;LE2.c: 77: delay(1000);
-	movlw	low(03E8h)
+l709:	
+;LE2-3.c: 64: delay(100);
+	movlw	low(064h)
 	movwf	(delay@timeIn)
-	movlw	high(03E8h)
+	movlw	high(064h)
 	movwf	((delay@timeIn))+1
 	fcall	_delay
-	line	78
-;LE2.c: 78: instCtrl(0x38);
-	movlw	low(038h)
-	movwf	(instCtrl@dataIn)
-	movlw	high(038h)
-	movwf	((instCtrl@dataIn))+1
+	line	65
+;LE2-3.c: 65: instCtrl(0x38);
+	movlw	(038h)
 	fcall	_instCtrl
-	line	79
-;LE2.c: 79: instCtrl(0x08);
-	movlw	low(08h)
-	movwf	(instCtrl@dataIn)
-	movlw	high(08h)
-	movwf	((instCtrl@dataIn))+1
+	line	66
+;LE2-3.c: 66: instCtrl(0x08);
+	movlw	(08h)
 	fcall	_instCtrl
-	line	80
-;LE2.c: 80: instCtrl(0x01);
-	movlw	low(01h)
-	movwf	(instCtrl@dataIn)
-	movlw	high(01h)
-	movwf	((instCtrl@dataIn))+1
+	line	67
+;LE2-3.c: 67: instCtrl(0x01);
+	movlw	(01h)
 	fcall	_instCtrl
-	line	81
-;LE2.c: 81: instCtrl(0x06);
-	movlw	low(06h)
-	movwf	(instCtrl@dataIn)
-	movlw	high(06h)
-	movwf	((instCtrl@dataIn))+1
+	line	68
+;LE2-3.c: 68: instCtrl(0x06);
+	movlw	(06h)
 	fcall	_instCtrl
-	line	82
-;LE2.c: 82: instCtrl(0x0C);
-	movlw	low(0Ch)
-	movwf	(instCtrl@dataIn)
-	movlw	high(0Ch)
-	movwf	((instCtrl@dataIn))+1
+	line	69
+;LE2-3.c: 69: instCtrl(0x0C);
+	movlw	(0Ch)
 	fcall	_instCtrl
-	line	83
+	line	70
 	
-l29:	
+l31:	
 	return
 	opt stack 0
 GLOBAL	__end_of_initLCD
@@ -1391,104 +1241,92 @@ GLOBAL	__end_of_initLCD
 
 ;; *************** function _instCtrl *****************
 ;; Defined at:
-;;		line 45 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2.c"
+;;		line 44 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-3\LE2-3.c"
 ;; Parameters:    Size  Location     Type
-;;  dataIn          2    5[COMMON] int 
+;;  dataIn          1    wreg     unsigned char 
 ;; Auto vars:     Size  Location     Type
-;;		None
+;;  dataIn          1    2[COMMON] unsigned char 
 ;; Return value:  Size  Location     Type
 ;;		None               void
 ;; Registers used:
-;;		wreg, status,2, status,0, pclath, cstack
+;;		wreg
 ;; Tracked objects:
 ;;		On entry : 0/0
 ;;		On exit  : 0/0
 ;;		Unchanged: 0/0
 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-;;      Params:         2       0       0       0       0
-;;      Locals:         0       0       0       0       0
-;;      Temps:          0       0       0       0       0
-;;      Totals:         2       0       0       0       0
-;;Total ram usage:        2 bytes
+;;      Params:         0       0       0       0       0
+;;      Locals:         1       0       0       0       0
+;;      Temps:          2       0       0       0       0
+;;      Totals:         3       0       0       0       0
+;;Total ram usage:        3 bytes
 ;; Hardware stack levels used:    1
-;; Hardware stack levels required when called:    1
 ;; This function calls:
-;;		_delay
+;;		Nothing
 ;; This function is called by:
 ;;		_initLCD
 ;;		_main
 ;; This function uses a non-reentrant model
 ;;
 psect	text4,local,class=CODE,delta=2,merge=1
-	line	45
+	line	44
 global __ptext4
 __ptext4:	;psect for function _instCtrl
 psect	text4
-	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2.c"
-	line	45
+	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-3\LE2-3.c"
+	line	44
 	global	__size_of_instCtrl
 	__size_of_instCtrl	equ	__end_of_instCtrl-_instCtrl
 	
 _instCtrl:	
 ;incstack = 0
-	opt	stack 6
-; Regs used in _instCtrl: [wreg+status,2+status,0+pclath+cstack]
-	line	48
+	opt	stack 7
+; Regs used in _instCtrl: [wreg]
+;instCtrl@dataIn stored from wreg
+	movwf	(instCtrl@dataIn)
+	line	46
 	
-l692:	
-;LE2.c: 48: PORTB = dataIn;
+l693:	
+;LE2-3.c: 46: PORTB = dataIn;
 	movf	(instCtrl@dataIn),w
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
 	movwf	(6)	;volatile
-	line	49
+	line	47
 	
-l694:	
-;LE2.c: 49: delay(1000);
-	movlw	low(03E8h)
-	movwf	(delay@timeIn)
-	movlw	high(03E8h)
-	movwf	((delay@timeIn))+1
-	fcall	_delay
+l695:	
+;LE2-3.c: 47: PORTCbits.RC1 = 0;
+	bcf	(7),1	;volatile
+	line	48
+	
+l697:	
+;LE2-3.c: 48: PORTCbits.RC2 = 1;
+	bsf	(7),2	;volatile
+	line	49
+;LE2-3.c: 49: _delay((unsigned long)((100)*(4000000/4000.0)));
+	opt asmopt_off
+movlw	130
+movwf	((??_instCtrl+0)+0+1),f
+	movlw	221
+movwf	((??_instCtrl+0)+0),f
+u387:
+	decfsz	((??_instCtrl+0)+0),f
+	goto	u387
+	decfsz	((??_instCtrl+0)+0+1),f
+	goto	u387
+	nop2
+opt asmopt_on
+
+	line	50
+	
+l699:	
+;LE2-3.c: 50: PORTCbits.RC2 = 0;
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	bcf	(7),2	;volatile
 	line	51
 	
-l696:	
-;LE2.c: 51: PORTC = 0x04;
-	movlw	(04h)
-	bcf	status, 5	;RP0=0, select bank0
-	bcf	status, 6	;RP1=0, select bank0
-	movwf	(7)	;volatile
-	line	52
-;LE2.c: 52: delay(1000);
-	movlw	low(03E8h)
-	movwf	(delay@timeIn)
-	movlw	high(03E8h)
-	movwf	((delay@timeIn))+1
-	fcall	_delay
-	line	54
-	
-l698:	
-;LE2.c: 54: PORTC = 0x00;
-	bcf	status, 5	;RP0=0, select bank0
-	bcf	status, 6	;RP1=0, select bank0
-	clrf	(7)	;volatile
-	line	55
-	
-l700:	
-;LE2.c: 55: delay(1000);
-	movlw	low(03E8h)
-	movwf	(delay@timeIn)
-	movlw	high(03E8h)
-	movwf	((delay@timeIn))+1
-	fcall	_delay
-	line	57
-;LE2.c: 57: PORTC = 0x00;
-	bcf	status, 5	;RP0=0, select bank0
-	bcf	status, 6	;RP1=0, select bank0
-	clrf	(7)	;volatile
-	line	58
-	
-l23:	
+l25:	
 	return
 	opt stack 0
 GLOBAL	__end_of_instCtrl
@@ -1498,7 +1336,7 @@ GLOBAL	__end_of_instCtrl
 
 ;; *************** function _delay *****************
 ;; Defined at:
-;;		line 40 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2.c"
+;;		line 39 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-3\LE2-3.c"
 ;; Parameters:    Size  Location     Type
 ;;  timeIn          2    0[COMMON] int 
 ;; Auto vars:     Size  Location     Type
@@ -1521,36 +1359,34 @@ GLOBAL	__end_of_instCtrl
 ;; This function calls:
 ;;		Nothing
 ;; This function is called by:
-;;		_instCtrl
-;;		_dataCtrl
 ;;		_initLCD
 ;; This function uses a non-reentrant model
 ;;
 psect	text5,local,class=CODE,delta=2,merge=1
-	line	40
+	line	39
 global __ptext5
 __ptext5:	;psect for function _delay
 psect	text5
-	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2.c"
-	line	40
+	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_02\LE2-3\LE2-3.c"
+	line	39
 	global	__size_of_delay
 	__size_of_delay	equ	__end_of_delay-_delay
 	
 _delay:	
 ;incstack = 0
-	opt	stack 5
+	opt	stack 6
 ; Regs used in _delay: [wreg+status,2]
-	line	42
+	line	41
 	
-l688:	
-;LE2.c: 42: for (int j = 0; j < timeIn; j++);
+l689:	
+;LE2-3.c: 41: for (int j = 0; j < timeIn; j++);
 	clrf	(delay@j)
 	clrf	(delay@j+1)
-	goto	l17
+	goto	l19
 	
-l18:	
+l20:	
 	
-l690:	
+l691:	
 	movlw	low(01h)
 	addwf	(delay@j),f
 	skipnc
@@ -1558,7 +1394,7 @@ l690:
 	movlw	high(01h)
 	addwf	(delay@j+1),f
 	
-l17:	
+l19:	
 	movf	(delay@j+1),w
 	xorlw	80h
 	movwf	(??_delay+0)+0
@@ -1566,23 +1402,23 @@ l17:
 	xorlw	80h
 	subwf	(??_delay+0)+0,w
 	skipz
-	goto	u185
+	goto	u195
 	movf	(delay@timeIn),w
 	subwf	(delay@j),w
-u185:
+u195:
 
 	skipc
-	goto	u181
-	goto	u180
-u181:
-	goto	l690
-u180:
-	goto	l20
+	goto	u191
+	goto	u190
+u191:
+	goto	l691
+u190:
+	goto	l22
 	
-l19:	
-	line	43
+l21:	
+	line	42
 	
-l20:	
+l22:	
 	return
 	opt stack 0
 GLOBAL	__end_of_delay
@@ -1637,20 +1473,20 @@ ___awmod:
 ; Regs used in ___awmod: [wreg+status,2+status,0]
 	line	13
 	
-l762:	
+l751:	
 	clrf	(___awmod@sign)
 	line	14
 	
-l764:	
+l753:	
 	btfss	(___awmod@dividend+1),7
-	goto	u191
-	goto	u190
-u191:
-	goto	l770
-u190:
+	goto	u201
+	goto	u200
+u201:
+	goto	l759
+u200:
 	line	15
 	
-l766:	
+l755:	
 	comf	(___awmod@dividend),f
 	comf	(___awmod@dividend+1),f
 	incf	(___awmod@dividend),f
@@ -1658,172 +1494,172 @@ l766:
 	incf	(___awmod@dividend+1),f
 	line	16
 	
-l768:	
+l757:	
 	clrf	(___awmod@sign)
 	incf	(___awmod@sign),f
-	goto	l770
+	goto	l759
 	line	17
 	
-l284:	
+l289:	
 	line	18
 	
-l770:	
+l759:	
 	btfss	(___awmod@divisor+1),7
-	goto	u201
-	goto	u200
-u201:
-	goto	l774
-u200:
+	goto	u211
+	goto	u210
+u211:
+	goto	l763
+u210:
 	line	19
 	
-l772:	
+l761:	
 	comf	(___awmod@divisor),f
 	comf	(___awmod@divisor+1),f
 	incf	(___awmod@divisor),f
 	skipnz
 	incf	(___awmod@divisor+1),f
-	goto	l774
+	goto	l763
 	
-l285:	
+l290:	
 	line	20
 	
-l774:	
+l763:	
 	movf	(___awmod@divisor+1),w
 	iorwf	(___awmod@divisor),w
 	skipnz
-	goto	u211
-	goto	u210
-u211:
-	goto	l792
-u210:
+	goto	u221
+	goto	u220
+u221:
+	goto	l781
+u220:
 	line	21
 	
-l776:	
+l765:	
 	clrf	(___awmod@counter)
 	incf	(___awmod@counter),f
 	line	22
-	goto	l782
+	goto	l771
 	
-l288:	
+l293:	
 	line	23
 	
-l778:	
+l767:	
 	movlw	01h
 	
-u225:
+u235:
 	clrc
 	rlf	(___awmod@divisor),f
 	rlf	(___awmod@divisor+1),f
 	addlw	-1
 	skipz
-	goto	u225
+	goto	u235
 	line	24
 	
-l780:	
+l769:	
 	movlw	(01h)
 	movwf	(??___awmod+0)+0
 	movf	(??___awmod+0)+0,w
 	addwf	(___awmod@counter),f
-	goto	l782
+	goto	l771
 	line	25
 	
-l287:	
+l292:	
 	line	22
 	
-l782:	
+l771:	
 	btfss	(___awmod@divisor+1),(15)&7
-	goto	u231
-	goto	u230
-u231:
-	goto	l778
-u230:
-	goto	l784
-	
-l289:	
-	goto	l784
-	line	26
-	
-l290:	
-	line	27
-	
-l784:	
-	movf	(___awmod@divisor+1),w
-	subwf	(___awmod@dividend+1),w
-	skipz
-	goto	u245
-	movf	(___awmod@divisor),w
-	subwf	(___awmod@dividend),w
-u245:
-	skipc
 	goto	u241
 	goto	u240
 u241:
-	goto	l788
+	goto	l767
 u240:
+	goto	l773
+	
+l294:	
+	goto	l773
+	line	26
+	
+l295:	
+	line	27
+	
+l773:	
+	movf	(___awmod@divisor+1),w
+	subwf	(___awmod@dividend+1),w
+	skipz
+	goto	u255
+	movf	(___awmod@divisor),w
+	subwf	(___awmod@dividend),w
+u255:
+	skipc
+	goto	u251
+	goto	u250
+u251:
+	goto	l777
+u250:
 	line	28
 	
-l786:	
+l775:	
 	movf	(___awmod@divisor),w
 	subwf	(___awmod@dividend),f
 	movf	(___awmod@divisor+1),w
 	skipc
 	decf	(___awmod@dividend+1),f
 	subwf	(___awmod@dividend+1),f
-	goto	l788
+	goto	l777
 	
-l291:	
+l296:	
 	line	29
 	
-l788:	
+l777:	
 	movlw	01h
 	
-u255:
+u265:
 	clrc
 	rrf	(___awmod@divisor+1),f
 	rrf	(___awmod@divisor),f
 	addlw	-1
 	skipz
-	goto	u255
+	goto	u265
 	line	30
 	
-l790:	
+l779:	
 	movlw	low(01h)
 	subwf	(___awmod@counter),f
 	btfss	status,2
-	goto	u261
-	goto	u260
-u261:
-	goto	l784
-u260:
-	goto	l792
+	goto	u271
+	goto	u270
+u271:
+	goto	l773
+u270:
+	goto	l781
 	
-l292:	
-	goto	l792
+l297:	
+	goto	l781
 	line	31
 	
-l286:	
+l291:	
 	line	32
 	
-l792:	
+l781:	
 	movf	(___awmod@sign),w
 	skipz
-	goto	u270
-	goto	l796
-u270:
+	goto	u280
+	goto	l785
+u280:
 	line	33
 	
-l794:	
+l783:	
 	comf	(___awmod@dividend),f
 	comf	(___awmod@dividend+1),f
 	incf	(___awmod@dividend),f
 	skipnz
 	incf	(___awmod@dividend+1),f
-	goto	l796
+	goto	l785
 	
-l293:	
+l298:	
 	line	34
 	
-l796:	
+l785:	
 	movf	(___awmod@dividend+1),w
 	clrf	(?___awmod+1)
 	addwf	(?___awmod+1)
@@ -1831,12 +1667,12 @@ l796:
 	clrf	(?___awmod)
 	addwf	(?___awmod)
 
-	goto	l294
+	goto	l299
 	
-l798:	
+l787:	
 	line	35
 	
-l294:	
+l299:	
 	return
 	opt stack 0
 GLOBAL	__end_of___awmod
