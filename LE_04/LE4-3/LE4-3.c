@@ -39,10 +39,6 @@ void interrupt ISR(void)
         period = CCPR1/1000; // transfers captured TMR1 value
         // normalize the value (make the number smaller)
         period = period*8; // multiply by the normalized TMR1 timeout
-        
-
-
-
         // Toggle Port B LED
         PORTB = ~PORTB; // toggle PORTB // For testing Purpose, no need for this shit
 
@@ -77,11 +73,12 @@ void main()
     GIE = 1; // enable all unmasked interrupts (INTCON reg)
     TMR1ON = 1; // Turns on Timer1 (T1CON reg)
 
-    // CCP1CON = 0x05; // capture mode: every rising edge
+    CCP1CON = 0x05; // capture mode: every rising edge
+    CCP2CON = 0x05; // capture mode: every rising edge
     // CCP1CON = 0x06; // Every fourth  (every 4 clicks on the button, then we light up port b)
     
 
-    CCP1CON = 0x07; // Every 16th (every 16 clicks on the button, then we light up port b)
+    // CCP1CON = 0x07; // Every 16th (every 16 clicks on the button, then we light up port b)
     
     // Testing the LED to see if its working HAHAHAHAH
     TRISB = 0x00; // set PORTB as output

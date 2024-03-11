@@ -1,20 +1,16 @@
-/*
- * NOTES:
- * CCP Module 
- * Capture/Compare/PWM Module 16-bit
- * CAPTURE MODE
- * both the CCP1 and CCP2 modules are idRB7tical in operation, with the exception being 
- * the operation of the special evRB7t trigger
- *  prescaler of 1:8 for Timer1
- *   timeout = 1/(frequRB7cy / 4) * 8 * 1 (Timer Max Count is set to 1 since we need to determine the timeout per Timer1 incremRB7t)
- *   t im eou t = 8x10-6 s 
- *   t im eou tn = 8x10-6 s x 1x106 = 8 s
-*/
+/*===========================================
+AUTHOR: JOSH RATIFICAR, RODJEAN GERE
+DATE: MARCH 11, 2024
+===========================================*/
+/*===========================================
+HEADERS
+===========================================*/
 
 #include <xc.h> 
-#include <stdio.h>
 
-// Configuration settings
+/*===========================================
+CONFIGURATION SETTINGS
+===========================================*/
 #pragma config FOSC = XT 
 #pragma config WDTE = OFF 
 #pragma config PWRTE = ON 
@@ -23,137 +19,237 @@
 #pragma config CPD = OFF 
 #pragma config WRT = OFF 
 #pragma config CP = OFF 
+#define delay for(int i = 0; i < 10000; i++)
 #define _XTAL_FREQ 4000000
 
+/*===========================================
+CONSTANTS
+===========================================*/
+unsigned int frequencies[3] = {10, 100, 1000};
+unsigned int dutyCycles[5] = {10, 25, 50, 75, 95};
+unsigned int frequencyIndex = 0; // 10 Hz initial state
+unsigned int dutyCycleIndex = 0; // 10% initial state
+unsigned int flag = 1;
 
-/*=======================
-CONSTANTS and GLobal Variables
-=======================*/
-// #define RB5 RB5; // Register select
-// #define RB6 RB6; // Read/Write
-// #define RB7 RB7; // RB7able
-int period = 0; 
-char periodStr[20];
+unsigned int maxCountDC1[15] = {
+    0xFB1D, 0xFF82, 0xFFF2, // [index 0-2 with respective frequency]
+    0xF3CA, 0xFEC6, 0xFFDF, // [index 3-5 with respective frequency]
+    0xE795, 0xFD8E, 0xFFC0, // [index 6-8 with respective frequency]
+    0xDB60, 0xFC55, 0xFFA1, // [index 9-11 with respective frequency]
+    0xD19C, 0xFB5B, 0xFF88  // [index 12-14 with respective frequency]
+};
+unsigned int maxCountIndex1 = 0; // 10% @ 10Hz, DC-TimerMaxCount
 
-/*=======================
+unsigned int maxCountDC2[] = {
+    0xD40D, 0xFB9A, 0xFF8E, 
+    0xDB60, 0xFC55, 0xFFA1, 
+    0xE795, 0xFD8E, 0xFFC0, 
+    0xF3CA, 0xFEC6, 0xFFDF, 
+    0xFD8E, 0xFFC0, 0xFFF8
+};
+
+/*===========================================
 FUNCTION PROTOTYPES
-=======================*/
+===========================================*/
+void incrementDutyCycle();
+void incrementFrequency();
+void pseudocode();
 void interrupt ISR(void);
-void delay(void);
-void initLCD(void);
-void instCtrl(unsigned char cmd);
-void dataCtrl(unsigned char dat);
-void printStr(const unsigned char *stringIn);
+void debounce();
 
+/*===========================================
 
+===========================================*/
 
-void delay(void)
-{
-    int i;
-    for(i=0;i<1000;i++);
-}
-
-/*=======================
-INTERRUPT SERVICE ROUTINE
-=======================*/
 void interrupt ISR(void)
 {
     GIE = 0; // disable all unmasked interrupts (INTCON reg) 
-    if(CCP1IF==1) // checks CCP1 interrupt flag 
+    if(TMR1IF==1) // checks Timer1 interrupt flag 
     {
-        CCP1IF = 0; // cleaRB5 interrupt flag
-        TMR1 = 0; // resets TMR1 
-        // period = CCPR1/1000; // transfeRB5 captured TMR1 value
-        // normalize the value (make the number smaller)
-        period = (CCPR1/125) + 1; 
-        sprintf(periodStr, "%u", period);
-        // We iterate through the periodStr array and add 30 to each
-        // elemRB7t to convert the ASCII value to the actual number
-        // for(int i = 0; i < 20; i++)
-        // {
-        //     if (periodStr[i] != '\0')
-        //         periodStr[i] += '0';
-        // }
+        TMR1IF = 0; // clears interrupt flag
+        if(flag != 1)
+        { // we understand that we are dealing with the rest of the cycle, not the duty cycle,
+            TMR1 = maxCountDC2[maxCountIndex1]; 
+        }
+        else
+        { // Duty  Cycle
+            TMR1 = maxCountDC1[maxCountIndex1]; 
+        }
+        RA0 = RA0^1; // toggles the LED at RA0
+        flag = !flag;
+        // TMR1 = maxCountDC2[maxCountIndex2];
     }
-    GIE = 1; // RB7able all unmasked interrupts (INTCON reg)
+    GIE = 1; // enable all unmasked interrupts (INTCON reg)
 }
 
-
-/*=======================
-LCD FUNCTIONS
-========================*/
-void initLCD()
+void debounce()
 {
-    instCtrl(0x38); // 8-bit mode, 2-line, 5x7 font
-    instCtrl(0x08); // Display off
-    instCtrl(0x01); // Clear display
-    instCtrl(0x06); // IncremRB7t cuRB5or
-    instCtrl(0x0C); // Display on, cuRB5or off
-}
-
-void instCtrl(unsigned char cmd)
-{
-    RB5 = 0; // Instruction register
-    RB6 = 0; // Write operation
-    PORTD = cmd; // SRB7d command to LCD
-    RB7 = 1; // RB7able H->L
-    delay();
-    RB7 = 0; // Disable H->L
-}
-
-void dataCtrl(unsigned char dat)
-{
-
-    RB5 = 1; // Data register
-    RB6 = 0; // Write operation
-    PORTD = dat; // SRB7d data to LCD
-    RB7 = 1; // RB7able H->L
-    delay();
-    RB7 = 0; // Disable H->L
-}
-
-void printStr(const unsigned char *stringIn)
-{
-    while(*stringIn)
+    while(RD0 == 1 || RD1 == 1)
     {
-        dataCtrl(*stringIn);
-        stringIn++;
+        if(RD0 == 1)
+        {
+            incrementDutyCycle();
+            pseudocode();
+        }
+        if(RD1 == 1)
+        {
+            incrementFrequency();
+            pseudocode();
+        }
+        delay;
     }
 }
-
 
 
 void main() 
-{
-    TRISC = 0x04; // set RC2 to input
-    T1CON = 0x30; // 1:8 prescaler, Timer1 off
-    CCP1IE = 1; // RB7able TMR1/CCP1 match interrupt (PIE1 reg)
-    CCP1IF = 0; // reset interrupt flag (PIR1 reg)
-    PEIE = 1; // RB7able all peripheral interrupt (INTCON reg)
-    GIE = 1; // RB7able all unmasked interrupts (INTCON reg)
-    TMR1ON = 1; // Turns on Timer1 (T1CON reg)
-
-    // CCP1CON = 0x05; // capture mode: every rising edge
-    // CCP1CON = 0x06; // Every fourth  (every 4 clicks on the button, thRB7 we light up port b)
-    CCP1CON = 0x04; // Every 4th (every 16 clicks on the button, 
-
-    TRISB = 0x00; // set PORTB to output
-    PORTB = 0x00; // clear PORTB
-    TRISD = 0x00; // set PORTD to output
-    initLCD(); // initialize LCD
-    instCtrl(0x80); // set cuRB5or to fiRB5t line
-    printStr("PERIOD: "); // print string
-    for(;;) // foreground routine
+{  
+    ADCON1 = 0x06; // set all pins in PORTA as digital I/O
+    TRISA = 0x00; // sets all of PORTA to output
+    T1CON = 0x30; // 1:8 prescaler, internal clock, Timer1 off
+    TMR1IE = 1; // enable Timer1 overflow interrupt (PIE1 reg)
+    TMR1IF = 0; // reset interrupt flag (PIR1 reg)
+    PEIE = 1; // enable all peripheral interrupt (INTCON reg)
+    GIE = 1; // enable all unmasked interrupts (INTCON reg)
     
+    RA0 = 0; 
+    TMR1 = maxCountDC1[maxCountIndex1]; 
+    TMR1ON = 1; 
+
+    // Configuring PortD as input
+    TRISD = 0xFF; 
+    for(;;) // foreground routine
     {
-        instCtrl(0xC0); // set cursor to second line
-        // going through the Period Array and printing the characters until null
-        for(int i = 0; i < 20; i++)
-        {
-            if (periodStr[i] != '\0')
-                dataCtrl(periodStr[i]);
-        }
-        printStr(" ms");
-        delay(); // delay
-    }   
+        debounce();
+    }
 }
+
+
+
+void pseudocode()
+{
+    switch(dutyCycleIndex)
+    {
+        case 0: // 10% Duty Cycle
+            switch(frequencyIndex)
+            {
+                case 0: // 10 Hz
+                    maxCountIndex1 = 0;
+                    break;
+                case 1: // 100 Hz
+                    maxCountIndex1 = 1;
+                    break;
+                case 2: // 1000 Hz
+                    maxCountIndex1 = 2;
+                    break;
+                default:
+                    return;
+                    break;
+            }
+            break;
+        case 1: // 25% Duty Cycle
+            switch(frequencyIndex)
+            {
+                case 0: // 10 Hz
+                    maxCountIndex1 = 3;
+                    break;
+                case 1: // 100 Hz
+                    maxCountIndex1 = 4;
+                    break;
+                case 2: // 1000 Hz
+                    maxCountIndex1 = 5;
+                    break;
+                default:
+                    return;
+                    break;
+            }
+            break;
+        case 2: // 50% Duty Cycle
+            switch(frequencyIndex)
+            {
+                case 0: // 10 Hz
+                    maxCountIndex1 = 6;
+                    break;
+                case 1: // 100 Hz
+                    maxCountIndex1 = 7;
+                    break;
+                case 2: // 1000 Hz
+                    maxCountIndex1 = 8;
+                    break;
+                default:
+                    return;
+                    break;
+            }
+            break;
+        case 3: // 75% Duty Cycle
+            switch(frequencyIndex)
+            {
+                case 0: // 10 Hz
+                    maxCountIndex1 = 9;
+                    break;
+                case 1: // 100 Hz
+                    maxCountIndex1 = 10;
+                    break;
+                case 2: // 1000 Hz
+                    maxCountIndex1 = 11;
+                    break;
+                default:
+                    return;
+                    break;
+            }
+            break;
+        case 4: // 95% Duty Cycle
+            switch(frequencyIndex)
+            {
+                case 0: // 10 Hz
+                    maxCountIndex1 = 12;
+                    break;
+                case 1: // 100 Hz
+                    maxCountIndex1 = 13;
+                    break;
+                case 2: // 1000 Hz
+                    maxCountIndex1 = 14;
+                    break;
+                default:
+                    return;
+                    break;
+            }
+            break;
+        default:
+            return;
+            break;
+    }
+}
+void incrementDutyCycle()
+{
+    if(dutyCycleIndex == 4)
+        dutyCycleIndex = 0;
+    else
+        dutyCycleIndex += 1;     
+}
+
+void incrementFrequency()
+{
+    if(frequencyIndex == 2)
+        frequencyIndex = 0;
+    else
+        frequencyIndex += 1; 
+}
+
+
+
+
+// void main() 
+// {
+//     /* following the steps in setting up PWM */
+//     PR2 = 0x7C; // set value for PR2
+//     CCPR1L = 0x57; // set value for (8 MSBs)
+//     CCP1CON = 0x2C; // set value for (2 LSBs), PWM mode
+//     TRISC = 0x00; // sets all of PORTC (RC2) to output 
+//     RC2 = 0; // initialize RC2 to 0 
+//     T2CON = 0x06; // 1:16 prescaler, Timer2 on  1:6 PostScale
+//     T1CON = 0x01; // Timer1 on
+
+//     for(;;) // foreground routine
+//     {
+//     }
+// }

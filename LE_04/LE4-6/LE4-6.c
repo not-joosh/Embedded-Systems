@@ -1,46 +1,18 @@
 /*
- * Author, Date, and Description
  * NOTES:
- * CCP Module
- * PWM Module <--- Focus
- * PWM period is specified by writing to the PR2 register
- * PWM Period = [(PR2) + 1] * 4 * Tosc
- * 
- * 
- * When TMR2 is equal to PR2, the following three events occur on the next increment cycle:
- * - TMR2 is cleared
- * - The CCP1 pin is set (exception: if PWM duty cycle = 0%, the CCP1 pin will not be set)
- * - The PWM duty cycle is latched from CCPR1L into CCPR1H
- * 
- * PWM Duty Cycle = (CCPR1L:CCPICON<5:4>) * Tosc * (TMR2 Prescale Value)
- * 
- * CCPR1L and CCP1CON<5:4> can be written to at any time, but the duty cycle value is not latched 
- * into CCPR1H until after a match between PR2 and TMR2 occurs (i.e., the period is complete). In 
- * PWM mode, CCPR1H is a read-only register.
- * 
- * 
- * Practice Problem:
- * Configure the CCP1 Module to operate in PWM mode which outputs a signal with a 70% duty cycle 
- * at a frequency of 500Hz. Assume that Fosc = 4MHz.
- * 
- * Calculating the value of PR2 given a period of 1/500Hz (0.002 s) and Timer2 prescaler at 1:16:
- * .002 s = [(PR2) + 1] x 4 x (2.5x10−7) x 16
- * PR2 = 124 (0x 7C )
- * 
- * 
- * Calculating the 10-bit resolution value given a duty cycle of 70%. The PWM duty cycle should be 
- * given in time that is 0.7 x 0.002s = 1.4ms.
- * 1.4x10−3 = (CCPR1L : CCP1CON < 5 : 4 > ) x (1/4MHz) x 16
- * CCPR1L : CCP1CON < 5 : 4 > =  350 or 01010111102
- * CCPR1L can only store 8 bits  01010111    10 gets stored into CCP1CON<5:4>
- * 
- * Therefore
- * CCPR1L = 01010111 or 0x57
- * CCP1CON < 5 : 4 > = 10 or 0x2
- * 
+ * CCP Module 
+ * Capture/Compare/PWM Module 16-bit
+ * CAPTURE MODE
+ * both the CCP1 and CCP2 modules are idRB7tical in operation, with the exception being 
+ * the operation of the special evRB7t trigger
+ *  prescaler of 1:8 for Timer1
+ *   timeout = 1/(frequRB7cy / 4) * 8 * 1 (Timer Max Count is set to 1 since we need to determine the timeout per Timer1 incremRB7t)
+ *   t im eou t = 8x10-6 s 
+ *   t im eou tn = 8x10-6 s x 1x106 = 8 s
 */
 
 #include <xc.h> 
+#include <stdio.h>
 
 // Configuration settings
 #pragma config FOSC = XT 
@@ -54,30 +26,135 @@
 #define _XTAL_FREQ 4000000
 
 
-/**
- * Timer2 Page 63 on data sheet
- * 
- * PWM Page 66 & 70, CCP1CON stores 0x2, but we set 0x2C to set to PWM mode 11xx
-*/
+/*=======================
+CONSTANTS and GLobal Variables
+=======================*/
+// #define RB5 RB5; // Register select
+// #define RB6 RB6; // Read/Write
+// #define RB7 RB7; // RB7able
+int period = 0; 
+char periodStr[20];
+
+/*=======================
+FUNCTION PROTOTYPES
+=======================*/
+void interrupt ISR(void);
+void delay(void);
+void initLCD(void);
+void instCtrl(unsigned char cmd);
+void dataCtrl(unsigned char dat);
+void printStr(const unsigned char *stringIn);
 
 
 
-/*
-Lab Exercise
-Parameters: 0.1 (10 Hz)
-0.1 s = [(PR2) + 1] x 4 x (2.5 x 10−7) x 16
-PR2 = 6,249
-*/
+void delay(void)
+{
+    int i;
+    for(i=0;i<1000;i++);
+}
+
+/*=======================
+INTERRUPT SERVICE ROUTINE
+=======================*/
+void interrupt ISR(void)
+{
+    GIE = 0; // disable all unmasked interrupts (INTCON reg) 
+    if(CCP1IF==1) // checks CCP1 interrupt flag 
+    {
+        CCP1IF = 0; // cleaRB5 interrupt flag
+        TMR1 = 0; // resets TMR1 
+        // period = CCPR1/1000; // transfeRB5 captured TMR1 value
+        // normalize the value (make the number smaller)
+        period = (CCPR1/125) + 1; 
+        sprintf(periodStr, "%u", period);
+        // We iterate through the periodStr array and add 30 to each
+        // elemRB7t to convert the ASCII value to the actual number
+        // for(int i = 0; i < 20; i++)
+        // {
+        //     if (periodStr[i] != '\0')
+        //         periodStr[i] += '0';
+        // }
+    }
+    GIE = 1; // RB7able all unmasked interrupts (INTCON reg)
+}
+
+
+/*=======================
+LCD FUNCTIONS
+========================*/
+void initLCD()
+{
+    instCtrl(0x38); // 8-bit mode, 2-line, 5x7 font
+    instCtrl(0x08); // Display off
+    instCtrl(0x01); // Clear display
+    instCtrl(0x06); // IncremRB7t cuRB5or
+    instCtrl(0x0C); // Display on, cuRB5or off
+}
+
+void instCtrl(unsigned char cmd)
+{
+    RB5 = 0; // Instruction register
+    RB6 = 0; // Write operation
+    PORTD = cmd; // SRB7d command to LCD
+    RB7 = 1; // RB7able H->L
+    delay();
+    RB7 = 0; // Disable H->L
+}
+
+void dataCtrl(unsigned char dat)
+{
+
+    RB5 = 1; // Data register
+    RB6 = 0; // Write operation
+    PORTD = dat; // SRB7d data to LCD
+    RB7 = 1; // RB7able H->L
+    delay();
+    RB7 = 0; // Disable H->L
+}
+
+void printStr(const unsigned char *stringIn)
+{
+    while(*stringIn)
+    {
+        dataCtrl(*stringIn);
+        stringIn++;
+    }
+}
+
+
+
 void main() 
 {
-    /* following the steps in setting up PWM */
-    PR2 = 0x7C; // set value for PR2
-    CCPR1L = 0x57; // set value for (8 MSBs)
-    CCP1CON = 0x2C; // set value for (2 LSBs), PWM mode
-    TRISC = 0x00; // sets all of PORTC (RC2) to output 
-    RC2 = 0; // initialize RC2 to 0 
-    T2CON = 0x06; // 1:16 prescaler, Timer2 on  1:6 PostScale
+    TRISC = 0x04; // set RC2 to input
+    T1CON = 0x30; // 1:8 prescaler, Timer1 off
+    CCP1IE = 1; // RB7able TMR1/CCP1 match interrupt (PIE1 reg)
+    CCP1IF = 0; // reset interrupt flag (PIR1 reg)
+    PEIE = 1; // RB7able all peripheral interrupt (INTCON reg)
+    GIE = 1; // RB7able all unmasked interrupts (INTCON reg)
+    TMR1ON = 1; // Turns on Timer1 (T1CON reg)
+
+    // CCP1CON = 0x05; // capture mode: every rising edge
+    // CCP1CON = 0x06; // Every fourth  (every 4 clicks on the button, thRB7 we light up port b)
+    CCP1CON = 0x04; // Every 4th (every 16 clicks on the button, 
+    
+    
+    TRISB = 0x00; // set PORTB to output
+    PORTB = 0x00; // clear PORTB
+    TRISD = 0x00; // set PORTD to output
+    initLCD(); // initialize LCD
+    instCtrl(0x80); // set cuRB5or to fiRB5t line
+    printStr("PERIOD: "); // print string
     for(;;) // foreground routine
+    
     {
-    }
+        instCtrl(0xC0); // set cursor to second line
+        // going through the Period Array and printing the characters until null
+        for(int i = 0; i < 20; i++)
+        {
+            if (periodStr[i] != '\0')
+                dataCtrl(periodStr[i]);
+        }
+        printStr(" ms");
+        delay(); // delay
+    }   
 }

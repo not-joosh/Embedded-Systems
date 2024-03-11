@@ -387,7 +387,7 @@ ISR@period:	; 2 bytes @ 0x0
 
 ;; *************** function _main *****************
 ;; Defined at:
-;;		line 70 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-3\LE4-3.c"
+;;		line 66 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-3\LE4-3.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -415,12 +415,12 @@ ISR@period:	; 2 bytes @ 0x0
 ;;
 psect	maintext,global,class=CODE,delta=2,split=1
 	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-3\LE4-3.c"
-	line	70
+	line	66
 global __pmaintext
 __pmaintext:	;psect for function _main
 psect	maintext
 	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-3\LE4-3.c"
-	line	70
+	line	66
 	global	__size_of_main
 	__size_of_main	equ	__end_of_main-_main
 	
@@ -428,78 +428,78 @@ _main:
 ;incstack = 0
 	opt	stack 6
 ; Regs used in _main: [wreg+status,2]
-	line	72
+	line	68
 	
 l594:	
-;LE4-3.c: 72: TRISC = 0x04;
+;LE4-3.c: 68: TRISC = 0x04;
 	movlw	(04h)
 	bsf	status, 5	;RP0=1, select bank1
 	bcf	status, 6	;RP1=0, select bank1
 	movwf	(135)^080h	;volatile
-	line	73
-;LE4-3.c: 73: T1CON = 0x30;
+	line	69
+;LE4-3.c: 69: T1CON = 0x30;
 	movlw	(030h)
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
 	movwf	(16)	;volatile
-	line	74
+	line	70
 	
 l596:	
-;LE4-3.c: 74: CCP1IE = 1;
+;LE4-3.c: 70: CCP1IE = 1;
 	bsf	status, 5	;RP0=1, select bank1
 	bcf	status, 6	;RP1=0, select bank1
 	bsf	(1122/8)^080h,(1122)&7	;volatile
-	line	75
+	line	71
 	
 l598:	
-;LE4-3.c: 75: CCP1IF = 0;
+;LE4-3.c: 71: CCP1IF = 0;
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
 	bcf	(98/8),(98)&7	;volatile
-	line	76
+	line	72
 	
 l600:	
-;LE4-3.c: 76: PEIE = 1;
+;LE4-3.c: 72: PEIE = 1;
 	bsf	(94/8),(94)&7	;volatile
-	line	77
+	line	73
 	
 l602:	
-;LE4-3.c: 77: GIE = 1;
+;LE4-3.c: 73: GIE = 1;
 	bsf	(95/8),(95)&7	;volatile
-	line	78
+	line	74
 	
 l604:	
-;LE4-3.c: 78: TMR1ON = 1;
+;LE4-3.c: 74: TMR1ON = 1;
 	bsf	(128/8),(128)&7	;volatile
-	line	84
-;LE4-3.c: 84: CCP1CON = 0x07;
-	movlw	(07h)
+	line	76
+;LE4-3.c: 76: CCP1CON = 0x05;
+	movlw	(05h)
 	movwf	(23)	;volatile
-	line	87
+	line	83
 	
 l606:	
-;LE4-3.c: 87: TRISB = 0x00;
+;LE4-3.c: 83: TRISB = 0x00;
 	bsf	status, 5	;RP0=1, select bank1
 	bcf	status, 6	;RP1=0, select bank1
 	clrf	(134)^080h	;volatile
-	line	88
+	line	84
 	
 l608:	
-;LE4-3.c: 88: PORTB = 0x00;
+;LE4-3.c: 84: PORTB = 0x00;
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
 	clrf	(6)	;volatile
-	line	91
-;LE4-3.c: 90: for(;;)
+	line	87
+;LE4-3.c: 86: for(;;)
 	
 l31:	
-	line	92
-;LE4-3.c: 91: {
-;LE4-3.c: 92: }
+	line	88
+;LE4-3.c: 87: {
+;LE4-3.c: 88: }
 	goto	l31
 	
 l32:	
-	line	93
+	line	89
 	
 l33:	
 	global	start
@@ -652,22 +652,22 @@ i1l588:
 	movwf	(ISR@period)
 	movf	1+(??_ISR+0)+0,w
 	movwf	(ISR@period+1)
-	line	47
+	line	43
 	
 i1l590:	
-;LE4-3.c: 47: PORTB = ~PORTB;
+;LE4-3.c: 43: PORTB = ~PORTB;
 	comf	(6),f	;volatile
 	goto	i1l592
-	line	49
+	line	45
 	
 i1l27:	
-	line	50
+	line	46
 	
 i1l592:	
-;LE4-3.c: 49: }
-;LE4-3.c: 50: GIE = 1;
+;LE4-3.c: 45: }
+;LE4-3.c: 46: GIE = 1;
 	bsf	(95/8),(95)&7	;volatile
-	line	51
+	line	47
 	
 i1l28:	
 	movf	(??_ISR+5),w

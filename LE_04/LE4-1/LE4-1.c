@@ -1,7 +1,6 @@
 /*
 *   NOTES:
 *   Overflow Timeout
-*   
 */
 #include <xc.h> 
 

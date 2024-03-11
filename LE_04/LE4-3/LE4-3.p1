@@ -1087,72 +1087,72 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;LE4-3.c: 41: period = period*8;
 "41
 [e = _period * _period -> 8 `i ]
-[; ;LE4-3.c: 47: PORTB = ~PORTB;
-"47
+[; ;LE4-3.c: 43: PORTB = ~PORTB;
+"43
 [e = _PORTB -> ~ -> _PORTB `i `uc ]
-"49
+"45
 }
 [e :U 97 ]
-[; ;LE4-3.c: 49: }
-[; ;LE4-3.c: 50: GIE = 1;
-"50
+[; ;LE4-3.c: 45: }
+[; ;LE4-3.c: 46: GIE = 1;
+"46
 [e = _GIE -> -> 1 `i `b ]
-[; ;LE4-3.c: 51: }
-"51
+[; ;LE4-3.c: 47: }
+"47
 [e :UE 96 ]
 }
-"70
+"66
 [v _main `(v ~T0 @X0 1 ef ]
-"71
+"67
 {
-[; ;LE4-3.c: 70: void main()
-[; ;LE4-3.c: 71: {
+[; ;LE4-3.c: 66: void main()
+[; ;LE4-3.c: 67: {
 [e :U _main ]
 [f ]
-[; ;LE4-3.c: 72: TRISC = 0x04;
-"72
+[; ;LE4-3.c: 68: TRISC = 0x04;
+"68
 [e = _TRISC -> -> 4 `i `uc ]
-[; ;LE4-3.c: 73: T1CON = 0x30;
-"73
+[; ;LE4-3.c: 69: T1CON = 0x30;
+"69
 [e = _T1CON -> -> 48 `i `uc ]
-[; ;LE4-3.c: 74: CCP1IE = 1;
-"74
+[; ;LE4-3.c: 70: CCP1IE = 1;
+"70
 [e = _CCP1IE -> -> 1 `i `b ]
-[; ;LE4-3.c: 75: CCP1IF = 0;
-"75
+[; ;LE4-3.c: 71: CCP1IF = 0;
+"71
 [e = _CCP1IF -> -> 0 `i `b ]
-[; ;LE4-3.c: 76: PEIE = 1;
-"76
+[; ;LE4-3.c: 72: PEIE = 1;
+"72
 [e = _PEIE -> -> 1 `i `b ]
-[; ;LE4-3.c: 77: GIE = 1;
-"77
+[; ;LE4-3.c: 73: GIE = 1;
+"73
 [e = _GIE -> -> 1 `i `b ]
-[; ;LE4-3.c: 78: TMR1ON = 1;
-"78
+[; ;LE4-3.c: 74: TMR1ON = 1;
+"74
 [e = _TMR1ON -> -> 1 `i `b ]
-[; ;LE4-3.c: 84: CCP1CON = 0x07;
-"84
-[e = _CCP1CON -> -> 7 `i `uc ]
-[; ;LE4-3.c: 87: TRISB = 0x00;
-"87
+[; ;LE4-3.c: 76: CCP1CON = 0x05;
+"76
+[e = _CCP1CON -> -> 5 `i `uc ]
+[; ;LE4-3.c: 83: TRISB = 0x00;
+"83
 [e = _TRISB -> -> 0 `i `uc ]
-[; ;LE4-3.c: 88: PORTB = 0x00;
-"88
+[; ;LE4-3.c: 84: PORTB = 0x00;
+"84
 [e = _PORTB -> -> 0 `i `uc ]
-[; ;LE4-3.c: 90: for(;;)
-"90
+[; ;LE4-3.c: 86: for(;;)
+"86
 {
-"91
+"87
 [e :U 99 ]
-[; ;LE4-3.c: 91: {
+[; ;LE4-3.c: 87: {
 {
-"92
+"88
 }
-[; ;LE4-3.c: 92: }
+[; ;LE4-3.c: 88: }
 [e $U 99  ]
 [e :U 100 ]
 }
-[; ;LE4-3.c: 93: }
-"93
+[; ;LE4-3.c: 89: }
+"89
 [e :UE 98 ]
 }

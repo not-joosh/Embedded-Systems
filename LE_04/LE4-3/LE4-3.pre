@@ -1449,14 +1449,13 @@ period = CCPR1/1000;
 
 period = period*8;
 
-# 47
 PORTB = ~PORTB;
 
 }
 GIE = 1;
 }
 
-# 70
+# 66
 void main()
 {
 TRISC = 0x04;
@@ -1467,10 +1466,9 @@ PEIE = 1;
 GIE = 1;
 TMR1ON = 1;
 
-# 84
-CCP1CON = 0x07;
+CCP1CON = 0x05;
 
-
+# 83
 TRISB = 0x00;
 PORTB = 0x00;
 

@@ -52,7 +52,6 @@
 #pragma config CP = OFF 
 #define _XTAL_FREQ 4000000
 
-
 /**
  * Timer2 Page 63 on data sheet
  * 
