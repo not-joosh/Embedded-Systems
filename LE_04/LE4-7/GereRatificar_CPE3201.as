@@ -159,184 +159,125 @@ EEADRH equ 010Fh ;#
 EECON1 equ 018Ch ;# 
 # 2301 "C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f877a.h"
 EECON2 equ 018Dh ;# 
-	FNCALL	_main,_debounce
-	FNCALL	_debounce,_incrementDutyCycle
-	FNCALL	_debounce,_incrementFrequency
-	FNCALL	_debounce,_pseudocode
+	FNCALL	_main,___bmul
+	FNCALL	_main,_delay
+	FNCALL	_main,_displayMode
+	FNCALL	_main,_incDutyCycle
+	FNCALL	_main,_incFrequency
 	FNROOT	_main
 	FNCALL	intlevel1,_ISR
 	global	intlevel1
 	FNROOT	intlevel1
-	global	_maxCountDC1
-	global	_maxCountDC2
-	global	_dutyCycles
-	global	_frequencies
+	global	_timerMaxCount
+	global	_PR2Values
 	global	_flag
 psect	idataBANK0,class=CODE,space=0,delta=2,noexec
 global __pidataBANK0
 __pidataBANK0:
 	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
-	line	34
+	line	44
 
-;initializer for _maxCountDC1
-	retlw	01Dh
-	retlw	0FBh
-
-	retlw	082h
-	retlw	0FFh
-
-	retlw	0F2h
-	retlw	0FFh
-
-	retlw	0CAh
-	retlw	0F3h
-
-	retlw	0C6h
-	retlw	0FEh
-
-	retlw	0DFh
-	retlw	0FFh
-
-	retlw	095h
-	retlw	0E7h
-
-	retlw	08Eh
-	retlw	0FDh
-
-	retlw	0C0h
-	retlw	0FFh
-
-	retlw	060h
-	retlw	0DBh
-
-	retlw	055h
-	retlw	0FCh
-
-	retlw	0A1h
-	retlw	0FFh
-
-	retlw	09Ch
-	retlw	0D1h
-
-	retlw	05Bh
-	retlw	0FBh
-
-	retlw	088h
-	retlw	0FFh
-
-	line	43
-
-;initializer for _maxCountDC2
-	retlw	0Dh
-	retlw	0D4h
-
-	retlw	09Ah
-	retlw	0FBh
-
-	retlw	08Eh
-	retlw	0FFh
-
-	retlw	060h
-	retlw	0DBh
-
-	retlw	055h
-	retlw	0FCh
-
-	retlw	0A1h
-	retlw	0FFh
-
-	retlw	095h
-	retlw	0E7h
-
-	retlw	08Eh
-	retlw	0FDh
-
-	retlw	0C0h
-	retlw	0FFh
-
-	retlw	0CAh
-	retlw	0F3h
-
-	retlw	0C6h
-	retlw	0FEh
-
-	retlw	0DFh
-	retlw	0FFh
-
-	retlw	08Eh
-	retlw	0FDh
-
-	retlw	0C0h
-	retlw	0FFh
-
-	retlw	0F8h
-	retlw	0FFh
-
-	line	29
-
-;initializer for _dutyCycles
-	retlw	0Ah
+;initializer for _timerMaxCount
+	retlw	053h
 	retlw	0
 
-	retlw	019h
+	retlw	0D0h
 	retlw	0
+
+	retlw	0A1h
+	retlw	01h
+
+	retlw	071h
+	retlw	02h
+
+	retlw	018h
+	retlw	03h
 
 	retlw	032h
 	retlw	0
 
-	retlw	04Bh
+	retlw	07Dh
 	retlw	0
 
-	retlw	05Fh
+	retlw	0FAh
 	retlw	0
 
-	line	28
+	retlw	077h
+	retlw	01h
 
-;initializer for _frequencies
-	retlw	0Ah
+	retlw	0DBh
+	retlw	01h
+
+	retlw	019h
 	retlw	0
 
-	retlw	064h
+	retlw	03Fh
 	retlw	0
 
-	retlw	0E8h
-	retlw	03h
+	retlw	07Dh
+	retlw	0
 
-	line	32
+	retlw	0BCh
+	retlw	0
+
+	retlw	0EEh
+	retlw	0
+
+	line	35
+
+;initializer for _PR2Values
+	retlw	0CFh
+	retlw	0
+
+	retlw	07Ch
+	retlw	0
+
+	retlw	03Eh
+	retlw	0
+
+	line	30
 
 ;initializer for _flag
 	retlw	01h
 	retlw	0
 
+	global	_count_flag
 	global	_dutyCycleIndex
 	global	_frequencyIndex
-	global	_maxCountIndex1
-	global	_TMR1
-_TMR1	set	0xE
-	global	_T1CON
-_T1CON	set	0x10
+	global	_CCP1CON
+_CCP1CON	set	0x17
+	global	_CCPR1L
+_CCPR1L	set	0x15
+	global	_PORTB
+_PORTB	set	0x6
+	global	_T2CON
+_T2CON	set	0x12
 	global	_GIE
 _GIE	set	0x5F
+	global	_INTE
+_INTE	set	0x5C
 	global	_PEIE
 _PEIE	set	0x5E
-	global	_RA0
-_RA0	set	0x28
+	global	_RC2
+_RC2	set	0x3A
 	global	_RD0
 _RD0	set	0x40
 	global	_RD1
 _RD1	set	0x41
-	global	_TMR1IF
-_TMR1IF	set	0x60
-	global	_TMR1ON
-_TMR1ON	set	0x80
-	global	_ADCON1
-_ADCON1	set	0x9F
-	global	_TRISA
-_TRISA	set	0x85
+	global	_TMR0IE
+_TMR0IE	set	0x5D
+	global	_TMR0IF
+_TMR0IF	set	0x5A
+	global	_OPTION_REG
+_OPTION_REG	set	0x81
+	global	_PR2
+_PR2	set	0x92
+	global	_TRISB
+_TRISB	set	0x86
+	global	_TRISC
+_TRISC	set	0x87
 	global	_TRISD
 _TRISD	set	0x88
-	global	_TMR1IE
-_TMR1IE	set	0x460
 ; #config settings
 global __CFG_WDTE$OFF
 __CFG_WDTE$OFF equ 0x0
@@ -365,44 +306,32 @@ __initialization:
 psect	bssCOMMON,class=COMMON,space=1,noexec
 global __pbssCOMMON
 __pbssCOMMON:
+_count_flag:
+       ds      2
+
 _dutyCycleIndex:
        ds      2
 
 _frequencyIndex:
        ds      2
 
-_maxCountIndex1:
-       ds      2
-
 psect	dataBANK0,class=BANK0,space=1,noexec
 global __pdataBANK0
 __pdataBANK0:
 	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
-	line	34
-_maxCountDC1:
+	line	44
+_timerMaxCount:
        ds      30
 
 psect	dataBANK0
 	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
-	line	43
-_maxCountDC2:
-       ds      30
-
-psect	dataBANK0
-	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
-	line	29
-_dutyCycles:
-       ds      10
-
-psect	dataBANK0
-	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
-	line	28
-_frequencies:
+	line	35
+_PR2Values:
        ds      6
 
 psect	dataBANK0
 	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
-	line	32
+	line	30
 _flag:
        ds      2
 
@@ -448,7 +377,7 @@ init_ram0:
 psect cinit,class=CODE,delta=2,merge=1
 global init_ram0, __pidataBANK0
 	bcf	status, 7	;select IRP bank0
-	movlw low(__pdataBANK0+78)
+	movlw low(__pdataBANK0+38)
 	movwf btemp-1,f
 	movlw high(__pidataBANK0)
 	movwf btemp,f
@@ -465,46 +394,58 @@ global end_of_initialization,__end_of__initialization
 end_of_initialization:
 __end_of__initialization:clrf status
 ljmp _main	;jump to C main() function
-psect	cstackBANK1,class=BANK1,space=1,noexec
-global __pcstackBANK1
-__pcstackBANK1:
-??_main:	; 0 bytes @ 0x0
-	ds	1
 psect	cstackCOMMON,class=COMMON,space=1,noexec
 global __pcstackCOMMON
 __pcstackCOMMON:
-?_incrementDutyCycle:	; 0 bytes @ 0x0
-?_pseudocode:	; 0 bytes @ 0x0
-?_incrementFrequency:	; 0 bytes @ 0x0
+?_displayMode:	; 0 bytes @ 0x0
+?_delay:	; 0 bytes @ 0x0
+?_incDutyCycle:	; 0 bytes @ 0x0
+?_incFrequency:	; 0 bytes @ 0x0
 ?_ISR:	; 0 bytes @ 0x0
 ??_ISR:	; 0 bytes @ 0x0
-?_debounce:	; 0 bytes @ 0x0
 ?_main:	; 0 bytes @ 0x0
-	ds	6
+	ds	4
+??_displayMode:	; 0 bytes @ 0x4
+??_delay:	; 0 bytes @ 0x4
+??_incDutyCycle:	; 0 bytes @ 0x4
+??_incFrequency:	; 0 bytes @ 0x4
 psect	cstackBANK0,class=BANK0,space=1,noexec
 global __pcstackBANK0
 __pcstackBANK0:
-??_incrementDutyCycle:	; 0 bytes @ 0x0
-??_pseudocode:	; 0 bytes @ 0x0
-??_incrementFrequency:	; 0 bytes @ 0x0
-??_debounce:	; 0 bytes @ 0x0
-	global	debounce@i
-debounce@i:	; 2 bytes @ 0x0
-	ds	2
+?___bmul:	; 1 bytes @ 0x0
+	global	___bmul@multiplicand
+___bmul@multiplicand:	; 1 bytes @ 0x0
+	global	displayMode@temp
+displayMode@temp:	; 2 bytes @ 0x0
+	global	delay@localClock
+delay@localClock:	; 2 bytes @ 0x0
+	ds	1
+??___bmul:	; 0 bytes @ 0x1
+	ds	1
+	global	___bmul@product
+___bmul@product:	; 1 bytes @ 0x2
+	global	displayMode@temp2
+displayMode@temp2:	; 2 bytes @ 0x2
+	ds	1
+	global	___bmul@multiplier
+___bmul@multiplier:	; 1 bytes @ 0x3
+	ds	1
+??_main:	; 0 bytes @ 0x4
+	ds	5
 ;!
 ;!Data Sizes:
 ;!    Strings     0
 ;!    Constant    0
-;!    Data        78
+;!    Data        38
 ;!    BSS         6
 ;!    Persistent  0
 ;!    Stack       0
 ;!
 ;!Auto Spaces:
 ;!    Space          Size  Autos    Used
-;!    COMMON           14      6      12
-;!    BANK0            80      2      80
-;!    BANK1            80      1       1
+;!    COMMON           14      4      10
+;!    BANK0            80      9      47
+;!    BANK1            80      0       0
 ;!    BANK3            96      0       0
 ;!    BANK2            96      0       0
 
@@ -525,7 +466,8 @@ debounce@i:	; 2 bytes @ 0x0
 ;!
 ;!Critical Paths under _main in BANK0
 ;!
-;!    _main->_debounce
+;!    _main->___bmul
+;!    _main->_displayMode
 ;!
 ;!Critical Paths under _ISR in BANK0
 ;!
@@ -556,7 +498,7 @@ debounce@i:	; 2 bytes @ 0x0
 ;!    None.
 
 ;;
-;;Main: autosize = 0, tempsize = 1, incstack = 0, save=0
+;;Main: autosize = 0, tempsize = 5, incstack = 0, save=0
 ;;
 
 ;!
@@ -565,39 +507,45 @@ debounce@i:	; 2 bytes @ 0x0
 ;! ---------------------------------------------------------------------------------
 ;! (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
 ;! ---------------------------------------------------------------------------------
-;! (0) _main                                                 1     1      0      46
-;!                                              0 BANK1      1     1      0
-;!                           _debounce
+;! (0) _main                                                 5     5      0     475
+;!                                              4 BANK0      5     5      0
+;!                             ___bmul
+;!                              _delay
+;!                        _displayMode
+;!                       _incDutyCycle
+;!                       _incFrequency
 ;! ---------------------------------------------------------------------------------
-;! (1) _debounce                                             2     2      0      46
+;! (1) _incFrequency                                         0     0      0       0
+;! ---------------------------------------------------------------------------------
+;! (1) _incDutyCycle                                         0     0      0       0
+;! ---------------------------------------------------------------------------------
+;! (1) _displayMode                                          4     4      0      92
+;!                                              0 BANK0      4     4      0
+;! ---------------------------------------------------------------------------------
+;! (1) _delay                                                2     2      0      37
 ;!                                              0 BANK0      2     2      0
-;!                 _incrementDutyCycle
-;!                 _incrementFrequency
-;!                         _pseudocode
 ;! ---------------------------------------------------------------------------------
-;! (2) _pseudocode                                           0     0      0       0
+;! (1) ___bmul                                               4     3      1     346
+;!                                              0 BANK0      4     3      1
 ;! ---------------------------------------------------------------------------------
-;! (2) _incrementFrequency                                   0     0      0       0
-;! ---------------------------------------------------------------------------------
-;! (2) _incrementDutyCycle                                   0     0      0       0
-;! ---------------------------------------------------------------------------------
-;! Estimated maximum stack depth 2
+;! Estimated maximum stack depth 1
 ;! ---------------------------------------------------------------------------------
 ;! (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
 ;! ---------------------------------------------------------------------------------
-;! (3) _ISR                                                  6     6      0       0
-;!                                              0 COMMON     6     6      0
+;! (2) _ISR                                                  4     4      0       0
+;!                                              0 COMMON     4     4      0
 ;! ---------------------------------------------------------------------------------
-;! Estimated maximum stack depth 3
+;! Estimated maximum stack depth 2
 ;! ---------------------------------------------------------------------------------
 ;!
 ;! Call Graph Graphs:
 ;!
 ;! _main (ROOT)
-;!   _debounce
-;!     _incrementDutyCycle
-;!     _incrementFrequency
-;!     _pseudocode
+;!   ___bmul
+;!   _delay
+;!   _displayMode
+;!   _incDutyCycle
+;!   _incFrequency
 ;!
 ;! _ISR (ROOT)
 ;!
@@ -613,19 +561,19 @@ debounce@i:	; 2 bytes @ 0x0
 ;!BITBANK2            60      0       0      10        0.0%
 ;!SFR2                 0      0       0       5        0.0%
 ;!BITSFR2              0      0       0       5        0.0%
-;!BANK1               50      1       1       7        1.3%
+;!BANK1               50      0       0       7        0.0%
 ;!BITBANK1            50      0       0       6        0.0%
 ;!SFR1                 0      0       0       2        0.0%
 ;!BITSFR1              0      0       0       2        0.0%
-;!BANK0               50      2      50       5      100.0%
+;!BANK0               50      9      2F       5       58.8%
 ;!BITBANK0            50      0       0       4        0.0%
 ;!SFR0                 0      0       0       1        0.0%
 ;!BITSFR0              0      0       0       1        0.0%
-;!COMMON               E      6       C       1       85.7%
+;!COMMON               E      4       A       1       71.4%
 ;!BITCOMMON            E      0       0       0        0.0%
 ;!CODE                 0      0       0       0        0.0%
-;!DATA                 0      0      5D      12        0.0%
-;!ABS                  0      0      5D       3        0.0%
+;!DATA                 0      0      39      12        0.0%
+;!ABS                  0      0      39       3        0.0%
 ;!NULL                 0      0       0       0        0.0%
 ;!STACK                0      0       0       2        0.0%
 ;!EEDATA             100      0       0       0        0.0%
@@ -634,7 +582,7 @@ debounce@i:	; 2 bytes @ 0x0
 
 ;; *************** function _main *****************
 ;; Defined at:
-;;		line 104 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
+;;		line 71 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -650,346 +598,479 @@ debounce@i:	; 2 bytes @ 0x0
 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
 ;;      Params:         0       0       0       0       0
 ;;      Locals:         0       0       0       0       0
-;;      Temps:          0       0       1       0       0
-;;      Totals:         0       0       1       0       0
-;;Total ram usage:        1 bytes
-;; Hardware stack levels required when called:    3
+;;      Temps:          0       5       0       0       0
+;;      Totals:         0       5       0       0       0
+;;Total ram usage:        5 bytes
+;; Hardware stack levels required when called:    2
 ;; This function calls:
-;;		_debounce
+;;		___bmul
+;;		_delay
+;;		_displayMode
+;;		_incDutyCycle
+;;		_incFrequency
 ;; This function is called by:
 ;;		Startup code after reset
 ;; This function uses a non-reentrant model
 ;;
 psect	maintext,global,class=CODE,delta=2,split=1
 	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
-	line	104
+	line	71
 global __pmaintext
 __pmaintext:	;psect for function _main
 psect	maintext
 	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
-	line	104
+	line	71
 	global	__size_of_main
 	__size_of_main	equ	__end_of_main-_main
 	
 _main:	
 ;incstack = 0
-	opt	stack 5
+	opt	stack 6
 ; Regs used in _main: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
-	line	106
+	line	74
 	
-l1153:	
-;LE4-7.c: 106: ADCON1 = 0x06;
-	movlw	(06h)
-	bsf	status, 5	;RP0=1, select bank1
-	bcf	status, 6	;RP1=0, select bank1
-	movwf	(159)^080h	;volatile
-	line	107
-	
-l1155:	
-;LE4-7.c: 107: TRISA = 0x00;
-	clrf	(133)^080h	;volatile
-	line	108
-	
-l1157:	
-;LE4-7.c: 108: T1CON = 0x30;
-	movlw	(030h)
+l968:	
+;LE4-7.c: 74: PR2 = PR2Values[frequencyIndex];
+	movf	(_frequencyIndex),w
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
-	movwf	(16)	;volatile
-	line	109
-	
-l1159:	
-;LE4-7.c: 109: TMR1IE = 1;
-	bsf	status, 5	;RP0=1, select bank1
-	bcf	status, 6	;RP1=0, select bank1
-	bsf	(1120/8)^080h,(1120)&7	;volatile
-	line	110
-	
-l1161:	
-;LE4-7.c: 110: TMR1IF = 0;
-	bcf	status, 5	;RP0=0, select bank0
-	bcf	status, 6	;RP1=0, select bank0
-	bcf	(96/8),(96)&7	;volatile
-	line	111
-	
-l1163:	
-;LE4-7.c: 111: PEIE = 1;
-	bsf	(94/8),(94)&7	;volatile
-	line	112
-	
-l1165:	
-;LE4-7.c: 112: GIE = 1;
-	bsf	(95/8),(95)&7	;volatile
-	line	114
-	
-l1167:	
-;LE4-7.c: 114: RA0 = 0;
-	bcf	(40/8),(40)&7	;volatile
-	line	115
-	
-l1169:	
-;LE4-7.c: 115: TMR1 = maxCountDC1[maxCountIndex1];
-	movf	(_maxCountIndex1),w
-	bsf	status, 5	;RP0=1, select bank1
-	bcf	status, 6	;RP1=0, select bank1
-	movwf	(??_main+0)^080h+0
-	addwf	(??_main+0)^080h+0,w
-	addlw	_maxCountDC1&0ffh
+	movwf	(??_main+0)+0
+	addwf	(??_main+0)+0,w
+	addlw	_PR2Values&0ffh
 	movwf	fsr0
 	bcf	status, 7	;select IRP bank0
 	movf	indf,w
-	bcf	status, 5	;RP0=0, select bank0
-	bcf	status, 6	;RP1=0, select bank0
-	movwf	(14)	;volatile
-	incf	fsr0,f
-	movf	indf,w
-	movwf	(14+1)	;volatile
-	line	116
-	
-l1171:	
-;LE4-7.c: 116: TMR1ON = 1;
-	bsf	(128/8),(128)&7	;volatile
-	line	119
-	
-l1173:	
-;LE4-7.c: 119: TRISD = 0xFF;
-	movlw	(0FFh)
 	bsf	status, 5	;RP0=1, select bank1
 	bcf	status, 6	;RP1=0, select bank1
+	movwf	(146)^080h	;volatile
+	line	75
+	
+l970:	
+;LE4-7.c: 75: CCPR1L = (timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x3FC) >> 2;
+	movf	(_dutyCycleIndex),w
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	movwf	(??_main+0)+0
+	movlw	01h
+u385:
+	clrc
+	rlf	(??_main+0)+0,f
+	addlw	-1
+	skipz
+	goto	u385
+	movlw	(0Ah)
+	movwf	(??_main+1)+0
+	movf	(??_main+1)+0,w
+	movwf	(___bmul@multiplicand)
+	movf	(_frequencyIndex),w
+	fcall	___bmul
+	addlw	_timerMaxCount&0ffh
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	addwf	0+(??_main+0)+0,w
+	movwf	(??_main+2)+0
+	movf	0+(??_main+2)+0,w
+	movwf	fsr0
+	bcf	status, 7	;select IRP bank0
+	movf	indf,w
+	movwf	(??_main+3)+0+0
+	incf	fsr0,f
+	movf	indf,w
+	movwf	(??_main+3)+0+1
+	clrc
+	rrf	(??_main+3)+1,f
+	rrf	(??_main+3)+0,f
+	clrc
+	rrf	(??_main+3)+1,f
+	rrf	(??_main+3)+0,f
+	movf	0+(??_main+3)+0,w
+	movwf	(21)	;volatile
+	line	76
+	
+l972:	
+;LE4-7.c: 76: CCP1CON = ((timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x003) << 4) + 0x0C;
+	movf	(_dutyCycleIndex),w
+	movwf	(??_main+0)+0
+	movlw	01h
+u395:
+	clrc
+	rlf	(??_main+0)+0,f
+	addlw	-1
+	skipz
+	goto	u395
+	movlw	(0Ah)
+	movwf	(??_main+1)+0
+	movf	(??_main+1)+0,w
+	movwf	(___bmul@multiplicand)
+	movf	(_frequencyIndex),w
+	fcall	___bmul
+	addlw	_timerMaxCount&0ffh
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	addwf	0+(??_main+0)+0,w
+	movwf	(??_main+2)+0
+	movf	0+(??_main+2)+0,w
+	movwf	fsr0
+	bcf	status, 7	;select IRP bank0
+	movf	indf,w
+	andlw	03h
+	movwf	(??_main+3)+0
+	movlw	(04h)-1
+u405:
+	clrc
+	rlf	(??_main+3)+0,f
+	addlw	-1
+	skipz
+	goto	u405
+	clrc
+	rlf	(??_main+3)+0,w
+	addlw	0Ch
+	movwf	(23)	;volatile
+	line	77
+	
+l974:	
+;LE4-7.c: 77: T2CON = 0x06;
+	movlw	(06h)
+	movwf	(18)	;volatile
+	line	80
+	
+l976:	
+;LE4-7.c: 80: OPTION_REG = 0x44;
+	movlw	(044h)
+	bsf	status, 5	;RP0=1, select bank1
+	bcf	status, 6	;RP1=0, select bank1
+	movwf	(129)^080h	;volatile
+	line	82
+	
+l978:	
+;LE4-7.c: 82: GIE = 1;
+	bsf	(95/8),(95)&7	;volatile
+	line	83
+	
+l980:	
+;LE4-7.c: 83: PEIE = 1;
+	bsf	(94/8),(94)&7	;volatile
+	line	84
+	
+l982:	
+;LE4-7.c: 84: INTE = 1;
+	bsf	(92/8),(92)&7	;volatile
+	line	85
+	
+l984:	
+;LE4-7.c: 85: TMR0IE = 1;
+	bsf	(93/8),(93)&7	;volatile
+	line	86
+	
+l986:	
+;LE4-7.c: 86: TMR0IF = 0;
+	bcf	(90/8),(90)&7	;volatile
+	line	89
+	
+l988:	
+;LE4-7.c: 89: TRISC = 0x00;
+	clrf	(135)^080h	;volatile
+	line	90
+	
+l990:	
+;LE4-7.c: 90: TRISD = 0xFF;
+	movlw	(0FFh)
 	movwf	(136)^080h	;volatile
-	goto	l1175
-	line	121
-;LE4-7.c: 120: for(;;)
+	line	91
 	
-l67:	
-	line	122
+l992:	
+;LE4-7.c: 91: TRISB = 0x00;
+	clrf	(134)^080h	;volatile
+	line	92
 	
-l1175:	
-;LE4-7.c: 121: {
-;LE4-7.c: 122: debounce();
-	fcall	_debounce
-	line	123
-;LE4-7.c: 123: }
-	goto	l1175
+l994:	
+;LE4-7.c: 92: RC2 = 0;
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	bcf	(58/8),(58)&7	;volatile
+	line	95
 	
-l68:	
-	line	124
+l996:	
+;LE4-7.c: 95: displayMode();
+	fcall	_displayMode
+	goto	l998
+	line	98
+;LE4-7.c: 97: for(;;)
 	
-l69:	
+l61:	
+	line	100
+	
+l998:	
+;LE4-7.c: 98: {
+;LE4-7.c: 100: if(RD0 == 1)
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	btfss	(64/8),(64)&7	;volatile
+	goto	u411
+	goto	u410
+u411:
+	goto	l1012
+u410:
+	line	102
+	
+l1000:	
+;LE4-7.c: 101: {
+;LE4-7.c: 102: delay();
+	fcall	_delay
+	line	103
+	
+l1002:	
+;LE4-7.c: 103: incDutyCycle();
+	fcall	_incDutyCycle
+	line	104
+	
+l1004:	
+;LE4-7.c: 104: PR2 = PR2Values[frequencyIndex];
+	movf	(_frequencyIndex),w
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	movwf	(??_main+0)+0
+	addwf	(??_main+0)+0,w
+	addlw	_PR2Values&0ffh
+	movwf	fsr0
+	bcf	status, 7	;select IRP bank0
+	movf	indf,w
+	bsf	status, 5	;RP0=1, select bank1
+	bcf	status, 6	;RP1=0, select bank1
+	movwf	(146)^080h	;volatile
+	line	105
+	
+l1006:	
+;LE4-7.c: 105: CCPR1L = (timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x3FC) >> 2;
+	movf	(_dutyCycleIndex),w
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	movwf	(??_main+0)+0
+	movlw	01h
+u425:
+	clrc
+	rlf	(??_main+0)+0,f
+	addlw	-1
+	skipz
+	goto	u425
+	movlw	(0Ah)
+	movwf	(??_main+1)+0
+	movf	(??_main+1)+0,w
+	movwf	(___bmul@multiplicand)
+	movf	(_frequencyIndex),w
+	fcall	___bmul
+	addlw	_timerMaxCount&0ffh
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	addwf	0+(??_main+0)+0,w
+	movwf	(??_main+2)+0
+	movf	0+(??_main+2)+0,w
+	movwf	fsr0
+	bcf	status, 7	;select IRP bank0
+	movf	indf,w
+	movwf	(??_main+3)+0+0
+	incf	fsr0,f
+	movf	indf,w
+	movwf	(??_main+3)+0+1
+	clrc
+	rrf	(??_main+3)+1,f
+	rrf	(??_main+3)+0,f
+	clrc
+	rrf	(??_main+3)+1,f
+	rrf	(??_main+3)+0,f
+	movf	0+(??_main+3)+0,w
+	movwf	(21)	;volatile
+	line	106
+	
+l1008:	
+;LE4-7.c: 106: CCP1CON = ((timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x003) << 4) + 0x0C;
+	movf	(_dutyCycleIndex),w
+	movwf	(??_main+0)+0
+	movlw	01h
+u435:
+	clrc
+	rlf	(??_main+0)+0,f
+	addlw	-1
+	skipz
+	goto	u435
+	movlw	(0Ah)
+	movwf	(??_main+1)+0
+	movf	(??_main+1)+0,w
+	movwf	(___bmul@multiplicand)
+	movf	(_frequencyIndex),w
+	fcall	___bmul
+	addlw	_timerMaxCount&0ffh
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	addwf	0+(??_main+0)+0,w
+	movwf	(??_main+2)+0
+	movf	0+(??_main+2)+0,w
+	movwf	fsr0
+	bcf	status, 7	;select IRP bank0
+	movf	indf,w
+	andlw	03h
+	movwf	(??_main+3)+0
+	movlw	(04h)-1
+u445:
+	clrc
+	rlf	(??_main+3)+0,f
+	addlw	-1
+	skipz
+	goto	u445
+	clrc
+	rlf	(??_main+3)+0,w
+	addlw	0Ch
+	movwf	(23)	;volatile
+	line	107
+	
+l1010:	
+;LE4-7.c: 107: displayMode();
+	fcall	_displayMode
+	goto	l1012
+	line	108
+	
+l62:	
+	line	109
+	
+l1012:	
+;LE4-7.c: 108: }
+;LE4-7.c: 109: if(RD1 == 1)
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	btfss	(65/8),(65)&7	;volatile
+	goto	u451
+	goto	u450
+u451:
+	goto	l998
+u450:
+	line	111
+	
+l1014:	
+;LE4-7.c: 110: {
+;LE4-7.c: 111: delay();
+	fcall	_delay
+	line	112
+	
+l1016:	
+;LE4-7.c: 112: incFrequency();
+	fcall	_incFrequency
+	line	113
+	
+l1018:	
+;LE4-7.c: 113: PR2 = PR2Values[frequencyIndex];
+	movf	(_frequencyIndex),w
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	movwf	(??_main+0)+0
+	addwf	(??_main+0)+0,w
+	addlw	_PR2Values&0ffh
+	movwf	fsr0
+	bcf	status, 7	;select IRP bank0
+	movf	indf,w
+	bsf	status, 5	;RP0=1, select bank1
+	bcf	status, 6	;RP1=0, select bank1
+	movwf	(146)^080h	;volatile
+	line	114
+	
+l1020:	
+;LE4-7.c: 114: CCPR1L = timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x003;
+	movf	(_dutyCycleIndex),w
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	movwf	(??_main+0)+0
+	movlw	01h
+u465:
+	clrc
+	rlf	(??_main+0)+0,f
+	addlw	-1
+	skipz
+	goto	u465
+	movlw	(0Ah)
+	movwf	(??_main+1)+0
+	movf	(??_main+1)+0,w
+	movwf	(___bmul@multiplicand)
+	movf	(_frequencyIndex),w
+	fcall	___bmul
+	addlw	_timerMaxCount&0ffh
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	addwf	0+(??_main+0)+0,w
+	movwf	(??_main+2)+0
+	movf	0+(??_main+2)+0,w
+	movwf	fsr0
+	bcf	status, 7	;select IRP bank0
+	movf	indf,w
+	andlw	03h
+	movwf	(21)	;volatile
+	line	115
+	
+l1022:	
+;LE4-7.c: 115: CCP1CON = (timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x3FC) >> 2;
+	movf	(_dutyCycleIndex),w
+	movwf	(??_main+0)+0
+	movlw	01h
+u475:
+	clrc
+	rlf	(??_main+0)+0,f
+	addlw	-1
+	skipz
+	goto	u475
+	movlw	(0Ah)
+	movwf	(??_main+1)+0
+	movf	(??_main+1)+0,w
+	movwf	(___bmul@multiplicand)
+	movf	(_frequencyIndex),w
+	fcall	___bmul
+	addlw	_timerMaxCount&0ffh
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	addwf	0+(??_main+0)+0,w
+	movwf	(??_main+2)+0
+	movf	0+(??_main+2)+0,w
+	movwf	fsr0
+	bcf	status, 7	;select IRP bank0
+	movf	indf,w
+	movwf	(??_main+3)+0+0
+	incf	fsr0,f
+	movf	indf,w
+	movwf	(??_main+3)+0+1
+	clrc
+	rrf	(??_main+3)+1,f
+	rrf	(??_main+3)+0,f
+	clrc
+	rrf	(??_main+3)+1,f
+	rrf	(??_main+3)+0,f
+	movf	0+(??_main+3)+0,w
+	movwf	(23)	;volatile
+	line	116
+	
+l1024:	
+;LE4-7.c: 116: displayMode();
+	fcall	_displayMode
+	goto	l998
+	line	117
+	
+l63:	
+	line	118
+;LE4-7.c: 117: }
+;LE4-7.c: 118: }
+	goto	l998
+	
+l64:	
+	line	119
+	
+l65:	
 	global	start
 	ljmp	start
 	opt stack 0
 GLOBAL	__end_of_main
 	__end_of_main:
 	signat	_main,88
-	global	_debounce
+	global	_incFrequency
 
-;; *************** function _debounce *****************
+;; *************** function _incFrequency *****************
 ;; Defined at:
-;;		line 85 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
-;; Parameters:    Size  Location     Type
-;;		None
-;; Auto vars:     Size  Location     Type
-;;  i               2    0[BANK0 ] int 
-;; Return value:  Size  Location     Type
-;;		None               void
-;; Registers used:
-;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
-;; Tracked objects:
-;;		On entry : 0/0
-;;		On exit  : 0/0
-;;		Unchanged: 0/0
-;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-;;      Params:         0       0       0       0       0
-;;      Locals:         0       2       0       0       0
-;;      Temps:          0       0       0       0       0
-;;      Totals:         0       2       0       0       0
-;;Total ram usage:        2 bytes
-;; Hardware stack levels used:    1
-;; Hardware stack levels required when called:    2
-;; This function calls:
-;;		_incrementDutyCycle
-;;		_incrementFrequency
-;;		_pseudocode
-;; This function is called by:
-;;		_main
-;; This function uses a non-reentrant model
-;;
-psect	text1,local,class=CODE,delta=2,merge=1
-	line	85
-global __ptext1
-__ptext1:	;psect for function _debounce
-psect	text1
-	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
-	line	85
-	global	__size_of_debounce
-	__size_of_debounce	equ	__end_of_debounce-_debounce
-	
-_debounce:	
-;incstack = 0
-	opt	stack 5
-; Regs used in _debounce: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
-	line	87
-	
-l1129:	
-;LE4-7.c: 87: while(RD0 == 1 || RD1 == 1)
-	goto	l57
-	
-l58:	
-	line	89
-;LE4-7.c: 88: {
-;LE4-7.c: 89: if(RD0 == 1)
-	btfss	(64/8),(64)&7	;volatile
-	goto	u151
-	goto	u150
-u151:
-	goto	l1135
-u150:
-	line	91
-	
-l1131:	
-;LE4-7.c: 90: {
-;LE4-7.c: 91: incrementDutyCycle();
-	fcall	_incrementDutyCycle
-	line	92
-	
-l1133:	
-;LE4-7.c: 92: pseudocode();
-	fcall	_pseudocode
-	goto	l1135
-	line	93
-	
-l59:	
-	line	94
-	
-l1135:	
-;LE4-7.c: 93: }
-;LE4-7.c: 94: if(RD1 == 1)
-	bcf	status, 5	;RP0=0, select bank0
-	bcf	status, 6	;RP1=0, select bank0
-	btfss	(65/8),(65)&7	;volatile
-	goto	u161
-	goto	u160
-u161:
-	goto	l1141
-u160:
-	line	96
-	
-l1137:	
-;LE4-7.c: 95: {
-;LE4-7.c: 96: incrementFrequency();
-	fcall	_incrementFrequency
-	line	97
-	
-l1139:	
-;LE4-7.c: 97: pseudocode();
-	fcall	_pseudocode
-	goto	l1141
-	line	98
-	
-l60:	
-	line	99
-	
-l1141:	
-;LE4-7.c: 98: }
-;LE4-7.c: 99: for(int i = 0; i < 10000; i++);
-	bcf	status, 5	;RP0=0, select bank0
-	bcf	status, 6	;RP1=0, select bank0
-	clrf	(debounce@i)
-	clrf	(debounce@i+1)
-	
-l1143:	
-	movf	(debounce@i+1),w
-	xorlw	80h
-	movwf	btemp+1
-	movlw	(high(02710h))^80h
-	subwf	btemp+1,w
-	skipz
-	goto	u175
-	movlw	low(02710h)
-	subwf	(debounce@i),w
-u175:
-
-	skipc
-	goto	u171
-	goto	u170
-u171:
-	goto	l1147
-u170:
-	goto	l57
-	
-l1145:	
-	goto	l57
-	
-l61:	
-	
-l1147:	
-	movlw	low(01h)
-	bcf	status, 5	;RP0=0, select bank0
-	bcf	status, 6	;RP1=0, select bank0
-	addwf	(debounce@i),f
-	skipnc
-	incf	(debounce@i+1),f
-	movlw	high(01h)
-	addwf	(debounce@i+1),f
-	
-l1149:	
-	movf	(debounce@i+1),w
-	xorlw	80h
-	movwf	btemp+1
-	movlw	(high(02710h))^80h
-	subwf	btemp+1,w
-	skipz
-	goto	u185
-	movlw	low(02710h)
-	subwf	(debounce@i),w
-u185:
-
-	skipc
-	goto	u181
-	goto	u180
-u181:
-	goto	l1147
-u180:
-	goto	l57
-	
-l62:	
-	line	100
-	
-l57:	
-	line	87
-	bcf	status, 5	;RP0=0, select bank0
-	bcf	status, 6	;RP1=0, select bank0
-	btfsc	(64/8),(64)&7	;volatile
-	goto	u191
-	goto	u190
-u191:
-	goto	l58
-u190:
-	
-l1151:	
-	btfsc	(65/8),(65)&7	;volatile
-	goto	u201
-	goto	u200
-u201:
-	goto	l58
-u200:
-	goto	l64
-	
-l63:	
-	line	101
-	
-l64:	
-	return
-	opt stack 0
-GLOBAL	__end_of_debounce
-	__end_of_debounce:
-	signat	_debounce,88
-	global	_pseudocode
-
-;; *************** function _pseudocode *****************
-;; Defined at:
-;;		line 128 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
+;;		line 191 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -997,7 +1078,7 @@ GLOBAL	__end_of_debounce
 ;; Return value:  Size  Location     Type
 ;;		None               void
 ;; Registers used:
-;;		wreg, fsr0l, fsr0h, status,2, status,0
+;;		wreg, status,2
 ;; Tracked objects:
 ;;		On entry : 0/0
 ;;		On exit  : 0/0
@@ -1013,102 +1094,282 @@ GLOBAL	__end_of_debounce
 ;; This function calls:
 ;;		Nothing
 ;; This function is called by:
-;;		_debounce
+;;		_main
+;; This function uses a non-reentrant model
+;;
+psect	text1,local,class=CODE,delta=2,merge=1
+	line	191
+global __ptext1
+__ptext1:	;psect for function _incFrequency
+psect	text1
+	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
+	line	191
+	global	__size_of_incFrequency
+	__size_of_incFrequency	equ	__end_of_incFrequency-_incFrequency
+	
+_incFrequency:	
+;incstack = 0
+	opt	stack 6
+; Regs used in _incFrequency: [wreg+status,2]
+	line	193
+	
+l786:	
+;LE4-7.c: 193: if(frequencyIndex < 2)
+	movlw	high(02h)
+	subwf	(_frequencyIndex+1),w
+	movlw	low(02h)
+	skipnz
+	subwf	(_frequencyIndex),w
+	skipnc
+	goto	u211
+	goto	u210
+u211:
+	goto	l790
+u210:
+	line	194
+	
+l788:	
+;LE4-7.c: 194: frequencyIndex++;
+	movlw	low(01h)
+	addwf	(_frequencyIndex),f
+	skipnc
+	incf	(_frequencyIndex+1),f
+	movlw	high(01h)
+	addwf	(_frequencyIndex+1),f
+	goto	l97
+	line	195
+	
+l95:	
+	line	196
+	
+l790:	
+;LE4-7.c: 195: else
+;LE4-7.c: 196: frequencyIndex = 0;
+	clrf	(_frequencyIndex)
+	clrf	(_frequencyIndex+1)
+	goto	l97
+	
+l96:	
+	line	197
+	
+l97:	
+	return
+	opt stack 0
+GLOBAL	__end_of_incFrequency
+	__end_of_incFrequency:
+	signat	_incFrequency,88
+	global	_incDutyCycle
+
+;; *************** function _incDutyCycle *****************
+;; Defined at:
+;;		line 183 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
+;; Parameters:    Size  Location     Type
+;;		None
+;; Auto vars:     Size  Location     Type
+;;		None
+;; Return value:  Size  Location     Type
+;;		None               void
+;; Registers used:
+;;		wreg, status,2
+;; Tracked objects:
+;;		On entry : 0/0
+;;		On exit  : 0/0
+;;		Unchanged: 0/0
+;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+;;      Params:         0       0       0       0       0
+;;      Locals:         0       0       0       0       0
+;;      Temps:          0       0       0       0       0
+;;      Totals:         0       0       0       0       0
+;;Total ram usage:        0 bytes
+;; Hardware stack levels used:    1
+;; Hardware stack levels required when called:    1
+;; This function calls:
+;;		Nothing
+;; This function is called by:
+;;		_main
 ;; This function uses a non-reentrant model
 ;;
 psect	text2,local,class=CODE,delta=2,merge=1
-	line	128
+	line	183
 global __ptext2
-__ptext2:	;psect for function _pseudocode
+__ptext2:	;psect for function _incDutyCycle
 psect	text2
 	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
-	line	128
-	global	__size_of_pseudocode
-	__size_of_pseudocode	equ	__end_of_pseudocode-_pseudocode
+	line	183
+	global	__size_of_incDutyCycle
+	__size_of_incDutyCycle	equ	__end_of_incDutyCycle-_incDutyCycle
 	
-_pseudocode:	
+_incDutyCycle:	
 ;incstack = 0
-	opt	stack 5
-; Regs used in _pseudocode: [wreg-fsr0h+status,2+status,0]
+	opt	stack 6
+; Regs used in _incDutyCycle: [wreg+status,2]
+	line	185
+	
+l780:	
+;LE4-7.c: 185: if(dutyCycleIndex < 4)
+	movlw	high(04h)
+	subwf	(_dutyCycleIndex+1),w
+	movlw	low(04h)
+	skipnz
+	subwf	(_dutyCycleIndex),w
+	skipnc
+	goto	u201
+	goto	u200
+u201:
+	goto	l784
+u200:
+	line	186
+	
+l782:	
+;LE4-7.c: 186: dutyCycleIndex++;
+	movlw	low(01h)
+	addwf	(_dutyCycleIndex),f
+	skipnc
+	incf	(_dutyCycleIndex+1),f
+	movlw	high(01h)
+	addwf	(_dutyCycleIndex+1),f
+	goto	l92
+	line	187
+	
+l90:	
+	line	188
+	
+l784:	
+;LE4-7.c: 187: else
+;LE4-7.c: 188: dutyCycleIndex = 0;
+	clrf	(_dutyCycleIndex)
+	clrf	(_dutyCycleIndex+1)
+	goto	l92
+	
+l91:	
+	line	189
+	
+l92:	
+	return
+	opt stack 0
+GLOBAL	__end_of_incDutyCycle
+	__end_of_incDutyCycle:
+	signat	_incDutyCycle,88
+	global	_displayMode
+
+;; *************** function _displayMode *****************
+;; Defined at:
+;;		line 121 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
+;; Parameters:    Size  Location     Type
+;;		None
+;; Auto vars:     Size  Location     Type
+;;  temp2           2    2[BANK0 ] unsigned int 
+;;  temp            2    0[BANK0 ] unsigned int 
+;; Return value:  Size  Location     Type
+;;		None               void
+;; Registers used:
+;;		wreg, fsr0l, fsr0h, status,2, status,0
+;; Tracked objects:
+;;		On entry : 0/0
+;;		On exit  : 0/0
+;;		Unchanged: 0/0
+;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+;;      Params:         0       0       0       0       0
+;;      Locals:         0       4       0       0       0
+;;      Temps:          0       0       0       0       0
+;;      Totals:         0       4       0       0       0
+;;Total ram usage:        4 bytes
+;; Hardware stack levels used:    1
+;; Hardware stack levels required when called:    1
+;; This function calls:
+;;		Nothing
+;; This function is called by:
+;;		_main
+;; This function uses a non-reentrant model
+;;
+psect	text3,local,class=CODE,delta=2,merge=1
+	line	121
+global __ptext3
+__ptext3:	;psect for function _displayMode
+psect	text3
+	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
+	line	121
+	global	__size_of_displayMode
+	__size_of_displayMode	equ	__end_of_displayMode-_displayMode
+	
+_displayMode:	
+;incstack = 0
+	opt	stack 6
+; Regs used in _displayMode: [wreg-fsr0h+status,2+status,0]
 	line	130
 	
-l1031:	
-;LE4-7.c: 130: switch(dutyCycleIndex)
-	goto	l1097
+l906:	
+;LE4-7.c: 130: PORTB = 0x00;
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	clrf	(6)	;volatile
+	line	131
+;LE4-7.c: 131: unsigned int temp = 0x00;
+	clrf	(displayMode@temp)
+	clrf	(displayMode@temp+1)
 	line	132
-;LE4-7.c: 131: {
-;LE4-7.c: 132: case 0:
-	
-l73:	
+;LE4-7.c: 132: unsigned int temp2 = 0x00;
+	clrf	(displayMode@temp2)
+	clrf	(displayMode@temp2+1)
 	line	133
 ;LE4-7.c: 133: switch(frequencyIndex)
-	goto	l1043
+	goto	l916
 	line	135
 ;LE4-7.c: 134: {
 ;LE4-7.c: 135: case 0:
 	
-l75:	
+l69:	
 	line	136
 	
-l1033:	
-;LE4-7.c: 136: maxCountIndex1 = 0;
-	clrf	(_maxCountIndex1)
-	clrf	(_maxCountIndex1+1)
+l908:	
+;LE4-7.c: 136: temp = 0x01;
+	movlw	low(01h)
+	movwf	(displayMode@temp)
+	movlw	high(01h)
+	movwf	((displayMode@temp))+1
 	line	137
 ;LE4-7.c: 137: break;
-	goto	l80
+	goto	l930
 	line	138
 ;LE4-7.c: 138: case 1:
 	
-l77:	
+l71:	
 	line	139
 	
-l1035:	
-;LE4-7.c: 139: maxCountIndex1 = 1;
-	movlw	low(01h)
-	movwf	(_maxCountIndex1)
-	movlw	high(01h)
-	movwf	((_maxCountIndex1))+1
+l910:	
+;LE4-7.c: 139: temp = 0x02;
+	movlw	low(02h)
+	movwf	(displayMode@temp)
+	movlw	high(02h)
+	movwf	((displayMode@temp))+1
 	line	140
 ;LE4-7.c: 140: break;
-	goto	l80
+	goto	l930
 	line	141
 ;LE4-7.c: 141: case 2:
 	
-l78:	
+l72:	
 	line	142
 	
-l1037:	
-;LE4-7.c: 142: maxCountIndex1 = 2;
-	movlw	low(02h)
-	movwf	(_maxCountIndex1)
-	movlw	high(02h)
-	movwf	((_maxCountIndex1))+1
+l912:	
+;LE4-7.c: 142: temp = 0x03;
+	movlw	low(03h)
+	movwf	(displayMode@temp)
+	movlw	high(03h)
+	movwf	((displayMode@temp))+1
 	line	143
 ;LE4-7.c: 143: break;
-	goto	l80
+	goto	l930
 	line	144
-;LE4-7.c: 144: default:
 	
-l79:	
-	line	145
-;LE4-7.c: 145: return;
-	goto	l80
-	line	146
-	
-l1039:	
-;LE4-7.c: 146: break;
-	goto	l80
-	line	147
-	
-l1041:	
-;LE4-7.c: 147: }
-	goto	l80
+l914:	
+;LE4-7.c: 144: }
+	goto	l930
 	line	133
 	
-l74:	
+l68:	
 	
-l1043:	
+l916:	
 	; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-switches
 ; Switch size 1, requested type "space"
 ; Number of cases is 1, Range of values is 0 to 0
@@ -1123,11 +1384,11 @@ l1043:
 	opt asmopt_off
 	xorlw	0^0	; case 0
 	skipnz
-	goto	l1297
-	goto	l80
+	goto	l1066
+	goto	l930
 	opt asmopt_on
 	
-l1297:	
+l1066:	
 ; Switch size 1, requested type "space"
 ; Number of cases is 3, Range of values is 0 to 2
 ; switch strategies available:
@@ -1141,536 +1402,108 @@ l1297:
 	opt asmopt_off
 	xorlw	0^0	; case 0
 	skipnz
-	goto	l1033
+	goto	l908
 	xorlw	1^0	; case 1
 	skipnz
-	goto	l1035
+	goto	l910
 	xorlw	2^1	; case 2
 	skipnz
-	goto	l1037
-	goto	l80
+	goto	l912
+	goto	l930
 	opt asmopt_on
 
+	line	144
+	
+l70:	
+	line	145
+;LE4-7.c: 145: switch(dutyCycleIndex)
+	goto	l930
 	line	147
+;LE4-7.c: 146: {
+;LE4-7.c: 147: case 0:
+	
+l74:	
+	line	148
+	
+l918:	
+;LE4-7.c: 148: temp2 = 0x01 << 2;
+	movlw	low(04h)
+	movwf	(displayMode@temp2)
+	movlw	high(04h)
+	movwf	((displayMode@temp2))+1
+	line	149
+;LE4-7.c: 149: break;
+	goto	l932
+	line	150
+;LE4-7.c: 150: case 1:
 	
 l76:	
-	line	148
-;LE4-7.c: 148: break;
-	goto	l80
-	line	149
-;LE4-7.c: 149: case 1:
+	line	151
 	
-l82:	
-	line	150
-;LE4-7.c: 150: switch(frequencyIndex)
-	goto	l1055
-	line	152
-;LE4-7.c: 151: {
-;LE4-7.c: 152: case 0:
-	
-l84:	
-	line	153
-	
-l1045:	
-;LE4-7.c: 153: maxCountIndex1 = 3;
-	movlw	low(03h)
-	movwf	(_maxCountIndex1)
-	movlw	high(03h)
-	movwf	((_maxCountIndex1))+1
-	line	154
-;LE4-7.c: 154: break;
-	goto	l80
-	line	155
-;LE4-7.c: 155: case 1:
-	
-l86:	
-	line	156
-	
-l1047:	
-;LE4-7.c: 156: maxCountIndex1 = 4;
-	movlw	low(04h)
-	movwf	(_maxCountIndex1)
-	movlw	high(04h)
-	movwf	((_maxCountIndex1))+1
-	line	157
-;LE4-7.c: 157: break;
-	goto	l80
-	line	158
-;LE4-7.c: 158: case 2:
-	
-l87:	
-	line	159
-	
-l1049:	
-;LE4-7.c: 159: maxCountIndex1 = 5;
-	movlw	low(05h)
-	movwf	(_maxCountIndex1)
-	movlw	high(05h)
-	movwf	((_maxCountIndex1))+1
-	line	160
-;LE4-7.c: 160: break;
-	goto	l80
-	line	161
-;LE4-7.c: 161: default:
-	
-l88:	
-	line	162
-;LE4-7.c: 162: return;
-	goto	l80
-	line	163
-	
-l1051:	
-;LE4-7.c: 163: break;
-	goto	l80
-	line	164
-	
-l1053:	
-;LE4-7.c: 164: }
-	goto	l80
-	line	150
-	
-l83:	
-	
-l1055:	
-	; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-switches
-; Switch size 1, requested type "space"
-; Number of cases is 1, Range of values is 0 to 0
-; switch strategies available:
-; Name         Instructions Cycles
-; simple_byte            4     3 (average)
-; direct_byte           11     8 (fixed)
-; jumptable            260     6 (fixed)
-;	Chosen strategy is simple_byte
-
-	movf (_frequencyIndex+1),w
-	opt asmopt_off
-	xorlw	0^0	; case 0
-	skipnz
-	goto	l1299
-	goto	l80
-	opt asmopt_on
-	
-l1299:	
-; Switch size 1, requested type "space"
-; Number of cases is 3, Range of values is 0 to 2
-; switch strategies available:
-; Name         Instructions Cycles
-; simple_byte           10     6 (average)
-; direct_byte           17     8 (fixed)
-; jumptable            260     6 (fixed)
-;	Chosen strategy is simple_byte
-
-	movf (_frequencyIndex),w
-	opt asmopt_off
-	xorlw	0^0	; case 0
-	skipnz
-	goto	l1045
-	xorlw	1^0	; case 1
-	skipnz
-	goto	l1047
-	xorlw	2^1	; case 2
-	skipnz
-	goto	l1049
-	goto	l80
-	opt asmopt_on
-
-	line	164
-	
-l85:	
-	line	165
-;LE4-7.c: 165: break;
-	goto	l80
-	line	166
-;LE4-7.c: 166: case 2:
-	
-l89:	
-	line	167
-;LE4-7.c: 167: switch(frequencyIndex)
-	goto	l1067
-	line	169
-;LE4-7.c: 168: {
-;LE4-7.c: 169: case 0:
-	
-l91:	
-	line	170
-	
-l1057:	
-;LE4-7.c: 170: maxCountIndex1 = 6;
-	movlw	low(06h)
-	movwf	(_maxCountIndex1)
-	movlw	high(06h)
-	movwf	((_maxCountIndex1))+1
-	line	171
-;LE4-7.c: 171: break;
-	goto	l80
-	line	172
-;LE4-7.c: 172: case 1:
-	
-l93:	
-	line	173
-	
-l1059:	
-;LE4-7.c: 173: maxCountIndex1 = 7;
-	movlw	low(07h)
-	movwf	(_maxCountIndex1)
-	movlw	high(07h)
-	movwf	((_maxCountIndex1))+1
-	line	174
-;LE4-7.c: 174: break;
-	goto	l80
-	line	175
-;LE4-7.c: 175: case 2:
-	
-l94:	
-	line	176
-	
-l1061:	
-;LE4-7.c: 176: maxCountIndex1 = 8;
+l920:	
+;LE4-7.c: 151: temp2 = 0x02 << 2;
 	movlw	low(08h)
-	movwf	(_maxCountIndex1)
+	movwf	(displayMode@temp2)
 	movlw	high(08h)
-	movwf	((_maxCountIndex1))+1
-	line	177
-;LE4-7.c: 177: break;
-	goto	l80
-	line	178
-;LE4-7.c: 178: default:
+	movwf	((displayMode@temp2))+1
+	line	152
+;LE4-7.c: 152: break;
+	goto	l932
+	line	153
+;LE4-7.c: 153: case 2:
 	
-l95:	
-	line	179
-;LE4-7.c: 179: return;
-	goto	l80
-	line	180
+l77:	
+	line	154
 	
-l1063:	
-;LE4-7.c: 180: break;
-	goto	l80
-	line	181
-	
-l1065:	
-;LE4-7.c: 181: }
-	goto	l80
-	line	167
-	
-l90:	
-	
-l1067:	
-	; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-switches
-; Switch size 1, requested type "space"
-; Number of cases is 1, Range of values is 0 to 0
-; switch strategies available:
-; Name         Instructions Cycles
-; simple_byte            4     3 (average)
-; direct_byte           11     8 (fixed)
-; jumptable            260     6 (fixed)
-;	Chosen strategy is simple_byte
-
-	movf (_frequencyIndex+1),w
-	opt asmopt_off
-	xorlw	0^0	; case 0
-	skipnz
-	goto	l1301
-	goto	l80
-	opt asmopt_on
-	
-l1301:	
-; Switch size 1, requested type "space"
-; Number of cases is 3, Range of values is 0 to 2
-; switch strategies available:
-; Name         Instructions Cycles
-; simple_byte           10     6 (average)
-; direct_byte           17     8 (fixed)
-; jumptable            260     6 (fixed)
-;	Chosen strategy is simple_byte
-
-	movf (_frequencyIndex),w
-	opt asmopt_off
-	xorlw	0^0	; case 0
-	skipnz
-	goto	l1057
-	xorlw	1^0	; case 1
-	skipnz
-	goto	l1059
-	xorlw	2^1	; case 2
-	skipnz
-	goto	l1061
-	goto	l80
-	opt asmopt_on
-
-	line	181
-	
-l92:	
-	line	182
-;LE4-7.c: 182: break;
-	goto	l80
-	line	183
-;LE4-7.c: 183: case 3:
-	
-l96:	
-	line	184
-;LE4-7.c: 184: switch(frequencyIndex)
-	goto	l1079
-	line	186
-;LE4-7.c: 185: {
-;LE4-7.c: 186: case 0:
-	
-l98:	
-	line	187
-	
-l1069:	
-;LE4-7.c: 187: maxCountIndex1 = 9;
-	movlw	low(09h)
-	movwf	(_maxCountIndex1)
-	movlw	high(09h)
-	movwf	((_maxCountIndex1))+1
-	line	188
-;LE4-7.c: 188: break;
-	goto	l80
-	line	189
-;LE4-7.c: 189: case 1:
-	
-l100:	
-	line	190
-	
-l1071:	
-;LE4-7.c: 190: maxCountIndex1 = 10;
-	movlw	low(0Ah)
-	movwf	(_maxCountIndex1)
-	movlw	high(0Ah)
-	movwf	((_maxCountIndex1))+1
-	line	191
-;LE4-7.c: 191: break;
-	goto	l80
-	line	192
-;LE4-7.c: 192: case 2:
-	
-l101:	
-	line	193
-	
-l1073:	
-;LE4-7.c: 193: maxCountIndex1 = 11;
-	movlw	low(0Bh)
-	movwf	(_maxCountIndex1)
-	movlw	high(0Bh)
-	movwf	((_maxCountIndex1))+1
-	line	194
-;LE4-7.c: 194: break;
-	goto	l80
-	line	195
-;LE4-7.c: 195: default:
-	
-l102:	
-	line	196
-;LE4-7.c: 196: return;
-	goto	l80
-	line	197
-	
-l1075:	
-;LE4-7.c: 197: break;
-	goto	l80
-	line	198
-	
-l1077:	
-;LE4-7.c: 198: }
-	goto	l80
-	line	184
-	
-l97:	
-	
-l1079:	
-	; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-switches
-; Switch size 1, requested type "space"
-; Number of cases is 1, Range of values is 0 to 0
-; switch strategies available:
-; Name         Instructions Cycles
-; simple_byte            4     3 (average)
-; direct_byte           11     8 (fixed)
-; jumptable            260     6 (fixed)
-;	Chosen strategy is simple_byte
-
-	movf (_frequencyIndex+1),w
-	opt asmopt_off
-	xorlw	0^0	; case 0
-	skipnz
-	goto	l1303
-	goto	l80
-	opt asmopt_on
-	
-l1303:	
-; Switch size 1, requested type "space"
-; Number of cases is 3, Range of values is 0 to 2
-; switch strategies available:
-; Name         Instructions Cycles
-; simple_byte           10     6 (average)
-; direct_byte           17     8 (fixed)
-; jumptable            260     6 (fixed)
-;	Chosen strategy is simple_byte
-
-	movf (_frequencyIndex),w
-	opt asmopt_off
-	xorlw	0^0	; case 0
-	skipnz
-	goto	l1069
-	xorlw	1^0	; case 1
-	skipnz
-	goto	l1071
-	xorlw	2^1	; case 2
-	skipnz
-	goto	l1073
-	goto	l80
-	opt asmopt_on
-
-	line	198
-	
-l99:	
-	line	199
-;LE4-7.c: 199: break;
-	goto	l80
-	line	200
-;LE4-7.c: 200: case 4:
-	
-l103:	
-	line	201
-;LE4-7.c: 201: switch(frequencyIndex)
-	goto	l1091
-	line	203
-;LE4-7.c: 202: {
-;LE4-7.c: 203: case 0:
-	
-l105:	
-	line	204
-	
-l1081:	
-;LE4-7.c: 204: maxCountIndex1 = 12;
+l922:	
+;LE4-7.c: 154: temp2 = 0x03 << 2;
 	movlw	low(0Ch)
-	movwf	(_maxCountIndex1)
+	movwf	(displayMode@temp2)
 	movlw	high(0Ch)
-	movwf	((_maxCountIndex1))+1
-	line	205
-;LE4-7.c: 205: break;
-	goto	l80
-	line	206
-;LE4-7.c: 206: case 1:
+	movwf	((displayMode@temp2))+1
+	line	155
+;LE4-7.c: 155: break;
+	goto	l932
+	line	156
+;LE4-7.c: 156: case 3:
 	
-l107:	
-	line	207
+l78:	
+	line	157
 	
-l1083:	
-;LE4-7.c: 207: maxCountIndex1 = 13;
-	movlw	low(0Dh)
-	movwf	(_maxCountIndex1)
-	movlw	high(0Dh)
-	movwf	((_maxCountIndex1))+1
-	line	208
-;LE4-7.c: 208: break;
-	goto	l80
-	line	209
-;LE4-7.c: 209: case 2:
+l924:	
+;LE4-7.c: 157: temp2 = 0x04 << 2;
+	movlw	low(010h)
+	movwf	(displayMode@temp2)
+	movlw	high(010h)
+	movwf	((displayMode@temp2))+1
+	line	158
+;LE4-7.c: 158: break;
+	goto	l932
+	line	159
+;LE4-7.c: 159: case 4:
 	
-l108:	
-	line	210
+l79:	
+	line	160
 	
-l1085:	
-;LE4-7.c: 210: maxCountIndex1 = 14;
-	movlw	low(0Eh)
-	movwf	(_maxCountIndex1)
-	movlw	high(0Eh)
-	movwf	((_maxCountIndex1))+1
-	line	211
-;LE4-7.c: 211: break;
-	goto	l80
-	line	212
-;LE4-7.c: 212: default:
+l926:	
+;LE4-7.c: 160: temp2 = 0x05 << 2;
+	movlw	low(014h)
+	movwf	(displayMode@temp2)
+	movlw	high(014h)
+	movwf	((displayMode@temp2))+1
+	line	161
+;LE4-7.c: 161: break;
+	goto	l932
+	line	162
 	
-l109:	
-	line	213
-;LE4-7.c: 213: return;
-	goto	l80
-	line	214
+l928:	
+;LE4-7.c: 162: }
+	goto	l932
+	line	145
 	
-l1087:	
-;LE4-7.c: 214: break;
-	goto	l80
-	line	215
+l73:	
 	
-l1089:	
-;LE4-7.c: 215: }
-	goto	l80
-	line	201
-	
-l104:	
-	
-l1091:	
-	; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-switches
-; Switch size 1, requested type "space"
-; Number of cases is 1, Range of values is 0 to 0
-; switch strategies available:
-; Name         Instructions Cycles
-; simple_byte            4     3 (average)
-; direct_byte           11     8 (fixed)
-; jumptable            260     6 (fixed)
-;	Chosen strategy is simple_byte
-
-	movf (_frequencyIndex+1),w
-	opt asmopt_off
-	xorlw	0^0	; case 0
-	skipnz
-	goto	l1305
-	goto	l80
-	opt asmopt_on
-	
-l1305:	
-; Switch size 1, requested type "space"
-; Number of cases is 3, Range of values is 0 to 2
-; switch strategies available:
-; Name         Instructions Cycles
-; simple_byte           10     6 (average)
-; direct_byte           17     8 (fixed)
-; jumptable            260     6 (fixed)
-;	Chosen strategy is simple_byte
-
-	movf (_frequencyIndex),w
-	opt asmopt_off
-	xorlw	0^0	; case 0
-	skipnz
-	goto	l1081
-	xorlw	1^0	; case 1
-	skipnz
-	goto	l1083
-	xorlw	2^1	; case 2
-	skipnz
-	goto	l1085
-	goto	l80
-	opt asmopt_on
-
-	line	215
-	
-l106:	
-	line	216
-;LE4-7.c: 216: break;
-	goto	l80
-	line	217
-;LE4-7.c: 217: default:
-	
-l110:	
-	line	218
-;LE4-7.c: 218: return;
-	goto	l80
-	line	219
-	
-l1093:	
-;LE4-7.c: 219: break;
-	goto	l80
-	line	220
-	
-l1095:	
-;LE4-7.c: 220: }
-	goto	l80
-	line	130
-	
-l72:	
-	
-l1097:	
+l930:	
 	; Switch on 2 bytes has been partitioned into a top level switch of size 1, and 1 sub-switches
 ; Switch size 1, requested type "space"
 ; Number of cases is 1, Range of values is 0 to 0
@@ -1685,11 +1518,11 @@ l1097:
 	opt asmopt_off
 	xorlw	0^0	; case 0
 	skipnz
-	goto	l1307
-	goto	l80
+	goto	l1068
+	goto	l932
 	opt asmopt_on
 	
-l1307:	
+l1068:	
 ; Switch size 1, requested type "space"
 ; Number of cases is 5, Range of values is 0 to 4
 ; switch strategies available:
@@ -1703,218 +1536,296 @@ l1307:
 	opt asmopt_off
 	xorlw	0^0	; case 0
 	skipnz
-	goto	l1043
+	goto	l918
 	xorlw	1^0	; case 1
 	skipnz
-	goto	l1055
+	goto	l920
 	xorlw	2^1	; case 2
 	skipnz
-	goto	l1067
+	goto	l922
 	xorlw	3^2	; case 3
 	skipnz
-	goto	l1079
+	goto	l924
 	xorlw	4^3	; case 4
 	skipnz
-	goto	l1091
-	goto	l80
+	goto	l926
+	goto	l932
 	opt asmopt_on
 
-	line	220
+	line	162
 	
-l81:	
-	line	221
+l75:	
+	line	163
+	
+l932:	
+;LE4-7.c: 163: PORTB = temp + temp2;
+	movf	(displayMode@temp2),w
+	addwf	(displayMode@temp),w
+	movwf	(6)	;volatile
+	line	164
 	
 l80:	
 	return
 	opt stack 0
-GLOBAL	__end_of_pseudocode
-	__end_of_pseudocode:
-	signat	_pseudocode,88
-	global	_incrementFrequency
+GLOBAL	__end_of_displayMode
+	__end_of_displayMode:
+	signat	_displayMode,88
+	global	_delay
 
-;; *************** function _incrementFrequency *****************
+;; *************** function _delay *****************
 ;; Defined at:
-;;		line 230 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
+;;		line 166 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
-;;		None
+;;  localClock      2    0[BANK0 ] int 
 ;; Return value:  Size  Location     Type
 ;;		None               void
 ;; Registers used:
-;;		wreg, status,2
+;;		wreg, status,2, btemp+1
 ;; Tracked objects:
 ;;		On entry : 0/0
 ;;		On exit  : 0/0
 ;;		Unchanged: 0/0
 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
 ;;      Params:         0       0       0       0       0
-;;      Locals:         0       0       0       0       0
+;;      Locals:         0       2       0       0       0
 ;;      Temps:          0       0       0       0       0
-;;      Totals:         0       0       0       0       0
-;;Total ram usage:        0 bytes
+;;      Totals:         0       2       0       0       0
+;;Total ram usage:        2 bytes
 ;; Hardware stack levels used:    1
 ;; Hardware stack levels required when called:    1
 ;; This function calls:
 ;;		Nothing
 ;; This function is called by:
-;;		_debounce
-;; This function uses a non-reentrant model
-;;
-psect	text3,local,class=CODE,delta=2,merge=1
-	line	230
-global __ptext3
-__ptext3:	;psect for function _incrementFrequency
-psect	text3
-	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
-	line	230
-	global	__size_of_incrementFrequency
-	__size_of_incrementFrequency	equ	__end_of_incrementFrequency-_incrementFrequency
-	
-_incrementFrequency:	
-;incstack = 0
-	opt	stack 5
-; Regs used in _incrementFrequency: [wreg+status,2]
-	line	232
-	
-l1123:	
-;LE4-7.c: 232: if(frequencyIndex == 2)
-	movlw	02h
-	xorwf	(_frequencyIndex),w
-	iorwf	(_frequencyIndex+1),w
-	skipz
-	goto	u141
-	goto	u140
-u141:
-	goto	l1127
-u140:
-	line	233
-	
-l1125:	
-;LE4-7.c: 233: frequencyIndex = 0;
-	clrf	(_frequencyIndex)
-	clrf	(_frequencyIndex+1)
-	goto	l120
-	line	234
-	
-l118:	
-	line	235
-	
-l1127:	
-;LE4-7.c: 234: else
-;LE4-7.c: 235: frequencyIndex += 1;
-	movlw	low(01h)
-	addwf	(_frequencyIndex),f
-	skipnc
-	incf	(_frequencyIndex+1),f
-	movlw	high(01h)
-	addwf	(_frequencyIndex+1),f
-	goto	l120
-	
-l119:	
-	line	236
-	
-l120:	
-	return
-	opt stack 0
-GLOBAL	__end_of_incrementFrequency
-	__end_of_incrementFrequency:
-	signat	_incrementFrequency,88
-	global	_incrementDutyCycle
-
-;; *************** function _incrementDutyCycle *****************
-;; Defined at:
-;;		line 222 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
-;; Parameters:    Size  Location     Type
-;;		None
-;; Auto vars:     Size  Location     Type
-;;		None
-;; Return value:  Size  Location     Type
-;;		None               void
-;; Registers used:
-;;		wreg, status,2
-;; Tracked objects:
-;;		On entry : 0/0
-;;		On exit  : 0/0
-;;		Unchanged: 0/0
-;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
-;;      Params:         0       0       0       0       0
-;;      Locals:         0       0       0       0       0
-;;      Temps:          0       0       0       0       0
-;;      Totals:         0       0       0       0       0
-;;Total ram usage:        0 bytes
-;; Hardware stack levels used:    1
-;; Hardware stack levels required when called:    1
-;; This function calls:
-;;		Nothing
-;; This function is called by:
-;;		_debounce
+;;		_main
 ;; This function uses a non-reentrant model
 ;;
 psect	text4,local,class=CODE,delta=2,merge=1
-	line	222
+	line	166
 global __ptext4
-__ptext4:	;psect for function _incrementDutyCycle
+__ptext4:	;psect for function _delay
 psect	text4
 	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
-	line	222
-	global	__size_of_incrementDutyCycle
-	__size_of_incrementDutyCycle	equ	__end_of_incrementDutyCycle-_incrementDutyCycle
+	line	166
+	global	__size_of_delay
+	__size_of_delay	equ	__end_of_delay-_delay
 	
-_incrementDutyCycle:	
+_delay:	
 ;incstack = 0
-	opt	stack 5
-; Regs used in _incrementDutyCycle: [wreg+status,2]
-	line	224
+	opt	stack 6
+; Regs used in _delay: [wreg+status,2+btemp+1]
+	line	171
 	
-l1025:	
-;LE4-7.c: 224: if(dutyCycleIndex == 4)
-	movlw	04h
-	xorwf	(_dutyCycleIndex),w
-	iorwf	(_dutyCycleIndex+1),w
+l942:	
+;LE4-7.c: 171: int localClock = 0;
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	clrf	(delay@localClock)
+	clrf	(delay@localClock+1)
+	line	172
+;LE4-7.c: 172: while(localClock < 98)
+	goto	l950
+	
+l84:	
+	line	174
+	
+l944:	
+;LE4-7.c: 173: {
+;LE4-7.c: 174: if(count_flag == 1)
+	movlw	01h
+	xorwf	(_count_flag),w
+	iorwf	(_count_flag+1),w
 	skipz
-	goto	u131
-	goto	u130
-u131:
-	goto	l1029
-u130:
-	line	225
+	goto	u341
+	goto	u340
+u341:
+	goto	l950
+u340:
+	line	176
 	
-l1027:	
-;LE4-7.c: 225: dutyCycleIndex = 0;
-	clrf	(_dutyCycleIndex)
-	clrf	(_dutyCycleIndex+1)
-	goto	l115
-	line	226
+l946:	
+;LE4-7.c: 175: {
+;LE4-7.c: 176: count_flag = 0;
+	clrf	(_count_flag)
+	clrf	(_count_flag+1)
+	line	177
 	
-l113:	
-	line	227
-	
-l1029:	
-;LE4-7.c: 226: else
-;LE4-7.c: 227: dutyCycleIndex += 1;
+l948:	
+;LE4-7.c: 177: localClock++;
 	movlw	low(01h)
-	addwf	(_dutyCycleIndex),f
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	addwf	(delay@localClock),f
 	skipnc
-	incf	(_dutyCycleIndex+1),f
+	incf	(delay@localClock+1),f
 	movlw	high(01h)
-	addwf	(_dutyCycleIndex+1),f
-	goto	l115
+	addwf	(delay@localClock+1),f
+	goto	l950
+	line	178
 	
-l114:	
-	line	228
+l85:	
+	goto	l950
+	line	179
 	
-l115:	
+l83:	
+	line	172
+	
+l950:	
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	movf	(delay@localClock+1),w
+	xorlw	80h
+	movwf	btemp+1
+	movlw	(high(062h))^80h
+	subwf	btemp+1,w
+	skipz
+	goto	u355
+	movlw	low(062h)
+	subwf	(delay@localClock),w
+u355:
+
+	skipc
+	goto	u351
+	goto	u350
+u351:
+	goto	l944
+u350:
+	goto	l87
+	
+l86:	
+	line	180
+	
+l87:	
 	return
 	opt stack 0
-GLOBAL	__end_of_incrementDutyCycle
-	__end_of_incrementDutyCycle:
-	signat	_incrementDutyCycle,88
+GLOBAL	__end_of_delay
+	__end_of_delay:
+	signat	_delay,88
+	global	___bmul
+
+;; *************** function ___bmul *****************
+;; Defined at:
+;;		line 4 in file "C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul8.c"
+;; Parameters:    Size  Location     Type
+;;  multiplier      1    wreg     unsigned char 
+;;  multiplicand    1    0[BANK0 ] unsigned char 
+;; Auto vars:     Size  Location     Type
+;;  multiplier      1    3[BANK0 ] unsigned char 
+;;  product         1    2[BANK0 ] unsigned char 
+;; Return value:  Size  Location     Type
+;;                  1    wreg      unsigned char 
+;; Registers used:
+;;		wreg, status,2, status,0
+;; Tracked objects:
+;;		On entry : 0/0
+;;		On exit  : 0/0
+;;		Unchanged: 0/0
+;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+;;      Params:         0       1       0       0       0
+;;      Locals:         0       2       0       0       0
+;;      Temps:          0       1       0       0       0
+;;      Totals:         0       4       0       0       0
+;;Total ram usage:        4 bytes
+;; Hardware stack levels used:    1
+;; Hardware stack levels required when called:    1
+;; This function calls:
+;;		Nothing
+;; This function is called by:
+;;		_main
+;; This function uses a non-reentrant model
+;;
+psect	text5,local,class=CODE,delta=2,merge=1
+	file	"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul8.c"
+	line	4
+global __ptext5
+__ptext5:	;psect for function ___bmul
+psect	text5
+	file	"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul8.c"
+	line	4
+	global	__size_of___bmul
+	__size_of___bmul	equ	__end_of___bmul-___bmul
+	
+___bmul:	
+;incstack = 0
+	opt	stack 6
+; Regs used in ___bmul: [wreg+status,2+status,0]
+;___bmul@multiplier stored from wreg
+	bcf	status, 5	;RP0=0, select bank0
+	bcf	status, 6	;RP1=0, select bank0
+	movwf	(___bmul@multiplier)
+	line	6
+	
+l952:	
+	clrf	(___bmul@product)
+	goto	l954
+	line	42
+	
+l198:	
+	line	43
+	
+l954:	
+	btfss	(___bmul@multiplier),(0)&7
+	goto	u361
+	goto	u360
+u361:
+	goto	l958
+u360:
+	line	44
+	
+l956:	
+	movf	(___bmul@multiplicand),w
+	movwf	(??___bmul+0)+0
+	movf	(??___bmul+0)+0,w
+	addwf	(___bmul@product),f
+	goto	l958
+	
+l199:	
+	line	45
+	
+l958:	
+	clrc
+	rlf	(___bmul@multiplicand),f
+
+	line	46
+	
+l960:	
+	clrc
+	rrf	(___bmul@multiplier),f
+
+	line	47
+	
+l962:	
+	movf	(___bmul@multiplier),f
+	skipz
+	goto	u371
+	goto	u370
+u371:
+	goto	l954
+u370:
+	goto	l964
+	
+l200:	
+	line	50
+	
+l964:	
+	movf	(___bmul@product),w
+	goto	l201
+	
+l966:	
+	line	51
+	
+l201:	
+	return
+	opt stack 0
+GLOBAL	__end_of___bmul
+	__end_of___bmul:
+	signat	___bmul,8313
 	global	_ISR
 
 ;; *************** function _ISR *****************
 ;; Defined at:
-;;		line 64 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
+;;		line 59 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -1922,7 +1833,7 @@ GLOBAL	__end_of_incrementDutyCycle
 ;; Return value:  Size  Location     Type
 ;;		None               void
 ;; Registers used:
-;;		wreg, fsr0l, fsr0h, status,2, status,0
+;;		wreg
 ;; Tracked objects:
 ;;		On entry : 0/0
 ;;		On exit  : 0/0
@@ -1930,9 +1841,9 @@ GLOBAL	__end_of_incrementDutyCycle
 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
 ;;      Params:         0       0       0       0       0
 ;;      Locals:         0       0       0       0       0
-;;      Temps:          6       0       0       0       0
-;;      Totals:         6       0       0       0       0
-;;Total ram usage:        6 bytes
+;;      Temps:          4       0       0       0       0
+;;      Totals:         4       0       0       0       0
+;;Total ram usage:        4 bytes
 ;; Hardware stack levels used:    1
 ;; This function calls:
 ;;		Nothing
@@ -1940,20 +1851,21 @@ GLOBAL	__end_of_incrementDutyCycle
 ;;		Interrupt level 1
 ;; This function uses a non-reentrant model
 ;;
-psect	text5,local,class=CODE,delta=2,merge=1
-	line	64
-global __ptext5
-__ptext5:	;psect for function _ISR
-psect	text5
+psect	text6,local,class=CODE,delta=2,merge=1
 	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
-	line	64
+	line	59
+global __ptext6
+__ptext6:	;psect for function _ISR
+psect	text6
+	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
+	line	59
 	global	__size_of_ISR
 	__size_of_ISR	equ	__end_of_ISR-_ISR
 	
 _ISR:	
 ;incstack = 0
-	opt	stack 5
-; Regs used in _ISR: [wreg-fsr0h+status,2+status,0]
+	opt	stack 6
+; Regs used in _ISR: [wreg]
 psect	intentry,class=CODE,delta=2
 global __pintentry
 __pintentry:
@@ -1963,134 +1875,64 @@ interrupt_function:
 	saved_w	set	btemp+0
 	movwf	saved_w
 	swapf	status,w
-	movwf	(??_ISR+2)
+	movwf	(??_ISR+0)
 	movf	fsr0,w
-	movwf	(??_ISR+3)
+	movwf	(??_ISR+1)
 	movf	pclath,w
-	movwf	(??_ISR+4)
+	movwf	(??_ISR+2)
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
 	movf	btemp+1,w
-	movwf	(??_ISR+5)
+	movwf	(??_ISR+3)
 	ljmp	_ISR
-psect	text5
+psect	text6
+	line	61
+	
+i1l628:	
+;LE4-7.c: 61: GIE = 0;
+	bcf	(95/8),(95)&7	;volatile
+	line	62
+;LE4-7.c: 62: if(TMR0IF)
+	btfss	(90/8),(90)&7	;volatile
+	goto	u7_21
+	goto	u7_20
+u7_21:
+	goto	i1l634
+u7_20:
+	line	64
+	
+i1l630:	
+;LE4-7.c: 63: {
+;LE4-7.c: 64: TMR0IF = 0;
+	bcf	(90/8),(90)&7	;volatile
+	line	65
+	
+i1l632:	
+;LE4-7.c: 65: count_flag = 1;
+	movlw	low(01h)
+	movwf	(_count_flag)
+	movlw	high(01h)
+	movwf	((_count_flag))+1
+	goto	i1l634
 	line	66
 	
-i1l865:	
-;LE4-7.c: 66: GIE = 0;
-	bcf	(95/8),(95)&7	;volatile
+i1l57:	
 	line	67
-;LE4-7.c: 67: if(TMR1IF==1)
-	btfss	(96/8),(96)&7	;volatile
-	goto	u11_21
-	goto	u11_20
-u11_21:
-	goto	i1l879
-u11_20:
-	line	69
 	
-i1l867:	
-;LE4-7.c: 68: {
-;LE4-7.c: 69: TMR1IF = 0;
-	bcf	(96/8),(96)&7	;volatile
-	line	70
-	
-i1l869:	
-;LE4-7.c: 70: if(flag != 1)
-	movlw	01h
-	xorwf	(_flag),w
-	iorwf	(_flag+1),w
-	skipnz
-	goto	u12_21
-	goto	u12_20
-u12_21:
-	goto	i1l873
-u12_20:
-	line	72
-	
-i1l871:	
-;LE4-7.c: 71: {
-;LE4-7.c: 72: TMR1 = maxCountDC2[maxCountIndex1];
-	movf	(_maxCountIndex1),w
-	movwf	(??_ISR+0)+0
-	addwf	(??_ISR+0)+0,w
-	addlw	_maxCountDC2&0ffh
-	movwf	fsr0
-	bcf	status, 7	;select IRP bank0
-	movf	indf,w
-	movwf	(14)	;volatile
-	incf	fsr0,f
-	movf	indf,w
-	movwf	(14+1)	;volatile
-	line	73
-;LE4-7.c: 73: }
-	goto	i1l875
-	line	74
-	
-i1l52:	
-	line	76
-	
-i1l873:	
-;LE4-7.c: 74: else
-;LE4-7.c: 75: {
-;LE4-7.c: 76: TMR1 = maxCountDC1[maxCountIndex1];
-	movf	(_maxCountIndex1),w
-	movwf	(??_ISR+0)+0
-	addwf	(??_ISR+0)+0,w
-	addlw	_maxCountDC1&0ffh
-	movwf	fsr0
-	bcf	status, 7	;select IRP bank0
-	movf	indf,w
-	movwf	(14)	;volatile
-	incf	fsr0,f
-	movf	indf,w
-	movwf	(14+1)	;volatile
-	goto	i1l875
-	line	77
-	
-i1l53:	
-	line	78
-	
-i1l875:	
-;LE4-7.c: 77: }
-;LE4-7.c: 78: RA0 = RA0^1;
-	movlw	1<<((40)&7)
-	xorwf	((40)/8),f
-	line	79
-	
-i1l877:	
-;LE4-7.c: 79: flag = !flag;
-	movf	(_flag+1),w
-	iorwf	(_flag),w
-	movlw	0
-	skipnz
-	movlw	1
-	movwf	(??_ISR+0)+0
-	clrf	(??_ISR+0)+0+1
-	movf	0+(??_ISR+0)+0,w
-	movwf	(_flag)
-	movf	1+(??_ISR+0)+0,w
-	movwf	(_flag+1)
-	goto	i1l879
-	line	81
-	
-i1l51:	
-	line	82
-	
-i1l879:	
-;LE4-7.c: 81: }
-;LE4-7.c: 82: GIE = 1;
+i1l634:	
+;LE4-7.c: 66: }
+;LE4-7.c: 67: GIE = 1;
 	bsf	(95/8),(95)&7	;volatile
-	line	83
+	line	68
 	
-i1l54:	
-	movf	(??_ISR+5),w
-	movwf	btemp+1
-	movf	(??_ISR+4),w
-	movwf	pclath
+i1l58:	
 	movf	(??_ISR+3),w
+	movwf	btemp+1
+	movf	(??_ISR+2),w
+	movwf	pclath
+	movf	(??_ISR+1),w
 	movwf	fsr0
-	swapf	(??_ISR+2)^0FFFFFF80h,w
+	swapf	(??_ISR+0)^0FFFFFF80h,w
 	movwf	status
 	swapf	saved_w,f
 	swapf	saved_w,w

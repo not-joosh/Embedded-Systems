@@ -1,37 +1,47 @@
 Version 3.2 HI-TECH Software Intermediate Code
 "2441 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f877a.h
 [v _GIE `Vb ~T0 @X0 0 e@95 ]
-"2655
-[v _TMR1IF `Vb ~T0 @X0 0 e@96 ]
-"617
-[v _TMR1 `Vus ~T0 @X0 0 e@14 ]
-"2499
-[v _RA0 `Vb ~T0 @X0 0 e@40 ]
-"2561
-[v _RD0 `Vb ~T0 @X0 0 e@64 ]
-"54 C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c
-[v _incrementDutyCycle `(v ~T0 @X0 0 ef ]
-"56
-[v _pseudocode `(v ~T0 @X0 0 ef ]
-"2563 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f877a.h
-[v _RD1 `Vb ~T0 @X0 0 e@65 ]
-"55 C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c
-[v _incrementFrequency `(v ~T0 @X0 0 ef ]
+"2649
+[v _TMR0IF `Vb ~T0 @X0 0 e@90 ]
 [p mainexit ]
-"2173 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f877a.h
-[v _ADCON1 `Vuc ~T0 @X0 0 e@159 ]
-"1286
-[v _TRISA `Vuc ~T0 @X0 0 e@133 ]
-"635
-[v _T1CON `Vuc ~T0 @X0 0 e@16 ]
-"2653
-[v _TMR1IE `Vb ~T0 @X0 0 e@1120 ]
+"1768
+[v _PR2 `Vuc ~T0 @X0 0 e@146 ]
+"866
+[v _CCPR1L `Vuc ~T0 @X0 0 e@21 ]
+"878
+[v _CCP1CON `Vuc ~T0 @X0 0 e@23 ]
+"715
+[v _T2CON `Vuc ~T0 @X0 0 e@18 ]
+"1217
+[v _OPTION_REG `Vuc ~T0 @X0 0 e@129 ]
 "2481
 [v _PEIE `Vb ~T0 @X0 0 e@94 ]
-"2657
-[v _TMR1ON `Vb ~T0 @X0 0 e@128 ]
+"2461
+[v _INTE `Vb ~T0 @X0 0 e@92 ]
+"2647
+[v _TMR0IE `Vb ~T0 @X0 0 e@93 ]
+"1396
+[v _TRISC `Vuc ~T0 @X0 0 e@135 ]
 "1457
 [v _TRISD `Vuc ~T0 @X0 0 e@136 ]
+"1335
+[v _TRISB `Vuc ~T0 @X0 0 e@134 ]
+"2535
+[v _RC2 `Vb ~T0 @X0 0 e@58 ]
+"56 C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c
+[v _displayMode `(v ~T0 @X0 0 ef ]
+"2561 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f877a.h
+[v _RD0 `Vb ~T0 @X0 0 e@64 ]
+"55 C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c
+[v _delay `(v ~T0 @X0 0 ef ]
+"53
+[v _incDutyCycle `(v ~T0 @X0 0 ef ]
+"2563 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f877a.h
+[v _RD1 `Vb ~T0 @X0 0 e@65 ]
+"54 C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c
+[v _incFrequency `(v ~T0 @X0 0 ef ]
+"207 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f877a.h
+[v _PORTB `Vuc ~T0 @X0 0 e@6 ]
 [; ;htc.h: 21: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 24: extern void __builtin_software_breakpoint(void);
 [; ;pic16f877a.h: 47: extern volatile unsigned char INDF @ 0x000;
@@ -1061,710 +1071,476 @@ Version 3.2 HI-TECH Software Intermediate Code
 [p x WRT=OFF ]
 "21
 [p x CP=OFF ]
-"28
-[v _frequencies `ui ~T0 @X0 -> 3 `i e ]
-[i _frequencies
-:U ..
--> -> 10 `i `ui
--> -> 100 `i `ui
--> -> 1000 `i `ui
-..
-]
-[; ;LE4-7.c: 28: unsigned int frequencies[3] = {10, 100, 1000};
-"29
-[v _dutyCycles `ui ~T0 @X0 -> 5 `i e ]
-[i _dutyCycles
-:U ..
--> -> 10 `i `ui
--> -> 25 `i `ui
--> -> 50 `i `ui
--> -> 75 `i `ui
--> -> 95 `i `ui
-..
-]
-[; ;LE4-7.c: 29: unsigned int dutyCycles[5] = {10, 25, 50, 75, 95};
 "30
-[v _frequencyIndex `ui ~T0 @X0 1 e ]
-[i _frequencyIndex
--> -> 0 `i `ui
-]
-[; ;LE4-7.c: 30: unsigned int frequencyIndex = 0;
-"31
-[v _dutyCycleIndex `ui ~T0 @X0 1 e ]
-[i _dutyCycleIndex
--> -> 0 `i `ui
-]
-[; ;LE4-7.c: 31: unsigned int dutyCycleIndex = 0;
-"32
 [v _flag `ui ~T0 @X0 1 e ]
 [i _flag
 -> -> 1 `i `ui
 ]
-[; ;LE4-7.c: 32: unsigned int flag = 1;
-"34
-[v _maxCountDC1 `ui ~T0 @X0 -> 15 `i e ]
-[i _maxCountDC1
-:U ..
-"35
--> 64285 `ui
--> 65410 `ui
--> 65522 `ui
-"36
--> 62410 `ui
--> 65222 `ui
--> 65503 `ui
-"37
--> 59285 `ui
--> 64910 `ui
--> 65472 `ui
-"38
--> 56160 `ui
--> 64597 `ui
--> 65441 `ui
-"39
--> 53660 `ui
--> 64347 `ui
-"40
--> 65416 `ui
-..
-]
-[; ;LE4-7.c: 34: unsigned int maxCountDC1[15] = {
-[; ;LE4-7.c: 35: 0xFB1D, 0xFF82, 0xFFF2,
-[; ;LE4-7.c: 36: 0xF3CA, 0xFEC6, 0xFFDF,
-[; ;LE4-7.c: 37: 0xE795, 0xFD8E, 0xFFC0,
-[; ;LE4-7.c: 38: 0xDB60, 0xFC55, 0xFFA1,
-[; ;LE4-7.c: 39: 0xD19C, 0xFB5B, 0xFF88
-[; ;LE4-7.c: 40: };
-"41
-[v _maxCountIndex1 `ui ~T0 @X0 1 e ]
-[i _maxCountIndex1
+[; ;LE4-7.c: 30: unsigned int flag = 1;
+"31
+[v _frequencyIndex `ui ~T0 @X0 1 e ]
+[i _frequencyIndex
 -> -> 0 `i `ui
 ]
-[; ;LE4-7.c: 41: unsigned int maxCountIndex1 = 0;
-"43
-[v _maxCountDC2 `ui ~T0 @X0 -> 0 `x e ]
-[i _maxCountDC2
+[; ;LE4-7.c: 31: unsigned int frequencyIndex = 0;
+"32
+[v _dutyCycleIndex `ui ~T0 @X0 1 e ]
+[i _dutyCycleIndex
+-> -> 0 `i `ui
+]
+[; ;LE4-7.c: 32: unsigned int dutyCycleIndex = 0;
+"33
+[v _count_flag `ui ~T0 @X0 1 e ]
+[i _count_flag
+-> -> 0 `i `ui
+]
+[; ;LE4-7.c: 33: unsigned int count_flag = 0;
+"35
+[v _PR2Values `ui ~T0 @X0 -> 3 `i e ]
+[i _PR2Values
 :U ..
-"44
--> 54285 `ui
--> 64410 `ui
--> 65422 `ui
-"45
--> 56160 `ui
--> 64597 `ui
--> 65441 `ui
-"46
--> 59285 `ui
--> 64910 `ui
--> 65472 `ui
-"47
--> 62410 `ui
--> 65222 `ui
--> 65503 `ui
-"48
--> 64910 `ui
--> 65472 `ui
-"49
--> 65528 `ui
+"36
+-> -> 207 `i `ui
+-> -> 124 `i `ui
+"37
+-> -> 62 `i `ui
 ..
 ]
-[; ;LE4-7.c: 43: unsigned int maxCountDC2[] = {
-[; ;LE4-7.c: 44: 0xD40D, 0xFB9A, 0xFF8E,
-[; ;LE4-7.c: 45: 0xDB60, 0xFC55, 0xFFA1,
-[; ;LE4-7.c: 46: 0xE795, 0xFD8E, 0xFFC0,
-[; ;LE4-7.c: 47: 0xF3CA, 0xFEC6, 0xFFDF,
-[; ;LE4-7.c: 48: 0xFD8E, 0xFFC0, 0xFFF8
-[; ;LE4-7.c: 49: };
-[; ;LE4-7.c: 54: void incrementDutyCycle();
-[; ;LE4-7.c: 55: void incrementFrequency();
-[; ;LE4-7.c: 56: void pseudocode();
-[; ;LE4-7.c: 57: void interrupt ISR(void);
-[; ;LE4-7.c: 58: void debounce();
-[v F1103 `(v ~T0 @X0 1 tf ]
-"64
-[v _ISR `IF1103 ~T0 @X0 1 e ]
-"65
+[; ;LE4-7.c: 35: unsigned int PR2Values[3] = {
+[; ;LE4-7.c: 36: 0xCF, 0x7C, 0x3E
+[; ;LE4-7.c: 37: };
+[v F1096 `ui ~T0 @X0 -> 5 `i t ]
+"44
+[v _timerMaxCount `F1096 ~T0 @X0 -> 3 `i e ]
+[i _timerMaxCount
+:U ..
+:U ..
+"45
+-> -> 83 `i `ui
+-> -> 208 `i `ui
+-> -> 417 `i `ui
+-> -> 625 `i `ui
+-> -> 792 `i `ui
+..
+:U ..
+"46
+-> -> 50 `i `ui
+-> -> 125 `i `ui
+-> -> 250 `i `ui
+-> -> 375 `i `ui
+-> -> 475 `i `ui
+..
+:U ..
+"47
+-> -> 25 `i `ui
+-> -> 63 `i `ui
+-> -> 125 `i `ui
+-> -> 188 `i `ui
+-> -> 238 `i `ui
+..
+..
+]
+[; ;LE4-7.c: 44: unsigned int timerMaxCount[3][5] = {
+[; ;LE4-7.c: 45: {0x53, 0xD0, 0x1A1, 0x271, 0x318},
+[; ;LE4-7.c: 46: {0x32, 0x7D, 0xFA, 0x177, 0x1DB},
+[; ;LE4-7.c: 47: {0x19, 0x3F, 0x7D, 0xBC, 0xEE}
+[; ;LE4-7.c: 48: };
+[; ;LE4-7.c: 53: void incDutyCycle();
+[; ;LE4-7.c: 54: void incFrequency();
+[; ;LE4-7.c: 55: void delay();
+[; ;LE4-7.c: 56: void displayMode();
+[v F1102 `(v ~T0 @X0 1 tf ]
+"59
+[v _ISR `IF1102 ~T0 @X0 1 e ]
+"60
 {
-[; ;LE4-7.c: 64: void interrupt ISR(void)
-[; ;LE4-7.c: 65: {
+[; ;LE4-7.c: 59: void interrupt ISR()
+[; ;LE4-7.c: 60: {
 [e :U _ISR ]
 [f ]
-[; ;LE4-7.c: 66: GIE = 0;
-"66
+[; ;LE4-7.c: 61: GIE = 0;
+"61
 [e = _GIE -> -> 0 `i `b ]
-[; ;LE4-7.c: 67: if(TMR1IF==1)
-"67
-[e $ ! == -> _TMR1IF `i -> 1 `i 97  ]
-[; ;LE4-7.c: 68: {
-"68
+[; ;LE4-7.c: 62: if(TMR0IF)
+"62
+[e $ ! _TMR0IF 97  ]
+[; ;LE4-7.c: 63: {
+"63
 {
-[; ;LE4-7.c: 69: TMR1IF = 0;
-"69
-[e = _TMR1IF -> -> 0 `i `b ]
-[; ;LE4-7.c: 70: if(flag != 1)
-"70
-[e $ ! != _flag -> -> 1 `i `ui 98  ]
-[; ;LE4-7.c: 71: {
-"71
-{
-[; ;LE4-7.c: 72: TMR1 = maxCountDC2[maxCountIndex1];
-"72
-[e = _TMR1 -> *U + &U _maxCountDC2 * -> _maxCountIndex1 `ux -> -> # *U &U _maxCountDC2 `ui `ux `us ]
-"73
-}
-[; ;LE4-7.c: 73: }
-[e $U 99  ]
-"74
-[e :U 98 ]
-[; ;LE4-7.c: 74: else
-[; ;LE4-7.c: 75: {
-"75
-{
-[; ;LE4-7.c: 76: TMR1 = maxCountDC1[maxCountIndex1];
-"76
-[e = _TMR1 -> *U + &U _maxCountDC1 * -> _maxCountIndex1 `ux -> -> # *U &U _maxCountDC1 `ui `ux `us ]
-"77
-}
-[e :U 99 ]
-[; ;LE4-7.c: 77: }
-[; ;LE4-7.c: 78: RA0 = RA0^1;
-"78
-[e = _RA0 -> ^ -> _RA0 `i -> 1 `i `b ]
-[; ;LE4-7.c: 79: flag = !flag;
-"79
-[e = _flag -> -> ! != _flag -> -> 0 `i `ui `i `ui ]
-"81
+[; ;LE4-7.c: 64: TMR0IF = 0;
+"64
+[e = _TMR0IF -> -> 0 `i `b ]
+[; ;LE4-7.c: 65: count_flag = 1;
+"65
+[e = _count_flag -> -> 1 `i `ui ]
+"66
 }
 [e :U 97 ]
-[; ;LE4-7.c: 81: }
+[; ;LE4-7.c: 66: }
+[; ;LE4-7.c: 67: GIE = 1;
+"67
+[e = _GIE -> -> 1 `i `b ]
+[; ;LE4-7.c: 68: }
+"68
+[e :UE 96 ]
+}
+"71
+[v _main `(v ~T0 @X0 1 ef ]
+"72
+{
+[; ;LE4-7.c: 71: void main()
+[; ;LE4-7.c: 72: {
+[e :U _main ]
+[f ]
+[; ;LE4-7.c: 74: PR2 = PR2Values[frequencyIndex];
+"74
+[e = _PR2 -> *U + &U _PR2Values * -> _frequencyIndex `ux -> -> # *U &U _PR2Values `ui `ux `uc ]
+[; ;LE4-7.c: 75: CCPR1L = (timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x3FC) >> 2;
+"75
+[e = _CCPR1L -> >> & *U + &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux * -> _dutyCycleIndex `ux -> -> # *U &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux `ui `ux -> -> 1020 `i `ui -> 2 `i `uc ]
+[; ;LE4-7.c: 76: CCP1CON = ((timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x003) << 4) + 0x0C;
+"76
+[e = _CCP1CON -> + << & *U + &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux * -> _dutyCycleIndex `ux -> -> # *U &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux `ui `ux -> -> 3 `i `ui -> 4 `i -> -> 12 `i `ui `uc ]
+[; ;LE4-7.c: 77: T2CON = 0x06;
+"77
+[e = _T2CON -> -> 6 `i `uc ]
+[; ;LE4-7.c: 80: OPTION_REG = 0x44;
+"80
+[e = _OPTION_REG -> -> 68 `i `uc ]
 [; ;LE4-7.c: 82: GIE = 1;
 "82
 [e = _GIE -> -> 1 `i `b ]
-[; ;LE4-7.c: 83: }
+[; ;LE4-7.c: 83: PEIE = 1;
 "83
-[e :UE 96 ]
-}
-"85
-[v _debounce `(v ~T0 @X0 1 ef ]
-"86
-{
-[; ;LE4-7.c: 85: void debounce()
-[; ;LE4-7.c: 86: {
-[e :U _debounce ]
-[f ]
-[; ;LE4-7.c: 87: while(RD0 == 1 || RD1 == 1)
-"87
-[e $U 101  ]
-[e :U 102 ]
-[; ;LE4-7.c: 88: {
-"88
-{
-[; ;LE4-7.c: 89: if(RD0 == 1)
-"89
-[e $ ! == -> _RD0 `i -> 1 `i 104  ]
-[; ;LE4-7.c: 90: {
-"90
-{
-[; ;LE4-7.c: 91: incrementDutyCycle();
-"91
-[e ( _incrementDutyCycle ..  ]
-[; ;LE4-7.c: 92: pseudocode();
-"92
-[e ( _pseudocode ..  ]
-"93
-}
-[e :U 104 ]
-[; ;LE4-7.c: 93: }
-[; ;LE4-7.c: 94: if(RD1 == 1)
-"94
-[e $ ! == -> _RD1 `i -> 1 `i 105  ]
-[; ;LE4-7.c: 95: {
-"95
-{
-[; ;LE4-7.c: 96: incrementFrequency();
-"96
-[e ( _incrementFrequency ..  ]
-[; ;LE4-7.c: 97: pseudocode();
-"97
-[e ( _pseudocode ..  ]
-"98
-}
-[e :U 105 ]
-[; ;LE4-7.c: 98: }
-[; ;LE4-7.c: 99: for(int i = 0; i < 10000; i++);
-"99
-{
-[v _i `i ~T0 @X0 1 a ]
-[e = _i -> 0 `i ]
-[e $ < _i -> 10000 `i 106  ]
-[e $U 107  ]
-[e :U 106 ]
-[e ++ _i -> 1 `i ]
-[e $ < _i -> 10000 `i 106  ]
-[e :U 107 ]
-}
-"100
-}
-[e :U 101 ]
-"87
-[e $ || == -> _RD0 `i -> 1 `i == -> _RD1 `i -> 1 `i 102  ]
-[e :U 103 ]
-[; ;LE4-7.c: 100: }
-[; ;LE4-7.c: 101: }
-"101
-[e :UE 100 ]
-}
-"104
-[v _main `(v ~T0 @X0 1 ef ]
-"105
-{
-[; ;LE4-7.c: 104: void main()
-[; ;LE4-7.c: 105: {
-[e :U _main ]
-[f ]
-[; ;LE4-7.c: 106: ADCON1 = 0x06;
-"106
-[e = _ADCON1 -> -> 6 `i `uc ]
-[; ;LE4-7.c: 107: TRISA = 0x00;
-"107
-[e = _TRISA -> -> 0 `i `uc ]
-[; ;LE4-7.c: 108: T1CON = 0x30;
-"108
-[e = _T1CON -> -> 48 `i `uc ]
-[; ;LE4-7.c: 109: TMR1IE = 1;
-"109
-[e = _TMR1IE -> -> 1 `i `b ]
-[; ;LE4-7.c: 110: TMR1IF = 0;
-"110
-[e = _TMR1IF -> -> 0 `i `b ]
-[; ;LE4-7.c: 111: PEIE = 1;
-"111
 [e = _PEIE -> -> 1 `i `b ]
-[; ;LE4-7.c: 112: GIE = 1;
-"112
-[e = _GIE -> -> 1 `i `b ]
-[; ;LE4-7.c: 114: RA0 = 0;
-"114
-[e = _RA0 -> -> 0 `i `b ]
-[; ;LE4-7.c: 115: TMR1 = maxCountDC1[maxCountIndex1];
-"115
-[e = _TMR1 -> *U + &U _maxCountDC1 * -> _maxCountIndex1 `ux -> -> # *U &U _maxCountDC1 `ui `ux `us ]
-[; ;LE4-7.c: 116: TMR1ON = 1;
-"116
-[e = _TMR1ON -> -> 1 `i `b ]
-[; ;LE4-7.c: 119: TRISD = 0xFF;
-"119
+[; ;LE4-7.c: 84: INTE = 1;
+"84
+[e = _INTE -> -> 1 `i `b ]
+[; ;LE4-7.c: 85: TMR0IE = 1;
+"85
+[e = _TMR0IE -> -> 1 `i `b ]
+[; ;LE4-7.c: 86: TMR0IF = 0;
+"86
+[e = _TMR0IF -> -> 0 `i `b ]
+[; ;LE4-7.c: 89: TRISC = 0x00;
+"89
+[e = _TRISC -> -> 0 `i `uc ]
+[; ;LE4-7.c: 90: TRISD = 0xFF;
+"90
 [e = _TRISD -> -> 255 `i `uc ]
-[; ;LE4-7.c: 120: for(;;)
-"120
+[; ;LE4-7.c: 91: TRISB = 0x00;
+"91
+[e = _TRISB -> -> 0 `i `uc ]
+[; ;LE4-7.c: 92: RC2 = 0;
+"92
+[e = _RC2 -> -> 0 `i `b ]
+[; ;LE4-7.c: 95: displayMode();
+"95
+[e ( _displayMode ..  ]
+[; ;LE4-7.c: 97: for(;;)
+"97
 {
+"98
+[e :U 99 ]
+[; ;LE4-7.c: 98: {
+{
+[; ;LE4-7.c: 100: if(RD0 == 1)
+"100
+[e $ ! == -> _RD0 `i -> 1 `i 102  ]
+[; ;LE4-7.c: 101: {
+"101
+{
+[; ;LE4-7.c: 102: delay();
+"102
+[e ( _delay ..  ]
+[; ;LE4-7.c: 103: incDutyCycle();
+"103
+[e ( _incDutyCycle ..  ]
+[; ;LE4-7.c: 104: PR2 = PR2Values[frequencyIndex];
+"104
+[e = _PR2 -> *U + &U _PR2Values * -> _frequencyIndex `ux -> -> # *U &U _PR2Values `ui `ux `uc ]
+[; ;LE4-7.c: 105: CCPR1L = (timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x3FC) >> 2;
+"105
+[e = _CCPR1L -> >> & *U + &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux * -> _dutyCycleIndex `ux -> -> # *U &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux `ui `ux -> -> 1020 `i `ui -> 2 `i `uc ]
+[; ;LE4-7.c: 106: CCP1CON = ((timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x003) << 4) + 0x0C;
+"106
+[e = _CCP1CON -> + << & *U + &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux * -> _dutyCycleIndex `ux -> -> # *U &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux `ui `ux -> -> 3 `i `ui -> 4 `i -> -> 12 `i `ui `uc ]
+[; ;LE4-7.c: 107: displayMode();
+"107
+[e ( _displayMode ..  ]
+"108
+}
+[e :U 102 ]
+[; ;LE4-7.c: 108: }
+[; ;LE4-7.c: 109: if(RD1 == 1)
+"109
+[e $ ! == -> _RD1 `i -> 1 `i 103  ]
+[; ;LE4-7.c: 110: {
+"110
+{
+[; ;LE4-7.c: 111: delay();
+"111
+[e ( _delay ..  ]
+[; ;LE4-7.c: 112: incFrequency();
+"112
+[e ( _incFrequency ..  ]
+[; ;LE4-7.c: 113: PR2 = PR2Values[frequencyIndex];
+"113
+[e = _PR2 -> *U + &U _PR2Values * -> _frequencyIndex `ux -> -> # *U &U _PR2Values `ui `ux `uc ]
+[; ;LE4-7.c: 114: CCPR1L = timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x003;
+"114
+[e = _CCPR1L -> & *U + &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux * -> _dutyCycleIndex `ux -> -> # *U &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux `ui `ux -> -> 3 `i `ui `uc ]
+[; ;LE4-7.c: 115: CCP1CON = (timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x3FC) >> 2;
+"115
+[e = _CCP1CON -> >> & *U + &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux * -> _dutyCycleIndex `ux -> -> # *U &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux `ui `ux -> -> 1020 `i `ui -> 2 `i `uc ]
+[; ;LE4-7.c: 116: displayMode();
+"116
+[e ( _displayMode ..  ]
+"117
+}
+[e :U 103 ]
+"118
+}
+[; ;LE4-7.c: 117: }
+[; ;LE4-7.c: 118: }
+[e $U 99  ]
+[e :U 100 ]
+}
+[; ;LE4-7.c: 119: }
+"119
+[e :UE 98 ]
+}
 "121
-[e :U 110 ]
-[; ;LE4-7.c: 121: {
-{
-[; ;LE4-7.c: 122: debounce();
+[v _displayMode `(v ~T0 @X0 1 ef ]
 "122
-[e ( _debounce ..  ]
-"123
-}
-[; ;LE4-7.c: 123: }
-[e $U 110  ]
-[e :U 111 ]
-}
-[; ;LE4-7.c: 124: }
-"124
-[e :UE 109 ]
-}
-"128
-[v _pseudocode `(v ~T0 @X0 1 ef ]
-"129
 {
-[; ;LE4-7.c: 128: void pseudocode()
-[; ;LE4-7.c: 129: {
-[e :U _pseudocode ]
+[; ;LE4-7.c: 121: void displayMode()
+[; ;LE4-7.c: 122: {
+[e :U _displayMode ]
 [f ]
-[; ;LE4-7.c: 130: switch(dutyCycleIndex)
+[; ;LE4-7.c: 130: PORTB = 0x00;
 "130
-[e $U 115  ]
-[; ;LE4-7.c: 131: {
+[e = _PORTB -> -> 0 `i `uc ]
 "131
-{
-[; ;LE4-7.c: 132: case 0:
+[v _temp `ui ~T0 @X0 1 a ]
+[; ;LE4-7.c: 131: unsigned int temp = 0x00;
+[e = _temp -> -> 0 `i `ui ]
 "132
-[e :U 116 ]
+[v _temp2 `ui ~T0 @X0 1 a ]
+[; ;LE4-7.c: 132: unsigned int temp2 = 0x00;
+[e = _temp2 -> -> 0 `i `ui ]
 [; ;LE4-7.c: 133: switch(frequencyIndex)
 "133
-[e $U 118  ]
+[e $U 106  ]
 [; ;LE4-7.c: 134: {
 "134
 {
 [; ;LE4-7.c: 135: case 0:
 "135
-[e :U 119 ]
-[; ;LE4-7.c: 136: maxCountIndex1 = 0;
+[e :U 107 ]
+[; ;LE4-7.c: 136: temp = 0x01;
 "136
-[e = _maxCountIndex1 -> -> 0 `i `ui ]
+[e = _temp -> -> 1 `i `ui ]
 [; ;LE4-7.c: 137: break;
 "137
-[e $U 117  ]
+[e $U 105  ]
 [; ;LE4-7.c: 138: case 1:
 "138
-[e :U 120 ]
-[; ;LE4-7.c: 139: maxCountIndex1 = 1;
+[e :U 108 ]
+[; ;LE4-7.c: 139: temp = 0x02;
 "139
-[e = _maxCountIndex1 -> -> 1 `i `ui ]
+[e = _temp -> -> 2 `i `ui ]
 [; ;LE4-7.c: 140: break;
 "140
-[e $U 117  ]
+[e $U 105  ]
 [; ;LE4-7.c: 141: case 2:
 "141
-[e :U 121 ]
-[; ;LE4-7.c: 142: maxCountIndex1 = 2;
+[e :U 109 ]
+[; ;LE4-7.c: 142: temp = 0x03;
 "142
-[e = _maxCountIndex1 -> -> 2 `i `ui ]
+[e = _temp -> -> 3 `i `ui ]
 [; ;LE4-7.c: 143: break;
 "143
-[e $U 117  ]
-[; ;LE4-7.c: 144: default:
+[e $U 105  ]
 "144
-[e :U 122 ]
-[; ;LE4-7.c: 145: return;
-"145
-[e $UE 113  ]
-[; ;LE4-7.c: 146: break;
-"146
-[e $U 117  ]
-"147
 }
-[; ;LE4-7.c: 147: }
-[e $U 117  ]
+[; ;LE4-7.c: 144: }
+[e $U 105  ]
 "133
-[e :U 118 ]
-[e [\ _frequencyIndex , $ -> -> 0 `i `ui 119
- , $ -> -> 1 `i `ui 120
- , $ -> -> 2 `i `ui 121
- 122 ]
+[e :U 106 ]
+[e [\ _frequencyIndex , $ -> -> 0 `i `ui 107
+ , $ -> -> 1 `i `ui 108
+ , $ -> -> 2 `i `ui 109
+ 105 ]
+"144
+[e :U 105 ]
+[; ;LE4-7.c: 145: switch(dutyCycleIndex)
+"145
+[e $U 111  ]
+[; ;LE4-7.c: 146: {
+"146
+{
+[; ;LE4-7.c: 147: case 0:
 "147
-[e :U 117 ]
-[; ;LE4-7.c: 148: break;
+[e :U 112 ]
+[; ;LE4-7.c: 148: temp2 = 0x01 << 2;
 "148
-[e $U 114  ]
-[; ;LE4-7.c: 149: case 1:
+[e = _temp2 -> << -> 1 `i -> 2 `i `ui ]
+[; ;LE4-7.c: 149: break;
 "149
-[e :U 123 ]
-[; ;LE4-7.c: 150: switch(frequencyIndex)
+[e $U 110  ]
+[; ;LE4-7.c: 150: case 1:
 "150
-[e $U 125  ]
-[; ;LE4-7.c: 151: {
+[e :U 113 ]
+[; ;LE4-7.c: 151: temp2 = 0x02 << 2;
 "151
-{
-[; ;LE4-7.c: 152: case 0:
+[e = _temp2 -> << -> 2 `i -> 2 `i `ui ]
+[; ;LE4-7.c: 152: break;
 "152
-[e :U 126 ]
-[; ;LE4-7.c: 153: maxCountIndex1 = 3;
+[e $U 110  ]
+[; ;LE4-7.c: 153: case 2:
 "153
-[e = _maxCountIndex1 -> -> 3 `i `ui ]
-[; ;LE4-7.c: 154: break;
-"154
-[e $U 124  ]
-[; ;LE4-7.c: 155: case 1:
-"155
-[e :U 127 ]
-[; ;LE4-7.c: 156: maxCountIndex1 = 4;
-"156
-[e = _maxCountIndex1 -> -> 4 `i `ui ]
-[; ;LE4-7.c: 157: break;
-"157
-[e $U 124  ]
-[; ;LE4-7.c: 158: case 2:
-"158
-[e :U 128 ]
-[; ;LE4-7.c: 159: maxCountIndex1 = 5;
-"159
-[e = _maxCountIndex1 -> -> 5 `i `ui ]
-[; ;LE4-7.c: 160: break;
-"160
-[e $U 124  ]
-[; ;LE4-7.c: 161: default:
-"161
-[e :U 129 ]
-[; ;LE4-7.c: 162: return;
-"162
-[e $UE 113  ]
-[; ;LE4-7.c: 163: break;
-"163
-[e $U 124  ]
-"164
-}
-[; ;LE4-7.c: 164: }
-[e $U 124  ]
-"150
-[e :U 125 ]
-[e [\ _frequencyIndex , $ -> -> 0 `i `ui 126
- , $ -> -> 1 `i `ui 127
- , $ -> -> 2 `i `ui 128
- 129 ]
-"164
-[e :U 124 ]
-[; ;LE4-7.c: 165: break;
-"165
-[e $U 114  ]
-[; ;LE4-7.c: 166: case 2:
-"166
-[e :U 130 ]
-[; ;LE4-7.c: 167: switch(frequencyIndex)
-"167
-[e $U 132  ]
-[; ;LE4-7.c: 168: {
-"168
-{
-[; ;LE4-7.c: 169: case 0:
-"169
-[e :U 133 ]
-[; ;LE4-7.c: 170: maxCountIndex1 = 6;
-"170
-[e = _maxCountIndex1 -> -> 6 `i `ui ]
-[; ;LE4-7.c: 171: break;
-"171
-[e $U 131  ]
-[; ;LE4-7.c: 172: case 1:
-"172
-[e :U 134 ]
-[; ;LE4-7.c: 173: maxCountIndex1 = 7;
-"173
-[e = _maxCountIndex1 -> -> 7 `i `ui ]
-[; ;LE4-7.c: 174: break;
-"174
-[e $U 131  ]
-[; ;LE4-7.c: 175: case 2:
-"175
-[e :U 135 ]
-[; ;LE4-7.c: 176: maxCountIndex1 = 8;
-"176
-[e = _maxCountIndex1 -> -> 8 `i `ui ]
-[; ;LE4-7.c: 177: break;
-"177
-[e $U 131  ]
-[; ;LE4-7.c: 178: default:
-"178
-[e :U 136 ]
-[; ;LE4-7.c: 179: return;
-"179
-[e $UE 113  ]
-[; ;LE4-7.c: 180: break;
-"180
-[e $U 131  ]
-"181
-}
-[; ;LE4-7.c: 181: }
-[e $U 131  ]
-"167
-[e :U 132 ]
-[e [\ _frequencyIndex , $ -> -> 0 `i `ui 133
- , $ -> -> 1 `i `ui 134
- , $ -> -> 2 `i `ui 135
- 136 ]
-"181
-[e :U 131 ]
-[; ;LE4-7.c: 182: break;
-"182
-[e $U 114  ]
-[; ;LE4-7.c: 183: case 3:
-"183
-[e :U 137 ]
-[; ;LE4-7.c: 184: switch(frequencyIndex)
-"184
-[e $U 139  ]
-[; ;LE4-7.c: 185: {
-"185
-{
-[; ;LE4-7.c: 186: case 0:
-"186
-[e :U 140 ]
-[; ;LE4-7.c: 187: maxCountIndex1 = 9;
-"187
-[e = _maxCountIndex1 -> -> 9 `i `ui ]
-[; ;LE4-7.c: 188: break;
-"188
-[e $U 138  ]
-[; ;LE4-7.c: 189: case 1:
-"189
-[e :U 141 ]
-[; ;LE4-7.c: 190: maxCountIndex1 = 10;
-"190
-[e = _maxCountIndex1 -> -> 10 `i `ui ]
-[; ;LE4-7.c: 191: break;
-"191
-[e $U 138  ]
-[; ;LE4-7.c: 192: case 2:
-"192
-[e :U 142 ]
-[; ;LE4-7.c: 193: maxCountIndex1 = 11;
-"193
-[e = _maxCountIndex1 -> -> 11 `i `ui ]
-[; ;LE4-7.c: 194: break;
-"194
-[e $U 138  ]
-[; ;LE4-7.c: 195: default:
-"195
-[e :U 143 ]
-[; ;LE4-7.c: 196: return;
-"196
-[e $UE 113  ]
-[; ;LE4-7.c: 197: break;
-"197
-[e $U 138  ]
-"198
-}
-[; ;LE4-7.c: 198: }
-[e $U 138  ]
-"184
-[e :U 139 ]
-[e [\ _frequencyIndex , $ -> -> 0 `i `ui 140
- , $ -> -> 1 `i `ui 141
- , $ -> -> 2 `i `ui 142
- 143 ]
-"198
-[e :U 138 ]
-[; ;LE4-7.c: 199: break;
-"199
-[e $U 114  ]
-[; ;LE4-7.c: 200: case 4:
-"200
-[e :U 144 ]
-[; ;LE4-7.c: 201: switch(frequencyIndex)
-"201
-[e $U 146  ]
-[; ;LE4-7.c: 202: {
-"202
-{
-[; ;LE4-7.c: 203: case 0:
-"203
-[e :U 147 ]
-[; ;LE4-7.c: 204: maxCountIndex1 = 12;
-"204
-[e = _maxCountIndex1 -> -> 12 `i `ui ]
-[; ;LE4-7.c: 205: break;
-"205
-[e $U 145  ]
-[; ;LE4-7.c: 206: case 1:
-"206
-[e :U 148 ]
-[; ;LE4-7.c: 207: maxCountIndex1 = 13;
-"207
-[e = _maxCountIndex1 -> -> 13 `i `ui ]
-[; ;LE4-7.c: 208: break;
-"208
-[e $U 145  ]
-[; ;LE4-7.c: 209: case 2:
-"209
-[e :U 149 ]
-[; ;LE4-7.c: 210: maxCountIndex1 = 14;
-"210
-[e = _maxCountIndex1 -> -> 14 `i `ui ]
-[; ;LE4-7.c: 211: break;
-"211
-[e $U 145  ]
-[; ;LE4-7.c: 212: default:
-"212
-[e :U 150 ]
-[; ;LE4-7.c: 213: return;
-"213
-[e $UE 113  ]
-[; ;LE4-7.c: 214: break;
-"214
-[e $U 145  ]
-"215
-}
-[; ;LE4-7.c: 215: }
-[e $U 145  ]
-"201
-[e :U 146 ]
-[e [\ _frequencyIndex , $ -> -> 0 `i `ui 147
- , $ -> -> 1 `i `ui 148
- , $ -> -> 2 `i `ui 149
- 150 ]
-"215
-[e :U 145 ]
-[; ;LE4-7.c: 216: break;
-"216
-[e $U 114  ]
-[; ;LE4-7.c: 217: default:
-"217
-[e :U 151 ]
-[; ;LE4-7.c: 218: return;
-"218
-[e $UE 113  ]
-[; ;LE4-7.c: 219: break;
-"219
-[e $U 114  ]
-"220
-}
-[; ;LE4-7.c: 220: }
-[e $U 114  ]
-"130
-[e :U 115 ]
-[e [\ _dutyCycleIndex , $ -> -> 0 `i `ui 116
- , $ -> -> 1 `i `ui 123
- , $ -> -> 2 `i `ui 130
- , $ -> -> 3 `i `ui 137
- , $ -> -> 4 `i `ui 144
- 151 ]
-"220
 [e :U 114 ]
-[; ;LE4-7.c: 221: }
-"221
-[e :UE 113 ]
+[; ;LE4-7.c: 154: temp2 = 0x03 << 2;
+"154
+[e = _temp2 -> << -> 3 `i -> 2 `i `ui ]
+[; ;LE4-7.c: 155: break;
+"155
+[e $U 110  ]
+[; ;LE4-7.c: 156: case 3:
+"156
+[e :U 115 ]
+[; ;LE4-7.c: 157: temp2 = 0x04 << 2;
+"157
+[e = _temp2 -> << -> 4 `i -> 2 `i `ui ]
+[; ;LE4-7.c: 158: break;
+"158
+[e $U 110  ]
+[; ;LE4-7.c: 159: case 4:
+"159
+[e :U 116 ]
+[; ;LE4-7.c: 160: temp2 = 0x05 << 2;
+"160
+[e = _temp2 -> << -> 5 `i -> 2 `i `ui ]
+[; ;LE4-7.c: 161: break;
+"161
+[e $U 110  ]
+"162
 }
-"222
-[v _incrementDutyCycle `(v ~T0 @X0 1 ef ]
-"223
+[; ;LE4-7.c: 162: }
+[e $U 110  ]
+"145
+[e :U 111 ]
+[e [\ _dutyCycleIndex , $ -> -> 0 `i `ui 112
+ , $ -> -> 1 `i `ui 113
+ , $ -> -> 2 `i `ui 114
+ , $ -> -> 3 `i `ui 115
+ , $ -> -> 4 `i `ui 116
+ 110 ]
+"162
+[e :U 110 ]
+[; ;LE4-7.c: 163: PORTB = temp + temp2;
+"163
+[e = _PORTB -> + _temp _temp2 `uc ]
+[; ;LE4-7.c: 164: }
+"164
+[e :UE 104 ]
+}
+"166
+[v _delay `(v ~T0 @X0 1 ef ]
+"167
 {
-[; ;LE4-7.c: 222: void incrementDutyCycle()
-[; ;LE4-7.c: 223: {
-[e :U _incrementDutyCycle ]
+[; ;LE4-7.c: 166: void delay()
+[; ;LE4-7.c: 167: {
+[e :U _delay ]
 [f ]
-[; ;LE4-7.c: 224: if(dutyCycleIndex == 4)
-"224
-[e $ ! == _dutyCycleIndex -> -> 4 `i `ui 153  ]
-[; ;LE4-7.c: 225: dutyCycleIndex = 0;
-"225
+"171
+[v _localClock `i ~T0 @X0 1 a ]
+[; ;LE4-7.c: 171: int localClock = 0;
+[e = _localClock -> 0 `i ]
+[; ;LE4-7.c: 172: while(localClock < 98)
+"172
+[e $U 118  ]
+[e :U 119 ]
+[; ;LE4-7.c: 173: {
+"173
+{
+[; ;LE4-7.c: 174: if(count_flag == 1)
+"174
+[e $ ! == _count_flag -> -> 1 `i `ui 121  ]
+[; ;LE4-7.c: 175: {
+"175
+{
+[; ;LE4-7.c: 176: count_flag = 0;
+"176
+[e = _count_flag -> -> 0 `i `ui ]
+[; ;LE4-7.c: 177: localClock++;
+"177
+[e ++ _localClock -> 1 `i ]
+"178
+}
+[e :U 121 ]
+"179
+}
+[e :U 118 ]
+"172
+[e $ < _localClock -> 98 `i 119  ]
+[e :U 120 ]
+[; ;LE4-7.c: 178: }
+[; ;LE4-7.c: 179: }
+[; ;LE4-7.c: 180: }
+"180
+[e :UE 117 ]
+}
+"183
+[v _incDutyCycle `(v ~T0 @X0 1 ef ]
+"184
+{
+[; ;LE4-7.c: 183: void incDutyCycle()
+[; ;LE4-7.c: 184: {
+[e :U _incDutyCycle ]
+[f ]
+[; ;LE4-7.c: 185: if(dutyCycleIndex < 4)
+"185
+[e $ ! < _dutyCycleIndex -> -> 4 `i `ui 123  ]
+[; ;LE4-7.c: 186: dutyCycleIndex++;
+"186
+[e ++ _dutyCycleIndex -> -> 1 `i `ui ]
+[e $U 124  ]
+"187
+[e :U 123 ]
+[; ;LE4-7.c: 187: else
+[; ;LE4-7.c: 188: dutyCycleIndex = 0;
+"188
 [e = _dutyCycleIndex -> -> 0 `i `ui ]
-[e $U 154  ]
-"226
-[e :U 153 ]
-[; ;LE4-7.c: 226: else
-[; ;LE4-7.c: 227: dutyCycleIndex += 1;
-"227
-[e =+ _dutyCycleIndex -> -> 1 `i `ui ]
-[e :U 154 ]
-[; ;LE4-7.c: 228: }
-"228
-[e :UE 152 ]
+[e :U 124 ]
+[; ;LE4-7.c: 189: }
+"189
+[e :UE 122 ]
 }
-"230
-[v _incrementFrequency `(v ~T0 @X0 1 ef ]
-"231
+"191
+[v _incFrequency `(v ~T0 @X0 1 ef ]
+"192
 {
-[; ;LE4-7.c: 230: void incrementFrequency()
-[; ;LE4-7.c: 231: {
-[e :U _incrementFrequency ]
+[; ;LE4-7.c: 191: void incFrequency()
+[; ;LE4-7.c: 192: {
+[e :U _incFrequency ]
 [f ]
-[; ;LE4-7.c: 232: if(frequencyIndex == 2)
-"232
-[e $ ! == _frequencyIndex -> -> 2 `i `ui 156  ]
-[; ;LE4-7.c: 233: frequencyIndex = 0;
-"233
+[; ;LE4-7.c: 193: if(frequencyIndex < 2)
+"193
+[e $ ! < _frequencyIndex -> -> 2 `i `ui 126  ]
+[; ;LE4-7.c: 194: frequencyIndex++;
+"194
+[e ++ _frequencyIndex -> -> 1 `i `ui ]
+[e $U 127  ]
+"195
+[e :U 126 ]
+[; ;LE4-7.c: 195: else
+[; ;LE4-7.c: 196: frequencyIndex = 0;
+"196
 [e = _frequencyIndex -> -> 0 `i `ui ]
-[e $U 157  ]
-"234
-[e :U 156 ]
-[; ;LE4-7.c: 234: else
-[; ;LE4-7.c: 235: frequencyIndex += 1;
-"235
-[e =+ _frequencyIndex -> -> 1 `i `ui ]
-[e :U 157 ]
-[; ;LE4-7.c: 236: }
-"236
-[e :UE 155 ]
+[e :U 127 ]
+[; ;LE4-7.c: 197: }
+"197
+[e :UE 125 ]
 }

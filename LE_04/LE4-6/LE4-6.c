@@ -1,20 +1,20 @@
-/*
- * NOTES:
- * CCP Module 
- * Capture/Compare/PWM Module 16-bit
- * CAPTURE MODE
- * both the CCP1 and CCP2 modules are idRB7tical in operation, with the exception being 
- * the operation of the special evRB7t trigger
- *  prescaler of 1:8 for Timer1
- *   timeout = 1/(frequRB7cy / 4) * 8 * 1 (Timer Max Count is set to 1 since we need to determine the timeout per Timer1 incremRB7t)
- *   t im eou t = 8x10-6 s 
- *   t im eou tn = 8x10-6 s x 1x106 = 8 s
-*/
-
+ /*======================================================================================================
+* FILE        : LE4-6.c
+* AUTHOR      : Josh Ratificar,
+*               Rodjean Gere
+* DESCRIPTION : This program utilizes the Capture Module of the PIC16F877A microcontroller to measure the period of a PWM signal.
+*               The period of the PWM signal coming in at RC2 is displayed on an LCD screen.
+* TOOLS       : MPLAB, XC8 Compiler, Microbrn, K150 Programmer, PIC16F877A, Visual Studio Code, and Proteus for simulation.
+* COPYRIGHT   : 19 March, 2024
+* REVISION HISTORY:
+*   19 March, 2024: Initial Release of Completed Code. Start of actual documentation
+======================================================================================================*/
 #include <xc.h> 
 #include <stdio.h>
 
-// Configuration settings
+/*=============================================== 
+ *   HEADER FILES
+ *==============================================*/
 #pragma config FOSC = XT 
 #pragma config WDTE = OFF 
 #pragma config PWRTE = ON 
@@ -26,18 +26,15 @@
 #define _XTAL_FREQ 4000000
 
 
-/*=======================
-CONSTANTS and GLobal Variables
-=======================*/
-// #define RB5 RB5; // Register select
-// #define RB6 RB6; // Read/Write
-// #define RB7 RB7; // RB7able
+/*=============================================== 
+ *   CONSTANTS and GLobal Variables
+ *==============================================*/
 int period = 0; 
 char periodStr[20];
 
-/*=======================
-FUNCTION PROTOTYPES
-=======================*/
+/*=============================================== 
+ *   FUNCTION PROTOTYPES
+ *==============================================*/
 void interrupt ISR(void);
 void delay(void);
 void initLCD(void);
@@ -45,17 +42,13 @@ void instCtrl(unsigned char cmd);
 void dataCtrl(unsigned char dat);
 void printStr(const unsigned char *stringIn);
 
-
-
-void delay(void)
-{
-    int i;
-    for(i=0;i<1000;i++);
-}
-
-/*=======================
-INTERRUPT SERVICE ROUTINE
-=======================*/
+/*===============================================
+*   FUNCTION           : ISR
+*   DESCRIPTION        : This function is the interrupt service routine for the program.
+*                        It is used to calculate the period of the PWM signal coming in at RC2.
+*   PARAMETERS         : VOID
+*   RETURNS            : VOID
+*===============================================*/
 void interrupt ISR(void)
 {
     GIE = 0; // disable all unmasked interrupts (INTCON reg) 
@@ -63,66 +56,21 @@ void interrupt ISR(void)
     {
         CCP1IF = 0; // cleaRB5 interrupt flag
         TMR1 = 0; // resets TMR1 
-        // period = CCPR1/1000; // transfeRB5 captured TMR1 value
-        // normalize the value (make the number smaller)
         period = (CCPR1/125) + 1; 
         sprintf(periodStr, "%u", period);
-        // We iterate through the periodStr array and add 30 to each
-        // elemRB7t to convert the ASCII value to the actual number
-        // for(int i = 0; i < 20; i++)
-        // {
-        //     if (periodStr[i] != '\0')
-        //         periodStr[i] += '0';
-        // }
     }
     GIE = 1; // RB7able all unmasked interrupts (INTCON reg)
 }
 
 
-/*=======================
-LCD FUNCTIONS
-========================*/
-void initLCD()
-{
-    instCtrl(0x38); // 8-bit mode, 2-line, 5x7 font
-    instCtrl(0x08); // Display off
-    instCtrl(0x01); // Clear display
-    instCtrl(0x06); // IncremRB7t cuRB5or
-    instCtrl(0x0C); // Display on, cuRB5or off
-}
-
-void instCtrl(unsigned char cmd)
-{
-    RB5 = 0; // Instruction register
-    RB6 = 0; // Write operation
-    PORTD = cmd; // SRB7d command to LCD
-    RB7 = 1; // RB7able H->L
-    delay();
-    RB7 = 0; // Disable H->L
-}
-
-void dataCtrl(unsigned char dat)
-{
-
-    RB5 = 1; // Data register
-    RB6 = 0; // Write operation
-    PORTD = dat; // SRB7d data to LCD
-    RB7 = 1; // RB7able H->L
-    delay();
-    RB7 = 0; // Disable H->L
-}
-
-void printStr(const unsigned char *stringIn)
-{
-    while(*stringIn)
-    {
-        dataCtrl(*stringIn);
-        stringIn++;
-    }
-}
-
-
-
+/*===============================================
+*   FUNCTION           : main
+*   DESCRIPTION        : This function is the main routine for the program. It sets up the Capture Module
+*                        of the PIC16F877A microcontroller to measure the period of a PWM signal. The period
+*                        of the PWM signal coming in at RC2 is displayed on an LCD screen.
+*   PARAMETERS         : VOID
+*   RETURNS            : VOID
+*===============================================*/
 void main() 
 {
     TRISC = 0x04; // set RC2 to input
@@ -157,4 +105,83 @@ void main()
         printStr(" ms");
         delay(); // delay
     }   
+}
+
+/*===============================================
+*   FUNCTION           : delay
+*   DESCRIPTION        : This function is used to create a delay in the program
+*   PARAMETERS         : VOID
+*   RETURNS            : VOID
+*===============================================*/
+void delay(void)
+{
+    int i;
+    for(i=0;i<1000;i++);
+}
+
+
+/*===============================================
+*   FUNCTION           : initLCD
+*   DESCRIPTION        : This function is used to initialize the LCD
+*   PARAMETERS         : VOID
+*   RETURNS            : VOID
+*===============================================*/
+void initLCD()
+{
+    instCtrl(0x38); // 8-bit mode, 2-line, 5x7 font
+    instCtrl(0x08); // Display off
+    instCtrl(0x01); // Clear display
+    instCtrl(0x06); // IncremRB7t cuRB5or
+    instCtrl(0x0C); // Display on, cuRB5or off
+}
+
+
+/*===============================================
+*   FUNCTION           : instCtrl
+*   DESCRIPTION        : This function is used to send instructions to the LCD
+*   PARAMETERS         : unsigned char cmd
+*   RETURNS            : VOID
+*===============================================*/
+void instCtrl(unsigned char cmd)
+{
+    RB5 = 0; // Instruction register
+    RB6 = 0; // Write operation
+    PORTD = cmd; // SRB7d command to LCD
+    RB7 = 1; // RB7able H->L
+    delay();
+    RB7 = 0; // Disable H->L
+}
+
+
+/*===============================================
+*   FUNCTION           : dataCtrl
+*   DESCRIPTION        : This function is used to send data to the LCD
+*   PARAMETERS         : unsigned char dat
+*   RETURNS            : VOID
+*===============================================*/
+void dataCtrl(unsigned char dat)
+{
+
+    RB5 = 1; // Data register
+    RB6 = 0; // Write operation
+    PORTD = dat; // SRB7d data to LCD
+    RB7 = 1; // RB7able H->L
+    delay();
+    RB7 = 0; // Disable H->L
+}
+
+
+/*===============================================
+*   FUNCTION           : printStr
+*   DESCRIPTION        : This function is used to print a string to the LCD
+*   PARAMETERS         : const unsigned char *stringIn
+*   RETURNS            : VOID
+*===============================================*/
+void printStr(const unsigned char *stringIn)
+{
+    while(*stringIn)
+    {
+        dataCtrl(*stringIn);
+        stringIn++;
+    }
 }

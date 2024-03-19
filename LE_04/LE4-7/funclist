@@ -1,8 +1,9 @@
-_debounce: CODE, 303 0 57
-_ISR: CODE, 360 0 50
-_main: CODE, 410 0 44
-_incrementDutyCycle: CODE, 486 0 15
+_incFrequency: CODE, 566 0 17
+_incDutyCycle: CODE, 583 0 17
+_delay: CODE, 477 0 33
+_ISR: CODE, 510 0 20
+_displayMode: CODE, 366 0 73
+_main: CODE, 43 0 323
 __initialization: CODE, 21 0 18
-_pseudocode: CODE, 43 0 182
-_incrementFrequency: CODE, 471 0 15
-Total: 381
+___bmul: CODE, 530 0 19
+Total: 520

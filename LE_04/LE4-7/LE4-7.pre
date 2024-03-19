@@ -1436,209 +1436,161 @@ extern __nonreentrant void _delay(unsigned long);
 #pragma config WRT = OFF
 #pragma config CP = OFF
 
-# 28
-unsigned int frequencies[3] = {10, 100, 1000};
-unsigned int dutyCycles[5] = {10, 25, 50, 75, 95};
+# 30
+unsigned int flag = 1;
 unsigned int frequencyIndex = 0;
 unsigned int dutyCycleIndex = 0;
-unsigned int flag = 1;
+unsigned int count_flag = 0;
 
-unsigned int maxCountDC1[15] = {
-0xFB1D, 0xFF82, 0xFFF2,
-0xF3CA, 0xFEC6, 0xFFDF,
-0xE795, 0xFD8E, 0xFFC0,
-0xDB60, 0xFC55, 0xFFA1,
-0xD19C, 0xFB5B, 0xFF88
-};
-unsigned int maxCountIndex1 = 0;
-
-unsigned int maxCountDC2[] = {
-0xD40D, 0xFB9A, 0xFF8E,
-0xDB60, 0xFC55, 0xFFA1,
-0xE795, 0xFD8E, 0xFFC0,
-0xF3CA, 0xFEC6, 0xFFDF,
-0xFD8E, 0xFFC0, 0xFFF8
+unsigned int PR2Values[3] = {
+0xCF, 0x7C, 0x3E
 };
 
-# 54
-void incrementDutyCycle();
-void incrementFrequency();
-void pseudocode();
-void interrupt ISR(void);
-void debounce();
+# 44
+unsigned int timerMaxCount[3][5] = {
+{0x53, 0xD0, 0x1A1, 0x271, 0x318},
+{0x32, 0x7D, 0xFA, 0x177, 0x1DB},
+{0x19, 0x3F, 0x7D, 0xBC, 0xEE}
+};
 
-# 64
-void interrupt ISR(void)
+# 53
+void incDutyCycle();
+void incFrequency();
+void delay();
+void displayMode();
+
+
+void interrupt ISR()
 {
 GIE = 0;
-if(TMR1IF==1)
+if(TMR0IF)
 {
-TMR1IF = 0;
-if(flag != 1)
-{
-TMR1 = maxCountDC2[maxCountIndex1];
-}
-else
-{
-TMR1 = maxCountDC1[maxCountIndex1];
-}
-RA0 = RA0^1;
-flag = !flag;
-
+TMR0IF = 0;
+count_flag = 1;
 }
 GIE = 1;
-}
-
-void debounce()
-{
-while(RD0 == 1 || RD1 == 1)
-{
-if(RD0 == 1)
-{
-incrementDutyCycle();
-pseudocode();
-}
-if(RD1 == 1)
-{
-incrementFrequency();
-pseudocode();
-}
-for(int i = 0; i < 10000; i++);
-}
 }
 
 
 void main()
 {
-ADCON1 = 0x06;
-TRISA = 0x00;
-T1CON = 0x30;
-TMR1IE = 1;
-TMR1IF = 0;
-PEIE = 1;
+
+PR2 = PR2Values[frequencyIndex];
+CCPR1L = (timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x3FC) >> 2;
+CCP1CON = ((timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x003) << 4) + 0x0C;
+T2CON = 0x06;
+
+
+OPTION_REG = 0x44;
+
 GIE = 1;
+PEIE = 1;
+INTE = 1;
+TMR0IE = 1;
+TMR0IF = 0;
 
-RA0 = 0;
-TMR1 = maxCountDC1[maxCountIndex1];
-TMR1ON = 1;
 
-
+TRISC = 0x00;
 TRISD = 0xFF;
+TRISB = 0x00;
+RC2 = 0;
+
+
+displayMode();
+
 for(;;)
 {
-debounce();
-}
-}
 
-
-
-void pseudocode()
+if(RD0 == 1)
 {
+delay();
+incDutyCycle();
+PR2 = PR2Values[frequencyIndex];
+CCPR1L = (timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x3FC) >> 2;
+CCP1CON = ((timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x003) << 4) + 0x0C;
+displayMode();
+}
+if(RD1 == 1)
+{
+delay();
+incFrequency();
+PR2 = PR2Values[frequencyIndex];
+CCPR1L = timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x003;
+CCP1CON = (timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x3FC) >> 2;
+displayMode();
+}
+}
+}
+
+void displayMode()
+{
+
+# 130
+PORTB = 0x00;
+unsigned int temp = 0x00;
+unsigned int temp2 = 0x00;
+switch(frequencyIndex)
+{
+case 0:
+temp = 0x01;
+break;
+case 1:
+temp = 0x02;
+break;
+case 2:
+temp = 0x03;
+break;
+}
 switch(dutyCycleIndex)
 {
 case 0:
-switch(frequencyIndex)
-{
-case 0:
-maxCountIndex1 = 0;
+temp2 = 0x01 << 2;
 break;
 case 1:
-maxCountIndex1 = 1;
+temp2 = 0x02 << 2;
 break;
 case 2:
-maxCountIndex1 = 2;
-break;
-default:
-return;
-break;
-}
-break;
-case 1:
-switch(frequencyIndex)
-{
-case 0:
-maxCountIndex1 = 3;
-break;
-case 1:
-maxCountIndex1 = 4;
-break;
-case 2:
-maxCountIndex1 = 5;
-break;
-default:
-return;
-break;
-}
-break;
-case 2:
-switch(frequencyIndex)
-{
-case 0:
-maxCountIndex1 = 6;
-break;
-case 1:
-maxCountIndex1 = 7;
-break;
-case 2:
-maxCountIndex1 = 8;
-break;
-default:
-return;
-break;
-}
+temp2 = 0x03 << 2;
 break;
 case 3:
-switch(frequencyIndex)
-{
-case 0:
-maxCountIndex1 = 9;
-break;
-case 1:
-maxCountIndex1 = 10;
-break;
-case 2:
-maxCountIndex1 = 11;
-break;
-default:
-return;
-break;
-}
+temp2 = 0x04 << 2;
 break;
 case 4:
-switch(frequencyIndex)
+temp2 = 0x05 << 2;
+break;
+}
+PORTB = temp + temp2;
+}
+
+void delay()
 {
-case 0:
-maxCountIndex1 = 12;
-break;
-case 1:
-maxCountIndex1 = 13;
-break;
-case 2:
-maxCountIndex1 = 14;
-break;
-default:
-return;
-break;
-}
-break;
-default:
-return;
-break;
-}
-}
-void incrementDutyCycle()
+
+
+
+int localClock = 0;
+while(localClock < 98)
 {
-if(dutyCycleIndex == 4)
+if(count_flag == 1)
+{
+count_flag = 0;
+localClock++;
+}
+}
+}
+
+
+void incDutyCycle()
+{
+if(dutyCycleIndex < 4)
+dutyCycleIndex++;
+else
 dutyCycleIndex = 0;
-else
-dutyCycleIndex += 1;
 }
 
-void incrementFrequency()
+void incFrequency()
 {
-if(frequencyIndex == 2)
-frequencyIndex = 0;
+if(frequencyIndex < 2)
+frequencyIndex++;
 else
-frequencyIndex += 1;
+frequencyIndex = 0;
 }
-

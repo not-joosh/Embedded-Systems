@@ -103,28 +103,36 @@
 [v ___fltoee __fltoee `(d  1 e 3 0 ]
 "49 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\pic\ftdiv.c
 [v ___ftdiv __ftdiv `(f  1 e 3 0 ]
-"64 C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c
+"59 C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c
 [v _ISR ISR `II(v  1 e 0 0 ]
-"85
-[v _debounce debounce `(v  1 e 0 0 ]
-"104
+"71
 [v _main main `(v  1 e 0 0 ]
-"128
-[v _pseudocode pseudocode `(v  1 e 0 0 ]
-"222
-[v _incrementDutyCycle incrementDutyCycle `(v  1 e 0 0 ]
-"230
-[v _incrementFrequency incrementFrequency `(v  1 e 0 0 ]
-"617 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f877a.h
-[v _TMR1 TMR1 `VEus  1 e 2 @14 ]
-"635
-[v _T1CON T1CON `VEuc  1 e 1 @16 ]
-"1286
-[v _TRISA TRISA `VEuc  1 e 1 @133 ]
+"121
+[v _displayMode displayMode `(v  1 e 0 0 ]
+"166
+[v _delay delay `(v  1 e 0 0 ]
+"183
+[v _incDutyCycle incDutyCycle `(v  1 e 0 0 ]
+"191
+[v _incFrequency incFrequency `(v  1 e 0 0 ]
+"207 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f877a.h
+[v _PORTB PORTB `VEuc  1 e 1 @6 ]
+"715
+[v _T2CON T2CON `VEuc  1 e 1 @18 ]
+"866
+[v _CCPR1L CCPR1L `VEuc  1 e 1 @21 ]
+"878
+[v _CCP1CON CCP1CON `VEuc  1 e 1 @23 ]
+"1217
+[v _OPTION_REG OPTION_REG `VEuc  1 e 1 @129 ]
+"1335
+[v _TRISB TRISB `VEuc  1 e 1 @134 ]
+"1396
+[v _TRISC TRISC `VEuc  1 e 1 @135 ]
 "1457
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
-"2173
-[v _ADCON1 ADCON1 `VEuc  1 e 1 @159 ]
+"1768
+[v _PR2 PR2 `VEuc  1 e 1 @146 ]
 "2231
 [v _EEDATA EEDATA `VEuc  1 e 1 @268 ]
 "2237
@@ -137,71 +145,84 @@
 [v _CARRY CARRY `VEb  1 e 0 @24 ]
 "2441
 [v _GIE GIE `VEb  1 e 0 @95 ]
+"2461
+[v _INTE INTE `VEb  1 e 0 @92 ]
 "2481
 [v _PEIE PEIE `VEb  1 e 0 @94 ]
-"2499
-[v _RA0 RA0 `VEb  1 e 0 @40 ]
+"2535
+[v _RC2 RC2 `VEb  1 e 0 @58 ]
 "2559
 [v _RD RD `VEb  1 e 0 @3168 ]
 "2561
 [v _RD0 RD0 `VEb  1 e 0 @64 ]
 "2563
 [v _RD1 RD1 `VEb  1 e 0 @65 ]
-"2653
-[v _TMR1IE TMR1IE `VEb  1 e 0 @1120 ]
-"2655
-[v _TMR1IF TMR1IF `VEb  1 e 0 @96 ]
-"2657
-[v _TMR1ON TMR1ON `VEb  1 e 0 @128 ]
+"2647
+[v _TMR0IE TMR0IE `VEb  1 e 0 @93 ]
+"2649
+[v _TMR0IF TMR0IF `VEb  1 e 0 @90 ]
 "2759
 [v _WR WR `VEb  1 e 0 @3169 ]
 "2761
 [v _WREN WREN `VEb  1 e 0 @3170 ]
-"28 C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c
-[v _frequencies frequencies `[3]ui  1 e 6 0 ]
-"29
-[v _dutyCycles dutyCycles `[5]ui  1 e 10 0 ]
-"30
-[v _frequencyIndex frequencyIndex `ui  1 e 2 0 ]
-"31
-[v _dutyCycleIndex dutyCycleIndex `ui  1 e 2 0 ]
-"32
+"30 C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c
 [v _flag flag `ui  1 e 2 0 ]
-"34
-[v _maxCountDC1 maxCountDC1 `[15]ui  1 e 30 0 ]
-"41
-[v _maxCountIndex1 maxCountIndex1 `ui  1 e 2 0 ]
-"43
-[v _maxCountDC2 maxCountDC2 `[15]ui  1 e 30 0 ]
-"104
+"31
+[v _frequencyIndex frequencyIndex `ui  1 e 2 0 ]
+"32
+[v _dutyCycleIndex dutyCycleIndex `ui  1 e 2 0 ]
+"33
+[v _count_flag count_flag `ui  1 e 2 0 ]
+"35
+[v _PR2Values PR2Values `[3]ui  1 e 6 0 ]
+"44
+[v _timerMaxCount timerMaxCount `[3][5]ui  1 e 30 0 ]
+"71
 [v _main main `(v  1 e 0 0 ]
 {
-"124
+"119
 } 0
-"85
-[v _debounce debounce `(v  1 e 0 0 ]
+"191
+[v _incFrequency incFrequency `(v  1 e 0 0 ]
 {
-"99
-[v debounce@i i `i  1 a 2 0 ]
-"101
+"197
 } 0
-"128
-[v _pseudocode pseudocode `(v  1 e 0 0 ]
+"183
+[v _incDutyCycle incDutyCycle `(v  1 e 0 0 ]
 {
-"221
+"189
 } 0
-"230
-[v _incrementFrequency incrementFrequency `(v  1 e 0 0 ]
+"121
+[v _displayMode displayMode `(v  1 e 0 0 ]
 {
-"236
+"132
+[v displayMode@temp2 temp2 `ui  1 a 2 2 ]
+"131
+[v displayMode@temp temp `ui  1 a 2 0 ]
+"164
 } 0
-"222
-[v _incrementDutyCycle incrementDutyCycle `(v  1 e 0 0 ]
+"166
+[v _delay delay `(v  1 e 0 0 ]
 {
-"228
+"171
+[v delay@localClock localClock `i  1 a 2 0 ]
+"180
 } 0
-"64
+"4 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul8.c
+[v ___bmul __bmul `(uc  1 e 1 0 ]
+{
+[v ___bmul@multiplier multiplier `uc  1 a 1 wreg ]
+"6
+[v ___bmul@product product `uc  1 a 1 2 ]
+"4
+[v ___bmul@multiplier multiplier `uc  1 a 1 wreg ]
+[v ___bmul@multiplicand multiplicand `uc  1 p 1 0 ]
+"6
+[v ___bmul@multiplier multiplier `uc  1 a 1 3 ]
+"51
+} 0
+"59 C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c
 [v _ISR ISR `II(v  1 e 0 0 ]
 {
-"83
+"68
 } 0
