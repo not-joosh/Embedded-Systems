@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC LITE Macro Assembler V1.33 build 59893 
-                                                                                               Tue Mar 19 09:15:46 2024
+                                                                                               Tue Mar 19 09:52:14 2024
 
 Microchip Technology Omniscient Code Generator (Lite mode) build 59893
      1                           	processor	16F877A
@@ -304,7 +304,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    298 ;;
    299 ;; *************** function _main *****************
    300 ;; Defined at:
-   301 ;;		line 71 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
+   301 ;;		line 96 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
    302 ;; Parameters:    Size  Location     Type
    303 ;;		None
    304 ;; Auto vars:     Size  Location     Type
@@ -339,7 +339,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    333                           ;psect for function _main
    334  002B                     _main:	
    335                           
-   336                           ;LE4-7.c: 74: PR2 = PR2Values[frequencyIndex];
+   336                           ;LE4-7.c: 99: PR2 = PR2Values[frequencyIndex];
    337                           
    338                           ;incstack = 0
    339                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
@@ -356,7 +356,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    350  0035  1303               	bcf	3,6	;RP1=0, select bank1
    351  0036  0092               	movwf	18	;volatile
    352                           
-   353                           ;LE4-7.c: 75: CCPR1L = (timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x3FC) >> 2;
+   353                           ;LE4-7.c: 100: CCPR1L = (timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x3FC) >> 2;
    354  0037  0872               	movf	_dutyCycleIndex,w
    355  0038  1283               	bcf	3,5	;RP0=0, select bank0
    356  0039  1303               	bcf	3,6	;RP1=0, select bank0
@@ -396,8 +396,8 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    390  005E  084D               	movf	??_main+3,w
    391  005F  0095               	movwf	21	;volatile
    392                           
-   393                           ;LE4-7.c: 76: CCP1CON = ((timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x003) << 4) +
-      +                           0x0C;
+   393                           ;LE4-7.c: 101: CCP1CON = ((timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x003) << 4) 
+      +                          + 0x0C;
    394  0060  0872               	movf	_dutyCycleIndex,w
    395  0061  00CA               	movwf	??_main
    396  0062  3001               	movlw	1
@@ -436,68 +436,68 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    429  0085  3E0C               	addlw	12
    430  0086  0097               	movwf	23	;volatile
    431                           
-   432                           ;LE4-7.c: 77: T2CON = 0x06;
+   432                           ;LE4-7.c: 102: T2CON = 0x06;
    433  0087  3006               	movlw	6
    434  0088  0092               	movwf	18	;volatile
    435                           
-   436                           ;LE4-7.c: 80: OPTION_REG = 0x44;
+   436                           ;LE4-7.c: 105: OPTION_REG = 0x44;
    437  0089  3044               	movlw	68
    438  008A  1683               	bsf	3,5	;RP0=1, select bank1
    439  008B  1303               	bcf	3,6	;RP1=0, select bank1
    440  008C  0081               	movwf	1	;volatile
    441                           
-   442                           ;LE4-7.c: 82: GIE = 1;
+   442                           ;LE4-7.c: 107: GIE = 1;
    443  008D  178B               	bsf	11,7	;volatile
    444                           
-   445                           ;LE4-7.c: 83: PEIE = 1;
+   445                           ;LE4-7.c: 108: PEIE = 1;
    446  008E  170B               	bsf	11,6	;volatile
    447                           
-   448                           ;LE4-7.c: 84: INTE = 1;
+   448                           ;LE4-7.c: 109: INTE = 1;
    449  008F  160B               	bsf	11,4	;volatile
    450                           
-   451                           ;LE4-7.c: 85: TMR0IE = 1;
+   451                           ;LE4-7.c: 110: TMR0IE = 1;
    452  0090  168B               	bsf	11,5	;volatile
    453                           
-   454                           ;LE4-7.c: 86: TMR0IF = 0;
+   454                           ;LE4-7.c: 111: TMR0IF = 0;
    455  0091  110B               	bcf	11,2	;volatile
    456                           
-   457                           ;LE4-7.c: 89: TRISC = 0x00;
+   457                           ;LE4-7.c: 114: TRISC = 0x00;
    458  0092  0187               	clrf	7	;volatile
    459                           
-   460                           ;LE4-7.c: 90: TRISD = 0xFF;
+   460                           ;LE4-7.c: 115: TRISD = 0xFF;
    461  0093  30FF               	movlw	255
    462  0094  0088               	movwf	8	;volatile
    463                           
-   464                           ;LE4-7.c: 91: TRISB = 0x00;
+   464                           ;LE4-7.c: 116: TRISB = 0x00;
    465  0095  0186               	clrf	6	;volatile
    466                           
-   467                           ;LE4-7.c: 92: RC2 = 0;
+   467                           ;LE4-7.c: 117: RC2 = 0;
    468  0096  1283               	bcf	3,5	;RP0=0, select bank0
    469  0097  1303               	bcf	3,6	;RP1=0, select bank0
    470  0098  1107               	bcf	7,2	;volatile
    471  0099                     L1:	
    472                           
-   473                           ;LE4-7.c: 95: displayMode();
+   473                           ;LE4-7.c: 120: displayMode();
    474  0099  120A  118A  216E  120A  118A  	fcall	_displayMode
    475  009E                     l998:	
-   476                           ;LE4-7.c: 97: for(;;)
+   476                           ;LE4-7.c: 122: for(;;)
    477                           
    478                           
-   479                           ;LE4-7.c: 98: {
-   480                           ;LE4-7.c: 100: if(RD0 == 1)
+   479                           ;LE4-7.c: 123: {
+   480                           ;LE4-7.c: 125: if(RD0 == 1)
    481  009E  1283               	bcf	3,5	;RP0=0, select bank0
    482  009F  1303               	bcf	3,6	;RP1=0, select bank0
    483  00A0  1C08               	btfss	8,0	;volatile
    484  00A1  290D               	goto	l1012
    485                           
-   486                           ;LE4-7.c: 101: {
-   487                           ;LE4-7.c: 102: delay();
+   486                           ;LE4-7.c: 126: {
+   487                           ;LE4-7.c: 127: delay();
    488  00A2  120A  118A  21DD  120A  118A  	fcall	_delay
    489                           
-   490                           ;LE4-7.c: 103: incDutyCycle();
+   490                           ;LE4-7.c: 128: incDutyCycle();
    491  00A7  120A  118A  2247  120A  118A  	fcall	_incDutyCycle
    492                           
-   493                           ;LE4-7.c: 104: PR2 = PR2Values[frequencyIndex];
+   493                           ;LE4-7.c: 129: PR2 = PR2Values[frequencyIndex];
    494  00AC  0874               	movf	_frequencyIndex,w
    495  00AD  1283               	bcf	3,5	;RP0=0, select bank0
    496  00AE  1303               	bcf	3,6	;RP1=0, select bank0
@@ -511,7 +511,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    504  00B6  1303               	bcf	3,6	;RP1=0, select bank1
    505  00B7  0092               	movwf	18	;volatile
    506                           
-   507                           ;LE4-7.c: 105: CCPR1L = (timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x3FC) >> 2;
+   507                           ;LE4-7.c: 130: CCPR1L = (timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x3FC) >> 2;
    508  00B8  0872               	movf	_dutyCycleIndex,w
    509  00B9  1283               	bcf	3,5	;RP0=0, select bank0
    510  00BA  1303               	bcf	3,6	;RP1=0, select bank0
@@ -551,7 +551,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    544  00DF  084D               	movf	??_main+3,w
    545  00E0  0095               	movwf	21	;volatile
    546                           
-   547                           ;LE4-7.c: 106: CCP1CON = ((timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x003) << 4) 
+   547                           ;LE4-7.c: 131: CCP1CON = ((timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x003) << 4) 
       +                          + 0x0C;
    548  00E1  0872               	movf	_dutyCycleIndex,w
    549  00E2  00CA               	movwf	??_main
@@ -591,25 +591,25 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    583  0106  3E0C               	addlw	12
    584  0107  0097               	movwf	23	;volatile
    585                           
-   586                           ;LE4-7.c: 107: displayMode();
+   586                           ;LE4-7.c: 132: displayMode();
    587  0108  120A  118A  216E  120A  118A  	fcall	_displayMode
    588  010D                     l1012:	
    589                           
-   590                           ;LE4-7.c: 108: }
-   591                           ;LE4-7.c: 109: if(RD1 == 1)
+   590                           ;LE4-7.c: 133: }
+   591                           ;LE4-7.c: 134: if(RD1 == 1)
    592  010D  1283               	bcf	3,5	;RP0=0, select bank0
    593  010E  1303               	bcf	3,6	;RP1=0, select bank0
    594  010F  1C88               	btfss	8,1	;volatile
    595  0110  289E               	goto	l998
    596                           
-   597                           ;LE4-7.c: 110: {
-   598                           ;LE4-7.c: 111: delay();
+   597                           ;LE4-7.c: 135: {
+   598                           ;LE4-7.c: 136: delay();
    599  0111  120A  118A  21DD  120A  118A  	fcall	_delay
    600                           
-   601                           ;LE4-7.c: 112: incFrequency();
+   601                           ;LE4-7.c: 137: incFrequency();
    602  0116  120A  118A  2236  120A  118A  	fcall	_incFrequency
    603                           
-   604                           ;LE4-7.c: 113: PR2 = PR2Values[frequencyIndex];
+   604                           ;LE4-7.c: 138: PR2 = PR2Values[frequencyIndex];
    605  011B  0874               	movf	_frequencyIndex,w
    606  011C  1283               	bcf	3,5	;RP0=0, select bank0
    607  011D  1303               	bcf	3,6	;RP1=0, select bank0
@@ -623,7 +623,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    615  0125  1303               	bcf	3,6	;RP1=0, select bank1
    616  0126  0092               	movwf	18	;volatile
    617                           
-   618                           ;LE4-7.c: 114: CCPR1L = timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x003;
+   618                           ;LE4-7.c: 139: CCPR1L = timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x003;
    619  0127  0872               	movf	_dutyCycleIndex,w
    620  0128  1283               	bcf	3,5	;RP0=0, select bank0
    621  0129  1303               	bcf	3,6	;RP1=0, select bank0
@@ -653,7 +653,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    645  0144  3903               	andlw	3
    646  0145  0095               	movwf	21	;volatile
    647                           
-   648                           ;LE4-7.c: 115: CCP1CON = (timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x3FC) >> 2;
+   648                           ;LE4-7.c: 140: CCP1CON = (timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x3FC) >> 2;
    649  0146  0872               	movf	_dutyCycleIndex,w
    650  0147  00CA               	movwf	??_main
    651  0148  3001               	movlw	1
@@ -692,17 +692,17 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    684  016C  0097               	movwf	23	;volatile
    685  016D  2899               	goto	L1
    686  016E                     __end_of_main:	
-   687                           ;LE4-7.c: 117: }
-   688                           ;LE4-7.c: 118: }
+   687                           ;LE4-7.c: 142: }
+   688                           ;LE4-7.c: 143: }
    689                           
-   690                           ;LE4-7.c: 116: displayMode();
+   690                           ;LE4-7.c: 141: displayMode();
    691                           
    692                           
    693                           	psect	text1
    694  0236                     __ptext1:	
    695 ;; *************** function _incFrequency *****************
    696 ;; Defined at:
-   697 ;;		line 191 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
+   697 ;;		line 239 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
    698 ;; Parameters:    Size  Location     Type
    699 ;;		None
    700 ;; Auto vars:     Size  Location     Type
@@ -734,7 +734,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    726                           ;psect for function _incFrequency
    727  0236                     _incFrequency:	
    728                           
-   729                           ;LE4-7.c: 193: if(frequencyIndex < 2)
+   729                           ;LE4-7.c: 241: if(frequencyIndex < 2)
    730                           
    731                           ;incstack = 0
    732                           ; Regs used in _incFrequency: [wreg+status,2]
@@ -746,7 +746,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    738  023B  1803               	skipnc
    739  023C  2A44               	goto	l790
    740                           
-   741                           ;LE4-7.c: 194: frequencyIndex++;
+   741                           ;LE4-7.c: 242: frequencyIndex++;
    742  023D  3001               	movlw	1
    743  023E  07F4               	addwf	_frequencyIndex,f
    744  023F  1803               	skipnc
@@ -756,8 +756,8 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    748  0243  0008               	return
    749  0244                     l790:	
    750                           
-   751                           ;LE4-7.c: 195: else
-   752                           ;LE4-7.c: 196: frequencyIndex = 0;
+   751                           ;LE4-7.c: 243: else
+   752                           ;LE4-7.c: 244: frequencyIndex = 0;
    753  0244  01F4               	clrf	_frequencyIndex
    754  0245  01F5               	clrf	_frequencyIndex+1
    755  0246  0008               	return
@@ -767,7 +767,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    759  0247                     __ptext2:	
    760 ;; *************** function _incDutyCycle *****************
    761 ;; Defined at:
-   762 ;;		line 183 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
+   762 ;;		line 225 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
    763 ;; Parameters:    Size  Location     Type
    764 ;;		None
    765 ;; Auto vars:     Size  Location     Type
@@ -799,7 +799,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    791                           ;psect for function _incDutyCycle
    792  0247                     _incDutyCycle:	
    793                           
-   794                           ;LE4-7.c: 185: if(dutyCycleIndex < 4)
+   794                           ;LE4-7.c: 227: if(dutyCycleIndex < 4)
    795                           
    796                           ;incstack = 0
    797                           ; Regs used in _incDutyCycle: [wreg+status,2]
@@ -811,7 +811,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    803  024C  1803               	skipnc
    804  024D  2A55               	goto	l784
    805                           
-   806                           ;LE4-7.c: 186: dutyCycleIndex++;
+   806                           ;LE4-7.c: 228: dutyCycleIndex++;
    807  024E  3001               	movlw	1
    808  024F  07F2               	addwf	_dutyCycleIndex,f
    809  0250  1803               	skipnc
@@ -821,8 +821,8 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    813  0254  0008               	return
    814  0255                     l784:	
    815                           
-   816                           ;LE4-7.c: 187: else
-   817                           ;LE4-7.c: 188: dutyCycleIndex = 0;
+   816                           ;LE4-7.c: 229: else
+   817                           ;LE4-7.c: 230: dutyCycleIndex = 0;
    818  0255  01F2               	clrf	_dutyCycleIndex
    819  0256  01F3               	clrf	_dutyCycleIndex+1
    820  0257  0008               	return
@@ -832,7 +832,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    824  016E                     __ptext3:	
    825 ;; *************** function _displayMode *****************
    826 ;; Defined at:
-   827 ;;		line 121 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
+   827 ;;		line 155 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
    828 ;; Parameters:    Size  Location     Type
    829 ;;		None
    830 ;; Auto vars:     Size  Location     Type
@@ -865,7 +865,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    857                           ;psect for function _displayMode
    858  016E                     _displayMode:	
    859                           
-   860                           ;LE4-7.c: 130: PORTB = 0x00;
+   860                           ;LE4-7.c: 157: PORTB = 0x00;
    861                           
    862                           ;incstack = 0
    863                           ; Regs used in _displayMode: [wreg-fsr0h+status,2+status,0]
@@ -873,49 +873,49 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    865  016F  1303               	bcf	3,6	;RP1=0, select bank0
    866  0170  0186               	clrf	6	;volatile
    867                           
-   868                           ;LE4-7.c: 131: unsigned int temp = 0x00;
+   868                           ;LE4-7.c: 158: unsigned int temp = 0x00;
    869  0171  01C6               	clrf	displayMode@temp
    870  0172  01C7               	clrf	displayMode@temp+1
    871                           
-   872                           ;LE4-7.c: 132: unsigned int temp2 = 0x00;
+   872                           ;LE4-7.c: 159: unsigned int temp2 = 0x00;
    873  0173  01C8               	clrf	displayMode@temp2
    874  0174  01C9               	clrf	displayMode@temp2+1
    875                           
-   876                           ;LE4-7.c: 133: switch(frequencyIndex)
+   876                           ;LE4-7.c: 160: switch(frequencyIndex)
    877  0175  297F               	goto	l916
    878  0176                     l908:	
-   879                           ;LE4-7.c: 134: {
-   880                           ;LE4-7.c: 135: case 0:
+   879                           ;LE4-7.c: 161: {
+   880                           ;LE4-7.c: 162: case 0:
    881                           
    882                           
-   883                           ;LE4-7.c: 136: temp = 0x01;
+   883                           ;LE4-7.c: 163: temp = 0x01;
    884  0176  3001               	movlw	1
    885  0177  297B               	goto	L3
    886  0178                     l910:	
-   887                           ;LE4-7.c: 138: case 1:
+   887                           ;LE4-7.c: 165: case 1:
    888                           
-   889                           ;LE4-7.c: 137: break;
+   889                           ;LE4-7.c: 164: break;
    890                           
    891                           
-   892                           ;LE4-7.c: 139: temp = 0x02;
+   892                           ;LE4-7.c: 166: temp = 0x02;
    893  0178  3002               	movlw	2
    894  0179  297B               	goto	L3
    895  017A                     l912:	
-   896                           ;LE4-7.c: 141: case 2:
+   896                           ;LE4-7.c: 168: case 2:
    897                           
-   898                           ;LE4-7.c: 140: break;
+   898                           ;LE4-7.c: 167: break;
    899                           
    900                           
-   901                           ;LE4-7.c: 142: temp = 0x03;
+   901                           ;LE4-7.c: 169: temp = 0x03;
    902  017A  3003               	movlw	3
    903  017B                     L3:	
    904  017B  00C6               	movwf	displayMode@temp
    905  017C  3000               	movlw	0
    906  017D  00C7               	movwf	displayMode@temp+1
    907                           
-   908                           ;LE4-7.c: 144: }
+   908                           ;LE4-7.c: 171: }
    909                           
-   910                           ;LE4-7.c: 143: break;
+   910                           ;LE4-7.c: 170: break;
    911  017E  299D               	goto	l930
    912  017F                     l916:	
    913                           
@@ -956,59 +956,59 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    947  018D  297A               	goto	l912
    948  018E  299D               	goto	l930
    949                           
-   950                           ;LE4-7.c: 145: switch(dutyCycleIndex)
+   950                           ;LE4-7.c: 172: switch(dutyCycleIndex)
    951  018F  299D               	goto	l930
    952  0190                     l918:	
-   953                           ;LE4-7.c: 146: {
-   954                           ;LE4-7.c: 147: case 0:
+   953                           ;LE4-7.c: 173: {
+   954                           ;LE4-7.c: 174: case 0:
    955                           
    956                           
-   957                           ;LE4-7.c: 148: temp2 = 0x01 << 2;
+   957                           ;LE4-7.c: 175: temp2 = 0x01 << 2;
    958  0190  3004               	movlw	4
    959  0191  2999               	goto	L7
    960  0192                     l920:	
-   961                           ;LE4-7.c: 150: case 1:
+   961                           ;LE4-7.c: 177: case 1:
    962                           
-   963                           ;LE4-7.c: 149: break;
+   963                           ;LE4-7.c: 176: break;
    964                           
    965                           
-   966                           ;LE4-7.c: 151: temp2 = 0x02 << 2;
+   966                           ;LE4-7.c: 178: temp2 = 0x02 << 2;
    967  0192  3008               	movlw	8
    968  0193  2999               	goto	L7
    969  0194                     l922:	
-   970                           ;LE4-7.c: 153: case 2:
+   970                           ;LE4-7.c: 180: case 2:
    971                           
-   972                           ;LE4-7.c: 152: break;
+   972                           ;LE4-7.c: 179: break;
    973                           
    974                           
-   975                           ;LE4-7.c: 154: temp2 = 0x03 << 2;
+   975                           ;LE4-7.c: 181: temp2 = 0x03 << 2;
    976  0194  300C               	movlw	12
    977  0195  2999               	goto	L7
    978  0196                     l924:	
-   979                           ;LE4-7.c: 156: case 3:
+   979                           ;LE4-7.c: 183: case 3:
    980                           
-   981                           ;LE4-7.c: 155: break;
+   981                           ;LE4-7.c: 182: break;
    982                           
    983                           
-   984                           ;LE4-7.c: 157: temp2 = 0x04 << 2;
+   984                           ;LE4-7.c: 184: temp2 = 0x04 << 2;
    985  0196  3010               	movlw	16
    986  0197  2999               	goto	L7
    987  0198                     l926:	
-   988                           ;LE4-7.c: 159: case 4:
+   988                           ;LE4-7.c: 186: case 4:
    989                           
-   990                           ;LE4-7.c: 158: break;
+   990                           ;LE4-7.c: 185: break;
    991                           
    992                           
-   993                           ;LE4-7.c: 160: temp2 = 0x05 << 2;
+   993                           ;LE4-7.c: 187: temp2 = 0x05 << 2;
    994  0198  3014               	movlw	20
    995  0199                     L7:	
    996  0199  00C8               	movwf	displayMode@temp2
    997  019A  3000               	movlw	0
    998  019B  00C9               	movwf	displayMode@temp2+1
    999                           
-  1000                           ;LE4-7.c: 162: }
+  1000                           ;LE4-7.c: 189: }
   1001                           
-  1002                           ;LE4-7.c: 161: break;
+  1002                           ;LE4-7.c: 188: break;
   1003  019C  29B3               	goto	l932
   1004  019D                     l930:	
   1005                           
@@ -1056,7 +1056,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
   1046  01B2  29B3               	goto	l932
   1047  01B3                     l932:	
   1048                           
-  1049                           ;LE4-7.c: 163: PORTB = temp + temp2;
+  1049                           ;LE4-7.c: 190: PORTB = temp + temp2;
   1050  01B3  0848               	movf	displayMode@temp2,w
   1051  01B4  0746               	addwf	displayMode@temp,w
   1052  01B5  0086               	movwf	6	;volatile
@@ -1067,7 +1067,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
   1057  01DD                     __ptext4:	
   1058 ;; *************** function _delay *****************
   1059 ;; Defined at:
-  1060 ;;		line 166 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
+  1060 ;;		line 202 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
   1061 ;; Parameters:    Size  Location     Type
   1062 ;;		None
   1063 ;; Auto vars:     Size  Location     Type
@@ -1099,7 +1099,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
   1089                           ;psect for function _delay
   1090  01DD                     _delay:	
   1091                           
-  1092                           ;LE4-7.c: 171: int localClock = 0;
+  1092                           ;LE4-7.c: 207: int localClock = 0;
   1093                           
   1094                           ;incstack = 0
   1095                           ; Regs used in _delay: [wreg+status,2+btemp+1]
@@ -1108,7 +1108,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
   1098  01DF  01C6               	clrf	delay@localClock
   1099  01E0  01C7               	clrf	delay@localClock+1
   1100  01E1                     l950:	
-  1101                           ;LE4-7.c: 172: while(localClock < 98)
+  1101                           ;LE4-7.c: 208: while(localClock < 98)
   1102                           
   1103  01E1  1283               	bcf	3,5	;RP0=0, select bank0
   1104  01E2  1303               	bcf	3,6	;RP1=0, select bank0
@@ -1125,20 +1125,20 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
   1115  01EC  1803               	btfsc	3,0
   1116  01ED  0008               	return
   1117                           
-  1118                           ;LE4-7.c: 173: {
-  1119                           ;LE4-7.c: 174: if(count_flag == 1)
+  1118                           ;LE4-7.c: 209: {
+  1119                           ;LE4-7.c: 210: if(count_flag == 1)
   1120  01EE  3001               	movlw	1
   1121  01EF  0670               	xorwf	_count_flag,w
   1122  01F0  0471               	iorwf	_count_flag+1,w
   1123  01F1  1D03               	skipz
   1124  01F2  29E1               	goto	l950
   1125                           
-  1126                           ;LE4-7.c: 175: {
-  1127                           ;LE4-7.c: 176: count_flag = 0;
+  1126                           ;LE4-7.c: 211: {
+  1127                           ;LE4-7.c: 212: count_flag = 0;
   1128  01F3  01F0               	clrf	_count_flag
   1129  01F4  01F1               	clrf	_count_flag+1
   1130                           
-  1131                           ;LE4-7.c: 177: localClock++;
+  1131                           ;LE4-7.c: 213: localClock++;
   1132  01F5  3001               	movlw	1
   1133  01F6  1283               	bcf	3,5	;RP0=0, select bank0
   1134  01F7  1303               	bcf	3,6	;RP1=0, select bank0
@@ -1218,7 +1218,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
   1208  01FE                     __ptext6:	
   1209 ;; *************** function _ISR *****************
   1210 ;; Defined at:
-  1211 ;;		line 59 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
+  1211 ;;		line 76 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c"
   1212 ;; Parameters:    Size  Location     Type
   1213 ;;		None
   1214 ;; Auto vars:     Size  Location     Type
@@ -1249,26 +1249,26 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
   1239                           ;psect for function _ISR
   1240  01FE                     _ISR:	
   1241                           
-  1242                           ;LE4-7.c: 61: GIE = 0;
+  1242                           ;LE4-7.c: 78: GIE = 0;
   1243  01FE  138B               	bcf	11,7	;volatile
   1244                           
-  1245                           ;LE4-7.c: 62: if(TMR0IF)
+  1245                           ;LE4-7.c: 79: if(TMR0IF)
   1246  01FF  1D0B               	btfss	11,2	;volatile
   1247  0200  2A06               	goto	i1l634
   1248                           
-  1249                           ;LE4-7.c: 63: {
-  1250                           ;LE4-7.c: 64: TMR0IF = 0;
+  1249                           ;LE4-7.c: 80: {
+  1250                           ;LE4-7.c: 81: TMR0IF = 0;
   1251  0201  110B               	bcf	11,2	;volatile
   1252                           
-  1253                           ;LE4-7.c: 65: count_flag = 1;
+  1253                           ;LE4-7.c: 82: count_flag = 1;
   1254  0202  3001               	movlw	1
   1255  0203  00F0               	movwf	_count_flag
   1256  0204  3000               	movlw	0
   1257  0205  00F1               	movwf	_count_flag+1
   1258  0206                     i1l634:	
   1259                           
-  1260                           ;LE4-7.c: 66: }
-  1261                           ;LE4-7.c: 67: GIE = 1;
+  1260                           ;LE4-7.c: 83: }
+  1261                           ;LE4-7.c: 84: GIE = 1;
   1262  0206  178B               	bsf	11,7	;volatile
   1263  0207  0879               	movf	??_ISR+3,w
   1264  0208  00FF               	movwf	127
@@ -1461,7 +1461,7 @@ EEDATA             100      0       0       0        0.0%
 
 
 Microchip Technology PIC Macro Assembler V1.33 build 59893 
-Symbol Table                                                                                   Tue Mar 19 09:15:46 2024
+Symbol Table                                                                                   Tue Mar 19 09:52:14 2024
 
                       pc 0002             ?_displayMode 0076           ___bmul@product 0048  
             __CFG_CP$OFF 0000                       fsr 0004                      l910 0178  

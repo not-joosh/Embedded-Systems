@@ -103,17 +103,17 @@
 [v ___fltoee __fltoee `(d  1 e 3 0 ]
 "49 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\pic\ftdiv.c
 [v ___ftdiv __ftdiv `(f  1 e 3 0 ]
-"59 C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c
+"76 C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c
 [v _ISR ISR `II(v  1 e 0 0 ]
-"71
+"96
 [v _main main `(v  1 e 0 0 ]
-"121
+"155
 [v _displayMode displayMode `(v  1 e 0 0 ]
-"166
+"202
 [v _delay delay `(v  1 e 0 0 ]
-"183
+"225
 [v _incDutyCycle incDutyCycle `(v  1 e 0 0 ]
-"191
+"239
 [v _incFrequency incFrequency `(v  1 e 0 0 ]
 "207 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f877a.h
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
@@ -165,48 +165,48 @@
 [v _WR WR `VEb  1 e 0 @3169 ]
 "2761
 [v _WREN WREN `VEb  1 e 0 @3170 ]
-"30 C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c
+"39 C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c
 [v _flag flag `ui  1 e 2 0 ]
-"31
+"40
 [v _frequencyIndex frequencyIndex `ui  1 e 2 0 ]
-"32
+"41
 [v _dutyCycleIndex dutyCycleIndex `ui  1 e 2 0 ]
-"33
+"42
 [v _count_flag count_flag `ui  1 e 2 0 ]
-"35
+"45
 [v _PR2Values PR2Values `[3]ui  1 e 6 0 ]
-"44
+"54
 [v _timerMaxCount timerMaxCount `[3][5]ui  1 e 30 0 ]
-"71
+"96
 [v _main main `(v  1 e 0 0 ]
 {
-"119
+"144
 } 0
-"191
+"239
 [v _incFrequency incFrequency `(v  1 e 0 0 ]
 {
-"197
+"245
 } 0
-"183
+"225
 [v _incDutyCycle incDutyCycle `(v  1 e 0 0 ]
 {
-"189
+"231
 } 0
-"121
+"155
 [v _displayMode displayMode `(v  1 e 0 0 ]
 {
-"132
+"159
 [v displayMode@temp2 temp2 `ui  1 a 2 2 ]
-"131
+"158
 [v displayMode@temp temp `ui  1 a 2 0 ]
-"164
+"191
 } 0
-"166
+"202
 [v _delay delay `(v  1 e 0 0 ]
 {
-"171
+"207
 [v delay@localClock localClock `i  1 a 2 0 ]
-"180
+"216
 } 0
 "4 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul8.c
 [v ___bmul __bmul `(uc  1 e 1 0 ]
@@ -221,8 +221,8 @@
 [v ___bmul@multiplier multiplier `uc  1 a 1 3 ]
 "51
 } 0
-"59 C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c
+"76 C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c
 [v _ISR ISR `II(v  1 e 0 0 ]
 {
-"68
+"85
 } 0

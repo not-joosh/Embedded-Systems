@@ -1504,11 +1504,12 @@ extern int printf(const char *, ...);
 #pragma config WRT = OFF
 #pragma config CP = OFF
 
-# 35
+# 32
 int period = 0;
 char periodStr[20];
+unsigned int intrStall = 0;
 
-# 41
+# 39
 void interrupt ISR(void);
 void delay(void);
 void initLCD(void);
@@ -1516,15 +1517,7 @@ void instCtrl(unsigned char cmd);
 void dataCtrl(unsigned char dat);
 void printStr(const unsigned char *stringIn);
 
-
-
-void delay(void)
-{
-int i;
-for(i=0;i<1000;i++);
-}
-
-# 59
+# 53
 void interrupt ISR(void)
 {
 GIE = 0;
@@ -1532,58 +1525,18 @@ if(CCP1IF==1)
 {
 CCP1IF = 0;
 TMR1 = 0;
-
-
 period = (CCPR1/125) + 1;
+if(intrStall == 10)
+{
 sprintf(periodStr, "%u", period);
-
-# 77
+intrStall = 0;
+}
 }
 GIE = 1;
+intrStall += 1;
 }
 
-# 85
-void initLCD()
-{
-instCtrl(0x38);
-instCtrl(0x08);
-instCtrl(0x01);
-instCtrl(0x06);
-instCtrl(0x0C);
-}
-
-void instCtrl(unsigned char cmd)
-{
-RB5 = 0;
-RB6 = 0;
-PORTD = cmd;
-RB7 = 1;
-delay();
-RB7 = 0;
-}
-
-void dataCtrl(unsigned char dat)
-{
-
-RB5 = 1;
-RB6 = 0;
-PORTD = dat;
-RB7 = 1;
-delay();
-RB7 = 0;
-}
-
-void printStr(const unsigned char *stringIn)
-{
-while(*stringIn)
-{
-dataCtrl(*stringIn);
-stringIn++;
-}
-}
-
-
-
+# 80
 void main()
 {
 TRISC = 0x04;
@@ -1617,5 +1570,55 @@ dataCtrl(periodStr[i]);
 }
 printStr(" ms");
 delay();
+}
+}
+
+# 122
+void delay(void)
+{
+int i;
+for(i=0;i<1000;i++);
+}
+
+# 135
+void initLCD()
+{
+instCtrl(0x38);
+instCtrl(0x08);
+instCtrl(0x01);
+instCtrl(0x06);
+instCtrl(0x0C);
+}
+
+# 151
+void instCtrl(unsigned char cmd)
+{
+RB5 = 0;
+RB6 = 0;
+PORTD = cmd;
+RB7 = 1;
+delay();
+RB7 = 0;
+}
+
+# 168
+void dataCtrl(unsigned char dat)
+{
+
+RB5 = 1;
+RB6 = 0;
+PORTD = dat;
+RB7 = 1;
+delay();
+RB7 = 0;
+}
+
+# 186
+void printStr(const unsigned char *stringIn)
+{
+while(*stringIn)
+{
+dataCtrl(*stringIn);
+stringIn++;
 }
 }
