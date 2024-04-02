@@ -1,0 +1,868 @@
+
+
+Microchip Technology PIC LITE Macro Assembler V1.33 build 59893 
+                                                                                               Tue Apr 02 15:19:21 2024
+
+Microchip Technology Omniscient Code Generator (Lite mode) build 59893
+     1                           	processor	16F877A
+     2                           	opt	pw 120
+     3                           	opt	lm
+     4                           	psect	text0,local,class=CODE,merge=1,delta=2
+     5                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     6                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+     7                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1
+     8                           	psect	maintext,global,class=CODE,split=1,delta=2
+     9                           	psect	text1,local,class=CODE,merge=1,delta=2
+    10                           	psect	intentry,global,class=CODE,delta=2
+    11                           	psect	text2,local,class=CODE,merge=1,delta=2
+    12                           	psect	text3,local,class=CODE,merge=1,delta=2
+    13                           	dabs	1,0x7E,2
+    14  0000                     	;# 
+    15  0001                     	;# 
+    16  0002                     	;# 
+    17  0003                     	;# 
+    18  0004                     	;# 
+    19  0005                     	;# 
+    20  0006                     	;# 
+    21  0007                     	;# 
+    22  0008                     	;# 
+    23  0009                     	;# 
+    24  000A                     	;# 
+    25  000B                     	;# 
+    26  000C                     	;# 
+    27  000D                     	;# 
+    28  000E                     	;# 
+    29  000E                     	;# 
+    30  000F                     	;# 
+    31  0010                     	;# 
+    32  0011                     	;# 
+    33  0012                     	;# 
+    34  0013                     	;# 
+    35  0014                     	;# 
+    36  0015                     	;# 
+    37  0015                     	;# 
+    38  0016                     	;# 
+    39  0017                     	;# 
+    40  0018                     	;# 
+    41  0019                     	;# 
+    42  001A                     	;# 
+    43  001B                     	;# 
+    44  001B                     	;# 
+    45  001C                     	;# 
+    46  001D                     	;# 
+    47  001E                     	;# 
+    48  001F                     	;# 
+    49  0081                     	;# 
+    50  0085                     	;# 
+    51  0086                     	;# 
+    52  0087                     	;# 
+    53  0088                     	;# 
+    54  0089                     	;# 
+    55  008C                     	;# 
+    56  008D                     	;# 
+    57  008E                     	;# 
+    58  0091                     	;# 
+    59  0092                     	;# 
+    60  0093                     	;# 
+    61  0094                     	;# 
+    62  0098                     	;# 
+    63  0099                     	;# 
+    64  009C                     	;# 
+    65  009D                     	;# 
+    66  009E                     	;# 
+    67  009F                     	;# 
+    68  010C                     	;# 
+    69  010D                     	;# 
+    70  010E                     	;# 
+    71  010F                     	;# 
+    72  018C                     	;# 
+    73  018D                     	;# 
+    74  001F                     _ADCON0	set	31
+    75  001E                     _ADRESH	set	30
+    76  0006                     _PORTB	set	6
+    77  0066                     _ADIF	set	102
+    78  005F                     _GIE	set	95
+    79  00FA                     _GO	set	250
+    80  005E                     _PEIE	set	94
+    81  009F                     _ADCON1	set	159
+    82  009E                     _ADRESL	set	158
+    83  0086                     _TRISB	set	134
+    84  0466                     _ADIE	set	1126
+    85                           
+    86                           	psect	text0
+    87  0000                     __ptext0:	
+    88                           ; #config settings
+    89                           
+    90                           
+    91                           ;psect for function _delay
+    92  0000                     
+    93                           	psect	cinit
+    94  0015                     start_initialization:	
+    95  0015                     __initialization:	
+    96  0015                     end_of_initialization:	
+    97                           ;End of C runtime variable initialization code
+    98                           
+    99  0015                     __end_of__initialization:	
+   100  0015  0183               	clrf	3
+   101  0016  120A  118A  28F5   	ljmp	_main	;jump to C main() function
+   102                           
+   103                           	psect	cstackCOMMON
+   104  0070                     __pcstackCOMMON:	
+   105  0070                     ?_delay:	
+   106  0070                     ?_ISR:	
+   107                           ; 0 bytes @ 0x0
+   108                           
+   109  0070                     ?_main:	
+   110                           ; 0 bytes @ 0x0
+   111                           
+   112  0070                     ?_readADC:	
+   113                           ; 0 bytes @ 0x0
+   114                           
+   115  0070                     delay@delayIn:	
+   116                           ; 2 bytes @ 0x0
+   117                           
+   118                           
+   119                           ; 2 bytes @ 0x0
+   120  0070                     	ds	2
+   121  0072                     ??_readADC:	
+   122  0072                     ??_delay:	
+   123                           ; 0 bytes @ 0x2
+   124                           
+   125                           
+   126                           ; 0 bytes @ 0x2
+   127  0072                     	ds	1
+   128  0073                     delay@i:	
+   129                           
+   130                           ; 2 bytes @ 0x3
+   131  0073                     	ds	1
+   132  0074                     readADC@temp:	
+   133                           
+   134                           ; 2 bytes @ 0x4
+   135  0074                     	ds	2
+   136  0076                     ??_ISR:	
+   137                           
+   138                           ; 0 bytes @ 0x6
+   139  0076                     	ds	4
+   140  007A                     ISR@d_value:	
+   141                           
+   142                           ; 2 bytes @ 0xA
+   143  007A                     	ds	2
+   144                           
+   145                           	psect	cstackBANK0
+   146  0000                     __pcstackBANK0:	
+   147  0000                     ??_main:	
+   148                           
+   149                           	psect	maintext
+   150  00F5                     __pmaintext:	
+   151                           ; 0 bytes @ 0x0
+   152 ;;
+   153 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   154 ;;
+   155 ;; *************** function _main *****************
+   156 ;; Defined at:
+   157 ;;		line 82 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-1\LE5-1.c"
+   158 ;; Parameters:    Size  Location     Type
+   159 ;;		None
+   160 ;; Auto vars:     Size  Location     Type
+   161 ;;		None
+   162 ;; Return value:  Size  Location     Type
+   163 ;;		None               void
+   164 ;; Registers used:
+   165 ;;		wreg, status,2
+   166 ;; Tracked objects:
+   167 ;;		On entry : 17F/0
+   168 ;;		On exit  : 0/0
+   169 ;;		Unchanged: 0/0
+   170 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   171 ;;      Params:         0       0       0       0       0
+   172 ;;      Locals:         0       0       0       0       0
+   173 ;;      Temps:          0       0       0       0       0
+   174 ;;      Totals:         0       0       0       0       0
+   175 ;;Total ram usage:        0 bytes
+   176 ;; Hardware stack levels required when called:    2
+   177 ;; This function calls:
+   178 ;;		Nothing
+   179 ;; This function is called by:
+   180 ;;		Startup code after reset
+   181 ;; This function uses a non-reentrant model
+   182 ;;
+   183                           
+   184                           
+   185                           ;psect for function _main
+   186  00F5                     _main:	
+   187                           
+   188                           ;LE5-1.c: 84: TRISB = 0x00;
+   189                           
+   190                           ;incstack = 0
+   191                           ; Regs used in _main: [wreg+status,2]
+   192  00F5  1683               	bsf	3,5	;RP0=1, select bank1
+   193  00F6  1303               	bcf	3,6	;RP1=0, select bank1
+   194  00F7  0186               	clrf	6	;volatile
+   195                           
+   196                           ;LE5-1.c: 85: PORTB = 0x00;
+   197  00F8  1283               	bcf	3,5	;RP0=0, select bank0
+   198  00F9  1303               	bcf	3,6	;RP1=0, select bank0
+   199  00FA  0186               	clrf	6	;volatile
+   200                           
+   201                           ;LE5-1.c: 86: ADCON1 = 0x80;
+   202  00FB  3080               	movlw	128
+   203  00FC  1683               	bsf	3,5	;RP0=1, select bank1
+   204  00FD  1303               	bcf	3,6	;RP1=0, select bank1
+   205  00FE  009F               	movwf	31	;volatile
+   206                           
+   207                           ;LE5-1.c: 89: ADCON0 = 0x41;
+   208  00FF  3041               	movlw	65
+   209  0100  1283               	bcf	3,5	;RP0=0, select bank0
+   210  0101  1303               	bcf	3,6	;RP1=0, select bank0
+   211  0102  009F               	movwf	31	;volatile
+   212                           
+   213                           ;LE5-1.c: 91: PEIE = 1;
+   214  0103  170B               	bsf	11,6	;volatile
+   215                           
+   216                           ;LE5-1.c: 92: ADIE = 1;
+   217  0104  1683               	bsf	3,5	;RP0=1, select bank1
+   218  0105  1303               	bcf	3,6	;RP1=0, select bank1
+   219  0106  170C               	bsf	12,6	;volatile
+   220                           
+   221                           ;LE5-1.c: 93: ADIF = 0;
+   222  0107  1283               	bcf	3,5	;RP0=0, select bank0
+   223  0108  1303               	bcf	3,6	;RP1=0, select bank0
+   224  0109  130C               	bcf	12,6	;volatile
+   225                           
+   226                           ;LE5-1.c: 94: GIE = 1;
+   227  010A  178B               	bsf	11,7	;volatile
+   228                           
+   229                           ;LE5-1.c: 95: GO = 1;
+   230  010B  151F               	bsf	31,2	;volatile
+   231  010C                     l44:	
+   232                           ;LE5-1.c: 96: for(;;)
+   233                           
+   234                           
+   235                           ;LE5-1.c: 97: {
+   236                           ;LE5-1.c: 98: }
+   237  010C  290C               	goto	l44
+   238  010D                     __end_of_main:	
+   239                           
+   240                           	psect	text1
+   241  0019                     __ptext1:	
+   242 ;; *************** function _ISR *****************
+   243 ;; Defined at:
+   244 ;;		line 47 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-1\LE5-1.c"
+   245 ;; Parameters:    Size  Location     Type
+   246 ;;		None
+   247 ;; Auto vars:     Size  Location     Type
+   248 ;;  d_value         2   10[COMMON] int 
+   249 ;; Return value:  Size  Location     Type
+   250 ;;		None               void
+   251 ;; Registers used:
+   252 ;;		wreg, status,2, status,0, btemp+1, pclath, cstack
+   253 ;; Tracked objects:
+   254 ;;		On entry : 0/0
+   255 ;;		On exit  : 0/0
+   256 ;;		Unchanged: 0/0
+   257 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   258 ;;      Params:         0       0       0       0       0
+   259 ;;      Locals:         2       0       0       0       0
+   260 ;;      Temps:          4       0       0       0       0
+   261 ;;      Totals:         6       0       0       0       0
+   262 ;;Total ram usage:        6 bytes
+   263 ;; Hardware stack levels used:    1
+   264 ;; Hardware stack levels required when called:    1
+   265 ;; This function calls:
+   266 ;;		_delay
+   267 ;;		_readADC
+   268 ;; This function is called by:
+   269 ;;		Interrupt level 1
+   270 ;; This function uses a non-reentrant model
+   271 ;;
+   272                           
+   273                           
+   274                           ;psect for function _ISR
+   275  0019                     _ISR:	
+   276                           
+   277                           ;LE5-1.c: 49: GIE = 0;
+   278  0019  138B               	bcf	11,7	;volatile
+   279                           
+   280                           ;LE5-1.c: 50: int d_value = 0;
+   281  001A  01FA               	clrf	ISR@d_value
+   282  001B  01FB               	clrf	ISR@d_value+1
+   283                           
+   284                           ;LE5-1.c: 51: if(ADIF == 1)
+   285  001C  1F0C               	btfss	12,6	;volatile
+   286  001D  28B5               	goto	i1l574
+   287                           
+   288                           ;LE5-1.c: 52: {
+   289                           ;LE5-1.c: 53: ADIF = 0;
+   290  001E  130C               	bcf	12,6	;volatile
+   291                           
+   292                           ;LE5-1.c: 54: d_value = readADC();
+   293  001F  120A  118A  20CD  120A  118A  	fcall	_readADC
+   294  0024  0871               	movf	?_readADC+1,w
+   295  0025  01FB               	clrf	ISR@d_value+1
+   296  0026  07FB               	addwf	ISR@d_value+1,f
+   297  0027  0870               	movf	?_readADC,w
+   298  0028  01FA               	clrf	ISR@d_value
+   299  0029  07FA               	addwf	ISR@d_value,f
+   300                           
+   301                           ;LE5-1.c: 56: if(d_value>=0 && d_value<=169)
+   302  002A  1BFB               	btfsc	ISR@d_value+1,7
+   303  002B  283B               	goto	i1l544
+   304  002C  087B               	movf	ISR@d_value+1,w
+   305  002D  3A80               	xorlw	128
+   306  002E  00FF               	movwf	127
+   307  002F  3080               	movlw	128
+   308  0030  027F               	subwf	127,w
+   309  0031  1D03               	skipz
+   310  0032  2835               	goto	u4_25
+   311  0033  30AA               	movlw	170
+   312  0034  027A               	subwf	ISR@d_value,w
+   313  0035                     u4_25:	
+   314  0035  1803               	skipnc
+   315  0036  283B               	goto	i1l544
+   316                           
+   317                           ;LE5-1.c: 57: PORTB = 0x00;
+   318  0037  1283               	bcf	3,5	;RP0=0, select bank0
+   319  0038  1303               	bcf	3,6	;RP1=0, select bank0
+   320  0039  0186               	clrf	6	;volatile
+   321  003A  28B5               	goto	i1l574
+   322  003B                     i1l544:	
+   323                           
+   324                           ;LE5-1.c: 58: else if(d_value>=170 && d_value<=340)
+   325  003B  087B               	movf	ISR@d_value+1,w
+   326  003C  3A80               	xorlw	128
+   327  003D  00FF               	movwf	127
+   328  003E  3080               	movlw	128
+   329  003F  027F               	subwf	127,w
+   330  0040  1D03               	skipz
+   331  0041  2844               	goto	u5_25
+   332  0042  30AA               	movlw	170
+   333  0043  027A               	subwf	ISR@d_value,w
+   334  0044                     u5_25:	
+   335  0044  1C03               	skipc
+   336  0045  2853               	goto	i1l550
+   337  0046  087B               	movf	ISR@d_value+1,w
+   338  0047  3A80               	xorlw	128
+   339  0048  00FF               	movwf	127
+   340  0049  3081               	movlw	129
+   341  004A  027F               	subwf	127,w
+   342  004B  1D03               	skipz
+   343  004C  284F               	goto	u6_25
+   344  004D  3055               	movlw	85
+   345  004E  027A               	subwf	ISR@d_value,w
+   346  004F                     u6_25:	
+   347  004F  1803               	skipnc
+   348  0050  2853               	goto	i1l550
+   349                           
+   350                           ;LE5-1.c: 59: PORTB = 0x01;
+   351  0051  3001               	movlw	1
+   352  0052  28B2               	goto	L4
+   353  0053                     i1l550:	
+   354                           
+   355                           ;LE5-1.c: 60: else if(d_value>=341 && d_value<=511)
+   356  0053  087B               	movf	ISR@d_value+1,w
+   357  0054  3A80               	xorlw	128
+   358  0055  00FF               	movwf	127
+   359  0056  3081               	movlw	129
+   360  0057  027F               	subwf	127,w
+   361  0058  1D03               	skipz
+   362  0059  285C               	goto	u7_25
+   363  005A  3055               	movlw	85
+   364  005B  027A               	subwf	ISR@d_value,w
+   365  005C                     u7_25:	
+   366  005C  1C03               	skipc
+   367  005D  286B               	goto	i1l556
+   368  005E  087B               	movf	ISR@d_value+1,w
+   369  005F  3A80               	xorlw	128
+   370  0060  00FF               	movwf	127
+   371  0061  3082               	movlw	130
+   372  0062  027F               	subwf	127,w
+   373  0063  1D03               	skipz
+   374  0064  2867               	goto	u8_25
+   375  0065  3000               	movlw	0
+   376  0066  027A               	subwf	ISR@d_value,w
+   377  0067                     u8_25:	
+   378  0067  1803               	skipnc
+   379  0068  286B               	goto	i1l556
+   380                           
+   381                           ;LE5-1.c: 61: PORTB = 0x03;
+   382  0069  3003               	movlw	3
+   383  006A  28B2               	goto	L4
+   384  006B                     i1l556:	
+   385                           
+   386                           ;LE5-1.c: 62: else if(d_value>=512 && d_value<=682)
+   387  006B  087B               	movf	ISR@d_value+1,w
+   388  006C  3A80               	xorlw	128
+   389  006D  00FF               	movwf	127
+   390  006E  3082               	movlw	130
+   391  006F  027F               	subwf	127,w
+   392  0070  1D03               	skipz
+   393  0071  2874               	goto	u9_25
+   394  0072  3000               	movlw	0
+   395  0073  027A               	subwf	ISR@d_value,w
+   396  0074                     u9_25:	
+   397  0074  1C03               	skipc
+   398  0075  2883               	goto	i1l562
+   399  0076  087B               	movf	ISR@d_value+1,w
+   400  0077  3A80               	xorlw	128
+   401  0078  00FF               	movwf	127
+   402  0079  3082               	movlw	130
+   403  007A  027F               	subwf	127,w
+   404  007B  1D03               	skipz
+   405  007C  287F               	goto	u10_25
+   406  007D  30AB               	movlw	171
+   407  007E  027A               	subwf	ISR@d_value,w
+   408  007F                     u10_25:	
+   409  007F  1803               	skipnc
+   410  0080  2883               	goto	i1l562
+   411                           
+   412                           ;LE5-1.c: 63: PORTB = 0x07;
+   413  0081  3007               	movlw	7
+   414  0082  28B2               	goto	L4
+   415  0083                     i1l562:	
+   416                           
+   417                           ;LE5-1.c: 64: else if(d_value>=683 && d_value<=853)
+   418  0083  087B               	movf	ISR@d_value+1,w
+   419  0084  3A80               	xorlw	128
+   420  0085  00FF               	movwf	127
+   421  0086  3082               	movlw	130
+   422  0087  027F               	subwf	127,w
+   423  0088  1D03               	skipz
+   424  0089  288C               	goto	u11_25
+   425  008A  30AB               	movlw	171
+   426  008B  027A               	subwf	ISR@d_value,w
+   427  008C                     u11_25:	
+   428  008C  1C03               	skipc
+   429  008D  289B               	goto	i1l568
+   430  008E  087B               	movf	ISR@d_value+1,w
+   431  008F  3A80               	xorlw	128
+   432  0090  00FF               	movwf	127
+   433  0091  3083               	movlw	131
+   434  0092  027F               	subwf	127,w
+   435  0093  1D03               	skipz
+   436  0094  2897               	goto	u12_25
+   437  0095  3056               	movlw	86
+   438  0096  027A               	subwf	ISR@d_value,w
+   439  0097                     u12_25:	
+   440  0097  1803               	skipnc
+   441  0098  289B               	goto	i1l568
+   442                           
+   443                           ;LE5-1.c: 65: PORTB = 0x0F;
+   444  0099  300F               	movlw	15
+   445  009A  28B2               	goto	L4
+   446  009B                     i1l568:	
+   447                           
+   448                           ;LE5-1.c: 66: else if(d_value>=854 && d_value<=1024)
+   449  009B  087B               	movf	ISR@d_value+1,w
+   450  009C  3A80               	xorlw	128
+   451  009D  00FF               	movwf	127
+   452  009E  3083               	movlw	131
+   453  009F  027F               	subwf	127,w
+   454  00A0  1D03               	skipz
+   455  00A1  28A4               	goto	u13_25
+   456  00A2  3056               	movlw	86
+   457  00A3  027A               	subwf	ISR@d_value,w
+   458  00A4                     u13_25:	
+   459  00A4  1C03               	skipc
+   460  00A5  28B5               	goto	i1l574
+   461  00A6  087B               	movf	ISR@d_value+1,w
+   462  00A7  3A80               	xorlw	128
+   463  00A8  00FF               	movwf	127
+   464  00A9  3084               	movlw	132
+   465  00AA  027F               	subwf	127,w
+   466  00AB  1D03               	skipz
+   467  00AC  28AF               	goto	u14_25
+   468  00AD  3001               	movlw	1
+   469  00AE  027A               	subwf	ISR@d_value,w
+   470  00AF                     u14_25:	
+   471  00AF  1803               	skipnc
+   472  00B0  28B5               	goto	i1l574
+   473                           
+   474                           ;LE5-1.c: 67: PORTB = 0x1F;
+   475  00B1  301F               	movlw	31
+   476  00B2                     L4:	
+   477  00B2  1283               	bcf	3,5	;RP0=0, select bank0
+   478  00B3  1303               	bcf	3,6	;RP1=0, select bank0
+   479  00B4  0086               	movwf	6	;volatile
+   480  00B5                     i1l574:	
+   481                           
+   482                           ;LE5-1.c: 68: }
+   483                           ;LE5-1.c: 69: delay(1000);
+   484  00B5  30E8               	movlw	232
+   485  00B6  00F0               	movwf	delay@delayIn
+   486  00B7  3003               	movlw	3
+   487  00B8  00F1               	movwf	delay@delayIn+1
+   488  00B9  120A  118A  210D  120A  118A  	fcall	_delay
+   489                           
+   490                           ;LE5-1.c: 70: GO = 1;
+   491  00BE  1283               	bcf	3,5	;RP0=0, select bank0
+   492  00BF  1303               	bcf	3,6	;RP1=0, select bank0
+   493  00C0  151F               	bsf	31,2	;volatile
+   494                           
+   495                           ;LE5-1.c: 71: GIE = 1;
+   496  00C1  178B               	bsf	11,7	;volatile
+   497  00C2  0879               	movf	??_ISR+3,w
+   498  00C3  00FF               	movwf	127
+   499  00C4  0878               	movf	??_ISR+2,w
+   500  00C5  008A               	movwf	10
+   501  00C6  0877               	movf	??_ISR+1,w
+   502  00C7  0084               	movwf	4
+   503  00C8  0E76               	swapf	??_ISR^(0+-128),w
+   504  00C9  0083               	movwf	3
+   505  00CA  0EFE               	swapf	126,f
+   506  00CB  0E7E               	swapf	126,w
+   507  00CC  0009               	retfie
+   508  00CD                     __end_of_ISR:	
+   509                           
+   510                           	psect	intentry
+   511  0004                     __pintentry:	
+   512                           ;incstack = 0
+   513                           ; Regs used in _ISR: [wreg+status,2+status,0+btemp+1+pclath+cstack]
+   514                           
+   515  0004                     interrupt_function:	
+   516  007E                     saved_w	set	btemp
+   517  0004  00FE               	movwf	btemp
+   518  0005  0E03               	swapf	3,w
+   519  0006  00F6               	movwf	??_ISR
+   520  0007  0804               	movf	4,w
+   521  0008  00F7               	movwf	??_ISR+1
+   522  0009  080A               	movf	10,w
+   523  000A  00F8               	movwf	??_ISR+2
+   524  000B  1283               	bcf	3,5	;RP0=0, select bank0
+   525  000C  1303               	bcf	3,6	;RP1=0, select bank0
+   526  000D  087F               	movf	btemp+1,w
+   527  000E  00F9               	movwf	??_ISR+3
+   528  000F  120A  118A  2819   	ljmp	_ISR
+   529                           
+   530                           	psect	text2
+   531  00CD                     __ptext2:	
+   532 ;; *************** function _readADC *****************
+   533 ;; Defined at:
+   534 ;;		line 107 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-1\LE5-1.c"
+   535 ;; Parameters:    Size  Location     Type
+   536 ;;		None
+   537 ;; Auto vars:     Size  Location     Type
+   538 ;;  temp            2    4[COMMON] int 
+   539 ;; Return value:  Size  Location     Type
+   540 ;;                  2    0[COMMON] int 
+   541 ;; Registers used:
+   542 ;;		wreg, status,2, status,0, btemp+1
+   543 ;; Tracked objects:
+   544 ;;		On entry : 0/0
+   545 ;;		On exit  : 0/0
+   546 ;;		Unchanged: 0/0
+   547 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   548 ;;      Params:         2       0       0       0       0
+   549 ;;      Locals:         2       0       0       0       0
+   550 ;;      Temps:          2       0       0       0       0
+   551 ;;      Totals:         6       0       0       0       0
+   552 ;;Total ram usage:        6 bytes
+   553 ;; Hardware stack levels used:    1
+   554 ;; This function calls:
+   555 ;;		Nothing
+   556 ;; This function is called by:
+   557 ;;		_ISR
+   558 ;; This function uses a non-reentrant model
+   559 ;;
+   560                           
+   561                           
+   562                           ;psect for function _readADC
+   563  00CD                     _readADC:	
+   564                           
+   565                           ;LE5-1.c: 109: int temp = 0;
+   566                           
+   567                           ;incstack = 0
+   568                           ; Regs used in _readADC: [wreg+status,2+status,0+btemp+1]
+   569  00CD  01F4               	clrf	readADC@temp
+   570  00CE  01F5               	clrf	readADC@temp+1
+   571                           
+   572                           ;LE5-1.c: 110: temp = ADRESH;
+   573  00CF  1283               	bcf	3,5	;RP0=0, select bank0
+   574  00D0  1303               	bcf	3,6	;RP1=0, select bank0
+   575  00D1  081E               	movf	30,w	;volatile
+   576  00D2  00F2               	movwf	??_readADC
+   577  00D3  01F3               	clrf	??_readADC+1
+   578  00D4  0872               	movf	??_readADC,w
+   579  00D5  00F4               	movwf	readADC@temp
+   580  00D6  0873               	movf	??_readADC+1,w
+   581  00D7  00F5               	movwf	readADC@temp+1
+   582                           
+   583                           ;LE5-1.c: 111: temp = temp << 8;
+   584  00D8  0875               	movf	readADC@temp+1,w
+   585  00D9  00F3               	movwf	??_readADC+1
+   586  00DA  0874               	movf	readADC@temp,w
+   587  00DB  00F2               	movwf	??_readADC
+   588  00DC  0872               	movf	??_readADC,w
+   589  00DD  00F3               	movwf	??_readADC+1
+   590  00DE  01F2               	clrf	??_readADC
+   591  00DF  0872               	movf	??_readADC,w
+   592  00E0  00F4               	movwf	readADC@temp
+   593  00E1  0873               	movf	??_readADC+1,w
+   594  00E2  00F5               	movwf	readADC@temp+1
+   595                           
+   596                           ;LE5-1.c: 112: temp = temp | ADRESL;
+   597  00E3  0874               	movf	readADC@temp,w
+   598  00E4  1683               	bsf	3,5	;RP0=1, select bank1
+   599  00E5  1303               	bcf	3,6	;RP1=0, select bank1
+   600  00E6  041E               	iorwf	30,w	;volatile
+   601  00E7  00F2               	movwf	??_readADC
+   602  00E8  0875               	movf	readADC@temp+1,w
+   603  00E9  00F3               	movwf	??_readADC+1
+   604  00EA  0872               	movf	??_readADC,w
+   605  00EB  00F4               	movwf	readADC@temp
+   606  00EC  0873               	movf	??_readADC+1,w
+   607  00ED  00F5               	movwf	readADC@temp+1
+   608                           
+   609                           ;LE5-1.c: 113: return temp;
+   610  00EE  0875               	movf	readADC@temp+1,w
+   611  00EF  01F1               	clrf	?_readADC+1
+   612  00F0  07F1               	addwf	?_readADC+1,f
+   613  00F1  0874               	movf	readADC@temp,w
+   614  00F2  01F0               	clrf	?_readADC
+   615  00F3  07F0               	addwf	?_readADC,f
+   616  00F4  0008               	return
+   617  00F5                     __end_of_readADC:	
+   618                           
+   619                           	psect	text3
+   620  010D                     __ptext3:	
+   621 ;; *************** function _delay *****************
+   622 ;; Defined at:
+   623 ;;		line 116 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-1\LE5-1.c"
+   624 ;; Parameters:    Size  Location     Type
+   625 ;;  delayIn         2    0[COMMON] int 
+   626 ;; Auto vars:     Size  Location     Type
+   627 ;;  i               2    3[COMMON] int 
+   628 ;; Return value:  Size  Location     Type
+   629 ;;		None               void
+   630 ;; Registers used:
+   631 ;;		wreg, status,2
+   632 ;; Tracked objects:
+   633 ;;		On entry : 0/0
+   634 ;;		On exit  : 0/0
+   635 ;;		Unchanged: 0/0
+   636 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   637 ;;      Params:         2       0       0       0       0
+   638 ;;      Locals:         2       0       0       0       0
+   639 ;;      Temps:          1       0       0       0       0
+   640 ;;      Totals:         5       0       0       0       0
+   641 ;;Total ram usage:        5 bytes
+   642 ;; Hardware stack levels used:    1
+   643 ;; This function calls:
+   644 ;;		Nothing
+   645 ;; This function is called by:
+   646 ;;		_ISR
+   647 ;; This function uses a non-reentrant model
+   648 ;;
+   649                           
+   650                           
+   651                           ;psect for function _delay
+   652  010D                     _delay:	
+   653                           
+   654                           ;LE5-1.c: 118: for(int i = 0; i < delayIn; i++);
+   655                           
+   656                           ;incstack = 0
+   657                           ; Regs used in _delay: [wreg+status,2]
+   658  010D  01F3               	clrf	delay@i
+   659  010E  01F4               	clrf	delay@i+1
+   660  010F                     i1l52:	
+   661  010F  0874               	movf	delay@i+1,w
+   662  0110  3A80               	xorlw	128
+   663  0111  00F2               	movwf	??_delay
+   664  0112  0871               	movf	delay@delayIn+1,w
+   665  0113  3A80               	xorlw	128
+   666  0114  0272               	subwf	??_delay,w
+   667  0115  1D03               	skipz
+   668  0116  2919               	goto	u1_25
+   669  0117  0870               	movf	delay@delayIn,w
+   670  0118  0273               	subwf	delay@i,w
+   671  0119                     u1_25:	
+   672  0119  1803               	btfsc	3,0
+   673  011A  0008               	return
+   674  011B  3001               	movlw	1
+   675  011C  07F3               	addwf	delay@i,f
+   676  011D  1803               	skipnc
+   677  011E  0AF4               	incf	delay@i+1,f
+   678  011F  3000               	movlw	0
+   679  0120  07F4               	addwf	delay@i+1,f
+   680  0121  290F               	goto	i1l52
+   681  0122                     __end_of_delay:	
+   682  007E                     btemp	set	126	;btemp
+   683  007E                     wtemp	set	126
+   684  007E                     wtemp0	set	126
+   685  0080                     wtemp1	set	128
+   686  0082                     wtemp2	set	130
+   687  0084                     wtemp3	set	132
+   688  0086                     wtemp4	set	134
+   689  0088                     wtemp5	set	136
+   690  007F                     wtemp6	set	127
+   691  007E                     ttemp	set	126
+   692  007E                     ttemp0	set	126
+   693  0081                     ttemp1	set	129
+   694  0084                     ttemp2	set	132
+   695  0087                     ttemp3	set	135
+   696  007F                     ttemp4	set	127
+   697  007E                     ltemp	set	126
+   698  007E                     ltemp0	set	126
+   699  0082                     ltemp1	set	130
+   700  0086                     ltemp2	set	134
+   701  0080                     ltemp3	set	128
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         0
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14     12      12
+    BANK0            80      0       0
+    BANK1            80      0       0
+    BANK3            96      0       0
+    BANK2            96      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMMON
+
+    None.
+
+Critical Paths under _ISR in COMMON
+
+    _ISR->_readADC
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _ISR in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _ISR in BANK1
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _ISR in BANK3
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _ISR in BANK2
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 0     0      0       0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 0
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (1) _ISR                                                  6     6      0     298
+                                              6 COMMON     6     6      0
+                              _delay
+                            _readADC
+ ---------------------------------------------------------------------------------
+ (2) _readADC                                              6     4      2      45
+                                              0 COMMON     6     4      2
+ ---------------------------------------------------------------------------------
+ (2) _delay                                                5     3      2      73
+                                              0 COMMON     5     3      2
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 2
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+
+ _ISR (ROOT)
+   _delay
+   _readADC
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BITCOMMON            E      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+COMMON               E      C       C       1       85.7%
+BITSFR0              0      0       0       1        0.0%
+SFR0                 0      0       0       1        0.0%
+BITSFR1              0      0       0       2        0.0%
+SFR1                 0      0       0       2        0.0%
+STACK                0      0       0       2        0.0%
+ABS                  0      0       0       3        0.0%
+BITBANK0            50      0       0       4        0.0%
+BITSFR3              0      0       0       4        0.0%
+SFR3                 0      0       0       4        0.0%
+BANK0               50      0       0       5        0.0%
+BITSFR2              0      0       0       5        0.0%
+SFR2                 0      0       0       5        0.0%
+BITBANK1            50      0       0       6        0.0%
+BANK1               50      0       0       7        0.0%
+BITBANK3            60      0       0       8        0.0%
+BANK3               60      0       0       9        0.0%
+BITBANK2            60      0       0      10        0.0%
+BANK2               60      0       0      11        0.0%
+DATA                 0      0       0      12        0.0%
+
+
+Microchip Technology PIC Macro Assembler V1.33 build 59893 
+Symbol Table                                                                                   Tue Apr 02 15:19:21 2024
+
+            __CFG_CP$OFF 0000                       l44 010C                       _GO 00FA  
+                    _GIE 005F             __CFG_CPD$OFF 0000                      _ISR 0019  
+                    fsr0 0004             __CFG_FOSC$XT 0000             __CFG_LVP$OFF 0000  
+                   ?_ISR 0070                     _ADIE 0466                     _ADIF 0066  
+                   _PEIE 005E                     i1l52 010F                     u1_25 0119  
+                   u4_25 0035                     u5_25 0044                     u6_25 004F  
+                   u7_25 005C                     u8_25 0067                     u9_25 0074  
+           __CFG_WRT$OFF 0000                     _main 00F5                     btemp 007E  
+          __CFG_BOREN$ON 0000                     ltemp 007E                     start 0012  
+                   ttemp 007E                     wtemp 007E                    ??_ISR 0076  
+                  ?_main 0070            __CFG_WDTE$OFF 0000                    i1l550 0053  
+                  i1l544 003B                    i1l562 0083                    i1l556 006B  
+                  i1l574 00B5                    i1l568 009B                    u10_25 007F  
+                  u11_25 008C                    u12_25 0097                    u13_25 00A4  
+                  u14_25 00AF                    _PORTB 0006                    _TRISB 0086  
+          __CFG_PWRTE$ON 0000          __end_of_readADC 00F5                    _delay 010D  
+            readADC@temp 0074                    pclath 000A                    ltemp0 007E  
+                  ltemp1 0082                    ltemp2 0086                    ltemp3 0080  
+                  ttemp0 007E                    ttemp1 0081                    ttemp2 0084  
+                  ttemp3 0087                    ttemp4 007F                    status 0003  
+                  wtemp0 007E                    wtemp1 0080                    wtemp2 0082  
+                  wtemp3 0084                    wtemp4 0086                    wtemp5 0088  
+                  wtemp6 007F          __initialization 0015             __end_of_main 010D  
+                 ??_main 0000                   ?_delay 0070                   _ADCON0 001F  
+                 _ADCON1 009F                   _ADRESH 001E                   _ADRESL 009E  
+                 delay@i 0073                ??_readADC 0072                   saved_w 007E  
+__end_of__initialization 0015           __pcstackCOMMON 0070            __end_of_delay 0122  
+                ??_delay 0072               __pmaintext 00F5               __pintentry 0004  
+                __ptext0 0000                  __ptext1 0019                  __ptext2 00CD  
+                __ptext3 010D                  _readADC 00CD             __size_of_ISR 00B4  
+   end_of_initialization 0015      start_initialization 0015              __end_of_ISR 00CD  
+              ___latbits 0002            __pcstackBANK0 0000               ISR@d_value 007A  
+               ?_readADC 0070             delay@delayIn 0070           __size_of_delay 0015  
+      interrupt_function 0004         __size_of_readADC 0028            __size_of_main 0018  
+               intlevel1 0000  

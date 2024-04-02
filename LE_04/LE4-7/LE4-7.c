@@ -51,6 +51,11 @@ unsigned int PR2Values[3] = {
 // index 2 = 50% duty cycle
 // index 3 = 75% duty cycle
 // index 4 = 95% duty cycle
+// unsigned int timerMaxCount[3][5] = {
+//     {0x53, 0xD0, 0x1A0, 0x271, 0x317}, // 300 hZ with different duty cycles
+//     {0x32, 0x7D, 0xFA, 0x177, 0x1DB},  // 500 hZ with different duty cycles
+//     {0x19, 0x3E, 0x7D, 0xBB, 0xED}     // 1000 hZ with different duty cycles
+// };
 unsigned int timerMaxCount[3][5] = {
     {0x53, 0xD0, 0x1A1, 0x271, 0x318}, // 300 hZ with different duty cycles
     {0x32, 0x7D, 0xFA, 0x177, 0x1DB},  // 500 hZ with different duty cycles
@@ -95,29 +100,50 @@ void interrupt ISR()
 *===============================================*/
 void main() 
 {  
-    /* following the steps in setting up PWM */
+    // GIE = 1;    // Global Interrupt Enable
+    // PEIE = 1;   // Peripheral Interrupt Enable
+    // // Setting up Timer0 for debounce
+    // OPTION_REG = 0x43; 	// PS2:PS0 - prescaler 1:16
+    // // Configuring the Interrupt Service routine
+    // INTE = 1;   // External Interrupt Enable
+    // TMR0IE = 1; // Timer 0 Interrupt Enable		
+    // TMR0IF = 0; // Clear the Timer 0 Interrupt Flag
+    GIE  = 1; //Enabling Global Interrupt
+	OPTION_REG = 0x43; // PRESCALER 1:16, INTEDG = 1
+	T0IE = 1; // enable Timer0 overflow interrupt
+	T0IF = 0; // clears the interrupt flag
+	
+	TRISD = 0x03; // sets RD0 and RD1 to input
+	TRISC = 0x00; // sets all of PORTC to output
+    TRISB = 0x00; // sets all of PORTB to output
+    PORTB = 0x00;
+	RC2 = 0; // initialize RC2 to 0
+	// PR2 = periodArray[counter1]; // set value for PR2
     PR2 = PR2Values[frequencyIndex]; // set value for PR2
+	// CCPR1L = dutyCycleArray[counter1][counter2] >> 2; // set value for (8 MSBs)
     CCPR1L = (timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x3FC) >> 2; // set value for (8 MSBs)
+	// unsigned int LSB = dutyCycleArray[counter1][counter2] & 0x03; // get 2 LSB of duty cycle
+	// CCP1CON = (LSB << 4) | 0x0C; // set value for 2 LSB of duty cycle and PWM mode
     CCP1CON = ((timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x003) << 4) + 0x0C; // set value for (2 LSBs), PWM mode
-    T2CON = 0x06; // 1:16 prescaler, Timer2 on
+	T2CON = 0x06; // 1:16 prescaler, Timer2 on
 
-    // Setting up Timer0 for debounce
-    OPTION_REG = 0x44; 	// PS2:PS0 - prescaler 1:16
-    // Configuring the Interrupt Service routine
-    GIE = 1;    // Global Interrupt Enable
-    PEIE = 1;   // Peripheral Interrupt Enable
-    INTE = 1;   // External Interrupt Enable
-    TMR0IE = 1; // Timer 0 Interrupt Enable		
-    TMR0IF = 0; // Clear the Timer 0 Interrupt Flag
+
+    /* following the steps in setting up PWM */
+    // PR2 = PR2Values[frequencyIndex]; // set value for PR2
+    // CCPR1L = (timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x3FC) >> 2; // set value for (8 MSBs)
+    // CCP1CON = ((timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x003) << 4) + 0x0C; // set value for (2 LSBs), PWM mode
+    // T2CON = 0x06; // 1:16 prescaler, Timer2 on
 
     // Setting up Ports Configurations
-    TRISC = 0x00; // sets all of PORTC (RC2) to output
-    TRISD = 0xFF; // sets all of PORTD to input 
-    TRISB = 0x00; // sets all of PORTB to output
-    RC2 = 0; // initialize RC2 to 0
+    // TRISC = 0x00; // sets all of PORTC (RC2) to output
+    // TRISD = 0xFF; // sets all of PORTD to input 
+    // TRISB = 0x00; // sets all of PORTB to output
+    // RC2 = 0; // initialize RC2 to 0
 
     // displaying initial mode 
     displayMode();
+
+    
 
     for(;;) // foreground routine
     {
@@ -157,6 +183,7 @@ void displayMode()
     PORTB = 0x00;
     unsigned int temp = 0x00;
     unsigned int temp2 = 0x00;
+    unsigned int displayBits = 0x00;
     switch(frequencyIndex)
     {
         case 0:

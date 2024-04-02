@@ -1447,20 +1447,20 @@ unsigned int PR2Values[3] = {
 0xCF, 0x7C, 0x3E
 };
 
-# 54
+# 59
 unsigned int timerMaxCount[3][5] = {
 {0x53, 0xD0, 0x1A1, 0x271, 0x318},
 {0x32, 0x7D, 0xFA, 0x177, 0x1DB},
 {0x19, 0x3F, 0x7D, 0xBC, 0xEE}
 };
 
-# 63
+# 68
 void incDutyCycle();
 void incFrequency();
 void delay();
 void displayMode();
 
-# 76
+# 81
 void interrupt ISR()
 {
 GIE = 0;
@@ -1472,32 +1472,34 @@ count_flag = 1;
 GIE = 1;
 }
 
-# 96
+# 101
 void main()
 {
 
+# 111
+GIE = 1;
+OPTION_REG = 0x43;
+T0IE = 1;
+T0IF = 0;
+
+TRISD = 0x03;
+TRISC = 0x00;
+TRISB = 0x00;
+PORTB = 0x00;
+RC2 = 0;
+
 PR2 = PR2Values[frequencyIndex];
+
 CCPR1L = (timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x3FC) >> 2;
+
+
 CCP1CON = ((timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x003) << 4) + 0x0C;
 T2CON = 0x06;
 
-
-OPTION_REG = 0x44;
-
-GIE = 1;
-PEIE = 1;
-INTE = 1;
-TMR0IE = 1;
-TMR0IF = 0;
-
-
-TRISC = 0x00;
-TRISD = 0xFF;
-TRISB = 0x00;
-RC2 = 0;
-
-
+# 144
 displayMode();
+
+
 
 for(;;)
 {
@@ -1523,12 +1525,13 @@ displayMode();
 }
 }
 
-# 155
+# 181
 void displayMode()
 {
 PORTB = 0x00;
 unsigned int temp = 0x00;
 unsigned int temp2 = 0x00;
+unsigned int displayBits = 0x00;
 switch(frequencyIndex)
 {
 case 0:
@@ -1562,7 +1565,7 @@ break;
 PORTB = temp + temp2;
 }
 
-# 202
+# 229
 void delay()
 {
 
@@ -1579,7 +1582,7 @@ localClock++;
 }
 }
 
-# 225
+# 252
 void incDutyCycle()
 {
 if(dutyCycleIndex < 4)
@@ -1588,7 +1591,7 @@ else
 dutyCycleIndex = 0;
 }
 
-# 239
+# 266
 void incFrequency()
 {
 if(frequencyIndex < 2)

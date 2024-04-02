@@ -1,9 +1,9 @@
-_incFrequency: CODE, 566 0 17
-_incDutyCycle: CODE, 583 0 17
-_delay: CODE, 477 0 33
-_ISR: CODE, 510 0 20
-_displayMode: CODE, 366 0 73
-_main: CODE, 43 0 323
+_incFrequency: CODE, 561 0 17
+_incDutyCycle: CODE, 578 0 17
+_delay: CODE, 476 0 29
+_ISR: CODE, 505 0 20
+_displayMode: CODE, 363 0 75
+_main: CODE, 43 0 320
 __initialization: CODE, 21 0 18
-___bmul: CODE, 530 0 19
-Total: 520
+___bmul: CODE, 525 0 19
+Total: 515

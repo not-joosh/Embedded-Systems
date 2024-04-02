@@ -1,0 +1,1 @@
+ LE5-2.d  LE5-2.p1:  C:/Users/notjo/OneDrive/Desktop/USC/USC-Year3-Sem2/3201-EmbeddedSystems/Labs/LE_05/LE5-2/LE5-2.c

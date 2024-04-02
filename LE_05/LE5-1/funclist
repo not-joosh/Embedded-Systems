@@ -1,0 +1,6 @@
+_delay: CODE, 269 0 21
+_ISR: CODE, 25 0 180
+_main: CODE, 245 0 24
+__initialization: CODE, 21 0 0
+_readADC: CODE, 205 0 40
+Total: 265

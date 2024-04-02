@@ -1,0 +1,12 @@
+___awdiv: CODE, 642 0 91
+_delay: CODE, 907 0 21
+_ISR: CODE, 236 0 160
+___ftpack: CODE, 538 0 104
+___awmod: CODE, 733 0 77
+_main: CODE, 883 0 24
+__initialization: CODE, 21 0 0
+___ftmul: CODE, 25 0 211
+___awtoft: CODE, 850 0 33
+_readADC: CODE, 810 0 40
+___fttol: CODE, 396 0 142
+Total: 903

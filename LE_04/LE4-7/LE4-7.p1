@@ -4,6 +4,22 @@ Version 3.2 HI-TECH Software Intermediate Code
 "2649
 [v _TMR0IF `Vb ~T0 @X0 0 e@90 ]
 [p mainexit ]
+"1217
+[v _OPTION_REG `Vuc ~T0 @X0 0 e@129 ]
+"2627
+[v _T0IE `Vb ~T0 @X0 0 e@93 ]
+"2629
+[v _T0IF `Vb ~T0 @X0 0 e@90 ]
+"1457
+[v _TRISD `Vuc ~T0 @X0 0 e@136 ]
+"1396
+[v _TRISC `Vuc ~T0 @X0 0 e@135 ]
+"1335
+[v _TRISB `Vuc ~T0 @X0 0 e@134 ]
+"207
+[v _PORTB `Vuc ~T0 @X0 0 e@6 ]
+"2535
+[v _RC2 `Vb ~T0 @X0 0 e@58 ]
 "1768
 [v _PR2 `Vuc ~T0 @X0 0 e@146 ]
 "866
@@ -12,36 +28,18 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _CCP1CON `Vuc ~T0 @X0 0 e@23 ]
 "715
 [v _T2CON `Vuc ~T0 @X0 0 e@18 ]
-"1217
-[v _OPTION_REG `Vuc ~T0 @X0 0 e@129 ]
-"2481
-[v _PEIE `Vb ~T0 @X0 0 e@94 ]
-"2461
-[v _INTE `Vb ~T0 @X0 0 e@92 ]
-"2647
-[v _TMR0IE `Vb ~T0 @X0 0 e@93 ]
-"1396
-[v _TRISC `Vuc ~T0 @X0 0 e@135 ]
-"1457
-[v _TRISD `Vuc ~T0 @X0 0 e@136 ]
-"1335
-[v _TRISB `Vuc ~T0 @X0 0 e@134 ]
-"2535
-[v _RC2 `Vb ~T0 @X0 0 e@58 ]
-"66 C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c
+"71 C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c
 [v _displayMode `(v ~T0 @X0 0 ef ]
 "2561 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f877a.h
 [v _RD0 `Vb ~T0 @X0 0 e@64 ]
-"65 C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c
+"70 C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c
 [v _delay `(v ~T0 @X0 0 ef ]
-"63
+"68
 [v _incDutyCycle `(v ~T0 @X0 0 ef ]
 "2563 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f877a.h
 [v _RD1 `Vb ~T0 @X0 0 e@65 ]
-"64 C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c
+"69 C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c
 [v _incFrequency `(v ~T0 @X0 0 ef ]
-"207 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f877a.h
-[v _PORTB `Vuc ~T0 @X0 0 e@6 ]
 [; ;htc.h: 21: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 24: extern void __builtin_software_breakpoint(void);
 [; ;pic16f877a.h: 47: extern volatile unsigned char INDF @ 0x000;
@@ -1110,12 +1108,12 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;LE4-7.c: 46: 0xCF, 0x7C, 0x3E
 [; ;LE4-7.c: 47: };
 [v F1096 `ui ~T0 @X0 -> 5 `i t ]
-"54
+"59
 [v _timerMaxCount `F1096 ~T0 @X0 -> 3 `i e ]
 [i _timerMaxCount
 :U ..
 :U ..
-"55
+"60
 -> -> 83 `i `ui
 -> -> 208 `i `ui
 -> -> 417 `i `ui
@@ -1123,7 +1121,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 792 `i `ui
 ..
 :U ..
-"56
+"61
 -> -> 50 `i `ui
 -> -> 125 `i `ui
 -> -> 250 `i `ui
@@ -1131,7 +1129,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 -> -> 475 `i `ui
 ..
 :U ..
-"57
+"62
 -> -> 25 `i `ui
 -> -> 63 `i `ui
 -> -> 125 `i `ui
@@ -1140,296 +1138,297 @@ Version 3.2 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-[; ;LE4-7.c: 54: unsigned int timerMaxCount[3][5] = {
-[; ;LE4-7.c: 55: {0x53, 0xD0, 0x1A1, 0x271, 0x318},
-[; ;LE4-7.c: 56: {0x32, 0x7D, 0xFA, 0x177, 0x1DB},
-[; ;LE4-7.c: 57: {0x19, 0x3F, 0x7D, 0xBC, 0xEE}
-[; ;LE4-7.c: 58: };
-[; ;LE4-7.c: 63: void incDutyCycle();
-[; ;LE4-7.c: 64: void incFrequency();
-[; ;LE4-7.c: 65: void delay();
-[; ;LE4-7.c: 66: void displayMode();
+[; ;LE4-7.c: 59: unsigned int timerMaxCount[3][5] = {
+[; ;LE4-7.c: 60: {0x53, 0xD0, 0x1A1, 0x271, 0x318},
+[; ;LE4-7.c: 61: {0x32, 0x7D, 0xFA, 0x177, 0x1DB},
+[; ;LE4-7.c: 62: {0x19, 0x3F, 0x7D, 0xBC, 0xEE}
+[; ;LE4-7.c: 63: };
+[; ;LE4-7.c: 68: void incDutyCycle();
+[; ;LE4-7.c: 69: void incFrequency();
+[; ;LE4-7.c: 70: void delay();
+[; ;LE4-7.c: 71: void displayMode();
 [v F1102 `(v ~T0 @X0 1 tf ]
-"76
+"81
 [v _ISR `IF1102 ~T0 @X0 1 e ]
-"77
+"82
 {
-[; ;LE4-7.c: 76: void interrupt ISR()
-[; ;LE4-7.c: 77: {
+[; ;LE4-7.c: 81: void interrupt ISR()
+[; ;LE4-7.c: 82: {
 [e :U _ISR ]
 [f ]
-[; ;LE4-7.c: 78: GIE = 0;
-"78
-[e = _GIE -> -> 0 `i `b ]
-[; ;LE4-7.c: 79: if(TMR0IF)
-"79
-[e $ ! _TMR0IF 97  ]
-[; ;LE4-7.c: 80: {
-"80
-{
-[; ;LE4-7.c: 81: TMR0IF = 0;
-"81
-[e = _TMR0IF -> -> 0 `i `b ]
-[; ;LE4-7.c: 82: count_flag = 1;
-"82
-[e = _count_flag -> -> 1 `i `ui ]
+[; ;LE4-7.c: 83: GIE = 0;
 "83
+[e = _GIE -> -> 0 `i `b ]
+[; ;LE4-7.c: 84: if(TMR0IF)
+"84
+[e $ ! _TMR0IF 97  ]
+[; ;LE4-7.c: 85: {
+"85
+{
+[; ;LE4-7.c: 86: TMR0IF = 0;
+"86
+[e = _TMR0IF -> -> 0 `i `b ]
+[; ;LE4-7.c: 87: count_flag = 1;
+"87
+[e = _count_flag -> -> 1 `i `ui ]
+"88
 }
 [e :U 97 ]
-[; ;LE4-7.c: 83: }
-[; ;LE4-7.c: 84: GIE = 1;
-"84
+[; ;LE4-7.c: 88: }
+[; ;LE4-7.c: 89: GIE = 1;
+"89
 [e = _GIE -> -> 1 `i `b ]
-[; ;LE4-7.c: 85: }
-"85
+[; ;LE4-7.c: 90: }
+"90
 [e :UE 96 ]
 }
-"96
+"101
 [v _main `(v ~T0 @X0 1 ef ]
-"97
+"102
 {
-[; ;LE4-7.c: 96: void main()
-[; ;LE4-7.c: 97: {
+[; ;LE4-7.c: 101: void main()
+[; ;LE4-7.c: 102: {
 [e :U _main ]
 [f ]
-[; ;LE4-7.c: 99: PR2 = PR2Values[frequencyIndex];
-"99
-[e = _PR2 -> *U + &U _PR2Values * -> _frequencyIndex `ux -> -> # *U &U _PR2Values `ui `ux `uc ]
-[; ;LE4-7.c: 100: CCPR1L = (timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x3FC) >> 2;
-"100
-[e = _CCPR1L -> >> & *U + &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux * -> _dutyCycleIndex `ux -> -> # *U &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux `ui `ux -> -> 1020 `i `ui -> 2 `i `uc ]
-[; ;LE4-7.c: 101: CCP1CON = ((timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x003) << 4) + 0x0C;
-"101
-[e = _CCP1CON -> + << & *U + &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux * -> _dutyCycleIndex `ux -> -> # *U &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux `ui `ux -> -> 3 `i `ui -> 4 `i -> -> 12 `i `ui `uc ]
-[; ;LE4-7.c: 102: T2CON = 0x06;
-"102
-[e = _T2CON -> -> 6 `i `uc ]
-[; ;LE4-7.c: 105: OPTION_REG = 0x44;
-"105
-[e = _OPTION_REG -> -> 68 `i `uc ]
-[; ;LE4-7.c: 107: GIE = 1;
-"107
-[e = _GIE -> -> 1 `i `b ]
-[; ;LE4-7.c: 108: PEIE = 1;
-"108
-[e = _PEIE -> -> 1 `i `b ]
-[; ;LE4-7.c: 109: INTE = 1;
-"109
-[e = _INTE -> -> 1 `i `b ]
-[; ;LE4-7.c: 110: TMR0IE = 1;
-"110
-[e = _TMR0IE -> -> 1 `i `b ]
-[; ;LE4-7.c: 111: TMR0IF = 0;
+[; ;LE4-7.c: 111: GIE = 1;
 "111
-[e = _TMR0IF -> -> 0 `i `b ]
-[; ;LE4-7.c: 114: TRISC = 0x00;
+[e = _GIE -> -> 1 `i `b ]
+[; ;LE4-7.c: 112: OPTION_REG = 0x43;
+"112
+[e = _OPTION_REG -> -> 67 `i `uc ]
+[; ;LE4-7.c: 113: T0IE = 1;
+"113
+[e = _T0IE -> -> 1 `i `b ]
+[; ;LE4-7.c: 114: T0IF = 0;
 "114
-[e = _TRISC -> -> 0 `i `uc ]
-[; ;LE4-7.c: 115: TRISD = 0xFF;
-"115
-[e = _TRISD -> -> 255 `i `uc ]
-[; ;LE4-7.c: 116: TRISB = 0x00;
+[e = _T0IF -> -> 0 `i `b ]
+[; ;LE4-7.c: 116: TRISD = 0x03;
 "116
-[e = _TRISB -> -> 0 `i `uc ]
-[; ;LE4-7.c: 117: RC2 = 0;
+[e = _TRISD -> -> 3 `i `uc ]
+[; ;LE4-7.c: 117: TRISC = 0x00;
 "117
-[e = _RC2 -> -> 0 `i `b ]
-[; ;LE4-7.c: 120: displayMode();
+[e = _TRISC -> -> 0 `i `uc ]
+[; ;LE4-7.c: 118: TRISB = 0x00;
+"118
+[e = _TRISB -> -> 0 `i `uc ]
+[; ;LE4-7.c: 119: PORTB = 0x00;
+"119
+[e = _PORTB -> -> 0 `i `uc ]
+[; ;LE4-7.c: 120: RC2 = 0;
 "120
-[e ( _displayMode ..  ]
-[; ;LE4-7.c: 122: for(;;)
+[e = _RC2 -> -> 0 `i `b ]
+[; ;LE4-7.c: 122: PR2 = PR2Values[frequencyIndex];
 "122
-{
-"123
-[e :U 99 ]
-[; ;LE4-7.c: 123: {
-{
-[; ;LE4-7.c: 125: if(RD0 == 1)
-"125
-[e $ ! == -> _RD0 `i -> 1 `i 102  ]
-[; ;LE4-7.c: 126: {
-"126
-{
-[; ;LE4-7.c: 127: delay();
-"127
-[e ( _delay ..  ]
-[; ;LE4-7.c: 128: incDutyCycle();
-"128
-[e ( _incDutyCycle ..  ]
-[; ;LE4-7.c: 129: PR2 = PR2Values[frequencyIndex];
-"129
 [e = _PR2 -> *U + &U _PR2Values * -> _frequencyIndex `ux -> -> # *U &U _PR2Values `ui `ux `uc ]
-[; ;LE4-7.c: 130: CCPR1L = (timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x3FC) >> 2;
-"130
+[; ;LE4-7.c: 124: CCPR1L = (timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x3FC) >> 2;
+"124
 [e = _CCPR1L -> >> & *U + &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux * -> _dutyCycleIndex `ux -> -> # *U &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux `ui `ux -> -> 1020 `i `ui -> 2 `i `uc ]
-[; ;LE4-7.c: 131: CCP1CON = ((timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x003) << 4) + 0x0C;
-"131
+[; ;LE4-7.c: 127: CCP1CON = ((timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x003) << 4) + 0x0C;
+"127
 [e = _CCP1CON -> + << & *U + &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux * -> _dutyCycleIndex `ux -> -> # *U &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux `ui `ux -> -> 3 `i `ui -> 4 `i -> -> 12 `i `ui `uc ]
-[; ;LE4-7.c: 132: displayMode();
-"132
+[; ;LE4-7.c: 128: T2CON = 0x06;
+"128
+[e = _T2CON -> -> 6 `i `uc ]
+[; ;LE4-7.c: 144: displayMode();
+"144
 [e ( _displayMode ..  ]
-"133
+[; ;LE4-7.c: 148: for(;;)
+"148
+{
+"149
+[e :U 99 ]
+[; ;LE4-7.c: 149: {
+{
+[; ;LE4-7.c: 151: if(RD0 == 1)
+"151
+[e $ ! == -> _RD0 `i -> 1 `i 102  ]
+[; ;LE4-7.c: 152: {
+"152
+{
+[; ;LE4-7.c: 153: delay();
+"153
+[e ( _delay ..  ]
+[; ;LE4-7.c: 154: incDutyCycle();
+"154
+[e ( _incDutyCycle ..  ]
+[; ;LE4-7.c: 155: PR2 = PR2Values[frequencyIndex];
+"155
+[e = _PR2 -> *U + &U _PR2Values * -> _frequencyIndex `ux -> -> # *U &U _PR2Values `ui `ux `uc ]
+[; ;LE4-7.c: 156: CCPR1L = (timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x3FC) >> 2;
+"156
+[e = _CCPR1L -> >> & *U + &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux * -> _dutyCycleIndex `ux -> -> # *U &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux `ui `ux -> -> 1020 `i `ui -> 2 `i `uc ]
+[; ;LE4-7.c: 157: CCP1CON = ((timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x003) << 4) + 0x0C;
+"157
+[e = _CCP1CON -> + << & *U + &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux * -> _dutyCycleIndex `ux -> -> # *U &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux `ui `ux -> -> 3 `i `ui -> 4 `i -> -> 12 `i `ui `uc ]
+[; ;LE4-7.c: 158: displayMode();
+"158
+[e ( _displayMode ..  ]
+"159
 }
 [e :U 102 ]
-[; ;LE4-7.c: 133: }
-[; ;LE4-7.c: 134: if(RD1 == 1)
-"134
-[e $ ! == -> _RD1 `i -> 1 `i 103  ]
-[; ;LE4-7.c: 135: {
-"135
-{
-[; ;LE4-7.c: 136: delay();
-"136
-[e ( _delay ..  ]
-[; ;LE4-7.c: 137: incFrequency();
-"137
-[e ( _incFrequency ..  ]
-[; ;LE4-7.c: 138: PR2 = PR2Values[frequencyIndex];
-"138
-[e = _PR2 -> *U + &U _PR2Values * -> _frequencyIndex `ux -> -> # *U &U _PR2Values `ui `ux `uc ]
-[; ;LE4-7.c: 139: CCPR1L = timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x003;
-"139
-[e = _CCPR1L -> & *U + &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux * -> _dutyCycleIndex `ux -> -> # *U &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux `ui `ux -> -> 3 `i `ui `uc ]
-[; ;LE4-7.c: 140: CCP1CON = (timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x3FC) >> 2;
-"140
-[e = _CCP1CON -> >> & *U + &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux * -> _dutyCycleIndex `ux -> -> # *U &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux `ui `ux -> -> 1020 `i `ui -> 2 `i `uc ]
-[; ;LE4-7.c: 141: displayMode();
-"141
-[e ( _displayMode ..  ]
-"142
-}
-[e :U 103 ]
-"143
-}
-[; ;LE4-7.c: 142: }
-[; ;LE4-7.c: 143: }
-[e $U 99  ]
-[e :U 100 ]
-}
-[; ;LE4-7.c: 144: }
-"144
-[e :UE 98 ]
-}
-"155
-[v _displayMode `(v ~T0 @X0 1 ef ]
-"156
-{
-[; ;LE4-7.c: 155: void displayMode()
-[; ;LE4-7.c: 156: {
-[e :U _displayMode ]
-[f ]
-[; ;LE4-7.c: 157: PORTB = 0x00;
-"157
-[e = _PORTB -> -> 0 `i `uc ]
-"158
-[v _temp `ui ~T0 @X0 1 a ]
-[; ;LE4-7.c: 158: unsigned int temp = 0x00;
-[e = _temp -> -> 0 `i `ui ]
-"159
-[v _temp2 `ui ~T0 @X0 1 a ]
-[; ;LE4-7.c: 159: unsigned int temp2 = 0x00;
-[e = _temp2 -> -> 0 `i `ui ]
-[; ;LE4-7.c: 160: switch(frequencyIndex)
+[; ;LE4-7.c: 159: }
+[; ;LE4-7.c: 160: if(RD1 == 1)
 "160
-[e $U 106  ]
+[e $ ! == -> _RD1 `i -> 1 `i 103  ]
 [; ;LE4-7.c: 161: {
 "161
 {
-[; ;LE4-7.c: 162: case 0:
+[; ;LE4-7.c: 162: delay();
 "162
-[e :U 107 ]
-[; ;LE4-7.c: 163: temp = 0x01;
+[e ( _delay ..  ]
+[; ;LE4-7.c: 163: incFrequency();
 "163
-[e = _temp -> -> 1 `i `ui ]
-[; ;LE4-7.c: 164: break;
+[e ( _incFrequency ..  ]
+[; ;LE4-7.c: 164: PR2 = PR2Values[frequencyIndex];
 "164
-[e $U 105  ]
-[; ;LE4-7.c: 165: case 1:
+[e = _PR2 -> *U + &U _PR2Values * -> _frequencyIndex `ux -> -> # *U &U _PR2Values `ui `ux `uc ]
+[; ;LE4-7.c: 165: CCPR1L = timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x003;
 "165
-[e :U 108 ]
-[; ;LE4-7.c: 166: temp = 0x02;
+[e = _CCPR1L -> & *U + &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux * -> _dutyCycleIndex `ux -> -> # *U &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux `ui `ux -> -> 3 `i `ui `uc ]
+[; ;LE4-7.c: 166: CCP1CON = (timerMaxCount[frequencyIndex][dutyCycleIndex] & 0x3FC) >> 2;
 "166
-[e = _temp -> -> 2 `i `ui ]
-[; ;LE4-7.c: 167: break;
+[e = _CCP1CON -> >> & *U + &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux * -> _dutyCycleIndex `ux -> -> # *U &U *U + &U _timerMaxCount * -> _frequencyIndex `ux -> * -> # *U &U *U &U _timerMaxCount `ui -> -> 5 `i `ui `ux `ui `ux -> -> 1020 `i `ui -> 2 `i `uc ]
+[; ;LE4-7.c: 167: displayMode();
 "167
-[e $U 105  ]
-[; ;LE4-7.c: 168: case 2:
+[e ( _displayMode ..  ]
 "168
-[e :U 109 ]
-[; ;LE4-7.c: 169: temp = 0x03;
-"169
-[e = _temp -> -> 3 `i `ui ]
-[; ;LE4-7.c: 170: break;
-"170
-[e $U 105  ]
-"171
 }
-[; ;LE4-7.c: 171: }
+[e :U 103 ]
+"169
+}
+[; ;LE4-7.c: 168: }
+[; ;LE4-7.c: 169: }
+[e $U 99  ]
+[e :U 100 ]
+}
+[; ;LE4-7.c: 170: }
+"170
+[e :UE 98 ]
+}
+"181
+[v _displayMode `(v ~T0 @X0 1 ef ]
+"182
+{
+[; ;LE4-7.c: 181: void displayMode()
+[; ;LE4-7.c: 182: {
+[e :U _displayMode ]
+[f ]
+[; ;LE4-7.c: 183: PORTB = 0x00;
+"183
+[e = _PORTB -> -> 0 `i `uc ]
+"184
+[v _temp `ui ~T0 @X0 1 a ]
+[; ;LE4-7.c: 184: unsigned int temp = 0x00;
+[e = _temp -> -> 0 `i `ui ]
+"185
+[v _temp2 `ui ~T0 @X0 1 a ]
+[; ;LE4-7.c: 185: unsigned int temp2 = 0x00;
+[e = _temp2 -> -> 0 `i `ui ]
+"186
+[v _displayBits `ui ~T0 @X0 1 a ]
+[; ;LE4-7.c: 186: unsigned int displayBits = 0x00;
+[e = _displayBits -> -> 0 `i `ui ]
+[; ;LE4-7.c: 187: switch(frequencyIndex)
+"187
+[e $U 106  ]
+[; ;LE4-7.c: 188: {
+"188
+{
+[; ;LE4-7.c: 189: case 0:
+"189
+[e :U 107 ]
+[; ;LE4-7.c: 190: temp = 0x01;
+"190
+[e = _temp -> -> 1 `i `ui ]
+[; ;LE4-7.c: 191: break;
+"191
 [e $U 105  ]
-"160
+[; ;LE4-7.c: 192: case 1:
+"192
+[e :U 108 ]
+[; ;LE4-7.c: 193: temp = 0x02;
+"193
+[e = _temp -> -> 2 `i `ui ]
+[; ;LE4-7.c: 194: break;
+"194
+[e $U 105  ]
+[; ;LE4-7.c: 195: case 2:
+"195
+[e :U 109 ]
+[; ;LE4-7.c: 196: temp = 0x03;
+"196
+[e = _temp -> -> 3 `i `ui ]
+[; ;LE4-7.c: 197: break;
+"197
+[e $U 105  ]
+"198
+}
+[; ;LE4-7.c: 198: }
+[e $U 105  ]
+"187
 [e :U 106 ]
 [e [\ _frequencyIndex , $ -> -> 0 `i `ui 107
  , $ -> -> 1 `i `ui 108
  , $ -> -> 2 `i `ui 109
  105 ]
-"171
+"198
 [e :U 105 ]
-[; ;LE4-7.c: 172: switch(dutyCycleIndex)
-"172
+[; ;LE4-7.c: 199: switch(dutyCycleIndex)
+"199
 [e $U 111  ]
-[; ;LE4-7.c: 173: {
-"173
+[; ;LE4-7.c: 200: {
+"200
 {
-[; ;LE4-7.c: 174: case 0:
-"174
+[; ;LE4-7.c: 201: case 0:
+"201
 [e :U 112 ]
-[; ;LE4-7.c: 175: temp2 = 0x01 << 2;
-"175
+[; ;LE4-7.c: 202: temp2 = 0x01 << 2;
+"202
 [e = _temp2 -> << -> 1 `i -> 2 `i `ui ]
-[; ;LE4-7.c: 176: break;
-"176
+[; ;LE4-7.c: 203: break;
+"203
 [e $U 110  ]
-[; ;LE4-7.c: 177: case 1:
-"177
+[; ;LE4-7.c: 204: case 1:
+"204
 [e :U 113 ]
-[; ;LE4-7.c: 178: temp2 = 0x02 << 2;
-"178
+[; ;LE4-7.c: 205: temp2 = 0x02 << 2;
+"205
 [e = _temp2 -> << -> 2 `i -> 2 `i `ui ]
-[; ;LE4-7.c: 179: break;
-"179
+[; ;LE4-7.c: 206: break;
+"206
 [e $U 110  ]
-[; ;LE4-7.c: 180: case 2:
-"180
+[; ;LE4-7.c: 207: case 2:
+"207
 [e :U 114 ]
-[; ;LE4-7.c: 181: temp2 = 0x03 << 2;
-"181
+[; ;LE4-7.c: 208: temp2 = 0x03 << 2;
+"208
 [e = _temp2 -> << -> 3 `i -> 2 `i `ui ]
-[; ;LE4-7.c: 182: break;
-"182
+[; ;LE4-7.c: 209: break;
+"209
 [e $U 110  ]
-[; ;LE4-7.c: 183: case 3:
-"183
+[; ;LE4-7.c: 210: case 3:
+"210
 [e :U 115 ]
-[; ;LE4-7.c: 184: temp2 = 0x04 << 2;
-"184
+[; ;LE4-7.c: 211: temp2 = 0x04 << 2;
+"211
 [e = _temp2 -> << -> 4 `i -> 2 `i `ui ]
-[; ;LE4-7.c: 185: break;
-"185
+[; ;LE4-7.c: 212: break;
+"212
 [e $U 110  ]
-[; ;LE4-7.c: 186: case 4:
-"186
+[; ;LE4-7.c: 213: case 4:
+"213
 [e :U 116 ]
-[; ;LE4-7.c: 187: temp2 = 0x05 << 2;
-"187
+[; ;LE4-7.c: 214: temp2 = 0x05 << 2;
+"214
 [e = _temp2 -> << -> 5 `i -> 2 `i `ui ]
-[; ;LE4-7.c: 188: break;
-"188
+[; ;LE4-7.c: 215: break;
+"215
 [e $U 110  ]
-"189
+"216
 }
-[; ;LE4-7.c: 189: }
+[; ;LE4-7.c: 216: }
 [e $U 110  ]
-"172
+"199
 [e :U 111 ]
 [e [\ _dutyCycleIndex , $ -> -> 0 `i `ui 112
  , $ -> -> 1 `i `ui 113
@@ -1437,110 +1436,110 @@ Version 3.2 HI-TECH Software Intermediate Code
  , $ -> -> 3 `i `ui 115
  , $ -> -> 4 `i `ui 116
  110 ]
-"189
+"216
 [e :U 110 ]
-[; ;LE4-7.c: 190: PORTB = temp + temp2;
-"190
+[; ;LE4-7.c: 217: PORTB = temp + temp2;
+"217
 [e = _PORTB -> + _temp _temp2 `uc ]
-[; ;LE4-7.c: 191: }
-"191
+[; ;LE4-7.c: 218: }
+"218
 [e :UE 104 ]
 }
-"202
+"229
 [v _delay `(v ~T0 @X0 1 ef ]
-"203
+"230
 {
-[; ;LE4-7.c: 202: void delay()
-[; ;LE4-7.c: 203: {
+[; ;LE4-7.c: 229: void delay()
+[; ;LE4-7.c: 230: {
 [e :U _delay ]
 [f ]
-"207
+"234
 [v _localClock `i ~T0 @X0 1 a ]
-[; ;LE4-7.c: 207: int localClock = 0;
+[; ;LE4-7.c: 234: int localClock = 0;
 [e = _localClock -> 0 `i ]
-[; ;LE4-7.c: 208: while(localClock < 98)
-"208
+[; ;LE4-7.c: 235: while(localClock < 98)
+"235
 [e $U 118  ]
 [e :U 119 ]
-[; ;LE4-7.c: 209: {
-"209
+[; ;LE4-7.c: 236: {
+"236
 {
-[; ;LE4-7.c: 210: if(count_flag == 1)
-"210
+[; ;LE4-7.c: 237: if(count_flag == 1)
+"237
 [e $ ! == _count_flag -> -> 1 `i `ui 121  ]
-[; ;LE4-7.c: 211: {
-"211
+[; ;LE4-7.c: 238: {
+"238
 {
-[; ;LE4-7.c: 212: count_flag = 0;
-"212
+[; ;LE4-7.c: 239: count_flag = 0;
+"239
 [e = _count_flag -> -> 0 `i `ui ]
-[; ;LE4-7.c: 213: localClock++;
-"213
+[; ;LE4-7.c: 240: localClock++;
+"240
 [e ++ _localClock -> 1 `i ]
-"214
+"241
 }
 [e :U 121 ]
-"215
+"242
 }
 [e :U 118 ]
-"208
+"235
 [e $ < _localClock -> 98 `i 119  ]
 [e :U 120 ]
-[; ;LE4-7.c: 214: }
-[; ;LE4-7.c: 215: }
-[; ;LE4-7.c: 216: }
-"216
+[; ;LE4-7.c: 241: }
+[; ;LE4-7.c: 242: }
+[; ;LE4-7.c: 243: }
+"243
 [e :UE 117 ]
 }
-"225
+"252
 [v _incDutyCycle `(v ~T0 @X0 1 ef ]
-"226
+"253
 {
-[; ;LE4-7.c: 225: void incDutyCycle()
-[; ;LE4-7.c: 226: {
+[; ;LE4-7.c: 252: void incDutyCycle()
+[; ;LE4-7.c: 253: {
 [e :U _incDutyCycle ]
 [f ]
-[; ;LE4-7.c: 227: if(dutyCycleIndex < 4)
-"227
+[; ;LE4-7.c: 254: if(dutyCycleIndex < 4)
+"254
 [e $ ! < _dutyCycleIndex -> -> 4 `i `ui 123  ]
-[; ;LE4-7.c: 228: dutyCycleIndex++;
-"228
+[; ;LE4-7.c: 255: dutyCycleIndex++;
+"255
 [e ++ _dutyCycleIndex -> -> 1 `i `ui ]
 [e $U 124  ]
-"229
+"256
 [e :U 123 ]
-[; ;LE4-7.c: 229: else
-[; ;LE4-7.c: 230: dutyCycleIndex = 0;
-"230
+[; ;LE4-7.c: 256: else
+[; ;LE4-7.c: 257: dutyCycleIndex = 0;
+"257
 [e = _dutyCycleIndex -> -> 0 `i `ui ]
 [e :U 124 ]
-[; ;LE4-7.c: 231: }
-"231
+[; ;LE4-7.c: 258: }
+"258
 [e :UE 122 ]
 }
-"239
+"266
 [v _incFrequency `(v ~T0 @X0 1 ef ]
-"240
+"267
 {
-[; ;LE4-7.c: 239: void incFrequency()
-[; ;LE4-7.c: 240: {
+[; ;LE4-7.c: 266: void incFrequency()
+[; ;LE4-7.c: 267: {
 [e :U _incFrequency ]
 [f ]
-[; ;LE4-7.c: 241: if(frequencyIndex < 2)
-"241
+[; ;LE4-7.c: 268: if(frequencyIndex < 2)
+"268
 [e $ ! < _frequencyIndex -> -> 2 `i `ui 126  ]
-[; ;LE4-7.c: 242: frequencyIndex++;
-"242
+[; ;LE4-7.c: 269: frequencyIndex++;
+"269
 [e ++ _frequencyIndex -> -> 1 `i `ui ]
 [e $U 127  ]
-"243
+"270
 [e :U 126 ]
-[; ;LE4-7.c: 243: else
-[; ;LE4-7.c: 244: frequencyIndex = 0;
-"244
+[; ;LE4-7.c: 270: else
+[; ;LE4-7.c: 271: frequencyIndex = 0;
+"271
 [e = _frequencyIndex -> -> 0 `i `ui ]
 [e :U 127 ]
-[; ;LE4-7.c: 245: }
-"245
+[; ;LE4-7.c: 272: }
+"272
 [e :UE 125 ]
 }

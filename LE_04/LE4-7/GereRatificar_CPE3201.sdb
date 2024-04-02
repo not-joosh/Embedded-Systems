@@ -103,17 +103,17 @@
 [v ___fltoee __fltoee `(d  1 e 3 0 ]
 "49 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\pic\ftdiv.c
 [v ___ftdiv __ftdiv `(f  1 e 3 0 ]
-"76 C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c
+"81 C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c
 [v _ISR ISR `II(v  1 e 0 0 ]
-"96
+"101
 [v _main main `(v  1 e 0 0 ]
-"155
+"181
 [v _displayMode displayMode `(v  1 e 0 0 ]
-"202
+"229
 [v _delay delay `(v  1 e 0 0 ]
-"225
+"252
 [v _incDutyCycle incDutyCycle `(v  1 e 0 0 ]
-"239
+"266
 [v _incFrequency incFrequency `(v  1 e 0 0 ]
 "207 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f877a.h
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
@@ -145,10 +145,6 @@
 [v _CARRY CARRY `VEb  1 e 0 @24 ]
 "2441
 [v _GIE GIE `VEb  1 e 0 @95 ]
-"2461
-[v _INTE INTE `VEb  1 e 0 @92 ]
-"2481
-[v _PEIE PEIE `VEb  1 e 0 @94 ]
 "2535
 [v _RC2 RC2 `VEb  1 e 0 @58 ]
 "2559
@@ -157,8 +153,10 @@
 [v _RD0 RD0 `VEb  1 e 0 @64 ]
 "2563
 [v _RD1 RD1 `VEb  1 e 0 @65 ]
-"2647
-[v _TMR0IE TMR0IE `VEb  1 e 0 @93 ]
+"2627
+[v _T0IE T0IE `VEb  1 e 0 @93 ]
+"2629
+[v _T0IF T0IF `VEb  1 e 0 @90 ]
 "2649
 [v _TMR0IF TMR0IF `VEb  1 e 0 @90 ]
 "2759
@@ -175,54 +173,56 @@
 [v _count_flag count_flag `ui  1 e 2 0 ]
 "45
 [v _PR2Values PR2Values `[3]ui  1 e 6 0 ]
-"54
+"59
 [v _timerMaxCount timerMaxCount `[3][5]ui  1 e 30 0 ]
-"96
+"101
 [v _main main `(v  1 e 0 0 ]
 {
-"144
+"170
 } 0
-"239
+"266
 [v _incFrequency incFrequency `(v  1 e 0 0 ]
 {
-"245
+"272
 } 0
-"225
+"252
 [v _incDutyCycle incDutyCycle `(v  1 e 0 0 ]
 {
-"231
+"258
 } 0
-"155
+"181
 [v _displayMode displayMode `(v  1 e 0 0 ]
 {
-"159
-[v displayMode@temp2 temp2 `ui  1 a 2 2 ]
-"158
-[v displayMode@temp temp `ui  1 a 2 0 ]
-"191
+"185
+[v displayMode@temp2 temp2 `ui  1 a 2 4 ]
+"184
+[v displayMode@temp temp `ui  1 a 2 2 ]
+"186
+[v displayMode@displayBits displayBits `ui  1 a 2 0 ]
+"218
 } 0
-"202
+"229
 [v _delay delay `(v  1 e 0 0 ]
 {
-"207
-[v delay@localClock localClock `i  1 a 2 0 ]
-"216
+"234
+[v delay@localClock localClock `i  1 a 2 4 ]
+"243
 } 0
 "4 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul8.c
 [v ___bmul __bmul `(uc  1 e 1 0 ]
 {
 [v ___bmul@multiplier multiplier `uc  1 a 1 wreg ]
 "6
-[v ___bmul@product product `uc  1 a 1 2 ]
+[v ___bmul@product product `uc  1 a 1 0 ]
 "4
 [v ___bmul@multiplier multiplier `uc  1 a 1 wreg ]
-[v ___bmul@multiplicand multiplicand `uc  1 p 1 0 ]
+[v ___bmul@multiplicand multiplicand `uc  1 p 1 4 ]
 "6
-[v ___bmul@multiplier multiplier `uc  1 a 1 3 ]
+[v ___bmul@multiplier multiplier `uc  1 a 1 1 ]
 "51
 } 0
-"76 C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c
+"81 C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c
 [v _ISR ISR `II(v  1 e 0 0 ]
 {
-"85
+"90
 } 0

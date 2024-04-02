@@ -18,39 +18,40 @@ config CONFIG 0 2007 2007 1 2
 $GereRatificar_CPE3201.obj
 cinit CODE 0 15 15 16 2
 intentry CODE 0 4 4 E 2
-text6 CODE 0 1FE 1FE 14 2
-text5 CODE 0 212 212 13 2
-text4 CODE 0 1DD 1DD 21 2
-text3 CODE 0 16E 16E 49 2
-text2 CODE 0 247 247 11 2
-text1 CODE 0 236 236 11 2
-maintext CODE 0 2B 2B 143 2
-cstackBANK0 BANK0 1 46 46 9 1
-cstackCOMMON COMMON 1 76 76 4 1
-inittext CODE 0 225 225 11 2
+text6 CODE 0 1F9 1F9 14 2
+text5 CODE 0 20D 20D 13 2
+text4 CODE 0 1DC 1DC 1D 2
+text3 CODE 0 16B 16B 4B 2
+text2 CODE 0 242 242 11 2
+text1 CODE 0 231 231 11 2
+maintext CODE 0 2B 2B 140 2
+cstackBANK0 BANK0 1 46 46 B 1
+cstackCOMMON COMMON 1 70 70 6 1
+inittext CODE 0 220 220 11 2
 dataBANK0 BANK0 1 20 20 26 1
-bssCOMMON COMMON 1 70 70 6 1
-idataBANK0 CODE 0 1B7 1B7 26 2
+bssBANK0 BANK0 1 51 51 2 1
+bssCOMMON COMMON 1 76 76 4 1
+idataBANK0 CODE 0 1B6 1B6 26 2
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
 # is described on a single line as follows:
 #    <class name> <range> <delta>
 # Addresses given in the range are in hexadecimal and units of delta.
 %UNUSED
-BANK0 004F-006F 1
+BANK0 0053-006F 1
 BANK1 00A0-00EF 1
 BANK2 0110-016F 1
 BANK3 0190-01EF 1
 CODE 0003-0003 2
-CODE 0258-1FFF 2
+CODE 0253-1FFF 2
 COMMON 007A-007D 1
 CONST 0003-0003 2
-CONST 0258-1FFF 2
+CONST 0253-1FFF 2
 EEDATA 2100-21FF 2
 ENTRY 0003-0003 2
-ENTRY 0258-1FFF 2
+ENTRY 0253-1FFF 2
 IDLOC 2000-2003 2
-RAM 004F-006F 1
+RAM 0053-006F 1
 RAM 00A0-00EF 1
 RAM 0110-016F 1
 RAM 0190-01EF 1
@@ -60,9 +61,9 @@ SFR2 0100-010F 1
 SFR3 0180-018F 1
 STACK 0110-016F 1
 STRCODE 0003-0003 2
-STRCODE 0258-1FFF 2
+STRCODE 0253-1FFF 2
 STRING 0003-0003 2
-STRING 0258-1FFF 2
+STRING 0253-1FFF 2
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -77,124 +78,124 @@ STRING 0258-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $GereRatificar_CPE3201.obj
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":76 4 intentry CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":302 15 cinit CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":305 15 cinit CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":342 15 cinit CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":343 16 cinit CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":344 17 cinit CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":345 18 cinit CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":346 19 cinit CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":347 1A cinit CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":379 1B cinit CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":380 1C cinit CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":381 1D cinit CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":382 1E cinit CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":383 1F cinit CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":384 20 cinit CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":385 21 cinit CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":386 22 cinit CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":387 23 cinit CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":388 24 cinit CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":394 27 cinit CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":395 27 cinit CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":396 28 cinit CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":96 2B maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":99 2B maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":100 37 maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":101 60 maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":102 87 maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":105 89 maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":107 8D maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":108 8E maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":109 8F maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":110 90 maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":111 91 maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":114 92 maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":115 93 maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":116 95 maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":117 96 maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":120 99 maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":125 9E maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":127 A2 maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":128 A7 maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":129 AC maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":130 B8 maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":131 E1 maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":132 108 maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":134 10D maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":136 111 maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":137 116 maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":138 11B maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":139 127 maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":140 146 maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":155 16E text3 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":157 16E text3 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":158 171 text3 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":159 173 text3 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":160 175 text3 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":163 176 text3 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":166 178 text3 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":169 17A text3 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":171 17E text3 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":160 17F text3 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":172 18F text3 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":175 190 text3 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":178 192 text3 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":181 194 text3 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":184 196 text3 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":187 198 text3 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":189 19C text3 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":172 19D text3 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":190 1B3 text3 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":191 1B6 text3 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":202 1DD text4 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":207 1DD text4 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":208 1E1 text4 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":210 1EE text4 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":212 1F3 text4 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":213 1F5 text4 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":208 1FD text4 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":76 1FE text6 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":78 1FE text6 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":79 1FF text6 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":81 201 text6 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":82 202 text6 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":84 206 text6 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":85 207 text6 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul8.c":4 212 text5 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul8.c":6 215 text5 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul8.c":43 216 text5 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul8.c":44 218 text5 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul8.c":45 21C text5 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul8.c":46 21E text5 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul8.c":47 220 text5 CODE
-"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul8.c":50 223 text5 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":353 225 inittext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":354 225 inittext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":355 226 inittext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":356 227 inittext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":357 228 inittext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":364 229 inittext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":365 229 inittext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":366 22C inittext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":367 22D inittext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":368 22E inittext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":369 22F inittext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":370 230 inittext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":371 231 inittext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":372 232 inittext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":373 233 inittext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":374 234 inittext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":375 235 inittext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":239 236 text1 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":241 236 text1 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":242 23D text1 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":244 244 text1 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":225 247 text2 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":227 247 text2 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":228 24E text2 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":230 255 text2 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":81 4 intentry CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":300 15 cinit CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":303 15 cinit CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":343 15 cinit CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":344 16 cinit CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":345 17 cinit CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":346 18 cinit CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":349 19 cinit CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":350 1A cinit CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":382 1B cinit CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":383 1C cinit CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":384 1D cinit CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":385 1E cinit CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":386 1F cinit CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":387 20 cinit CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":388 21 cinit CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":389 22 cinit CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":390 23 cinit CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":391 24 cinit CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":397 27 cinit CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":398 27 cinit CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":399 28 cinit CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":101 2B maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":111 2B maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":112 2C maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":113 30 maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":114 31 maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":116 32 maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":117 34 maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":118 35 maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":119 36 maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":120 39 maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":122 3A maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":124 44 maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":127 6D maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":128 94 maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":144 96 maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":151 9B maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":153 9F maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":154 A4 maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":155 A9 maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":156 B5 maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":157 DE maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":158 105 maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":160 10A maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":162 10E maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":163 113 maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":164 118 maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":165 124 maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":166 143 maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":181 16B text3 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":183 16B text3 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":184 16E text3 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":185 170 text3 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":186 172 text3 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":187 174 text3 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":190 175 text3 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":193 177 text3 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":196 179 text3 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":198 17D text3 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":187 17E text3 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":199 18E text3 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":202 18F text3 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":205 191 text3 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":208 193 text3 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":211 195 text3 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":214 197 text3 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":216 19B text3 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":199 19C text3 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":217 1B2 text3 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":218 1B5 text3 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":229 1DC text4 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":234 1DC text4 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":235 1DE text4 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":237 1E9 text4 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":239 1F0 text4 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":240 1F2 text4 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":235 1F8 text4 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":81 1F9 text6 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":83 1F9 text6 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":84 1FA text6 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":86 1FC text6 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":87 1FD text6 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":89 201 text6 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":90 202 text6 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul8.c":4 20D text5 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul8.c":6 210 text5 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul8.c":43 211 text5 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul8.c":44 213 text5 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul8.c":45 217 text5 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul8.c":46 219 text5 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul8.c":47 21B text5 CODE
+"C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\Umul8.c":50 21E text5 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":356 220 inittext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":357 220 inittext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":358 221 inittext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":359 222 inittext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":360 223 inittext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":367 224 inittext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":368 224 inittext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":369 227 inittext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":370 228 inittext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":371 229 inittext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":372 22A inittext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":373 22B inittext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":374 22C inittext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":375 22D inittext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":376 22E inittext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":377 22F inittext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\GereRatificar_CPE3201.as":378 230 inittext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":266 231 text1 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":268 231 text1 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":269 238 text1 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":271 23F text1 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":252 242 text2 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":254 242 text2 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":255 249 text2 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\LE4-7.c":257 250 text2 CODE
 $startup.obj
 "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\startup.as":40 0 functab CODE
 "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_04\LE4-7\startup.as":41 0 functab CODE
@@ -218,8 +219,8 @@ $startup.obj
 # was defined in a psect then <psect> will be "-". File-name
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
-__end_of_incFrequency 48E 0 CODE 0 text1 GereRatificar_CPE3201.obj
-__end_of_incDutyCycle 4B0 0 CODE 0 text2 GereRatificar_CPE3201.obj
+__end_of_incFrequency 484 0 CODE 0 text1 GereRatificar_CPE3201.obj
+__end_of_incDutyCycle 4A6 0 CODE 0 text2 GereRatificar_CPE3201.obj
 __CFG_WRT$OFF 0 0 ABS 0 - GereRatificar_CPE3201.obj
 _RD0 40 0 ABS 0 - GereRatificar_CPE3201.obj
 _RD1 41 0 ABS 0 - GereRatificar_CPE3201.obj
@@ -230,14 +231,14 @@ __S1 7A 0 ABS 0 - -
 __S2 0 0 ABS 0 - -
 __S3 0 0 ABS 0 - -
 _GIE 5F 0 ABS 0 - GereRatificar_CPE3201.obj
-_ISR 3FC 0 CODE 0 text6 GereRatificar_CPE3201.obj
+_ISR 3F2 0 CODE 0 text6 GereRatificar_CPE3201.obj
 __Hintentry 24 0 CODE 0 intentry -
 __Lintentry 8 0 CODE 0 intentry -
 __CFG_BOREN$ON 0 0 ABS 0 - GereRatificar_CPE3201.obj
 __pintentry 8 0 CODE 0 intentry GereRatificar_CPE3201.obj
 __CFG_PWRTE$ON 0 0 ABS 0 - GereRatificar_CPE3201.obj
-_PEIE 5E 0 ABS 0 - GereRatificar_CPE3201.obj
-_INTE 5C 0 ABS 0 - GereRatificar_CPE3201.obj
+_T0IE 5D 0 ABS 0 - GereRatificar_CPE3201.obj
+_T0IF 5A 0 ABS 0 - GereRatificar_CPE3201.obj
 _flag 44 0 BANK0 1 dataBANK0 GereRatificar_CPE3201.obj
 _main 56 0 CODE 0 maintext GereRatificar_CPE3201.obj
 ___sp 0 0 STACK 2 stack startup.obj
@@ -267,15 +268,15 @@ wtemp3 84 0 ABS 0 - GereRatificar_CPE3201.obj
 ttemp4 7F 0 ABS 0 - GereRatificar_CPE3201.obj
 wtemp4 86 0 ABS 0 - GereRatificar_CPE3201.obj
 wtemp5 88 0 ABS 0 - GereRatificar_CPE3201.obj
-__end_of_delay 3FC 0 CODE 0 text4 GereRatificar_CPE3201.obj
+__end_of_delay 3F2 0 CODE 0 text4 GereRatificar_CPE3201.obj
 wtemp6 7F 0 ABS 0 - GereRatificar_CPE3201.obj
 interrupt_function 8 0 CODE 0 intentry GereRatificar_CPE3201.obj
 __Hconfig 4010 0 CONFIG 0 config -
 __Lconfig 400E 0 CONFIG 0 config -
 __Hram 0 0 ABS 0 ram -
 __Lram 0 0 ABS 0 ram -
-_delay 3BA 0 CODE 0 text4 GereRatificar_CPE3201.obj
-__end_of_ISR 424 0 CODE 0 text6 GereRatificar_CPE3201.obj
+_delay 3B8 0 CODE 0 text4 GereRatificar_CPE3201.obj
+__end_of_ISR 41A 0 CODE 0 text6 GereRatificar_CPE3201.obj
 __Hfunctab 0 0 CODE 0 functab -
 __Lfunctab 0 0 CODE 0 functab -
 _OPTION_REG 81 0 ABS 0 - GereRatificar_CPE3201.obj
@@ -283,11 +284,10 @@ __Hcommon 0 0 ABS 0 common -
 __Lcommon 0 0 ABS 0 common -
 __Heeprom_data 0 0 EEDATA 3 eeprom_data -
 __Leeprom_data 0 0 EEDATA 3 eeprom_data -
-_TMR0IE 5D 0 ABS 0 - GereRatificar_CPE3201.obj
 _TMR0IF 5A 0 ABS 0 - GereRatificar_CPE3201.obj
 ___int_sp 0 0 STACK 2 stack startup.obj
 _CCPR1L 15 0 ABS 0 - GereRatificar_CPE3201.obj
-__end_of_displayMode 36E 0 CODE 0 text3 GereRatificar_CPE3201.obj
+__end_of_displayMode 36C 0 CODE 0 text3 GereRatificar_CPE3201.obj
 __Habs1 0 0 ABS 0 abs1 -
 __Labs1 0 0 ABS 0 abs1 -
 __Hsfr0 0 0 ABS 0 sfr0 -
@@ -299,7 +299,7 @@ __Lsfr2 0 0 ABS 0 sfr2 -
 __Hsfr3 0 0 ABS 0 sfr3 -
 __Lsfr3 0 0 ABS 0 sfr3 -
 __size_of_delay 0 0 ABS 0 - GereRatificar_CPE3201.obj
-init_fetch0 44A 0 CODE 0 inittext GereRatificar_CPE3201.obj
+init_fetch0 440 0 CODE 0 inittext GereRatificar_CPE3201.obj
 __Hcode 0 0 ABS 0 code -
 __Lcode 0 0 ABS 0 code -
 stackhi 0 0 ABS 0 - startup.obj
@@ -308,26 +308,26 @@ __LcstackBANK0 0 0 ABS 0 cstackBANK0 -
 __pcstackBANK0 46 0 BANK0 1 cstackBANK0 GereRatificar_CPE3201.obj
 stacklo 0 0 ABS 0 - startup.obj
 saved_w 7E 0 ABS 0 - GereRatificar_CPE3201.obj
-___bmul 424 0 CODE 0 text5 GereRatificar_CPE3201.obj
+___bmul 41A 0 CODE 0 text5 GereRatificar_CPE3201.obj
 __Hinit 24 0 CODE 0 init -
 __Linit 24 0 CODE 0 init -
-__end_of_main 2DC 0 CODE 0 maintext GereRatificar_CPE3201.obj
+__end_of_main 2D6 0 CODE 0 maintext GereRatificar_CPE3201.obj
 __Htext 0 0 ABS 0 text -
 __Ltext 0 0 ABS 0 text -
-___bmul@multiplier 49 0 BANK0 1 cstackBANK0 GereRatificar_CPE3201.obj
+___bmul@multiplier 47 0 BANK0 1 cstackBANK0 GereRatificar_CPE3201.obj
 __HdataBANK0 0 0 ABS 0 dataBANK0 -
 __LdataBANK0 0 0 ABS 0 dataBANK0 -
-_incFrequency 46C 0 CODE 0 text1 GereRatificar_CPE3201.obj
+_incFrequency 462 0 CODE 0 text1 GereRatificar_CPE3201.obj
 __pdataBANK0 20 0 BANK0 1 dataBANK0 GereRatificar_CPE3201.obj
 end_of_initialization 4E 0 CODE 0 cinit GereRatificar_CPE3201.obj
 __size_of_ISR 0 0 ABS 0 - GereRatificar_CPE3201.obj
-___bmul@multiplicand 46 0 BANK0 1 cstackBANK0 GereRatificar_CPE3201.obj
+___bmul@multiplicand 74 0 COMMON 1 cstackCOMMON GereRatificar_CPE3201.obj
 _PR2Values 3E 0 BANK0 1 dataBANK0 GereRatificar_CPE3201.obj
 __CFG_FOSC$XT 0 0 ABS 0 - GereRatificar_CPE3201.obj
 __Hstrings 0 0 ABS 0 strings -
 __Lstrings 0 0 ABS 0 strings -
-delay@localClock 46 0 BANK0 1 cstackBANK0 GereRatificar_CPE3201.obj
-_count_flag 70 0 COMMON 1 bssCOMMON GereRatificar_CPE3201.obj
+delay@localClock 74 0 COMMON 1 cstackCOMMON GereRatificar_CPE3201.obj
+_count_flag 51 0 BANK0 1 bssBANK0 GereRatificar_CPE3201.obj
 _CCP1CON 17 0 ABS 0 - GereRatificar_CPE3201.obj
 __Hbank0 0 0 ABS 0 bank0 -
 __Lbank0 0 0 ABS 0 bank0 -
@@ -340,12 +340,12 @@ __Lbank3 0 0 ABS 0 bank3 -
 ___latbits 2 0 ABS 0 - GereRatificar_CPE3201.obj
 __Hpowerup 0 0 CODE 0 powerup -
 __Lpowerup 0 0 CODE 0 powerup -
-__ptext1 46C 0 CODE 0 text1 GereRatificar_CPE3201.obj
-__ptext2 48E 0 CODE 0 text2 GereRatificar_CPE3201.obj
-__ptext3 2DC 0 CODE 0 text3 GereRatificar_CPE3201.obj
-__ptext4 3BA 0 CODE 0 text4 GereRatificar_CPE3201.obj
-__ptext5 424 0 CODE 0 text5 GereRatificar_CPE3201.obj
-__ptext6 3FC 0 CODE 0 text6 GereRatificar_CPE3201.obj
+__ptext1 462 0 CODE 0 text1 GereRatificar_CPE3201.obj
+__ptext2 484 0 CODE 0 text2 GereRatificar_CPE3201.obj
+__ptext3 2D6 0 CODE 0 text3 GereRatificar_CPE3201.obj
+__ptext4 3B8 0 CODE 0 text4 GereRatificar_CPE3201.obj
+__ptext5 41A 0 CODE 0 text5 GereRatificar_CPE3201.obj
+__ptext6 3F2 0 CODE 0 text6 GereRatificar_CPE3201.obj
 __Hclrtext 0 0 ABS 0 clrtext -
 __Lclrtext 0 0 ABS 0 clrtext -
 __end_of__initialization 4E 0 CODE 0 cinit GereRatificar_CPE3201.obj
@@ -368,19 +368,23 @@ __Lspace_3 0 0 ABS 0 - -
 __size_of_main 0 0 ABS 0 - GereRatificar_CPE3201.obj
 __HidataBANK0 0 0 ABS 0 idataBANK0 -
 __LidataBANK0 0 0 ABS 0 idataBANK0 -
-__pidataBANK0 36E 0 CODE 0 idataBANK0 GereRatificar_CPE3201.obj
-_displayMode 2DC 0 CODE 0 text3 GereRatificar_CPE3201.obj
+__pidataBANK0 36C 0 CODE 0 idataBANK0 GereRatificar_CPE3201.obj
+__HbssBANK0 0 0 ABS 0 bssBANK0 -
+__LbssBANK0 0 0 ABS 0 bssBANK0 -
+__pbssBANK0 51 0 BANK0 1 bssBANK0 GereRatificar_CPE3201.obj
+displayMode@displayBits 46 0 BANK0 1 cstackBANK0 GereRatificar_CPE3201.obj
+_displayMode 2D6 0 CODE 0 text3 GereRatificar_CPE3201.obj
 _timerMaxCount 20 0 BANK0 1 dataBANK0 GereRatificar_CPE3201.obj
-_incDutyCycle 48E 0 CODE 0 text2 GereRatificar_CPE3201.obj
+_incDutyCycle 484 0 CODE 0 text2 GereRatificar_CPE3201.obj
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
-__pbssCOMMON 70 0 COMMON 1 bssCOMMON GereRatificar_CPE3201.obj
+__pbssCOMMON 76 0 COMMON 1 bssCOMMON GereRatificar_CPE3201.obj
 __Hend_init 2A 0 CODE 0 end_init -
 __Lend_init 24 0 CODE 0 end_init -
-_dutyCycleIndex 72 0 COMMON 1 bssCOMMON GereRatificar_CPE3201.obj
+_dutyCycleIndex 76 0 COMMON 1 bssCOMMON GereRatificar_CPE3201.obj
 __Hreset_vec 6 0 CODE 0 reset_vec -
 __Lreset_vec 0 0 CODE 0 reset_vec -
-init_ram0 452 0 CODE 0 inittext GereRatificar_CPE3201.obj
+init_ram0 448 0 CODE 0 inittext GereRatificar_CPE3201.obj
 intlevel0 0 0 CODE 0 functab startup.obj
 __CFG_WDTE$OFF 0 0 ABS 0 - GereRatificar_CPE3201.obj
 intlevel1 0 0 CODE 0 functab startup.obj
@@ -390,7 +394,7 @@ intlevel4 0 0 CODE 0 functab startup.obj
 intlevel5 0 0 CODE 0 functab startup.obj
 __HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
 __LcstackCOMMON 0 0 ABS 0 cstackCOMMON -
-__pcstackCOMMON 76 0 COMMON 1 cstackCOMMON GereRatificar_CPE3201.obj
+__pcstackCOMMON 70 0 COMMON 1 cstackCOMMON GereRatificar_CPE3201.obj
 __CFG_CPD$OFF 0 0 ABS 0 - GereRatificar_CPE3201.obj
 start_initialization 2A 0 CODE 0 cinit GereRatificar_CPE3201.obj
 __size_of_displayMode 0 0 ABS 0 - GereRatificar_CPE3201.obj
@@ -400,14 +404,14 @@ __pmaintext 56 0 CODE 0 maintext GereRatificar_CPE3201.obj
 __Hinittext 0 0 ABS 0 inittext -
 __Linittext 0 0 ABS 0 inittext -
 __initialization 2A 0 CODE 0 cinit GereRatificar_CPE3201.obj
-_frequencyIndex 74 0 COMMON 1 bssCOMMON GereRatificar_CPE3201.obj
-___bmul@product 48 0 BANK0 1 cstackBANK0 GereRatificar_CPE3201.obj
+_frequencyIndex 78 0 COMMON 1 bssCOMMON GereRatificar_CPE3201.obj
+___bmul@product 46 0 BANK0 1 cstackBANK0 GereRatificar_CPE3201.obj
 __CFG_CP$OFF 0 0 ABS 0 - GereRatificar_CPE3201.obj
 __CFG_LVP$OFF 0 0 ABS 0 - GereRatificar_CPE3201.obj
 __size_of___bmul 0 0 ABS 0 - GereRatificar_CPE3201.obj
-__end_of___bmul 44A 0 CODE 0 text5 GereRatificar_CPE3201.obj
-displayMode@temp 46 0 BANK0 1 cstackBANK0 GereRatificar_CPE3201.obj
-displayMode@temp2 48 0 BANK0 1 cstackBANK0 GereRatificar_CPE3201.obj
+__end_of___bmul 440 0 CODE 0 text5 GereRatificar_CPE3201.obj
+displayMode@temp 48 0 BANK0 1 cstackBANK0 GereRatificar_CPE3201.obj
+displayMode@temp2 4A 0 BANK0 1 cstackBANK0 GereRatificar_CPE3201.obj
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.
@@ -434,7 +438,7 @@ displayMode@temp2 48 0 BANK0 1 cstackBANK0 GereRatificar_CPE3201.obj
 # All other numeric quantities are in decimal.
 %SEGMENTS
 reset_vec 0 0 0 3 2
-intentry 0 4 8 254 2
+intentry 0 4 8 24F 2
 config 0 2007 400E 1 2
-bssCOMMON 1 70 70 A 1
-dataBANK0 1 20 20 2F 1
+cstackCOMMON 1 70 70 A 1
+dataBANK0 1 20 20 33 1
