@@ -105,11 +105,11 @@
 [v ___ftdiv __ftdiv `(f  1 e 3 0 ]
 "48 C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c
 [v _ISR ISR `II(v  1 e 0 0 ]
-"95
+"86
 [v _main main `(v  1 e 0 0 ]
-"120
+"111
 [v _readADC readADC `(i  1 e 2 0 ]
-"135
+"126
 [v _delay delay `(v  1 e 0 0 ]
 "207 C:\Program Files (x86)\Microchip\xc8\v1.33\include\pic16f877a.h
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
@@ -149,41 +149,41 @@
 [v _WR WR `VEb  1 e 0 @3169 ]
 "2761
 [v _WREN WREN `VEb  1 e 0 @3170 ]
-"95 C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c
+"86 C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c
 [v _main main `(v  1 e 0 0 ]
 {
-"112
+"103
 } 0
 "48
 [v _ISR ISR `II(v  1 e 0 0 ]
 {
 "65
 [v ISR@resultOfConversion resultOfConversion `i  1 a 2 44 ]
-"78
+"69
 [v ISR@result result `i  1 a 2 40 ]
-"77
+"68
 [v ISR@whole_number whole_number `i  1 a 2 38 ]
-"76
+"67
 [v ISR@decimal_number decimal_number `i  1 a 2 36 ]
 "50
 [v ISR@d_value d_value `i  1 a 2 42 ]
-"85
+"76
 } 0
-"120
+"111
 [v _readADC readADC `(i  1 e 2 0 ]
 {
-"122
+"113
 [v readADC@temp temp `i  1 a 2 4 ]
-"127
+"118
 } 0
-"135
+"126
 [v _delay delay `(v  1 e 0 0 ]
 {
-"137
+"128
 [v delay@i i `i  1 a 2 3 ]
-"135
+"126
 [v delay@delayIn delayIn `i  1 p 2 0 ]
-"138
+"129
 } 0
 "44 C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\fttol.c
 [v ___fttol __fttol `(l  1 e 4 0 ]

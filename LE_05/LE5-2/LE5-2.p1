@@ -1146,132 +1146,132 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _resultOfConversion `i ~T0 @X0 1 a ]
 [; ;LE5-2.c: 65: int resultOfConversion = ((float) d_value * 0.0049) * 10;
 [e = _resultOfConversion -> * * -> -> _d_value `f `d .0.0049 -> -> 10 `i `d `i ]
-"76
+"67
 [v _decimal_number `i ~T0 @X0 1 a ]
-[; ;LE5-2.c: 76: int decimal_number = resultOfConversion / 10;
+[; ;LE5-2.c: 67: int decimal_number = resultOfConversion / 10;
 [e = _decimal_number / _resultOfConversion -> 10 `i ]
-"77
+"68
 [v _whole_number `i ~T0 @X0 1 a ]
-[; ;LE5-2.c: 77: int whole_number = resultOfConversion % 10;
+[; ;LE5-2.c: 68: int whole_number = resultOfConversion % 10;
 [e = _whole_number % _resultOfConversion -> 10 `i ]
-"78
+"69
 [v _result `i ~T0 @X0 1 a ]
-[; ;LE5-2.c: 78: int result = (whole_number << 4) | decimal_number;
+[; ;LE5-2.c: 69: int result = (whole_number << 4) | decimal_number;
 [e = _result | << _whole_number -> 4 `i _decimal_number ]
-[; ;LE5-2.c: 80: PORTB = result;
-"80
+[; ;LE5-2.c: 71: PORTB = result;
+"71
 [e = _PORTB -> _result `uc ]
-"81
+"72
 }
 [e :U 98 ]
-[; ;LE5-2.c: 81: }
-[; ;LE5-2.c: 82: delay(1000);
-"82
+[; ;LE5-2.c: 72: }
+[; ;LE5-2.c: 73: delay(1000);
+"73
 [e ( _delay (1 -> 1000 `i ]
-[; ;LE5-2.c: 83: GO = 1;
-"83
+[; ;LE5-2.c: 74: GO = 1;
+"74
 [e = _GO -> -> 1 `i `b ]
-[; ;LE5-2.c: 84: GIE = 1;
-"84
+[; ;LE5-2.c: 75: GIE = 1;
+"75
 [e = _GIE -> -> 1 `i `b ]
-[; ;LE5-2.c: 85: }
-"85
+[; ;LE5-2.c: 76: }
+"76
 [e :UE 97 ]
 }
-"95
+"86
 [v _main `(v ~T0 @X0 1 ef ]
-"96
+"87
 {
-[; ;LE5-2.c: 95: void main()
-[; ;LE5-2.c: 96: {
+[; ;LE5-2.c: 86: void main()
+[; ;LE5-2.c: 87: {
 [e :U _main ]
 [f ]
-[; ;LE5-2.c: 97: TRISB = 0x00;
-"97
+[; ;LE5-2.c: 88: TRISB = 0x00;
+"88
 [e = _TRISB -> -> 0 `i `uc ]
-[; ;LE5-2.c: 98: PORTB = 0x00;
-"98
+[; ;LE5-2.c: 89: PORTB = 0x00;
+"89
 [e = _PORTB -> -> 0 `i `uc ]
-[; ;LE5-2.c: 99: ADCON1 = 0x80;
-"99
+[; ;LE5-2.c: 90: ADCON1 = 0x80;
+"90
 [e = _ADCON1 -> -> 128 `i `uc ]
-[; ;LE5-2.c: 102: ADCON0 = 0x41;
-"102
+[; ;LE5-2.c: 93: ADCON0 = 0x41;
+"93
 [e = _ADCON0 -> -> 65 `i `uc ]
-[; ;LE5-2.c: 104: PEIE = 1;
-"104
+[; ;LE5-2.c: 95: PEIE = 1;
+"95
 [e = _PEIE -> -> 1 `i `b ]
-[; ;LE5-2.c: 105: ADIE = 1;
-"105
+[; ;LE5-2.c: 96: ADIE = 1;
+"96
 [e = _ADIE -> -> 1 `i `b ]
-[; ;LE5-2.c: 106: ADIF = 0;
-"106
+[; ;LE5-2.c: 97: ADIF = 0;
+"97
 [e = _ADIF -> -> 0 `i `b ]
-[; ;LE5-2.c: 107: GIE = 1;
-"107
+[; ;LE5-2.c: 98: GIE = 1;
+"98
 [e = _GIE -> -> 1 `i `b ]
-[; ;LE5-2.c: 108: GO = 1;
-"108
+[; ;LE5-2.c: 99: GO = 1;
+"99
 [e = _GO -> -> 1 `i `b ]
-[; ;LE5-2.c: 109: for(;;)
-"109
+[; ;LE5-2.c: 100: for(;;)
+"100
 {
-"110
+"101
 [e :U 100 ]
-[; ;LE5-2.c: 110: {
+[; ;LE5-2.c: 101: {
 {
-"111
+"102
 }
-[; ;LE5-2.c: 111: }
+[; ;LE5-2.c: 102: }
 [e $U 100  ]
 [e :U 101 ]
 }
-[; ;LE5-2.c: 112: }
-"112
+[; ;LE5-2.c: 103: }
+"103
 [e :UE 99 ]
 }
-"120
+"111
 [v _readADC `(i ~T0 @X0 1 ef ]
-"121
+"112
 {
-[; ;LE5-2.c: 120: int readADC(void)
-[; ;LE5-2.c: 121: {
+[; ;LE5-2.c: 111: int readADC(void)
+[; ;LE5-2.c: 112: {
 [e :U _readADC ]
 [f ]
-"122
+"113
 [v _temp `i ~T0 @X0 1 a ]
-[; ;LE5-2.c: 122: int temp = 0;
+[; ;LE5-2.c: 113: int temp = 0;
 [e = _temp -> 0 `i ]
-[; ;LE5-2.c: 123: temp = ADRESH;
-"123
+[; ;LE5-2.c: 114: temp = ADRESH;
+"114
 [e = _temp -> _ADRESH `i ]
-[; ;LE5-2.c: 124: temp = temp << 8;
-"124
+[; ;LE5-2.c: 115: temp = temp << 8;
+"115
 [e = _temp << _temp -> 8 `i ]
-[; ;LE5-2.c: 125: temp = temp | ADRESL;
-"125
+[; ;LE5-2.c: 116: temp = temp | ADRESL;
+"116
 [e = _temp | _temp -> _ADRESL `i ]
-[; ;LE5-2.c: 126: return temp;
-"126
+[; ;LE5-2.c: 117: return temp;
+"117
 [e ) _temp ]
 [e $UE 103  ]
-[; ;LE5-2.c: 127: }
-"127
+[; ;LE5-2.c: 118: }
+"118
 [e :UE 103 ]
 }
-"135
+"126
 [v _delay `(v ~T0 @X0 1 ef1`i ]
-"136
+"127
 {
-[; ;LE5-2.c: 135: void delay(int delayIn)
-[; ;LE5-2.c: 136: {
+[; ;LE5-2.c: 126: void delay(int delayIn)
+[; ;LE5-2.c: 127: {
 [e :U _delay ]
-"135
+"126
 [v _delayIn `i ~T0 @X0 1 r1 ]
-"136
+"127
 [f ]
-[; ;LE5-2.c: 137: for(int i = 0; i < delayIn; i++);
-"137
+[; ;LE5-2.c: 128: for(int i = 0; i < delayIn; i++);
+"128
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
@@ -1282,7 +1282,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ < _i _delayIn 105  ]
 [e :U 106 ]
 }
-[; ;LE5-2.c: 138: }
-"138
+[; ;LE5-2.c: 129: }
+"129
 [e :UE 104 ]
 }

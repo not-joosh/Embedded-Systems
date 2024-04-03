@@ -1553,7 +1553,6 @@ d_value = readADC();
 
 int resultOfConversion = ((float) d_value * 0.0049) * 10;
 
-# 76
 int decimal_number = resultOfConversion / 10;
 int whole_number = resultOfConversion % 10;
 int result = (whole_number << 4) | decimal_number;
@@ -1565,7 +1564,7 @@ GO = 1;
 GIE = 1;
 }
 
-# 95
+# 86
 void main()
 {
 TRISB = 0x00;
@@ -1585,7 +1584,7 @@ for(;;)
 }
 }
 
-# 120
+# 111
 int readADC(void)
 {
 int temp = 0;
@@ -1595,7 +1594,7 @@ temp = temp | ADRESL;
 return temp;
 }
 
-# 135
+# 126
 void delay(int delayIn)
 {
 for(int i = 0; i < delayIn; i++);

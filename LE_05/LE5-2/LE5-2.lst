@@ -1,7 +1,7 @@
 
 
 Microchip Technology PIC LITE Macro Assembler V1.33 build 59893 
-                                                                                               Tue Apr 02 17:57:45 2024
+                                                                                               Tue Apr 02 18:03:45 2024
 
 Microchip Technology Omniscient Code Generator (Lite mode) build 59893
      1                           	processor	16F877A
@@ -313,7 +313,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    307 ;;
    308 ;; *************** function _main *****************
    309 ;; Defined at:
-   310 ;;		line 95 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c"
+   310 ;;		line 86 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c"
    311 ;; Parameters:    Size  Location     Type
    312 ;;		None
    313 ;; Auto vars:     Size  Location     Type
@@ -344,7 +344,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    338                           ;psect for function _main
    339  0373                     _main:	
    340                           
-   341                           ;LE5-2.c: 97: TRISB = 0x00;
+   341                           ;LE5-2.c: 88: TRISB = 0x00;
    342                           
    343                           ;incstack = 0
    344                           ; Regs used in _main: [wreg+status,2]
@@ -352,47 +352,47 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    346  0374  1303               	bcf	3,6	;RP1=0, select bank1
    347  0375  0186               	clrf	6	;volatile
    348                           
-   349                           ;LE5-2.c: 98: PORTB = 0x00;
+   349                           ;LE5-2.c: 89: PORTB = 0x00;
    350  0376  1283               	bcf	3,5	;RP0=0, select bank0
    351  0377  1303               	bcf	3,6	;RP1=0, select bank0
    352  0378  0186               	clrf	6	;volatile
    353                           
-   354                           ;LE5-2.c: 99: ADCON1 = 0x80;
+   354                           ;LE5-2.c: 90: ADCON1 = 0x80;
    355  0379  3080               	movlw	128
    356  037A  1683               	bsf	3,5	;RP0=1, select bank1
    357  037B  1303               	bcf	3,6	;RP1=0, select bank1
    358  037C  009F               	movwf	31	;volatile
    359                           
-   360                           ;LE5-2.c: 102: ADCON0 = 0x41;
+   360                           ;LE5-2.c: 93: ADCON0 = 0x41;
    361  037D  3041               	movlw	65
    362  037E  1283               	bcf	3,5	;RP0=0, select bank0
    363  037F  1303               	bcf	3,6	;RP1=0, select bank0
    364  0380  009F               	movwf	31	;volatile
    365                           
-   366                           ;LE5-2.c: 104: PEIE = 1;
+   366                           ;LE5-2.c: 95: PEIE = 1;
    367  0381  170B               	bsf	11,6	;volatile
    368                           
-   369                           ;LE5-2.c: 105: ADIE = 1;
+   369                           ;LE5-2.c: 96: ADIE = 1;
    370  0382  1683               	bsf	3,5	;RP0=1, select bank1
    371  0383  1303               	bcf	3,6	;RP1=0, select bank1
    372  0384  170C               	bsf	12,6	;volatile
    373                           
-   374                           ;LE5-2.c: 106: ADIF = 0;
+   374                           ;LE5-2.c: 97: ADIF = 0;
    375  0385  1283               	bcf	3,5	;RP0=0, select bank0
    376  0386  1303               	bcf	3,6	;RP1=0, select bank0
    377  0387  130C               	bcf	12,6	;volatile
    378                           
-   379                           ;LE5-2.c: 107: GIE = 1;
+   379                           ;LE5-2.c: 98: GIE = 1;
    380  0388  178B               	bsf	11,7	;volatile
    381                           
-   382                           ;LE5-2.c: 108: GO = 1;
+   382                           ;LE5-2.c: 99: GO = 1;
    383  0389  151F               	bsf	31,2	;volatile
    384  038A                     l33:	
-   385                           ;LE5-2.c: 109: for(;;)
+   385                           ;LE5-2.c: 100: for(;;)
    386                           
    387                           
-   388                           ;LE5-2.c: 110: {
-   389                           ;LE5-2.c: 111: }
+   388                           ;LE5-2.c: 101: {
+   389                           ;LE5-2.c: 102: }
    390  038A  2B8A               	goto	l33
    391  038B                     __end_of_main:	
    392                           
@@ -506,7 +506,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    500  012F  01CC               	clrf	ISR@resultOfConversion
    501  0130  07CC               	addwf	ISR@resultOfConversion,f
    502                           
-   503                           ;LE5-2.c: 76: int decimal_number = resultOfConversion / 10;
+   503                           ;LE5-2.c: 67: int decimal_number = resultOfConversion / 10;
    504  0131  300A               	movlw	10
    505  0132  00F0               	movwf	___awdiv@divisor
    506  0133  3000               	movlw	0
@@ -527,7 +527,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    521  0146  01C4               	clrf	ISR@decimal_number
    522  0147  07C4               	addwf	ISR@decimal_number,f
    523                           
-   524                           ;LE5-2.c: 77: int whole_number = resultOfConversion % 10;
+   524                           ;LE5-2.c: 68: int whole_number = resultOfConversion % 10;
    525  0148  300A               	movlw	10
    526  0149  00F0               	movwf	___awmod@divisor
    527  014A  3000               	movlw	0
@@ -548,7 +548,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    542  015D  01C6               	clrf	ISR@whole_number
    543  015E  07C6               	addwf	ISR@whole_number,f
    544                           
-   545                           ;LE5-2.c: 78: int result = (whole_number << 4) | decimal_number;
+   545                           ;LE5-2.c: 69: int result = (whole_number << 4) | decimal_number;
    546  015F  0847               	movf	ISR@whole_number+1,w
    547  0160  00BF               	movwf	??_ISR+1
    548  0161  0846               	movf	ISR@whole_number,w
@@ -569,25 +569,25 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    563  0170  043F               	iorwf	??_ISR+1,w
    564  0171  00C9               	movwf	ISR@result+1
    565                           
-   566                           ;LE5-2.c: 80: PORTB = result;
+   566                           ;LE5-2.c: 71: PORTB = result;
    567  0172  0848               	movf	ISR@result,w
    568  0173  0086               	movwf	6	;volatile
    569  0174                     i1l1027:	
    570                           
-   571                           ;LE5-2.c: 81: }
-   572                           ;LE5-2.c: 82: delay(1000);
+   571                           ;LE5-2.c: 72: }
+   572                           ;LE5-2.c: 73: delay(1000);
    573  0174  30E8               	movlw	232
    574  0175  00F0               	movwf	delay@delayIn
    575  0176  3003               	movlw	3
    576  0177  00F1               	movwf	delay@delayIn+1
    577  0178  120A  118A  238B  120A  118A  	fcall	_delay
    578                           
-   579                           ;LE5-2.c: 83: GO = 1;
+   579                           ;LE5-2.c: 74: GO = 1;
    580  017D  1283               	bcf	3,5	;RP0=0, select bank0
    581  017E  1303               	bcf	3,6	;RP1=0, select bank0
    582  017F  151F               	bsf	31,2	;volatile
    583                           
-   584                           ;LE5-2.c: 84: GIE = 1;
+   584                           ;LE5-2.c: 75: GIE = 1;
    585  0180  178B               	bsf	11,7	;volatile
    586  0181  0843               	movf	??_ISR+5,w
    587  0182  00FF               	movwf	127
@@ -626,7 +626,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    620  032A                     __ptext2:	
    621 ;; *************** function _readADC *****************
    622 ;; Defined at:
-   623 ;;		line 120 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c"
+   623 ;;		line 111 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c"
    624 ;; Parameters:    Size  Location     Type
    625 ;;		None
    626 ;; Auto vars:     Size  Location     Type
@@ -657,14 +657,14 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    651                           ;psect for function _readADC
    652  032A                     _readADC:	
    653                           
-   654                           ;LE5-2.c: 122: int temp = 0;
+   654                           ;LE5-2.c: 113: int temp = 0;
    655                           
    656                           ;incstack = 0
    657                           ; Regs used in _readADC: [wreg+status,2+status,0+btemp+1]
    658  032A  01F4               	clrf	readADC@temp
    659  032B  01F5               	clrf	readADC@temp+1
    660                           
-   661                           ;LE5-2.c: 123: temp = ADRESH;
+   661                           ;LE5-2.c: 114: temp = ADRESH;
    662  032C  1283               	bcf	3,5	;RP0=0, select bank0
    663  032D  1303               	bcf	3,6	;RP1=0, select bank0
    664  032E  081E               	movf	30,w	;volatile
@@ -675,7 +675,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    669  0333  0873               	movf	??_readADC+1,w
    670  0334  00F5               	movwf	readADC@temp+1
    671                           
-   672                           ;LE5-2.c: 124: temp = temp << 8;
+   672                           ;LE5-2.c: 115: temp = temp << 8;
    673  0335  0875               	movf	readADC@temp+1,w
    674  0336  00F3               	movwf	??_readADC+1
    675  0337  0874               	movf	readADC@temp,w
@@ -688,7 +688,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    682  033E  0873               	movf	??_readADC+1,w
    683  033F  00F5               	movwf	readADC@temp+1
    684                           
-   685                           ;LE5-2.c: 125: temp = temp | ADRESL;
+   685                           ;LE5-2.c: 116: temp = temp | ADRESL;
    686  0340  0874               	movf	readADC@temp,w
    687  0341  1683               	bsf	3,5	;RP0=1, select bank1
    688  0342  1303               	bcf	3,6	;RP1=0, select bank1
@@ -701,7 +701,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    695  0349  0873               	movf	??_readADC+1,w
    696  034A  00F5               	movwf	readADC@temp+1
    697                           
-   698                           ;LE5-2.c: 126: return temp;
+   698                           ;LE5-2.c: 117: return temp;
    699  034B  0875               	movf	readADC@temp+1,w
    700  034C  01F1               	clrf	?_readADC+1
    701  034D  07F1               	addwf	?_readADC+1,f
@@ -715,7 +715,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    709  038B                     __ptext3:	
    710 ;; *************** function _delay *****************
    711 ;; Defined at:
-   712 ;;		line 135 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c"
+   712 ;;		line 126 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c"
    713 ;; Parameters:    Size  Location     Type
    714 ;;  delayIn         2    0[COMMON] int 
    715 ;; Auto vars:     Size  Location     Type
@@ -746,7 +746,7 @@ Microchip Technology Omniscient Code Generator (Lite mode) build 59893
    740                           ;psect for function _delay
    741  038B                     _delay:	
    742                           
-   743                           ;LE5-2.c: 137: for(int i = 0; i < delayIn; i++);
+   743                           ;LE5-2.c: 128: for(int i = 0; i < delayIn; i++);
    744                           
    745                           ;incstack = 0
    746                           ; Regs used in _delay: [wreg+status,2]
@@ -1925,7 +1925,7 @@ DATA                 0      0       0      12        0.0%
 
 
 Microchip Technology PIC Macro Assembler V1.33 build 59893 
-Symbol Table                                                                                   Tue Apr 02 17:57:45 2024
+Symbol Table                                                                                   Tue Apr 02 18:03:45 2024
 
             __CFG_CP$OFF 0000                       l33 038A                       _GO 00FA  
            ___awdiv@sign 0076                      _GIE 005F             __CFG_CPD$OFF 0000  

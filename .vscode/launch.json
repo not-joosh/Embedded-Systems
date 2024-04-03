@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/notjo/OneDrive/Desktop/USC/USC-Year3-Sem2/3201-EmbeddedSystems/Labs/LE_05/LE5-1",
-      "program": "c:/Users/notjo/OneDrive/Desktop/USC/USC-Year3-Sem2/3201-EmbeddedSystems/Labs/LE_05/LE5-1/build/Debug/outDebug",
+      "cwd": "c:/Users/notjo/OneDrive/Desktop/USC/USC-Year3-Sem2/3201-EmbeddedSystems/Labs/LE_05/LE5-2",
+      "program": "c:/Users/notjo/OneDrive/Desktop/USC/USC-Year3-Sem2/3201-EmbeddedSystems/Labs/LE_05/LE5-2/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
