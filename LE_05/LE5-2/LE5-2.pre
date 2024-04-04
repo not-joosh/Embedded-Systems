@@ -1557,6 +1557,7 @@ int decimal_number = resultOfConversion / 10;
 int whole_number = resultOfConversion % 10;
 int result = (whole_number << 4) | decimal_number;
 
+
 PORTB = result;
 }
 delay(1000);
@@ -1564,7 +1565,7 @@ GO = 1;
 GIE = 1;
 }
 
-# 86
+# 87
 void main()
 {
 TRISB = 0x00;
@@ -1584,7 +1585,7 @@ for(;;)
 }
 }
 
-# 111
+# 112
 int readADC(void)
 {
 int temp = 0;
@@ -1594,7 +1595,7 @@ temp = temp | ADRESL;
 return temp;
 }
 
-# 126
+# 127
 void delay(int delayIn)
 {
 for(int i = 0; i < delayIn; i++);

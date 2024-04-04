@@ -542,7 +542,7 @@ ISR@resultOfConversion:	; 2 bytes @ 0x2C
 
 ;; *************** function _main *****************
 ;; Defined at:
-;;		line 86 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c"
+;;		line 87 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -570,12 +570,12 @@ ISR@resultOfConversion:	; 2 bytes @ 0x2C
 ;;
 psect	maintext,global,class=CODE,delta=2,split=1
 	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c"
-	line	86
+	line	87
 global __pmaintext
 __pmaintext:	;psect for function _main
 psect	maintext
 	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c"
-	line	86
+	line	87
 	global	__size_of_main
 	__size_of_main	equ	__end_of_main-_main
 	
@@ -583,74 +583,74 @@ _main:
 ;incstack = 0
 	opt	stack 5
 ; Regs used in _main: [wreg+status,2]
-	line	88
+	line	89
 	
 l1033:	
-;LE5-2.c: 88: TRISB = 0x00;
+;LE5-2.c: 89: TRISB = 0x00;
 	bsf	status, 5	;RP0=1, select bank1
 	bcf	status, 6	;RP1=0, select bank1
 	clrf	(134)^080h	;volatile
-	line	89
-;LE5-2.c: 89: PORTB = 0x00;
+	line	90
+;LE5-2.c: 90: PORTB = 0x00;
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
 	clrf	(6)	;volatile
-	line	90
+	line	91
 	
 l1035:	
-;LE5-2.c: 90: ADCON1 = 0x80;
+;LE5-2.c: 91: ADCON1 = 0x80;
 	movlw	(080h)
 	bsf	status, 5	;RP0=1, select bank1
 	bcf	status, 6	;RP1=0, select bank1
 	movwf	(159)^080h	;volatile
-	line	93
+	line	94
 	
 l1037:	
-;LE5-2.c: 93: ADCON0 = 0x41;
+;LE5-2.c: 94: ADCON0 = 0x41;
 	movlw	(041h)
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
 	movwf	(31)	;volatile
-	line	95
-	
-l1039:	
-;LE5-2.c: 95: PEIE = 1;
-	bsf	(94/8),(94)&7	;volatile
 	line	96
 	
+l1039:	
+;LE5-2.c: 96: PEIE = 1;
+	bsf	(94/8),(94)&7	;volatile
+	line	97
+	
 l1041:	
-;LE5-2.c: 96: ADIE = 1;
+;LE5-2.c: 97: ADIE = 1;
 	bsf	status, 5	;RP0=1, select bank1
 	bcf	status, 6	;RP1=0, select bank1
 	bsf	(1126/8)^080h,(1126)&7	;volatile
-	line	97
+	line	98
 	
 l1043:	
-;LE5-2.c: 97: ADIF = 0;
+;LE5-2.c: 98: ADIF = 0;
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
 	bcf	(102/8),(102)&7	;volatile
-	line	98
-	
-l1045:	
-;LE5-2.c: 98: GIE = 1;
-	bsf	(95/8),(95)&7	;volatile
 	line	99
 	
+l1045:	
+;LE5-2.c: 99: GIE = 1;
+	bsf	(95/8),(95)&7	;volatile
+	line	100
+	
 l1047:	
-;LE5-2.c: 99: GO = 1;
+;LE5-2.c: 100: GO = 1;
 	bsf	(250/8),(250)&7	;volatile
-	line	101
-;LE5-2.c: 100: for(;;)
+	line	102
+;LE5-2.c: 101: for(;;)
 	
 l33:	
-	line	102
-;LE5-2.c: 101: {
-;LE5-2.c: 102: }
+	line	103
+;LE5-2.c: 102: {
+;LE5-2.c: 103: }
 	goto	l33
 	
 l34:	
-	line	103
+	line	104
 	
 l35:	
 	global	start
@@ -888,39 +888,39 @@ i1l1023:
 	movf	(ISR@decimal_number+1),w
 	iorwf	1+(??_ISR+0)+0,w
 	movwf	1+(ISR@result)
-	line	71
+	line	72
 	
 i1l1025:	
-;LE5-2.c: 71: PORTB = result;
+;LE5-2.c: 72: PORTB = result;
 	movf	(ISR@result),w
 	movwf	(6)	;volatile
 	goto	i1l1027
-	line	72
-	
-i1l29:	
 	line	73
 	
+i1l29:	
+	line	74
+	
 i1l1027:	
-;LE5-2.c: 72: }
-;LE5-2.c: 73: delay(1000);
+;LE5-2.c: 73: }
+;LE5-2.c: 74: delay(1000);
 	movlw	low(03E8h)
 	movwf	(delay@delayIn)
 	movlw	high(03E8h)
 	movwf	((delay@delayIn))+1
 	fcall	_delay
-	line	74
+	line	75
 	
 i1l1029:	
-;LE5-2.c: 74: GO = 1;
+;LE5-2.c: 75: GO = 1;
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
 	bsf	(250/8),(250)&7	;volatile
-	line	75
+	line	76
 	
 i1l1031:	
-;LE5-2.c: 75: GIE = 1;
+;LE5-2.c: 76: GIE = 1;
 	bsf	(95/8),(95)&7	;volatile
-	line	76
+	line	77
 	
 i1l30:	
 	movf	(??_ISR+5),w
@@ -942,7 +942,7 @@ GLOBAL	__end_of_ISR
 
 ;; *************** function _readADC *****************
 ;; Defined at:
-;;		line 111 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c"
+;;		line 112 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
@@ -969,12 +969,12 @@ GLOBAL	__end_of_ISR
 ;; This function uses a non-reentrant model
 ;;
 psect	text2,local,class=CODE,delta=2,merge=1
-	line	111
+	line	112
 global __ptext2
 __ptext2:	;psect for function _readADC
 psect	text2
 	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c"
-	line	111
+	line	112
 	global	__size_of_readADC
 	__size_of_readADC	equ	__end_of_readADC-_readADC
 	
@@ -982,16 +982,16 @@ _readADC:
 ;incstack = 0
 	opt	stack 6
 ; Regs used in _readADC: [wreg+status,2+status,0+btemp+1]
-	line	113
-	
-i1l805:	
-;LE5-2.c: 113: int temp = 0;
-	clrf	(readADC@temp)
-	clrf	(readADC@temp+1)
 	line	114
 	
+i1l805:	
+;LE5-2.c: 114: int temp = 0;
+	clrf	(readADC@temp)
+	clrf	(readADC@temp+1)
+	line	115
+	
 i1l807:	
-;LE5-2.c: 114: temp = ADRESH;
+;LE5-2.c: 115: temp = ADRESH;
 	bcf	status, 5	;RP0=0, select bank0
 	bcf	status, 6	;RP1=0, select bank0
 	movf	(30),w	;volatile
@@ -1001,10 +1001,10 @@ i1l807:
 	movwf	(readADC@temp)
 	movf	1+(??_readADC+0)+0,w
 	movwf	(readADC@temp+1)
-	line	115
+	line	116
 	
 i1l809:	
-;LE5-2.c: 115: temp = temp << 8;
+;LE5-2.c: 116: temp = temp << 8;
 	movf	(readADC@temp+1),w
 	movwf	(??_readADC+0)+0+1
 	movf	(readADC@temp),w
@@ -1016,10 +1016,10 @@ i1l809:
 	movwf	(readADC@temp)
 	movf	1+(??_readADC+0)+0,w
 	movwf	(readADC@temp+1)
-	line	116
+	line	117
 	
 i1l811:	
-;LE5-2.c: 116: temp = temp | ADRESL;
+;LE5-2.c: 117: temp = temp | ADRESL;
 	movf	(readADC@temp),w
 	bsf	status, 5	;RP0=1, select bank1
 	bcf	status, 6	;RP1=0, select bank1
@@ -1031,10 +1031,10 @@ i1l811:
 	movwf	(readADC@temp)
 	movf	1+(??_readADC+0)+0,w
 	movwf	(readADC@temp+1)
-	line	117
+	line	118
 	
 i1l813:	
-;LE5-2.c: 117: return temp;
+;LE5-2.c: 118: return temp;
 	movf	(readADC@temp+1),w
 	clrf	(?_readADC+1)
 	addwf	(?_readADC+1)
@@ -1045,7 +1045,7 @@ i1l813:
 	goto	i1l38
 	
 i1l815:	
-	line	118
+	line	119
 	
 i1l38:	
 	return
@@ -1057,7 +1057,7 @@ GLOBAL	__end_of_readADC
 
 ;; *************** function _delay *****************
 ;; Defined at:
-;;		line 126 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c"
+;;		line 127 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c"
 ;; Parameters:    Size  Location     Type
 ;;  delayIn         2    0[COMMON] int 
 ;; Auto vars:     Size  Location     Type
@@ -1084,12 +1084,12 @@ GLOBAL	__end_of_readADC
 ;; This function uses a non-reentrant model
 ;;
 psect	text3,local,class=CODE,delta=2,merge=1
-	line	126
+	line	127
 global __ptext3
 __ptext3:	;psect for function _delay
 psect	text3
 	file	"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c"
-	line	126
+	line	127
 	global	__size_of_delay
 	__size_of_delay	equ	__end_of_delay-_delay
 	
@@ -1097,10 +1097,10 @@ _delay:
 ;incstack = 0
 	opt	stack 6
 ; Regs used in _delay: [wreg+status,2]
-	line	128
+	line	129
 	
 i1l817:	
-;LE5-2.c: 128: for(int i = 0; i < delayIn; i++);
+;LE5-2.c: 129: for(int i = 0; i < delayIn; i++);
 	clrf	(delay@i)
 	clrf	(delay@i+1)
 	goto	i1l41
@@ -1137,7 +1137,7 @@ u69_20:
 	goto	i1l44
 	
 i1l43:	
-	line	129
+	line	130
 	
 i1l44:	
 	return

@@ -1158,120 +1158,120 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _result `i ~T0 @X0 1 a ]
 [; ;LE5-2.c: 69: int result = (whole_number << 4) | decimal_number;
 [e = _result | << _whole_number -> 4 `i _decimal_number ]
-[; ;LE5-2.c: 71: PORTB = result;
-"71
-[e = _PORTB -> _result `uc ]
+[; ;LE5-2.c: 72: PORTB = result;
 "72
+[e = _PORTB -> _result `uc ]
+"73
 }
 [e :U 98 ]
-[; ;LE5-2.c: 72: }
-[; ;LE5-2.c: 73: delay(1000);
-"73
-[e ( _delay (1 -> 1000 `i ]
-[; ;LE5-2.c: 74: GO = 1;
+[; ;LE5-2.c: 73: }
+[; ;LE5-2.c: 74: delay(1000);
 "74
-[e = _GO -> -> 1 `i `b ]
-[; ;LE5-2.c: 75: GIE = 1;
+[e ( _delay (1 -> 1000 `i ]
+[; ;LE5-2.c: 75: GO = 1;
 "75
-[e = _GIE -> -> 1 `i `b ]
-[; ;LE5-2.c: 76: }
+[e = _GO -> -> 1 `i `b ]
+[; ;LE5-2.c: 76: GIE = 1;
 "76
+[e = _GIE -> -> 1 `i `b ]
+[; ;LE5-2.c: 77: }
+"77
 [e :UE 97 ]
 }
-"86
-[v _main `(v ~T0 @X0 1 ef ]
 "87
+[v _main `(v ~T0 @X0 1 ef ]
+"88
 {
-[; ;LE5-2.c: 86: void main()
-[; ;LE5-2.c: 87: {
+[; ;LE5-2.c: 87: void main()
+[; ;LE5-2.c: 88: {
 [e :U _main ]
 [f ]
-[; ;LE5-2.c: 88: TRISB = 0x00;
-"88
-[e = _TRISB -> -> 0 `i `uc ]
-[; ;LE5-2.c: 89: PORTB = 0x00;
+[; ;LE5-2.c: 89: TRISB = 0x00;
 "89
-[e = _PORTB -> -> 0 `i `uc ]
-[; ;LE5-2.c: 90: ADCON1 = 0x80;
+[e = _TRISB -> -> 0 `i `uc ]
+[; ;LE5-2.c: 90: PORTB = 0x00;
 "90
+[e = _PORTB -> -> 0 `i `uc ]
+[; ;LE5-2.c: 91: ADCON1 = 0x80;
+"91
 [e = _ADCON1 -> -> 128 `i `uc ]
-[; ;LE5-2.c: 93: ADCON0 = 0x41;
-"93
+[; ;LE5-2.c: 94: ADCON0 = 0x41;
+"94
 [e = _ADCON0 -> -> 65 `i `uc ]
-[; ;LE5-2.c: 95: PEIE = 1;
-"95
-[e = _PEIE -> -> 1 `i `b ]
-[; ;LE5-2.c: 96: ADIE = 1;
+[; ;LE5-2.c: 96: PEIE = 1;
 "96
-[e = _ADIE -> -> 1 `i `b ]
-[; ;LE5-2.c: 97: ADIF = 0;
+[e = _PEIE -> -> 1 `i `b ]
+[; ;LE5-2.c: 97: ADIE = 1;
 "97
-[e = _ADIF -> -> 0 `i `b ]
-[; ;LE5-2.c: 98: GIE = 1;
+[e = _ADIE -> -> 1 `i `b ]
+[; ;LE5-2.c: 98: ADIF = 0;
 "98
-[e = _GIE -> -> 1 `i `b ]
-[; ;LE5-2.c: 99: GO = 1;
+[e = _ADIF -> -> 0 `i `b ]
+[; ;LE5-2.c: 99: GIE = 1;
 "99
-[e = _GO -> -> 1 `i `b ]
-[; ;LE5-2.c: 100: for(;;)
+[e = _GIE -> -> 1 `i `b ]
+[; ;LE5-2.c: 100: GO = 1;
 "100
-{
+[e = _GO -> -> 1 `i `b ]
+[; ;LE5-2.c: 101: for(;;)
 "101
-[e :U 100 ]
-[; ;LE5-2.c: 101: {
 {
 "102
+[e :U 100 ]
+[; ;LE5-2.c: 102: {
+{
+"103
 }
-[; ;LE5-2.c: 102: }
+[; ;LE5-2.c: 103: }
 [e $U 100  ]
 [e :U 101 ]
 }
-[; ;LE5-2.c: 103: }
-"103
+[; ;LE5-2.c: 104: }
+"104
 [e :UE 99 ]
 }
-"111
-[v _readADC `(i ~T0 @X0 1 ef ]
 "112
+[v _readADC `(i ~T0 @X0 1 ef ]
+"113
 {
-[; ;LE5-2.c: 111: int readADC(void)
-[; ;LE5-2.c: 112: {
+[; ;LE5-2.c: 112: int readADC(void)
+[; ;LE5-2.c: 113: {
 [e :U _readADC ]
 [f ]
-"113
-[v _temp `i ~T0 @X0 1 a ]
-[; ;LE5-2.c: 113: int temp = 0;
-[e = _temp -> 0 `i ]
-[; ;LE5-2.c: 114: temp = ADRESH;
 "114
-[e = _temp -> _ADRESH `i ]
-[; ;LE5-2.c: 115: temp = temp << 8;
+[v _temp `i ~T0 @X0 1 a ]
+[; ;LE5-2.c: 114: int temp = 0;
+[e = _temp -> 0 `i ]
+[; ;LE5-2.c: 115: temp = ADRESH;
 "115
-[e = _temp << _temp -> 8 `i ]
-[; ;LE5-2.c: 116: temp = temp | ADRESL;
+[e = _temp -> _ADRESH `i ]
+[; ;LE5-2.c: 116: temp = temp << 8;
 "116
-[e = _temp | _temp -> _ADRESL `i ]
-[; ;LE5-2.c: 117: return temp;
+[e = _temp << _temp -> 8 `i ]
+[; ;LE5-2.c: 117: temp = temp | ADRESL;
 "117
+[e = _temp | _temp -> _ADRESL `i ]
+[; ;LE5-2.c: 118: return temp;
+"118
 [e ) _temp ]
 [e $UE 103  ]
-[; ;LE5-2.c: 118: }
-"118
+[; ;LE5-2.c: 119: }
+"119
 [e :UE 103 ]
 }
-"126
+"127
 [v _delay `(v ~T0 @X0 1 ef1`i ]
-"127
-{
-[; ;LE5-2.c: 126: void delay(int delayIn)
-[; ;LE5-2.c: 127: {
-[e :U _delay ]
-"126
-[v _delayIn `i ~T0 @X0 1 r1 ]
-"127
-[f ]
-[; ;LE5-2.c: 128: for(int i = 0; i < delayIn; i++);
 "128
+{
+[; ;LE5-2.c: 127: void delay(int delayIn)
+[; ;LE5-2.c: 128: {
+[e :U _delay ]
+"127
+[v _delayIn `i ~T0 @X0 1 r1 ]
+"128
+[f ]
+[; ;LE5-2.c: 129: for(int i = 0; i < delayIn; i++);
+"129
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
@@ -1282,7 +1282,7 @@ Version 3.2 HI-TECH Software Intermediate Code
 [e $ < _i _delayIn 105  ]
 [e :U 106 ]
 }
-[; ;LE5-2.c: 129: }
-"129
+[; ;LE5-2.c: 130: }
+"130
 [e :UE 104 ]
 }

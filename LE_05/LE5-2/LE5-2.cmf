@@ -117,11 +117,11 @@ $LE5-2.obj
 "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":67 131 text1 CODE
 "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":68 148 text1 CODE
 "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":69 15F text1 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":71 172 text1 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":73 174 text1 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":74 17D text1 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":75 180 text1 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":76 181 text1 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":72 172 text1 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":74 174 text1 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":75 17D text1 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":76 180 text1 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":77 181 text1 CODE
 "C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\fttol.c":44 18C text4 CODE
 "C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\fttol.c":49 18C text4 CODE
 "C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\fttol.c":50 19D text4 CODE
@@ -208,32 +208,32 @@ $LE5-2.obj
 "C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\awmod.c":32 31B text8 CODE
 "C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\awmod.c":33 31E text8 CODE
 "C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\awmod.c":34 323 text8 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":111 32A text2 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":113 32A text2 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":114 32C text2 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":115 335 text2 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":116 340 text2 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":117 34B text2 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":112 32A text2 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":114 32A text2 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":115 32C text2 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":116 335 text2 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":117 340 text2 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":118 34B text2 CODE
 "C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\awtoft.c":32 352 text6 CODE
 "C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\awtoft.c":36 352 text6 CODE
 "C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\awtoft.c":37 353 text6 CODE
 "C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\awtoft.c":38 355 text6 CODE
 "C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\awtoft.c":39 35A text6 CODE
 "C:\Program Files (x86)\Microchip\xc8\v1.33\sources\common\awtoft.c":41 35C text6 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":86 373 maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":88 373 maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":89 376 maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":90 379 maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":93 37D maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":95 381 maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":96 382 maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":97 385 maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":98 388 maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":99 389 maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":101 38A maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":87 373 maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":89 373 maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":90 376 maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":91 379 maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":94 37D maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":96 381 maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":97 382 maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":98 385 maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":99 388 maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":100 389 maintext CODE
 "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":102 38A maintext CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":126 38B text3 CODE
-"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":128 38B text3 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":103 38A maintext CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":127 38B text3 CODE
+"C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\LE5-2.c":129 38B text3 CODE
 $startup.obj
 "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\startup.as":39 0 functab CODE
 "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_05\LE5-2\startup.as":40 0 functab CODE
