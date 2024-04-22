@@ -75,7 +75,7 @@ void interrupt ISR()
 *   FUNCTION           : main
 *   DESCRIPTION        : This function is the main routine for the program. It sets up the Capture Module
 *                        of the PIC16F877A microcontroller to measure the period of a PWM signal. The period
-*                        of the PWM signal coming in at RC2 is displayed on an LCD screen.
+*                        of the PWM signal coming in at RC2 is displayed onto an LCD screen. 
 *   PARAMETERS         : VOID
 *   RETURNS            : VOID
 *===============================================*/
