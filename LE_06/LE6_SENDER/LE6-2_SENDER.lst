@@ -1,0 +1,711 @@
+
+
+Microchip Technology PIC LITE Macro Assembler V1.33 build 59893 
+                                                                                               Mon Apr 22 16:53:18 2024
+
+Microchip Technology Omniscient Code Generator (Lite mode) build 59893
+     1                           	processor	16F877A
+     2                           	opt	pw 120
+     3                           	opt	lm
+     4                           	psect	text0,local,class=CODE,merge=1,delta=2
+     5                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     6                           	psect	bssCOMMON,global,class=COMMON,space=1,delta=1
+     7                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+     8                           	psect	maintext,global,class=CODE,split=1,delta=2
+     9                           	psect	text1,local,class=CODE,merge=1,delta=2
+    10                           	psect	text2,local,class=CODE,merge=1,delta=2
+    11                           	dabs	1,0x7E,2
+    12  0000                     	;# 
+    13  0001                     	;# 
+    14  0002                     	;# 
+    15  0003                     	;# 
+    16  0004                     	;# 
+    17  0005                     	;# 
+    18  0006                     	;# 
+    19  0007                     	;# 
+    20  0008                     	;# 
+    21  0009                     	;# 
+    22  000A                     	;# 
+    23  000B                     	;# 
+    24  000C                     	;# 
+    25  000D                     	;# 
+    26  000E                     	;# 
+    27  000E                     	;# 
+    28  000F                     	;# 
+    29  0010                     	;# 
+    30  0011                     	;# 
+    31  0012                     	;# 
+    32  0013                     	;# 
+    33  0014                     	;# 
+    34  0015                     	;# 
+    35  0015                     	;# 
+    36  0016                     	;# 
+    37  0017                     	;# 
+    38  0018                     	;# 
+    39  0019                     	;# 
+    40  001A                     	;# 
+    41  001B                     	;# 
+    42  001B                     	;# 
+    43  001C                     	;# 
+    44  001D                     	;# 
+    45  001E                     	;# 
+    46  001F                     	;# 
+    47  0081                     	;# 
+    48  0085                     	;# 
+    49  0086                     	;# 
+    50  0087                     	;# 
+    51  0088                     	;# 
+    52  0089                     	;# 
+    53  008C                     	;# 
+    54  008D                     	;# 
+    55  008E                     	;# 
+    56  0091                     	;# 
+    57  0092                     	;# 
+    58  0093                     	;# 
+    59  0094                     	;# 
+    60  0098                     	;# 
+    61  0099                     	;# 
+    62  009C                     	;# 
+    63  009D                     	;# 
+    64  009E                     	;# 
+    65  009F                     	;# 
+    66  010C                     	;# 
+    67  010D                     	;# 
+    68  010E                     	;# 
+    69  010F                     	;# 
+    70  018C                     	;# 
+    71  018D                     	;# 
+    72  0007                     _PORTC	set	7
+    73  0019                     _TXREG	set	25
+    74  0008                     _PORTD	set	8
+    75  0044                     _RD4	set	68
+    76  00C7                     _SPEN	set	199
+    77  0099                     _SPBRG	set	153
+    78  0087                     _TRISC	set	135
+    79  04C2                     _BRGH	set	1218
+    80  04C4                     _SYNC	set	1220
+    81  04C1                     _TRMT	set	1217
+    82  04C6                     _TX9	set	1222
+    83  04C5                     _TXEN	set	1221
+    84                           
+    85                           	psect	text0
+    86  0000                     __ptext0:	
+    87                           ; #config settings
+    88                           
+    89                           
+    90                           ;psect for function _handshake
+    91  0000                     
+    92                           	psect	cinit
+    93  07FA                     start_initialization:	
+    94  07FA                     __initialization:	
+    95                           
+    96                           ; Clear objects allocated to COMMON
+    97  07FA  01F4               	clrf	__pbssCOMMON& (0+127)
+    98  07FB  01F5               	clrf	(__pbssCOMMON+1)& (0+127)
+    99  07FC                     end_of_initialization:	
+   100                           ;End of C runtime variable initialization code
+   101                           
+   102  07FC                     __end_of__initialization:	
+   103  07FC  0183               	clrf	3
+   104  07FD  120A  118A  2F64   	ljmp	_main	;jump to C main() function
+   105                           
+   106                           	psect	bssCOMMON
+   107  0074                     __pbssCOMMON:	
+   108  0074                     _count_flag:	
+   109  0074                     	ds	1
+   110  0075                     _keypadValue:	
+   111  0075                     	ds	1
+   112                           
+   113                           	psect	cstackCOMMON
+   114  0070                     __pcstackCOMMON:	
+   115  0070                     ?_readKeypad:	
+   116  0070                     ??_readKeypad:	
+   117                           ; 0 bytes @ 0x0
+   118                           
+   119  0070                     ??_handshake:	
+   120                           ; 0 bytes @ 0x0
+   121                           
+   122  0070                     ?_main:	
+   123                           ; 0 bytes @ 0x0
+   124                           
+   125  0070                     ?_handshake:	
+   126                           ; 0 bytes @ 0x0
+   127                           
+   128  0070                     handshake@dataIn:	
+   129                           ; 1 bytes @ 0x0
+   130                           
+   131                           
+   132                           ; 1 bytes @ 0x0
+   133  0070                     	ds	1
+   134  0071                     readKeypad@keypress:	
+   135                           
+   136                           ; 1 bytes @ 0x1
+   137  0071                     	ds	1
+   138  0072                     ??_main:	
+   139  0072                     main@i:	
+   140                           ; 0 bytes @ 0x2
+   141                           
+   142                           
+   143                           ; 2 bytes @ 0x2
+   144  0072                     	ds	2
+   145                           
+   146                           	psect	maintext
+   147  0764                     __pmaintext:	
+   148 ;;
+   149 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   150 ;;
+   151 ;; *************** function _main *****************
+   152 ;; Defined at:
+   153 ;;		line 70 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_06\LE6_SENDER\LE6-2
+      +_SENDER.c"
+   154 ;; Parameters:    Size  Location     Type
+   155 ;;		None
+   156 ;; Auto vars:     Size  Location     Type
+   157 ;;  i               2    2[COMMON] int 
+   158 ;; Return value:  Size  Location     Type
+   159 ;;		None               void
+   160 ;; Registers used:
+   161 ;;		wreg, fsr0l, fsr0h, status,2, status,0, btemp+1, pclath, cstack
+   162 ;; Tracked objects:
+   163 ;;		On entry : 17F/0
+   164 ;;		On exit  : 0/0
+   165 ;;		Unchanged: 0/0
+   166 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   167 ;;      Params:         0       0       0       0       0
+   168 ;;      Locals:         2       0       0       0       0
+   169 ;;      Temps:          0       0       0       0       0
+   170 ;;      Totals:         2       0       0       0       0
+   171 ;;Total ram usage:        2 bytes
+   172 ;; Hardware stack levels required when called:    1
+   173 ;; This function calls:
+   174 ;;		_handshake
+   175 ;;		_readKeypad
+   176 ;; This function is called by:
+   177 ;;		Startup code after reset
+   178 ;; This function uses a non-reentrant model
+   179 ;;
+   180                           
+   181                           
+   182                           ;psect for function _main
+   183  0764                     _main:	
+   184                           
+   185                           ;LE6-2_SENDER.c: 75: TRISC = 0x00;
+   186                           
+   187                           ;incstack = 0
+   188                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+btemp+1+pclath+cstack]
+   189  0764  1683               	bsf	3,5	;RP0=1, select bank1
+   190  0765  1303               	bcf	3,6	;RP1=0, select bank1
+   191  0766  0187               	clrf	7	;volatile
+   192                           
+   193                           ;LE6-2_SENDER.c: 76: PORTC = 0x00;
+   194  0767  1283               	bcf	3,5	;RP0=0, select bank0
+   195  0768  1303               	bcf	3,6	;RP1=0, select bank0
+   196  0769  0187               	clrf	7	;volatile
+   197                           
+   198                           ;LE6-2_SENDER.c: 78: SPBRG = 0x19;
+   199  076A  3019               	movlw	25
+   200  076B  1683               	bsf	3,5	;RP0=1, select bank1
+   201  076C  1303               	bcf	3,6	;RP1=0, select bank1
+   202  076D  0099               	movwf	25	;volatile
+   203                           
+   204                           ;LE6-2_SENDER.c: 80: SYNC = 0;
+   205  076E  1218               	bcf	24,4	;volatile
+   206                           
+   207                           ;LE6-2_SENDER.c: 81: SPEN = 1;
+   208  076F  1283               	bcf	3,5	;RP0=0, select bank0
+   209  0770  1303               	bcf	3,6	;RP1=0, select bank0
+   210  0771  1798               	bsf	24,7	;volatile
+   211                           
+   212                           ;LE6-2_SENDER.c: 82: TX9 = 0;
+   213  0772  1683               	bsf	3,5	;RP0=1, select bank1
+   214  0773  1303               	bcf	3,6	;RP1=0, select bank1
+   215  0774  1318               	bcf	24,6	;volatile
+   216                           
+   217                           ;LE6-2_SENDER.c: 83: BRGH = 1;
+   218  0775  1518               	bsf	24,2	;volatile
+   219                           
+   220                           ;LE6-2_SENDER.c: 84: TXEN = 1;
+   221  0776  1698               	bsf	24,5	;volatile
+   222  0777                     l567:	
+   223                           ;LE6-2_SENDER.c: 85: for(;;)
+   224                           
+   225                           
+   226                           ;LE6-2_SENDER.c: 86: {
+   227                           ;LE6-2_SENDER.c: 88: if(RD4)
+   228  0777  1283               	bcf	3,5	;RP0=0, select bank0
+   229  0778  1303               	bcf	3,6	;RP1=0, select bank0
+   230  0779  1E08               	btfss	8,4	;volatile
+   231  077A  2F77               	goto	l567
+   232                           
+   233                           ;LE6-2_SENDER.c: 89: {
+   234                           ;LE6-2_SENDER.c: 90: readKeypad();
+   235  077B  120A  118A  279A  120A  118A  	fcall	_readKeypad
+   236                           
+   237                           ;LE6-2_SENDER.c: 91: handshake(keypadValue);
+   238  0780  0875               	movf	_keypadValue,w
+   239  0781  120A  118A  275A  120A  118A  	fcall	_handshake
+   240                           
+   241                           ;LE6-2_SENDER.c: 92: for(int i = 0; i < 1000; i++);
+   242  0786  01F2               	clrf	main@i
+   243  0787  01F3               	clrf	main@i+1
+   244  0788                     L1:	
+   245  0788  0873               	movf	main@i+1,w
+   246  0789  3A80               	xorlw	128
+   247  078A  00FF               	movwf	127
+   248  078B  3083               	movlw	131
+   249  078C  027F               	subwf	127,w
+   250  078D  1D03               	skipz
+   251  078E  2F91               	goto	u35
+   252  078F  30E8               	movlw	232
+   253  0790  0272               	subwf	main@i,w
+   254  0791                     u35:	
+   255  0791  1803               	btfsc	3,0
+   256  0792  2F77               	goto	l567
+   257  0793  3001               	movlw	1
+   258  0794  07F2               	addwf	main@i,f
+   259  0795  1803               	skipnc
+   260  0796  0AF3               	incf	main@i+1,f
+   261  0797  3000               	movlw	0
+   262  0798  07F3               	addwf	main@i+1,f
+   263  0799  2F88               	goto	L1
+   264  079A                     __end_of_main:	
+   265                           ;LE6-2_SENDER.c: 93: }
+   266                           ;LE6-2_SENDER.c: 96: }
+   267                           
+   268                           
+   269                           	psect	text1
+   270  079A                     __ptext1:	
+   271 ;; *************** function _readKeypad *****************
+   272 ;; Defined at:
+   273 ;;		line 99 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_06\LE6_SENDER\LE6-2
+      +_SENDER.c"
+   274 ;; Parameters:    Size  Location     Type
+   275 ;;		None
+   276 ;; Auto vars:     Size  Location     Type
+   277 ;;  keypress        1    1[COMMON] unsigned char 
+   278 ;; Return value:  Size  Location     Type
+   279 ;;		None               void
+   280 ;; Registers used:
+   281 ;;		wreg, fsr0l, fsr0h, status,2, status,0
+   282 ;; Tracked objects:
+   283 ;;		On entry : 0/0
+   284 ;;		On exit  : 0/0
+   285 ;;		Unchanged: 0/0
+   286 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   287 ;;      Params:         0       0       0       0       0
+   288 ;;      Locals:         1       0       0       0       0
+   289 ;;      Temps:          1       0       0       0       0
+   290 ;;      Totals:         2       0       0       0       0
+   291 ;;Total ram usage:        2 bytes
+   292 ;; Hardware stack levels used:    1
+   293 ;; This function calls:
+   294 ;;		Nothing
+   295 ;; This function is called by:
+   296 ;;		_main
+   297 ;; This function uses a non-reentrant model
+   298 ;;
+   299                           
+   300                           
+   301                           ;psect for function _readKeypad
+   302  079A                     _readKeypad:	
+   303                           
+   304                           ;LE6-2_SENDER.c: 101: char keypress = 0x0F & PORTD;
+   305                           
+   306                           ;incstack = 0
+   307                           ; Regs used in _readKeypad: [wreg-fsr0h+status,2+status,0]
+   308  079A  1283               	bcf	3,5	;RP0=0, select bank0
+   309  079B  1303               	bcf	3,6	;RP1=0, select bank0
+   310  079C  0808               	movf	8,w	;volatile
+   311  079D  390F               	andlw	15
+   312  079E  00F0               	movwf	??_readKeypad
+   313  079F  0870               	movf	??_readKeypad,w
+   314  07A0  00F1               	movwf	readKeypad@keypress
+   315                           
+   316                           ;LE6-2_SENDER.c: 102: switch(keypress)
+   317  07A1  2FD9               	goto	l545
+   318  07A2                     l521:	
+   319                           ;LE6-2_SENDER.c: 103: {
+   320                           ;LE6-2_SENDER.c: 104: case KEY_1:
+   321                           
+   322                           
+   323                           ;LE6-2_SENDER.c: 105: keypadValue = 0x06;
+   324  07A2  3006               	movlw	6
+   325  07A3  00F0               	movwf	??_readKeypad
+   326  07A4  0870               	movf	??_readKeypad,w
+   327  07A5  00F5               	movwf	_keypadValue
+   328                           
+   329                           ;LE6-2_SENDER.c: 106: break;
+   330  07A6  0008               	return
+   331  07A7                     l523:	
+   332                           ;LE6-2_SENDER.c: 107: case KEY_2:
+   333                           
+   334                           
+   335                           ;LE6-2_SENDER.c: 108: keypadValue = 0x5B;
+   336  07A7  305B               	movlw	91
+   337  07A8  00F0               	movwf	??_readKeypad
+   338  07A9  0870               	movf	??_readKeypad,w
+   339  07AA  00F5               	movwf	_keypadValue
+   340                           
+   341                           ;LE6-2_SENDER.c: 109: break;
+   342  07AB  0008               	return
+   343  07AC                     l525:	
+   344                           ;LE6-2_SENDER.c: 110: case KEY_3:
+   345                           
+   346                           
+   347                           ;LE6-2_SENDER.c: 111: keypadValue = 0x4F;
+   348  07AC  304F               	movlw	79
+   349  07AD  00F0               	movwf	??_readKeypad
+   350  07AE  0870               	movf	??_readKeypad,w
+   351  07AF  00F5               	movwf	_keypadValue
+   352                           
+   353                           ;LE6-2_SENDER.c: 112: break;
+   354  07B0  0008               	return
+   355  07B1                     l527:	
+   356                           ;LE6-2_SENDER.c: 113: case KEY_4:
+   357                           
+   358                           
+   359                           ;LE6-2_SENDER.c: 114: keypadValue = 0x66;
+   360  07B1  3066               	movlw	102
+   361  07B2  00F0               	movwf	??_readKeypad
+   362  07B3  0870               	movf	??_readKeypad,w
+   363  07B4  00F5               	movwf	_keypadValue
+   364                           
+   365                           ;LE6-2_SENDER.c: 115: break;
+   366  07B5  0008               	return
+   367  07B6                     l529:	
+   368                           ;LE6-2_SENDER.c: 116: case KEY_5:
+   369                           
+   370                           
+   371                           ;LE6-2_SENDER.c: 117: keypadValue = 0x6D;
+   372  07B6  306D               	movlw	109
+   373  07B7  00F0               	movwf	??_readKeypad
+   374  07B8  0870               	movf	??_readKeypad,w
+   375  07B9  00F5               	movwf	_keypadValue
+   376                           
+   377                           ;LE6-2_SENDER.c: 118: break;
+   378  07BA  0008               	return
+   379  07BB                     l531:	
+   380                           ;LE6-2_SENDER.c: 119: case KEY_6:
+   381                           
+   382                           
+   383                           ;LE6-2_SENDER.c: 120: keypadValue = 0x7D ;
+   384  07BB  307D               	movlw	125
+   385  07BC  00F0               	movwf	??_readKeypad
+   386  07BD  0870               	movf	??_readKeypad,w
+   387  07BE  00F5               	movwf	_keypadValue
+   388                           
+   389                           ;LE6-2_SENDER.c: 121: break;
+   390  07BF  0008               	return
+   391  07C0                     l533:	
+   392                           ;LE6-2_SENDER.c: 122: case KEY_7:
+   393                           
+   394                           
+   395                           ;LE6-2_SENDER.c: 123: keypadValue = 0x07;
+   396  07C0  3007               	movlw	7
+   397  07C1  00F0               	movwf	??_readKeypad
+   398  07C2  0870               	movf	??_readKeypad,w
+   399  07C3  00F5               	movwf	_keypadValue
+   400                           
+   401                           ;LE6-2_SENDER.c: 124: break;
+   402  07C4  0008               	return
+   403  07C5                     l535:	
+   404                           ;LE6-2_SENDER.c: 125: case KEY_8:
+   405                           
+   406                           
+   407                           ;LE6-2_SENDER.c: 126: keypadValue = 0x7F;
+   408  07C5  307F               	movlw	127
+   409  07C6  00F0               	movwf	??_readKeypad
+   410  07C7  0870               	movf	??_readKeypad,w
+   411  07C8  00F5               	movwf	_keypadValue
+   412                           
+   413                           ;LE6-2_SENDER.c: 127: break;
+   414  07C9  0008               	return
+   415  07CA                     l537:	
+   416                           ;LE6-2_SENDER.c: 128: case KEY_9:
+   417                           
+   418                           
+   419                           ;LE6-2_SENDER.c: 129: keypadValue = 0x6F;
+   420  07CA  306F               	movlw	111
+   421  07CB  00F0               	movwf	??_readKeypad
+   422  07CC  0870               	movf	??_readKeypad,w
+   423  07CD  00F5               	movwf	_keypadValue
+   424                           
+   425                           ;LE6-2_SENDER.c: 130: break;
+   426  07CE  0008               	return
+   427  07CF                     l539:	
+   428                           ;LE6-2_SENDER.c: 131: case KEY_0:
+   429                           
+   430                           
+   431                           ;LE6-2_SENDER.c: 132: keypadValue = 0x3F;
+   432  07CF  303F               	movlw	63
+   433  07D0  00F0               	movwf	??_readKeypad
+   434  07D1  0870               	movf	??_readKeypad,w
+   435  07D2  00F5               	movwf	_keypadValue
+   436                           
+   437                           ;LE6-2_SENDER.c: 133: break;
+   438  07D3  0008               	return
+   439  07D4                     l541:	
+   440                           ;LE6-2_SENDER.c: 134: default:
+   441                           
+   442                           
+   443                           ;LE6-2_SENDER.c: 135: keypadValue = 0xFF;
+   444  07D4  30FF               	movlw	255
+   445  07D5  00F0               	movwf	??_readKeypad
+   446  07D6  0870               	movf	??_readKeypad,w
+   447  07D7  00F5               	movwf	_keypadValue
+   448                           
+   449                           ;LE6-2_SENDER.c: 137: }
+   450                           
+   451                           ;LE6-2_SENDER.c: 136: break;
+   452  07D8  0008               	return
+   453  07D9                     l545:	
+   454  07D9  0871               	movf	readKeypad@keypress,w
+   455                           
+   456                           ; Switch size 1, requested type "space"
+   457                           ; Number of cases is 10, Range of values is 0 to 13
+   458                           ; switch strategies available:
+   459                           ; Name         Instructions Cycles
+   460                           ; simple_byte           31    16 (average)
+   461                           ; direct_byte           50     8 (fixed)
+   462                           ; jumptable            260     6 (fixed)
+   463                           ;	Chosen strategy is simple_byte
+   464  07DA  3A00               	xorlw	0	; case 0
+   465  07DB  1903               	skipnz
+   466  07DC  2FA2               	goto	l521
+   467  07DD  3A01               	xorlw	1	; case 1
+   468  07DE  1903               	skipnz
+   469  07DF  2FA7               	goto	l523
+   470  07E0  3A03               	xorlw	3	; case 2
+   471  07E1  1903               	skipnz
+   472  07E2  2FAC               	goto	l525
+   473  07E3  3A06               	xorlw	6	; case 4
+   474  07E4  1903               	skipnz
+   475  07E5  2FB1               	goto	l527
+   476  07E6  3A01               	xorlw	1	; case 5
+   477  07E7  1903               	skipnz
+   478  07E8  2FB6               	goto	l529
+   479  07E9  3A03               	xorlw	3	; case 6
+   480  07EA  1903               	skipnz
+   481  07EB  2FBB               	goto	l531
+   482  07EC  3A0E               	xorlw	14	; case 8
+   483  07ED  1903               	skipnz
+   484  07EE  2FC0               	goto	l533
+   485  07EF  3A01               	xorlw	1	; case 9
+   486  07F0  1903               	skipnz
+   487  07F1  2FC5               	goto	l535
+   488  07F2  3A03               	xorlw	3	; case 10
+   489  07F3  1903               	skipnz
+   490  07F4  2FCA               	goto	l537
+   491  07F5  3A07               	xorlw	7	; case 13
+   492  07F6  1903               	skipnz
+   493  07F7  2FCF               	goto	l539
+   494  07F8  2FD4               	goto	l541
+   495  07F9  0008               	return
+   496  07FA                     __end_of_readKeypad:	
+   497                           
+   498                           	psect	text2
+   499  075A                     __ptext2:	
+   500 ;; *************** function _handshake *****************
+   501 ;; Defined at:
+   502 ;;		line 140 in file "C:\Users\notjo\OneDrive\Desktop\USC\USC-Year3-Sem2\3201-EmbeddedSystems\Labs\LE_06\LE6_SENDER\LE6-
+      +2_SENDER.c"
+   503 ;; Parameters:    Size  Location     Type
+   504 ;;  dataIn          1    wreg     unsigned char 
+   505 ;; Auto vars:     Size  Location     Type
+   506 ;;  dataIn          1    0[COMMON] unsigned char 
+   507 ;; Return value:  Size  Location     Type
+   508 ;;                  1    wreg      unsigned char 
+   509 ;; Registers used:
+   510 ;;		wreg
+   511 ;; Tracked objects:
+   512 ;;		On entry : 0/0
+   513 ;;		On exit  : 0/0
+   514 ;;		Unchanged: 0/0
+   515 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   516 ;;      Params:         0       0       0       0       0
+   517 ;;      Locals:         1       0       0       0       0
+   518 ;;      Temps:          0       0       0       0       0
+   519 ;;      Totals:         1       0       0       0       0
+   520 ;;Total ram usage:        1 bytes
+   521 ;; Hardware stack levels used:    1
+   522 ;; This function calls:
+   523 ;;		Nothing
+   524 ;; This function is called by:
+   525 ;;		_main
+   526 ;; This function uses a non-reentrant model
+   527 ;;
+   528                           
+   529                           
+   530                           ;psect for function _handshake
+   531  075A                     _handshake:	
+   532                           
+   533                           ;incstack = 0
+   534                           ; Regs used in _handshake: [wreg]
+   535                           ;handshake@dataIn stored from wreg
+   536  075A  00F0               	movwf	handshake@dataIn
+   537  075B                     l59:	
+   538                           ;LE6-2_SENDER.c: 142: while(!TRMT);
+   539                           
+   540  075B  1683               	bsf	3,5	;RP0=1, select bank1
+   541  075C  1303               	bcf	3,6	;RP1=0, select bank1
+   542  075D  1C98               	btfss	24,1	;volatile
+   543  075E  2F5B               	goto	l59
+   544                           
+   545                           ;LE6-2_SENDER.c: 143: TXREG = dataIn;
+   546  075F  0870               	movf	handshake@dataIn,w
+   547  0760  1283               	bcf	3,5	;RP0=0, select bank0
+   548  0761  1303               	bcf	3,6	;RP1=0, select bank0
+   549  0762  0099               	movwf	25	;volatile
+   550  0763  0008               	return
+   551  0764                     __end_of_handshake:	
+   552                           ;LE6-2_SENDER.c: 144: return 1;
+   553                           ;	Return value of _handshake is never used
+   554                           
+   555  007E                     btemp	set	126	;btemp
+   556  007E                     wtemp	set	126
+   557  007E                     wtemp0	set	126
+   558  0080                     wtemp1	set	128
+   559  0082                     wtemp2	set	130
+   560  0084                     wtemp3	set	132
+   561  0086                     wtemp4	set	134
+   562  0088                     wtemp5	set	136
+   563  007F                     wtemp6	set	127
+   564  007E                     ttemp	set	126
+   565  007E                     ttemp0	set	126
+   566  0081                     ttemp1	set	129
+   567  0084                     ttemp2	set	132
+   568  0087                     ttemp3	set	135
+   569  007F                     ttemp4	set	127
+   570  007E                     ltemp	set	126
+   571  007E                     ltemp0	set	126
+   572  0082                     ltemp1	set	130
+   573  0086                     ltemp2	set	134
+   574  0080                     ltemp3	set	128
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         2
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14      4       6
+    BANK0            80      0       0
+    BANK1            80      0       0
+    BANK3            96      0       0
+    BANK2            96      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMMON
+
+    _main->_readKeypad
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 2     2      0      60
+                                              2 COMMON     2     2      0
+                          _handshake
+                         _readKeypad
+ ---------------------------------------------------------------------------------
+ (1) _readKeypad                                           2     2      0      15
+                                              0 COMMON     2     2      0
+ ---------------------------------------------------------------------------------
+ (1) _handshake                                            1     1      0      15
+                                              0 COMMON     1     1      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 1
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _handshake
+   _readKeypad
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BITCOMMON            E      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+COMMON               E      4       6       1       42.9%
+BITSFR0              0      0       0       1        0.0%
+SFR0                 0      0       0       1        0.0%
+BITSFR1              0      0       0       2        0.0%
+SFR1                 0      0       0       2        0.0%
+STACK                0      0       0       2        0.0%
+ABS                  0      0       6       3        0.0%
+BITBANK0            50      0       0       4        0.0%
+BITSFR3              0      0       0       4        0.0%
+SFR3                 0      0       0       4        0.0%
+BANK0               50      0       0       5        0.0%
+BITSFR2              0      0       0       5        0.0%
+SFR2                 0      0       0       5        0.0%
+BITBANK1            50      0       0       6        0.0%
+BANK1               50      0       0       7        0.0%
+BITBANK3            60      0       0       8        0.0%
+BANK3               60      0       0       9        0.0%
+BITBANK2            60      0       0      10        0.0%
+BANK2               60      0       0      11        0.0%
+DATA                 0      0       6      12        0.0%
+
+
+Microchip Technology PIC Macro Assembler V1.33 build 59893 
+Symbol Table                                                                                   Mon Apr 22 16:53:18 2024
+
+            __CFG_CP$OFF 0000                       l59 075B                       u35 0791  
+                    l521 07A2                      l531 07BB                      l523 07A7  
+                    l541 07D4                      l533 07C0                      l525 07AC  
+                    l535 07C5                      l527 07B1                      l537 07CA  
+                    l529 07B6                      l545 07D9                      l539 07CF  
+                    l567 0777                      _RD4 0044             __CFG_CPD$OFF 0000  
+                    _TX9 04C6             __CFG_FOSC$XT 0000             __CFG_LVP$OFF 0000  
+                   _BRGH 04C2                     _SPEN 00C7                     _TRMT 04C1  
+                   _TXEN 04C5                     _SYNC 04C4             __CFG_WRT$OFF 0000  
+                   _main 0764                     btemp 007E            __CFG_BOREN$ON 0000  
+                   ltemp 007E                     start 0000                     ttemp 007E  
+                   wtemp 007E                    ?_main 0070            __CFG_WDTE$OFF 0000  
+                  _SPBRG 0099                    _PORTC 0007                    _PORTD 0008  
+                  _TRISC 0087                    _TXREG 0019            __CFG_PWRTE$ON 0000  
+                  main@i 0072                    ltemp0 007E                    ltemp1 0082  
+                  ltemp2 0086                    ltemp3 0080                    ttemp0 007E  
+                  ttemp1 0081                    ttemp2 0084                    ttemp3 0087  
+                  ttemp4 007F                    status 0003                    wtemp0 007E  
+                  wtemp1 0080                    wtemp2 0082                    wtemp3 0084  
+                  wtemp4 0086                    wtemp5 0088                    wtemp6 007F  
+        __initialization 07FA             __end_of_main 079A                   ??_main 0072  
+__end_of__initialization 07FC           __pcstackCOMMON 0070       __size_of_handshake 000A  
+     readKeypad@keypress 0071               __pmaintext 0764               _count_flag 0074  
+      __end_of_handshake 0764               _readKeypad 079A                  __ptext0 0000  
+                __ptext1 079A                  __ptext2 075A     end_of_initialization 07FC  
+            ?_readKeypad 0070      start_initialization 07FA          handshake@dataIn 0070  
+            __pbssCOMMON 0074                ___latbits 0002      __size_of_readKeypad 0060  
+              _handshake 075A               ?_handshake 0070             ??_readKeypad 0070  
+            _keypadValue 0075       __end_of_readKeypad 07FA            __size_of_main 0036  
+            ??_handshake 0070  

@@ -1,0 +1,1 @@
+ LE6_Receiver.d  LE6_Receiver.p1:  C:/Users/notjo/OneDrive/Desktop/USC/USC-Year3-Sem2/3201-EmbeddedSystems/Labs/LE_06/LE6_RECEIVER/LE6_Receiver.c
