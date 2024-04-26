@@ -1,0 +1,1 @@
+ LE7-2_SLAVE.d  LE7-2_SLAVE.p1:  C:/Users/notjo/OneDrive/Desktop/USC/USC-Year3-Sem2/3201-EmbeddedSystems/Labs/LE_07/LE7-2/LE7-2_SLAVE.c

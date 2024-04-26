@@ -1,0 +1,8 @@
+_main: CODE, 1997 0 47
+_init_I2C_Master: CODE, 1982 0 15
+__initialization: CODE, 2044 0 0
+_I2C_Stop: CODE, 1958 0 7
+_I2C_Wait: CODE, 1965 0 8
+_I2C_Send: CODE, 1973 0 9
+_I2C_Start: CODE, 1951 0 7
+Total: 93

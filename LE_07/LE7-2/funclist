@@ -1,0 +1,10 @@
+_ISR: CODE, 120 0 63
+_main: CODE, 25 0 95
+_init_I2C_Master: CODE, 227 0 15
+__initialization: CODE, 21 0 0
+_I2C_Stop: CODE, 259 0 7
+_I2C_Wait: CODE, 251 0 8
+_I2C_Send: CODE, 242 0 9
+_I2C_Start: CODE, 266 0 7
+_I2C_Receive: CODE, 183 0 44
+Total: 248
