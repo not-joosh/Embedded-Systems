@@ -74,26 +74,44 @@ void main(void)
 { // MASTER
     // SRH is the 14-bit digital data for relative humidity and RES 
     // is the resolution which is 14-bits
+    int MSB = 0x00; int LSB = 0x00;
     TRISD = 0xFF; // set all bits in PORTD to input
     init_I2C_Master(); // initialize I2C as master
+    initLCD(); // initialize LCD
     for(;;)
     {
+        // Humidity Reading
         I2C_Start(); // initiate start condition
         I2C_Send(0x80); // send the slave address + write
         I2C_Send(0xE5); // Command for DHT11 (Reading Humidity)
         I2C_RepeatedStart(); // initiate repeated start condition
-        I2C_Send(0x81); // send the slave address + write
-        relative_humidity = I2C_Receive(0); // read the humidity
-        temperature = I2C_Receive(1); // read the temperature
-        I2C_STOP(); // initiate stop condition
+        MSB = I2C_Receive(1); // read the humidity
+        LSB = I2C_Receive(0); // read the temperature
+        I2C_Stop(); // initiate stop condition
+        __delay_ms(200); // delay before next operation
+        MSB = MSB << 6;
+        LSB = LSB >> 2;
+        int temp_humidity = MSB | LSB;
+        relative_humidity = (int) (-6 + 125 * (temp_humidity / resolution));
+        MSB = 0x00; LSB = 0x00; // Clearing MSB and LSB 
         __delay_ms(200); // delay before next operation
 
-        // Calculate the Reading of the Temperature;
-        temperature = (int) -6 + 125 * (relative_humidity / resolution);
-        // Calculate the Reading of the Humidity;
-        relative_humidity = (int) (-46.85 + 175.72 * (temperature / resolution));
-        // RH = -6 + 125 x (Srh / 2^RES)
+        // Temperature Reading
+        I2C_Start(); // initiate start condition
+        I2C_Send(0x81); // send the slave address + write
+        I2C_Send(0xE3); // Command for DHT11 (Reading Temperature)
+        I2C_RepeatedStart(); // initiate repeated start condition
+        MSB = I2C_Receive(1); // read the humidity
+        LSB = I2C_Receive(0); // read the temperature
+        I2C_Stop();
+        MSB = MSB << 6;
+        LSB = LSB >> 2;
+        int temp_temperature = MSB | LSB;
+        temperature = (int) (-46.85 + 175.72 * (temp_temperature / resolution));
 
+
+        // Displaying the Temperature and Humidity <--- 
+        
         __delay_ms(200); // delay before next operation
     }
 }
