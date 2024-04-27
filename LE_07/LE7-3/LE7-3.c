@@ -31,17 +31,14 @@
 #define _XTAL_FREQ 4000000
 #define delay for(int i = 0; i < 1000; i++)
 #define RS RD0
-#define EN RD1
-#define RW RD3
+#define RW RD1
+#define EN RD2
 
 /*=============================================== 
  *   CONSTANTS and GLobal Variables
  *==============================================*/
-char *humidity_string = "Humidity: ";
-char *temperature_string = "Temperature: ";
-unsigned int temperature = 0x00;       // T = -46.85 + 175.72 * (St / 2^RES)
-unsigned int relative_humidity = 0x00; // RH = -6 + 125 * (Srh / 2^RES)
-unsigned int resolution = pow(2, 14); // (2^14);
+int temperature = 0x00;         // T = -46.85 + 175.72 * (St / 2^RES)
+int relative_humidity = 0x00;   // RH = -6 + 125 * (Srh / 2^RES)
 
 /*=============================================== 
  *   FUNCTION PROTOTYPES
@@ -62,11 +59,14 @@ void I2C_Stop(void);
 void I2C_RepeatedStart(void);
 void I2C_Send(unsigned char data);
 unsigned char I2C_Receive(unsigned char ack);
+void updateDisplay(void);
 
 
 /*===============================================
 *   FUNCTION           : MAIN
-*   DESCRIPTION        : This function is the main function of the program.
+*   DESCRIPTION        : This function is the main function of the program. The 
+*                        PIC16F877A will read the temperature and humidity from 
+*                        the DHT11 sensor and display it on the LCD. 
 *   PARAMETERS         : VOID
 *   RETURNS            : VOID
 *===============================================*/
@@ -74,8 +74,16 @@ void main(void)
 { // MASTER
     // SRH is the 14-bit digital data for relative humidity and RES 
     // is the resolution which is 14-bits
+    // RESOLUTION
+    int resolution = pow(2, 14);
     int MSB = 0x00; int LSB = 0x00;
-    TRISD = 0xFF; // set all bits in PORTD to input
+
+    // PORT CONFIGURATION
+    TRISD = 0x00; // set PORTD as output
+    PORTD = 0x00; // clear PORTD
+    TRISB = 0x00; // set PORTB as output
+    PORTB = 0x00; // clear PORTB
+
     init_I2C_Master(); // initialize I2C as master
     initLCD(); // initialize LCD
     for(;;)
@@ -85,6 +93,7 @@ void main(void)
         I2C_Send(0x80); // send the slave address + write
         I2C_Send(0xE5); // Command for DHT11 (Reading Humidity)
         I2C_RepeatedStart(); // initiate repeated start condition
+        I2C_Send(0x81); // send the slave address + read
         MSB = I2C_Receive(1); // read the humidity
         LSB = I2C_Receive(0); // read the temperature
         I2C_Stop(); // initiate stop condition
@@ -92,30 +101,65 @@ void main(void)
         MSB = MSB << 6;
         LSB = LSB >> 2;
         int temp_humidity = MSB | LSB;
-        relative_humidity = (int) (-6 + 125 * (temp_humidity / resolution));
+        relative_humidity = (int)(-6 + (125 * ((float)temp_humidity / (float)resolution)));
         MSB = 0x00; LSB = 0x00; // Clearing MSB and LSB 
         __delay_ms(200); // delay before next operation
 
         // Temperature Reading
         I2C_Start(); // initiate start condition
-        I2C_Send(0x81); // send the slave address + write
+        I2C_Send(0x80); // send the slave address + write
         I2C_Send(0xE3); // Command for DHT11 (Reading Temperature)
         I2C_RepeatedStart(); // initiate repeated start condition
+        I2C_Send(0x81); // send the slave address + read
         MSB = I2C_Receive(1); // read the humidity
         LSB = I2C_Receive(0); // read the temperature
         I2C_Stop();
         MSB = MSB << 6;
         LSB = LSB >> 2;
         int temp_temperature = MSB | LSB;
-        temperature = (int) (-46.85 + 175.72 * (temp_temperature / resolution));
+        temperature = (int)(-46.85 + (175.72 * ((float)temp_temperature / (float)resolution)));
 
-
-        // Displaying the Temperature and Humidity <--- 
-        
+        // Displaying the Humidity and Temperature        
+        updateDisplay();
         __delay_ms(200); // delay before next operation
+        delay;
     }
 }
 
+/*=============================================== 
+ *   CUSTOM FUNCTIONS
+ *==============================================*/
+/*===============================================
+*   FUNCTION           : UPDATE_DISPLAY
+*   DESCRIPTION        : This function updates the display of the LCD.
+*   PARAMETERS         : VOID
+*   RETURNS            : VOID
+*===============================================*/
+void updateDisplay(void)
+{
+    // First we clear anything after the "Humidity: " and "Temperature: " strings
+    instCtrl(0x8A); // set cursor to 2nd line
+    printString("    "); // clear the humidity value
+    instCtrl(0xCC); // set cursor to 2nd line
+    printString("    "); // clear the temperature value
+
+    // Displaying the Relative Humidity Value 
+    instCtrl(0x80); // set cursor to 2nd line
+    printString("Humidity: ");
+    char humidity[10];
+    sprintf(humidity, "%d", relative_humidity);
+    printString(humidity);
+    dataCtrl('%'); // display the percentage symbol
+
+    // Displaying the Temperature Value
+    instCtrl(0xC0); // set cursor to 2nd line
+    printString("Temperature: ");
+    char temp[10];
+    sprintf(temp, "%d", temperature);
+    printString(temp);
+    dataCtrl('C'); // display the Celcius symbol
+    delay;
+}
 
 /*=============================================== 
  *   LCD FUNCTIONS
@@ -144,7 +188,7 @@ void initLCD(void)
 void dataCtrl(unsigned char data)
 {
     RS = 1; // set RS to data mode
-    PORTD = data; // send data to PORTD
+    PORTB = data; // send data to PORTD
     EN = 1; // enable data
     delay; // delay
     EN = 0; // disable data
@@ -159,7 +203,7 @@ void dataCtrl(unsigned char data)
 void instCtrl(unsigned char inst)
 {
     RS = 0; // set RS to instruction mode
-    PORTD = inst; // send instruction to PORTD
+    PORTB = inst; // send instruction to PORTD
     EN = 1; // enable instruction
     delay; // delay
     EN = 0; // disable instruction
